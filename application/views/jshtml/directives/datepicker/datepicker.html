@@ -1,0 +1,7 @@
+<div class="gen-datepicker-container">
+    <div ng-class="validationModel=='required'&&dt==undefined?'required':''" ng-style="gtDatepickerCtrl.picker.align" class="gen-datepicker-c-dply" ng-click="gtDatepickerCtrl.picker.toggle()">
+        <span>{{date}}</span>
+        <div class="gen-datepicker-c-d-c"></div>
+    </div>
+    <div uib-datepicker-popup="{{format}}" ng-change="gtDatepickerCtrl.picker.changed(dt)" ng-model="dt" is-open="gtDatepickerCtrl.picker.show" datepicker-options="gtOptions.opts" close-text="Close" alt-input-formats="altInputFormats"></div>
+</div>

@@ -1,0 +1,14 @@
+<div class="gen-table-editor">
+    <div class="gen-table-editor-content" ng-class="gtTblEdtrCtrl.menu.show?'show':''" ng-click="gtTblEdtrCtrl.menu.toggle()">
+        <div class="_view" ng-show="gtTblEdtrCtrl.menu.type===2||(gtTblEdtrCtrl.menu.type===1&&!gtTblEdtrCtrl.menu.show)">{{gtTblEdtrCtrl.menu.value}}</div>
+        <div class="_txtbox" ng-if="gtTblEdtrCtrl.menu.show&&gtTblEdtrCtrl.menu.type===1">
+            <input type="text" ng-model="form.input" class="gen-input-control" ng-value="gtTblEdtrCtrl.menu.value" ng-enter="gtTblEdtrCtrl.submit()" ng-blur="gtTblEdtrCtrl.menu.toggle(false)" />
+        </div>
+    </div>
+    <div ng-if="gtTblEdtrCtrl.menu.show&&gtTblEdtrCtrl.menu.type===2" class="gen-table-editor-menu">
+        <div class="_close" ng-click="gtTblEdtrCtrl.menu.toggle()"><i class="fa fa-remove"></i></div>
+        <ul><b></b>
+            <li ng-repeat="list in gtTblEdtrCtrl.menu.list"><span>{{list.value}}</span></li>
+        </ul>
+    </div>
+</div>

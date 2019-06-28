@@ -1,0 +1,14 @@
+.page-journey {}
+.page-journey table.journey {
+    width:100%;
+}
+.page-journey table.journey > tbody {}
+.page-journey table.journey > tbody > tr {
+}
+.page-journey table.journey > tbody > tr > td {
+    padding:4px;
+}
+.page-journey table.journey > tbody > tr > td:first-child {
+    width:1px;
+    white-space:nowrap;
+}

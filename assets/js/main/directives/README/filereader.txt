@@ -1,0 +1,11 @@
+<input type="text" filereader="{callback:fn, continuous:true/false,bdr:false,format:'standard'}" />
+
+options:{callback:function(),continuous:true/false,border:true/false}
+    - callback: function is to call when choosing files
+    - continuous: if true, it will be merge when the input-model has value. if false, when selecting ti will be replace the old value of input-model
+    - bdr: has border on container if true. false is default;
+    - format: standard
+        - {file:{data:data,name:'a.jpg',size:1,type:'image/jpeg'}, title:'sample title'} this is standard format if the format='standard'
+        - default format:[{data:data,name:'a.jpg',size:1,type:'image/jpeg'}]
+    - rights: {read:1,write:1}
+    - accept: if you wish to add, please do get mimeTypes on values, if not assign all files will be available.

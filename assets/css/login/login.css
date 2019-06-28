@@ -1,0 +1,21 @@
+.login-box-body {}
+.login-box-body ._info {
+
+    color:#fff;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    padding:4px;
+    margin-bottom:10px;
+    text-align:center;
+
+}
+.login-box-body ._info.red {
+    background:red;
+}
+.login-box-body ._info.green {
+    background:green;
+}
+.login-box-body ._info:first-letter {
+    text-transform:capitalize;
+}

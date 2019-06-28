@@ -1,0 +1,13 @@
+<div class="ui-notification">
+    <table>
+        <tbody>
+        <tr>
+            <td class="_icon" ng-if="notification!==undefined&&notification.type!==undefined">
+                <i ng-if="notification.type==='processing'" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                <i ng-if="notification.type==='done'" class="fa fa-check" aria-hidden="true"></i>
+            </td>
+            <td class="_message" ng-bind-html="message"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

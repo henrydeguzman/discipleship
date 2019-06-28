@@ -1,0 +1,28 @@
+<div ng-controller="main.ctrl.diags.tabset.add as frmtabsetadd" class="gen-diag-tabset-add">
+    <form class="gen-form-static">
+        <div class="form-group">
+            <table>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td><img class="gen-image-circle" src="img/lang_2.png"></td>
+                    <td><img class="gen-image-circle" src="img/lang_1.png"></td>
+                </tr>
+                <tr>
+                    <td><label class="gfs-title"><?= $this->tr('widget.name');?></label></td>
+                    <td><input type="text" ng-model="form.title_en" placeholder="<?= $this->tr('label.title.eng');?>" class="gen-input-control"></td>
+                    <td><input type="text" ng-model="form.title_fr" placeholder="<?= $this->tr('label.title.fr');?>" class="gen-input-control"></td>
+                </tr>
+                <tr>
+                    <td><label class="gfs-title"><?= $this->tr('widget.desc');?></label></td>
+                    <td><textarea type="text" ng-model="form.desc_en" placeholder="<?= $this->tr('label.description.eng');?>" class="gen-input-control"></textarea></td>
+                    <td><textarea type="text" ng-model="form.desc_fr" placeholder="<?= $this->tr('label.description.fr');?>" class="gen-input-control"></textarea></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-btn-right">
+            <button ng-click="frmtabsetadd.send(form)" class="btn gen-btn-success btn-sm"><?= $this->tr('button.save');?></button>
+        </div>
+    </form>
+</div>

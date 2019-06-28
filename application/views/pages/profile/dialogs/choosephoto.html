@@ -1,0 +1,44 @@
+<div class="diag-choosephoto-frm" ng-controller="profile.ctrl.diags.choosephoto as profilechoosephtoCtrl">
+    <div class="diag-choosephoto-header">
+        <table>
+            <tbody>
+            <tr>
+                <td class="_upload">
+
+                    <label ng-if="profile.upload.status==0" class="_empty">
+                        <span>Select photo</span><i class="fa fa-plus"></i>
+
+                        <input type="file" fileread="{callback:profile.upload.process,accept:mimeTypes.image.types}" />
+                    </label>
+                    <div ng-if="profile.upload.status==1" class="_loading">
+                        <label>{{profile.upload.value}}% done</label>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar" aria-valuenow="{{profile.upload.value}}" aria-valuemin="0" aria-valuemax="100" ng-style="profile.upload.style">
+                                <span class="sr-only">{{profile.upload.value}}% Complete (success)</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="diag-choosephoto-content">
+        <div class="_row">
+            <div class="_header"><span>Suggested Photos</span></div>
+            <div class="_content">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="javascript:void(0)">
+                                <img />
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="gttbl_dropdown-container" ng-show="gtTblDpdwnCtrl.list.show">
+    <div class="gttbl_dropdown-c-header"></div>
+    <div class="gttbl_dropdown-c-content">
+        <ul>
+            <li ng-repeat="item in gtTblDpdwnCtrl.list.data" ng-click="gtTblDpdwnCtrl.li($event,item)" ng-if="item.name!==null" bind-html-compile="item.name"></li>
+        </ul>
+    </div>
+</div>

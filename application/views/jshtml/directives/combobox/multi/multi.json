@@ -1,0 +1,30 @@
+[
+  {
+    "name":"Some explanation",
+    "identifier":"internal",
+    "type":"users",
+    "data":[
+      {"userid":1,"fullname":"sample user 1","photo":"assets/img/no-profile-male-img.gif"},
+      {"userid":2,"fullname":"sample user 2","photo":"assets/img/no-profile-male-img.gif"},
+      {"userid":3,"fullname":"sample user 3","photo":"assets/img/no-profile-male-img.gif"},
+      {"userid":4,"fullname":"sample user 4","photo":"assets/img/no-profile-male-img.gif"},
+      {"userid":5,"fullname":"sample user 5","photo":"assets/img/no-profile-male-img.gif"},
+      {"userid":6,"fullname":"sample user 6","photo":"assets/img/no-profile-male-img.gif"},
+      {"userid":7,"fullname":"sample user 7","photo":"assets/img/no-profile-male-img.gif"}
+    ]
+  },
+  {
+    "name":"Some explanation 2",
+    "identifier":"external",
+    "type":"common",
+    "data":[
+      {"id":1,"name":"sample 1"},
+      {"id":2,"name":"sample 2"},
+      {"id":3,"name":"sample 3"},
+      {"id":4,"name":"sample 4"},
+      {"id":5,"name":"sample 5"},
+      {"id":6,"name":"sample 6"},
+      {"id":7,"name":"sample 7"}
+    ]
+  }
+]

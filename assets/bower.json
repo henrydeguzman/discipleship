@@ -1,0 +1,12 @@
+{
+  "name":"victory",
+  "version":"1.0",
+  "dependencies":{
+    "angular":"~1.6.10",
+    "angular-sanitize": "~1.6.10",
+    "angular-route": "~1.6.10",
+    "angular-ui-router":"",
+    "underscore":"1.8.3",
+    "angular-ui-notification":"0.3.6"
+  }
+}

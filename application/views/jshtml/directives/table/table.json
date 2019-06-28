@@ -1,0 +1,17 @@
+[
+  {
+    "title":"sample indicator",
+    "period":"period 1",
+    "lastresult":""
+  },
+  {
+    "title":"sample indicator 2",
+    "period":"period 2",
+    "lastresult":""
+  },
+  {
+    "title":"sample indicator 3",
+    "period":"period 3",
+    "lastresult":""
+  }
+]

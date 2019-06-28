@@ -1,0 +1,15 @@
+<div class="diag-centers-addfrm" ng-controller="centers.ctrl.diags.addfrm as cntrsaddfrmdiagsCtrl">
+    <form class="gen-form-static">
+        <div class="form-group">
+            <label class="gfs-title">Name</label>
+            <input type="text" gt-inputrequired="required.name" ng-model="form.name" class="gen-input-control" />
+        </div>
+        <div class="form-group">
+            <label class="gfs-title">Location</label>
+            <input type="text" gt-inputrequired="required.location" ng-model="form.location" class="gen-input-control" />
+        </div>
+        <div class="form-btn-right">
+            <button class="btn btn-sm gen-btn-success" click-and-disable="cntrsaddfrmdiagsCtrl.save(form)">Save</button>
+        </div>
+    </form>
+</div>

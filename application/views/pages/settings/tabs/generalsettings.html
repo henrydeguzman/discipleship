@@ -1,0 +1,9 @@
+<div class="tab-generalsettings">
+    <form class="gen-form-static">
+        <div class="form-group">
+            <label class="gfs-title">Chapter for those qualified to take victory weekend</label>
+            <select ng-change="settingspageCtrl.one2one.selectchapter(key)" ng-options="value.id as value.name for value in settingspageCtrl.one2one.chapters" ng-model="settingspageCtrl.one2one.form.chapterid"></select>
+            <!--<option ng-repeat="item in settingspageCtrl.one2one.chapters" ng-value="item.id">{{item.name}}</option>-->
+        </div>
+    </form>
+</div>

@@ -1,0 +1,108 @@
+<div class="gen-table-container">
+    <div><ng-transclude></ng-transclude></div>
+    <div class="gen-table-header" ng-style="header.style" ng-if="header.show==true">
+        <div class="gen-table-h-btns">
+            <ul>
+                <li ng-repeat="item in gtTblCtrl.table.header.btns" ng-click="item.onclick()">
+                    <i ng-class="item.i" aria-hidden="true"></i>
+                </li>
+                <li>
+                    <div class="gen-table-h-btn" ng-click="gtTblCtrl.table.export.toggle()">
+                        <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class="gen-table-h-btnlist" ng-show="gtTblCtrl.table.export.show">
+                        <ul class="export">
+                            <li ng-click="gtTblCtrl.table.export.submit('word')"><i class="fa fa-file-word-o"></i><span>Export to Word</span></li>
+                            <li ng-click="gtTblCtrl.table.export.submit('excel')"><i class="fa fa-file-excel-o"></i><span>Export to Excel</span></li>
+                            <li ng-click="gtTblCtrl.table.export.submit('pdf')"><i class="fa fa-file-pdf-o"></i><span>Export to PDF</span></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="gen-table-h-btn" ng-click="gtTblCtrl.table.td.toggle()"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></div>
+                    <div class="gen-table-h-btnlist" ng-show="gtTblCtrl.table.td.show">
+                        <ul>
+                            <li ng-repeat="item in gtTblCtrl.table.td.data" ng-if="item.text.trim()!=''&&item.colif!=false">
+                                <label>
+                                    <input type="checkbox" ng-model="item.show" ng-init="gtTblCtrl.column.check(item)" />
+                                    <span>{{item.text}}</span>
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="_btns">
+                            <button ng-repeat="item in gtTblCtrl.column.buttons" ng-click="gtTblCtrl.column.btn(item)" class="btn btn-xs btn-info">{{item.name}}</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="gen-table-h-pagination" style="display:none;">
+            <ul>
+                <li>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                        <button type="button" disabled class="btn btn-default">1-20 or 45</button>
+                        <button type="button" class="btn btn-default"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">10
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">10</a></li>
+                            <li><a href="#">20</a></li>
+                            <li><a href="#">30</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="gen-table-h-search">
+            <input type="text" ng-model="gtTblCtrl.table.settings.search" ng-model-options="{debounce:800}" ng-change="gtTblCtrl.settings.search()" placeholder="Search..." class="gen-input-control">
+        </div>
+        <div class="gen-table-h-filters" style="display: none;">
+            <ul>
+                <li><i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="gen-table-content">
+        <table ng-style="tablestyle">
+            <thead>
+            <tr class="name">
+                <th ng-repeat="item in gtTblCtrl.table.td.data" ng-click="item.isthclickable&&gtTblCtrl.tdkick('th',item)" ng-if="item.show&&item.colif!=false" field="{{item.field}}">
+                    <span bind-html-compile="item.html"></span>
+                    <gt-table-sort callback="gtTblCtrl.settings.sort" field="item.field"></gt-table-sort>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-if="gtTblCtrl.table.tr.length==0" class="_empty">
+                <td colspan="{{gtTblCtrl.table.td.data.length}}">
+                    <div><i class="fa fa-info-circle"></i></div>
+                    <div class="_title">Nothing to see here.</div>
+                    <div class="_desc">There are no records to show you right now. There may be no entries or your filter may be too tightly defined.</div>
+                </td>
+            </tr>
+            <tr ng-repeat-start="(trindex,tr) in gtTblCtrl.table.tr track by $index" level="{{tr._level}}">
+                <td ng-repeat="td in tr.td" gt-rclickvalidate="{{td.context!==undefined&&gtTblCtrl.contextmenu.model!==undefined?'true':'false'}}" gt-right-click="gtTblCtrl.contextmenu.rclick($event,tr,td)" ng-click="td.istdclickable&&gtTblCtrl.tdkick(td,tr)" ng-class="(td.editable?'editable ':'')+(td.txtalign)+' '+(td.editico)+' '+(td.editor===true?'editor':'')+' '+(td.parent===true?'parent':'')" ng-style="td.tdstyle" bind-html-compile="td.value" ng-if="gtTblCtrl.table.td.data[$index].show&&gtTblCtrl.table.td.data[$index].colif!=false"></td>
+            </tr>
+            <tr ng-repeat-end ng-if="gtTblCtrl.addrow.row[$index].show">
+                <td colspan="{{gtTblCtrl.addrow.ncols}}" ng-style="gtTblCtrl.addrow.row[$index].style" bind-html-compile="gtTblCtrl.addrow.row[$index].value"></td>
+            </tr>
+            </tbody>
+        </table>
+        <gt-contextmenu fn="gtTblCtrl.table.contextFn()" node="gtTblCtrl.contextmenu.node" data="gtTblCtrl.contextmenu.data" e="gtTblCtrl.contextmenu.e" show="gtTblCtrl.contextmenu.show"></gt-contextmenu>
+    </div>
+    <div class="gen-table-footer">
+        <div class="gen-table-f-pagination" ng-if="gtTblCtrl.table.pagination!==undefined&&gtTblCtrl.table.pagination.pages.length>1">
+            <ul>
+                <li class="prev" ng-click="gtTblCtrl.pagination('prev')" ng-class="gtTblCtrl.table.pagination.active==1?'disabled':''"><span>⇐</span></li>
+                <li ng-click="gtTblCtrl.pagination('li',page)" ng-class="gtTblCtrl.table.pagination.active==page.value?'active':''" ng-repeat="page in gtTblCtrl.table.pagination.pages"><span>{{page.value}}</span></li>
+                <li class="next" ng-click="gtTblCtrl.pagination('next')" ng-class="gtTblCtrl.table.pagination.pages.length<=gtTblCtrl.table.pagination.active?'disabled':''"><span>⇒</span></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+.modal {
+    overflow: auto !important;
+    overflow-y: scroll !important;
+    font-family: Lucida Grande,Lucida Sans,Arial,sans-serif;
+
+}
+
+.modal-dialog {}
+.modal-dialog > .modal-content {
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    background-clip: padding-box;
+    outline: 0;
+}
+.modal-dialog.modal-xl-10 {
+    width:auto;
+    margin:10px;
+}
+
+.modal-dialog.modal-fullscreen {
+    width: 100%;
+    padding: 0 20px;
+}
+
+@media (min-width: 992px) {
+    .modal-dialog.modal-xl {
+        width: 900px;
+    }
+}
+@media (min-width: 1216px) {
+    .modal-dialog.modal-xl {
+        width: 1180px;
+    }
+    .modal-dialog.modal-xl-10 {
+        width: 1180px;
+        margin:10px auto;
+    }
+}
+
+
+
+.dialogs-backdrop-default {
+    display: block;
+}
+
+.gen-dialog-container {
+
+}
+.gen-dialog-container > .gen-dialog-c-title {
+    position:relative;
+    padding: 10px 60px 10px 15px;
+    border-bottom:1px solid #ccc;
+    min-height:39px;
+}
+.gen-dialog-container > .gen-dialog-c-title > span {
+    font-size:16px;
+    font-weight:700;
+    font-family:Arial;
+}
+.gen-dialog-container > .gen-dialog-c-title > .gen-dialog-c-t-btns {
+    position:absolute;
+    top:0;
+    right:5px;
+    height:100%;
+
+}
+.gen-dialog-container > .gen-dialog-c-title > .gen-dialog-c-t-btns > ul {
+    list-style:none;margin:0;padding:0;
+    height:100%;
+    top:10px;
+    position:relative;
+}
+.gen-dialog-container > .gen-dialog-c-title > .gen-dialog-c-t-btns > ul > li {
+    min-width:20px;
+    text-align:center;
+    display:inline-block;
+    margin-left:4px;
+}
+.gen-dialog-container > .gen-dialog-c-title > .gen-dialog-c-t-btns > ul > li > button {
+    background:#daedfa;
+    border-color:#aed0ea;
+    outline:none;
+}
+.gen-dialog-container > .gen-dialog-c-title > .gen-dialog-c-t-btns > ul > li > button > i {
+    padding-left:1px;
+    color:#3d80b3;
+}
+.gen-dialog-container > .gen-dialog-c-title > .gen-dialog-c-t-btns > ul > li:hover {
+    cursor:pointer;
+}
+
+.gen-dialog-container > .gen-dialog-c-content {
+    min-height:50px;
+    margin:10px;
+}
+.nomargin .gen-dialog-container > .gen-dialog-c-content {
+    margin:0;
+}

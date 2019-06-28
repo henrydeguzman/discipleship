@@ -1,0 +1,8 @@
+.page-settings {}
+.page-settings .tab-generalsettings {
+    padding:10px;
+}
+.page-settings .tab-victoryweekend {}
+.page-settings .tab-victoryweekend > ._form {
+    padding:10px;
+}

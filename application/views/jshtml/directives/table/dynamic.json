@@ -1,0 +1,37 @@
+{
+  "columns":[
+    {"field":"scale","caption":"Scale"},
+    {"field":"45","caption":"Contrat avec les supermarch\u00e9s","dataformat":"","editor":"auto"},
+    {"field":"9","caption":"Les clients","dataformat":"","editor":"auto"},
+    {"field":"44","caption":"Liste des contracts avec les clients","dataformat":"","editor":"auto"},
+    {"field":"20","caption":"new component","dataformat":"","editor":"auto"},
+    {"field":"63","caption":"Regular personal data","dataformat":"","editor":"auto"},
+    {"field":"64","caption":"Sensitive personal data","dataformat":"","editor":"auto"},
+    {"field":"46","caption":"V\u00e9lo \u00e9lectrique pour la grande distribution","dataformat":"ff","editor":"auto"}
+  ],
+  "rows":[
+    {
+      "id":"7","dataargs":"comparisonid=1&rowmode=sub","title":"case 2","description":null,"elementid":"7","arrow":"1","face":"1","scaleid":"12","scale":"%",
+      "dataoptions":null,"9":"","20":"","44":"","45":"","46":"","63":"","64":""
+    },
+    {
+      "id":"32","dataargs":"comparisonid=1&rowmode=sub","title":"feature test # 3","description":null,"elementid":"32","arrow":"1","face":"1","scaleid":"12","scale":"%",
+      "dataoptions":null,"9":"","20":"","44":"","45":"","46":"","63":"","64":""
+    },
+    {
+      "id":"2","dataargs":"comparisonid=1&rowmode=sub","title":"gap # 1","description":null,"elementid":"2","arrow":"1","face":"1","scaleid":"12","scale":"%",
+      "dataoptions":null,"9":"","20":"33","44":"","45":"","46":"","63":"","64":""
+    },
+    {
+      "id":"18","dataargs":"comparisonid=1&rowmode=sub","title":"test 2 risk","description":null,"elementid":"18","arrow":"1","face":"2","scaleid":"5","scale":"Number",
+      "dataoptions":null,"9":"","20":"","44":"","45":"","46":"","63":"","64":""
+    },
+    {
+      "id":"13","dataargs":"comparisonid=1&rowmode=sub","title":"testing 23","description":null,"elementid":"13","arrow":"1","face":"1","scaleid":"1","scale":"Yes\/No",
+      "dataoptions":"23:Yes,24:No","20":"Yes","45":"No"
+    },
+    {
+      "id":"12","dataargs":"comparisonid=1&rowmode=sub","title":"testiong","description":null,"elementid":"12","arrow":"1","face":"1","scaleid":"12","scale":"%",
+      "dataoptions":null,"9":"","20":"","44":"","45":"","46":"","63":"","64":""
+    }
+  ],"count":"6"}

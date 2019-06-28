@@ -1,0 +1,68 @@
+<div class="gen-cmbbx-container">
+    <!--<div ng-if="(selected.disabled==false||selected.disabled==undefined)&&isMulti==false&&isEditable==true" class="gen-cmbbx-c-selected gen-div-control gen-control-drpdwn" ng-class="type+' '+(gtcmbboxCtrl.validation=='required'&&(inputModel===''||inputModel===undefined)?'required':'')" ng-click="gtcmbboxCtrl.input()" contenteditable bind-html-compile="selected.name"></div>
+    <div ng-if="(selected.disabled==false||selected.disabled==undefined)&&isMulti==true&&isEditable==true" class="gen-cmbbx-c-selected gen-div-control gen-control-drpdwn" ng-class="type+' '+(gtcmbboxCtrl.validation=='required'&&(inputModel.combo_id===''||inputModel.combo_id===undefined)?'required':'')" ng-click="gtcmbboxCtrl.input()" contenteditable bind-html-compile="selected.name"></div>
+    <div ng-if="(selected.disabled==false||selected.disabled==undefined)&&isMulti==false&&isEditable==false" class="gen-cmbbx-c-selected gen-div-control gen-control-drpdwn" ng-class="type+' '+(gtcmbboxCtrl.validation=='required'&&(inputModel===''||inputModel===undefined)?'required':'')" ng-click="gtcmbboxCtrl.input()" bind-html-compile="selected.name"></div>
+    <div ng-if="(selected.disabled==false||selected.disabled==undefined)&&isMulti==true&&isEditable==false" class="gen-cmbbx-c-selected gen-div-control gen-control-drpdwn" ng-class="type+' '+(gtcmbboxCtrl.validation=='required'&&(inputModel.combo_id===''||inputModel.combo_id===undefined)?'required':'')" ng-click="gtcmbboxCtrl.input()" bind-html-compile="selected.name"></div>
+    <div ng-if="selected.disabled==true" class="gen-cmbbx-c-selected" bind-html-compile="selected.name"></div>-->
+    <!-- edited on august 30, 2018: photo won't auto load when hide and show directive. * img manual set is set as automatic on html that has validation if the directive is users. -->
+    <div ng-if="(selected.disabled==false||selected.disabled==undefined)&&isMulti==false&&isEditable==true" class="gen-cmbbx-c-selected gen-div-control gen-control-drpdwn" ng-class="type+' '+(gtcmbboxCtrl.validation=='required'&&(inputModel===''||inputModel===undefined)?'required':'')" ng-click="gtcmbboxCtrl.input()" contenteditable>
+        <img ng-if="type=='users'&&selected.photo" ng-src="{{pathValue.userphoto+selected.photo}}" onerror="this.src='assets/img/no-profile-male-img.jpeg'" />
+        <span ng-if="islink===undefined||islink==null||islink===''" bind-html-compile="selected.name"></span>
+        <a ng-if="islink!==undefined&&islink!=null&&islink!==''" href="{{islink}}" target="_blank" ng-click="$event.stopPropagation();"><span bind-html-compile="selected.name"></span></a>
+    </div>
+    <div ng-if="(selected.disabled==false||selected.disabled==undefined)&&isMulti==true&&isEditable==true" class="gen-cmbbx-c-selected gen-div-control gen-control-drpdwn" ng-class="type+' '+(gtcmbboxCtrl.validation=='required'&&(inputModel.combo_id===''||inputModel.combo_id===undefined)?'required':'')" ng-click="gtcmbboxCtrl.input()" contenteditable>
+        <img ng-if="type=='users'&&selected.photo" ng-src="{{pathValue.userphoto+selected.photo}}" onerror="this.src='assets/img/no-profile-male-img.jpeg'" />
+        <span ng-if="islink===undefined||islink==null||islink===''" bind-html-compile="selected.name"></span>
+        <a ng-if="islink!==undefined&&islink!=null&&islink!==''" href="{{islink}}" target="_blank" ng-click="$event.stopPropagation();"><span bind-html-compile="selected.name"></span></a>
+    </div>
+    <div ng-if="(selected.disabled==false||selected.disabled==undefined)&&isMulti==false&&isEditable==false" class="gen-cmbbx-c-selected gen-div-control gen-control-drpdwn" ng-class="type+' '+(gtcmbboxCtrl.validation=='required'&&(inputModel===''||inputModel===undefined)?'required':'')" ng-click="gtcmbboxCtrl.input()">
+        <img ng-if="type=='users'&&selected.photo" ng-src="{{pathValue.userphoto+selected.photo}}" onerror="this.src='assets/img/no-profile-male-img.jpeg'" />
+        <span ng-if="islink===undefined||islink==null||islink===''" bind-html-compile="selected.name"></span>
+        <a ng-if="islink!==undefined&&islink!=null&&islink!==''" href="{{islink}}" target="_blank" ng-click="$event.stopPropagation();"><span bind-html-compile="selected.name"></span></a>
+    </div>
+    <div ng-if="(selected.disabled==false||selected.disabled==undefined)&&isMulti==true&&isEditable==false" class="gen-cmbbx-c-selected gen-div-control gen-control-drpdwn" ng-class="type+' '+(gtcmbboxCtrl.validation=='required'&&(inputModel.combo_id===''||inputModel.combo_id===undefined)?'required':'')" ng-click="gtcmbboxCtrl.input()">
+        <img ng-if="type=='users'&&selected.photo" ng-src="{{pathValue.userphoto+selected.photo}}" onerror="this.src='assets/img/no-profile-male-img.jpeg'" />
+        <span ng-if="islink===undefined||islink==null||islink===''" bind-html-compile="selected.name"></span>
+        <a ng-if="islink!==undefined&&islink!=null&&islink!==''" href="{{islink}}" target="_blank" ng-click="$event.stopPropagation();"><span bind-html-compile="selected.name"></span></a>
+    </div>
+    <div ng-if="selected.disabled==true" class="gen-cmbbx-c-selected _disabled" ng-class="type">
+        <img ng-if="type=='users'&&selected.photo" ng-src="{{pathValue.userphoto+selected.photo}}" onerror="this.src='assets/img/no-profile-male-img.jpeg'" />
+        <span ng-if="islink===undefined||islink==null||islink===''" bind-html-compile="selected.name"></span>
+        <a ng-if="islink!==undefined&&islink!=null&&islink!==''" href="{{islink}}" target="_blank" ng-click="$event.stopPropagation();"><span bind-html-compile="selected.name"></span></a>
+    </div>
+
+    <div class="gen-cmbbx-c-list" ng-show="gtcmbboxCtrl.list.show"  ng-if="!gtcmbboxCtrl.list.isMulti">
+        <ul ng-class="type" ng-if="type==='users'">
+            <li ng-click="gtcmbboxCtrl.select($event,item)" ng-repeat="item in gtcmbboxCtrl.list.users.data">
+                <img ng-src="{{pathValue.userphoto+item.photo}}" onerror="this.src='assets/img/no-profile-male-img.jpeg'" /><span>{{item.fullname}}</span>
+            </li>
+        </ul>
+        <ul ng-class="type" ng-if="type==='common'">
+            <li ng-click="gtcmbboxCtrl.select($event,item)" ng-repeat="item in gtcmbboxCtrl.list.common.data">
+                <span bind-html-compile="item.name"></span>
+            </li>
+        </ul>
+    </div>
+    <div class="gen-cmbbx-c-list multi" ng-show="gtcmbboxCtrl.list.show" ng-if="gtcmbboxCtrl.list.isMulti">
+        <table>
+            <thead>
+            <tr><th ng-repeat="item in gtcmbboxCtrl.list.multidata">{{item.name}}</th></tr>
+            <tr>
+                <th ng-repeat="item in gtcmbboxCtrl.list.multidata"><input type="text" class="gen-input-control" /></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td ng-repeat="item in gtcmbboxCtrl.list.multidata" ng-style="{width:(100/gtcmbboxCtrl.list.multidata.length)+'%'}">
+                    <ul ng-class="item.type" ng-if="item.type==='users'">
+                        <li ng-click="gtcmbboxCtrl.select($event,list,item)" ng-repeat="list in item.data"><img ng-src="{{pathValue.userphoto+list.photo}}" onerror="this.src='img/no-profile-male-img.jpeg'" /><span>{{list.fullname}}</span></li>
+                    </ul>
+                    <ul ng-class="item.type" ng-if="item.type==='common'">
+                        <li ng-click="gtcmbboxCtrl.select($event,list,item)" ng-repeat="list in item.data"><span>{{list.name}}</span></li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

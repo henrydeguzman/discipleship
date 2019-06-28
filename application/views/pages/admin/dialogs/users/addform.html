@@ -1,0 +1,19 @@
+<div class="diag-users-addfrm" ng-controller="users.ctrl.diags.addfrm as usrsaddfrmdiagsCtrl">
+    <form class="gen-form-static">
+        <div class="form-group">
+            <label class="gfs-title">Firstname</label>
+            <input type="text" gt-inputrequired="required.firstname" ng-model="form.firstname" class="gen-input-control" />
+        </div>
+        <div class="form-group">
+            <label class="gfs-title">Lastname</label>
+            <input type="text" gt-inputrequired="required.lastname" ng-model="form.lastname" class="gen-input-control" />
+        </div>
+        <div class="form-group">
+            <label class="gfs-title">Email</label>
+            <input type="email" gt-inputrequired="required.email" ng-model="form.email" class="gen-input-control" />
+        </div>
+        <div class="form-btn-right">
+            <button class="btn btn-sm gen-btn-success" ng-click="usrsaddfrmdiagsCtrl.save(form)">Save</button>
+        </div>
+    </form>
+</div>

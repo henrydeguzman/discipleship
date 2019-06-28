@@ -1,0 +1,52 @@
+<div class="page-vg" ng-controller="vg.page.controller as vgpageCtrl">
+    <div class="row">
+        <div class="col-md-4">
+            <form class="gen-form-static">
+                <!-- box -->
+                <div class="gen-box-v-1">
+                    <div class="gen-box-v-1-header">
+                        <span>Schedule</span>
+                        <div class="gen-box-v-h-buttons">
+                            <ul>
+                                <li click-and-disable="vgpageCtrl.form.save()"><i class="fa fa-floppy-o" aria-hidden="true"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="gen-box-v-1-content content-padding">
+                        <div class="form-group">
+                            <label class="gfs-title">Day of the week</label>
+                            <select class="gen-input-control" ng-model="vgpageCtrl.form.data.dayoftheweek">
+                                <option value="1">Monday</option>
+                                <option value="2">Tuesday</option>
+                                <option value="3">Wednesday</option>
+                                <option value="4">Thursday</option>
+                                <option value="5">Friday</option>
+                                <option value="6">Saturday</option>
+                                <option value="7">Sunday</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="gfs-title">Time</label>
+                            <div ng-model="vgpageCtrl.form.data.time" templatse-url="page/loadview?dir=jshtml&view=bootstrap-custom/timepicker/timepicker.html" uib-timepicker show-meridian="true"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="gfs-title">Venue</label>
+                            <textarea style="resize:none;" ng-model="vgpageCtrl.form.data.venue" gt-auto-grow class="gen-input-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- end box -->
+            </form>
+        </div>
+        <div class="col-md-8">
+            <gt-table id="vg.memlist" model="fetch/vg_get/tablelist" formatter="vg/formatter/vgtable.js">
+                <gt-table-btns action="add" gtclick="vgpageCtrl.form.dialog()"></gt-table-btns>
+                <gt-table-col field="no" format="no" text-align="center" td-style="{width:'1px'}">#</gt-table-col>
+                <gt-table-col field="fullname">Name</gt-table-col>
+                <gt-table-col field="phonenumber">Contact #</gt-table-col>
+                <gt-table-col field="address">Address</gt-table-col>
+                <gt-table-col format="action" td-style="{width:'1px'}" text-align="center">Action</gt-table-col>
+            </gt-table>
+        </div>
+    </div>
+</div>

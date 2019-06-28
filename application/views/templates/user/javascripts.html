@@ -1,0 +1,74 @@
+<!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="<?= base_url('assets/bower_components/jquery/js/jquery.min.js'); ?>"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?= base_url('assets/bower_components/bootstrap/js/bootstrap.min.js'); ?>"></script>
+<!-- SlimScroll -->
+<script src="<?= base_url('assets/bower_components/jquery-slimscroll/js/jquery.slimscroll.min.js'); ?>"></script>
+<!-- FastClick -->
+<script src="<?= base_url('assets/bower_components/fastclick/js/fastclick.js'); ?>"></script>
+<!-- AdminLTE App -->
+<script src="<?= base_url('assets/js/AdminLTE/adminlte.min.js'); ?>"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?= base_url('assets/js/AdminLTE/demo.js'); ?>"></script>
+
+<!-- angular dependencies -->
+<script src="<?= base_url('assets/bower_components/angular/angular.min.js'); ?>"></script>
+<script src="<?= base_url('assets/bower_components/angular-sanitize/angular-sanitize.min.js'); ?>"></script>
+<script src="<?= base_url('assets/bower_components/angular-route/angular-route.min.js'); ?>"></script>
+<script src="<?= base_url('assets/bower_components/angular-ui-router/release/angular-ui-router.min.js'); ?>"></script>
+<script src="<?= base_url('assets/bower_components/underscore/underscore-min.js'); ?>"></script>
+<script src="<?= base_url('assets/bower_components/angular-ui-custom/ui-bootstrap-custom-tpls-2.5.0.min.js');?>"></script>
+<script src="<?= base_url('assets/bower_components/angular-ui-notification/dist/angular-ui-notification.min.js');?>"></script>
+<script src="<?= base_url('assets/js/main/standalone/dialog/dialog.js'); ?>"></script>
+<script src="<?= base_url('assets/js/main/standalone/main.js'); ?>"></script>
+<script type="text/javascript">
+    vtr.pathValue={ base_url:'<?= base_url(); ?>', userphoto:'<?= PATH_USERPHOTO; ?>' };
+    vtr.userdata='<?= json_encode($this->data_app_get->dataCurrentUser()); ?>';
+</script>
+
+<!-- angular main js -->
+<script src="<?= base_url('assets/js/app.js'); ?>"></script>
+<script src="<?= base_url('assets/js/main/controllers/main.ctrl.js'); ?>"></script>
+<script src="<?= base_url('assets/js/main/directives/main.drtvs.js'); ?>"></script>
+<script src="<?= base_url('assets/js/main/filters/main.fltrs.js'); ?>"></script>
+<script src="<?= base_url('assets/js/main/services/factories/main.fctry.js'); ?>"></script>
+<script src="<?= base_url('assets/js/main/services/values/main.values.js'); ?>"></script>
+<script src="<?= base_url('assets/js/main/services/values/main.formatter.js'); ?>"></script>
+<script src="<?= base_url('assets/js/main/services/values/main.config.js'); ?>"></script>
+
+<!-- users page -->
+<script src="<?= base_url('assets/js/users/controllers/users.ctrl.js'); ?>"></script>
+<script src="<?= base_url('assets/js/users/controllers/users.ctrl.diags.js'); ?>"></script>
+
+<!-- centers page -->
+<script src="<?= base_url('assets/js/centers/controllers/centers.ctrl.js'); ?>"></script>
+<script src="<?= base_url('assets/js/centers/controllers/centers.ctrl.diags.js'); ?>"></script>
+
+<!-- one2one -->
+<script src="<?= base_url('assets/js/one2one/controllers/one2one.ctrl.js'); ?>"></script>
+<script src="<?= base_url('assets/js/one2one/controllers/one2one.ctrl.diags.js'); ?>"></script>
+
+<!-- vg -->
+<script src="<?= base_url('assets/js/vg/controllers/vg.ctrl.js'); ?>"></script>
+<!-- journey -->
+<script src="<?= base_url('assets/js/journey/controllers/journey.ctrl.js'); ?>"></script>
+
+<!-- profile -->
+<script src="<?= base_url('assets/js/profile/controllers/profile.ctrl.js'); ?>"></script>
+<script src="<?= base_url('assets/js/profile/controllers/profile.ctrl.diags.js'); ?>"></script>
+
+<!-- settings -->
+<script src="<?= base_url('assets/js/settings/controllers/settings.ctrl.js'); ?>"></script>
+<script>
+    $(document).ready(function () {
+        $('.sidebar-menu').tree()
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<div class="gttbl_sort-container">
+    <a ng-click="gtTblSortCtrl.list.toggle()" ng-class="gtTblSortCtrl.list.show?'show':''" ng-if="field!==''&&field!==undefined">
+        <i class="fa fa-angle-down fa-lg"></i>
+    </a>
+    <div class="gttbl_sort-c-content" ng-show="gtTblSortCtrl.list.show">
+        <ul>
+            <li ng-click="gtTblSortCtrl.list.sort('asc',field)"><i class="fa fa-sort-alpha-asc"></i> Ascend</li>
+            <li ng-click="gtTblSortCtrl.list.sort('desc',field)"><i class="fa fa-sort-alpha-desc"></i> Descend</li>
+        </ul>
+    </div>
+</div>

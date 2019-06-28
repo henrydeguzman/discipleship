@@ -1,0 +1,86 @@
+<div class="page-journey" ng-controller="journey.page.controller as journeypageCtrl">
+    <form class="gen-form-static">
+        <!-- box -->
+        <div class="gen-box-v-1">
+            <!-- gt-tooltip="{html:'Don\'t bother this, this is just testing for tooltip'}" -->
+            <div class="gen-box-v-1-header">
+                <span>Discipleship Journey</span>
+            </div>
+            <div class="gen-box-v-1-content content-padding">
+                <table class="journey">
+                    <tbody>
+                    <tr>
+                        <td>Victory Weekend</td>
+                        <td>
+                            <div class="_dateinput display-inline">
+                                <input ng-change="journeypageCtrl.date.change('victory_weekend')" ng-model="journeypageCtrl.form.data.victory_weekend" readonly is-open="journeypageCtrl.show.vweekend" uib-datepicker-popup="{{journeypageCtrl.show.format}}" type="text"/>
+                                <div ng-click="journeypageCtrl.show.trig('vweekend')" class="_calen"></div>
+                            </div>
+                        </td>
+                        <td class="gen-radio-group-inline">
+                            <label>Baptized : </label>
+                            <label class="gfs-title">
+                                <input value="1" ng-model="journeypageCtrl.form.data.baptized" ng-change="journeypageCtrl.date.change('1')"  type="radio" name="bradio" /><span>Yes</span>
+                            </label>
+                            <label class="gfs-title">
+                                <input value="0" ng-model="journeypageCtrl.form.data.baptized" ng-change="journeypageCtrl.date.change('2')" type="radio" name="bradio" /><span>No</span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Church community</td>
+                        <td>
+                            <div class="_dateinput display-inline">
+                                <input ng-change="journeypageCtrl.date.change('church_community')" ng-model="journeypageCtrl.form.data.church_community" readonly is-open="journeypageCtrl.show.community" uib-datepicker-popup="{{journeypageCtrl.show.format}}" type="text"/>
+                                <div ng-click="journeypageCtrl.show.trig('community')" class="_calen"></div>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Purple book class</td>
+                        <td>
+                            <div class="_dateinput display-inline">
+                                <input ng-change="journeypageCtrl.date.change('purple_book')" ng-model="journeypageCtrl.form.data.purple_book" readonly is-open="journeypageCtrl.show.purplebook" uib-datepicker-popup="{{journeypageCtrl.show.format}}" type="text"/>
+                                <div ng-click="journeypageCtrl.show.trig('purplebook')" class="_calen"></div>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Making Disciples</td>
+                        <td>
+                            <div class="_dateinput display-inline">
+                                <input ng-change="journeypageCtrl.date.change('making_disciples')" ng-model="journeypageCtrl.form.data.making_disciples" readonly is-open="journeypageCtrl.show.making" uib-datepicker-popup="{{journeypageCtrl.show.format}}" type="text"/>
+                                <div ng-click="journeypageCtrl.show.trig('making')" class="_calen"></div>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Empowering Leaders</td>
+                        <td>
+                            <div class="_dateinput display-inline">
+                                <input ng-change="journeypageCtrl.date.change('empowering_leaders')" ng-model="journeypageCtrl.form.data.empowering_leaders" readonly is-open="journeypageCtrl.show.emleaders" uib-datepicker-popup="{{journeypageCtrl.show.format}}" type="text"/>
+                                <div ng-click="journeypageCtrl.show.trig('emleaders')" class="_calen"></div>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Leadership 113</td>
+                        <td>
+                            <div class="_dateinput display-inline">
+                                <input ng-change="journeypageCtrl.date.change('leadership_113')" ng-model="journeypageCtrl.form.data.leadership_113" readonly is-open="journeypageCtrl.show.leadership" uib-datepicker-popup="{{journeypageCtrl.show.format}}" type="text"/>
+                                <div ng-click="journeypageCtrl.show.trig('leadership')" class="_calen"></div>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- end box -->
+    </form>
+</div>

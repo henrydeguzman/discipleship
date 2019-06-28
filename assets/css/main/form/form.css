@@ -1,0 +1,100 @@
+form.gen-form-static {}
+form.gen-form-static > .gfs-txt-center {
+    text-align:center;
+}
+form.gen-form-static > .gfs-diagsubtitle {
+    color:#636f79;
+    font-size:14px;
+    font-weight:bold;
+}
+form.gen-form-static .gfs-title{
+    font-size:12px;
+    font-weight:bold;
+}
+form.gen-form-static .gfs-desc{
+    font-size:12px;
+    font-weight:normal;
+
+
+}
+form.gen-form-static .gfs-ucaps {
+    text-transform:capitalize;
+}
+form.gen-form-static input.gfs-desc {
+    padding-top:6.5px !important;
+    padding-bottom:6.5px !important;
+}
+form.gen-form-static .gfs-img-ico{
+    width:24px;
+    height:24px;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius:50%;
+}
+
+
+
+form.gen-form-static .form-group {
+    margin-bottom:5px;
+}
+form.gen-form-static .form-group label {
+
+}
+form.gen-form-static .form-group select,
+form.gen-form-static .form-group input
+{
+    margin-bottom:0;
+    padding: 5px;
+    /* padding: 6px; */
+}
+
+
+
+form.gen-form-static .gen-radio-group {}
+form.gen-form-static .gen-radio-group > label,
+form.gen-form-static .gen-radio-group-inline > label {
+    cursor:pointer;
+    font-size:12px;
+    font-weight:bold;
+    vertical-align:top;
+}
+form.gen-form-static .gen-radio-group-inline > label > input {
+    margin-top:0;
+}
+form.gen-form-static .gen-radio-group > label > span,
+form.gen-form-static .gen-radio-group-inline > label > span {
+    position:relative;
+    margin-left:2px;
+}
+form.gen-form-static .gen-radio-group-inline {
+    display:inline-block;
+}
+
+
+
+form.gen-form-static .form-btn-right{
+    text-align:right;
+}
+form.gen-form-static .form-btn-right button{
+    margin:2px 0;
+}
+
+/* table */
+form.gen-form-static table.full-width{
+    width:100%;
+}
+
+form.gen-form-static table > tbody > tr.padding-td > td,
+form.gen-form-static table > thead > tr.padding-th > th {
+    padding:5px;
+}
+
+form.gen-form-static table.full-width.gen-table-striped {
+    border:1px solid #ccc;
+}
+form.gen-form-static table.full-width.gen-table-striped > thead > tr:last-child {
+    border-bottom:1px solid #ccc;
+}
+form.gen-form-static table.full-width.gen-table-striped >tbody > tr:nth-child(even) {
+    background:#eeeeee;
+}

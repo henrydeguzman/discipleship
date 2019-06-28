@@ -1,0 +1,4 @@
+{
+  "buttons":[{"id":0,"name":"Save as Default"},{"id":1,"name":"Submit"}],
+  "hiddencolumns":"likelihood;criteria"
+}

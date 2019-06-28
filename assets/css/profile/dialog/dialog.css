@@ -1,0 +1,55 @@
+.diag-choosephoto-frm {}
+.diag-choosephoto-frm > .diag-choosephoto-header {
+
+}
+.diag-choosephoto-frm > .diag-choosephoto-header > table {
+    width:100%;
+}
+.diag-choosephoto-frm > .diag-choosephoto-header > table > tbody {}
+.diag-choosephoto-frm > .diag-choosephoto-header > table > tbody > tr {}
+.diag-choosephoto-frm > .diag-choosephoto-header > table > tbody > tr > td {
+    height:80px;
+}
+.diag-choosephoto-frm > .diag-choosephoto-header > table > tbody > tr > td._upload {
+    text-align:center;
+    position:relative;
+}
+.diag-choosephoto-frm > .diag-choosephoto-header > table > tbody > tr > td._upload > label:hover {
+    cursor:pointer;
+}
+.diag-choosephoto-frm > .diag-choosephoto-header > table > tbody > tr > td._upload > label {
+    color:inherit;
+    position:absolute;
+    left:0;top:0;bottom:0;right:0;
+    margin:0;
+}
+.diag-choosephoto-frm > .diag-choosephoto-header > table > tbody > tr > td._upload > label > input[type=file] {
+    position:absolute;
+    top:0;
+    opacity:0;
+    width:0;height:0;
+}
+.diag-choosephoto-frm > .diag-choosephoto-header > table > tbody > tr > td._upload > label > span {
+    line-height:70px;
+    font-size:16px;
+    color: #4b4f56;
+    font-weight:normal;
+}
+.diag-choosephoto-frm > .diag-choosephoto-header > table > tbody > tr > td._upload > label > i {
+    margin-left:5px;
+    color: #4b4f56;
+}
+.diag-choosephoto-frm > .diag-choosephoto-content {
+
+}
+.diag-choosephoto-frm > .diag-choosephoto-content > ._row {
+    min-height:80px;
+    border-top:1px solid #E0E0E0;
+    padding:0 20px 0 5px;
+}
+.diag-choosephoto-frm > .diag-choosephoto-content > ._row > ._header {
+    margin: 12px 0;
+    color:#8d949e;
+}
+
+.diag-choosephoto-frm > .diag-choosephoto-content > ._row > ._content {}

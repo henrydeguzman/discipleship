@@ -1,0 +1,8 @@
+<div class="page-admin-centers" ng-controller="admin.centers.page.controller as centerspageCtrl">
+    <gt-table id="centers.tablelist" limit="10" model="fetch/centers_get/tablelist" formatter="admin/formatter/centers.js">
+        <gt-table-btns action="add" gtclick="centerspageCtrl.form.dialog()"></gt-table-btns>
+        <gt-table-col field="name">Center</gt-table-col>
+        <gt-table-col field="location">Location</gt-table-col>
+        <gt-table-col format="action" text-align="center" td-style="{width:'20px'}">Actions</gt-table-col>
+    </gt-table>
+</div>
