@@ -3,3 +3,5 @@ https://www.techfry.com/php-tutorial/how-to-resize-image-in-php
 image resizing.
 
 sample commit
+
+changes
