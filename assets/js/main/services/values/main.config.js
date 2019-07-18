@@ -8,7 +8,6 @@ victory
                 url:'/{tab}/{name}',
                 resolve: {
                     getdata:function($stateParams,pageService){
-                        console.log($stateParams);
                         return pageService.getdata($stateParams);
                     }
                 },

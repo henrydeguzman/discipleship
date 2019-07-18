@@ -1,0 +1,16 @@
+<div class="_othervg" ng-controller="vg.page.othrvg.controller as vgpageOthrVgCtrl">
+    <div class="row" ng-repeat="(key,list) in vgpageOthrVgCtrl.content.list" ng-init="vgpageOthrVgCtrl.getinfo(key,list)">
+        <div class="col-md-12">
+            <div class="_header">Day of week:
+                <span ng-repeat="list in genvarsValue.days" ng-if="list.id==vgpageOthrVgCtrl.content.info[key].dayoftheweek">{{list.name}}</span>
+                at {{vgpageOthrVgCtrl.content.info[key].time}} in {{vgpageOthrVgCtrl.content.info[key].venue}}
+            </div>
+            <div></div>
+            <gt-table id="vg.memlist" model="fetch/vg_get/tablelist/{{list.vgid}}" formatter="vg/formatter/vgtable.js">
+                <gt-table-btns action="add" gtclick="vgpageMyVgCtrl.form.dialog()"></gt-table-btns>
+                <gt-table-col field="no" format="no" text-align="center" td-style="{width:'1px'}">#</gt-table-col>
+                <gt-table-col field="fullname">Name</gt-table-col>
+            </gt-table>
+        </div>
+    </div>
+</div>

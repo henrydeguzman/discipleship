@@ -1,1 +1,7 @@
 .page-vg {}
+.page-vg ._othervg {
+}
+.page-vg ._othervg ._header {
+    font-size:16px;
+    margin-bottom:10px;
+}

@@ -6,7 +6,6 @@ angular.module('MainControllers',[])
         var vm=this;
         vm.userdata=genvarsValue.userdata();
         $scope.pathValue=pathValue;
-        console.log(vm.userdata);
     }])
     .controller('main.header.controller',['centralFctry',function(centralFctry){
         var vm=this;

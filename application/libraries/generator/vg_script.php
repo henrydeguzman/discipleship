@@ -13,8 +13,7 @@ class Vg_Script {
         self::$instance = &get_instance();
     }
     public static function vginfo(){
-        $app_get=self::$instance->data_app_get;
-        return "SELECT a.vgid,b.dayoftheweek,b.time,b.venue FROM user_vg a LEFT JOIN user_vg_info b ON a.vgid=b.vgid WHERE a.leaderid=".$app_get->idCurrentUser();
+        return "SELECT a.vgid,b.dayoftheweek,b.time,b.venue FROM user_vg a LEFT JOIN user_vg_info b ON a.vgid=b.vgid ";
     }
     public static function getvglist($activefields=null){
         self::$instance->script->load('users_script');
@@ -36,5 +35,8 @@ class Vg_Script {
     public static function getnovg(){
         return "SELECT a.userid,a.firstname,a.lastname, CONCAT(a.firstname,' ',a.lastname) as fullname FROM user a 
                 LEFT JOIN user_vg_users b ON a.userid=b.userid WHERE b.userid IS NULL";
+    }
+    public static function getothrvgs(){
+        return "SELECT a.vgid FROM user_vg_users a LEFT JOIN user_vg b ON b.vgid=a.vgid ";
     }
 }

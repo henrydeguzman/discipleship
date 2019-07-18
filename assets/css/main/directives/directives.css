@@ -1206,3 +1206,35 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
     position:relative;
     text-align:right;
 }
+/* Directive:gtAccordion */
+.gen-accordion {
+    padding: 0px 30px;
+}
+.gen-accordion > .gen-accordion-row > .gen-accordion-header {
+    font-size:17px;
+    padding: 10px 10px 10px 0;
+    border-bottom: 1px solid #d9dadb;
+    position:relative;
+    color:#393939;
+}
+.gen-accordion > .gen-accordion-row > .gen-accordion-header:after {
+    content:'\f105';
+    font-family:fontAwesome;
+    position:absolute;
+    right:10px;
+    font-size: 1.47rem;
+    top:12px;
+}
+.gen-accordion > .gen-accordion-row._active > .gen-accordion-header:after {
+    content:'\f107';
+}
+.gen-accordion > .gen-accordion-row > .gen-accordion-header:hover {
+    cursor:pointer;
+}
+.gen-accordion > .gen-accordion-row > .gen-accordion-content {
+    padding: 10px 15px;
+    display:none;
+}
+.gen-accordion > .gen-accordion-row._active > .gen-accordion-content {
+    display:block;
+}

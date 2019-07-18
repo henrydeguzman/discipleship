@@ -1,0 +1,7 @@
+<div class="gen-accordion">
+    <div><ng-transclude></ng-transclude></div>
+    <div class="gen-accordion-row" ng-class="item.active?'_active':''" ng-repeat="item in gtAccordionCtrl.accords.list">
+        <div class="gen-accordion-header" ng-click="gtAccordionCtrl.toggle(item)" bind-html-compile="item.html"></div>
+        <div class="gen-accordion-content" ng-include="item.loadtemplate"></div>
+    </div>
+</div>

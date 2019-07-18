@@ -2,6 +2,8 @@
  * Created by Actino-Dev on 11/24/2018.
  */
 angular.module('MainDirectives',[])
+    .directive('gtAccordion',[gtAccordion])
+    .directive('gtAccordionContent',['$timeout',gtAccordionContent])
     .directive('gtProfile',['pathValue','$timeout',gtProfile])
     .directive('gtDatepicker',['$filter','genvarsValue',gtDatepicker])
     .directive('gtTab',['$timeout',gtTab])
@@ -20,6 +22,56 @@ angular.module('MainDirectives',[])
     .directive('gtTable',['centralFctry','tableService','pathValue','glfnc','$filter','$http','$q','inifrmtrValue',gtTable])
     .directive('gtTableSort',[gtTableSort])
     .directive('bindHtmlCompile',['$compile','$sce',bindHtmlCompile]);
+function gtAccordionContent($timeout){
+    return {
+        restrict:"E",require:"^gtAccordion",transclude:true,template:'<ng-transclude ng-show="false"></ng-transclude>',
+        scope:{template:'@',active:'@'},
+        link:function(scope,element,attrs,ctrl,transclude){
+            console.log(ctrl);
+            var data={};
+            $timeout(function(){
+                transclude(scope,function(clone){
+                    if(scope.template===undefined){return;}
+                    data.template=scope.template;
+                    data.html=clone;
+                    if(scope.active!==undefined){
+                        data.loaded=true;
+                        data.active=true;
+                        ctrl.loadtemplate(data,ctrl.accords.c);
+                    }
+                    ctrl.accords.list[ctrl.accords.c]=data;
+                    ctrl.accords.c++;
+                })
+            });
+        },
+        controller:function(){
+        },controllerAs:''
+    }
+}
+function gtAccordion(){
+    return {
+        restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/accordion/accordion.html',
+        scope:{},link:function(){},transclude:true,controller:function(){
+            var vm=this;
+            vm.header={text:'Sample header'};
+            vm.accords={list:[],c:0};
+            vm.toggle=function(item){
+                if(item.active){
+                    item.active=false;
+                }else{
+                    item.active=true;
+                }
+                vm.loadtemplate(item);
+            };
+            vm.loadtemplate=function(item,$index){
+                console.log(item);
+                vm.accords.active=$index;
+                item.loaded=true;
+                item.loadtemplate=item.template;
+            };
+        },controllerAs:'gtAccordionCtrl'
+    }
+}
 function gtProfile(pathValue,$timeout){
     return {
         restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/profile/profile.html',
@@ -35,12 +87,10 @@ function gtProfile(pathValue,$timeout){
             vm.viewprofile=function(){ window.open('#!/profile', '_blank'); };
             vm.hover=function(){
                 vm.photo.timer=$timeout(function(){
-                    console.log('hover');
                     vm.photo.show=true;
                 },1000);
             };
             vm.leave=function(){
-                console.log('out');
                 $timeout.cancel(vm.photo.timer);
                 vm.photo.show=false;
             };
@@ -456,7 +506,6 @@ function gtTableTitle(){
     return {
         restrict:'E',transclude:true,require:"^gtTable",
         link:function(scope,element,attr,ctrl,transclude){
-            console.log(ctrl);
             transclude(scope, function(clone) {
                 ctrl.headertitle(clone);
             });
