@@ -11,6 +11,9 @@ class vg_get extends core_model {
         $sql=$this->vg_script->getvglist('mainlink,center,info')." WHERE xx.leaderid=".$this->data_app_get->idCurrentUser();
         return $this->query($sql);
     }
+    public function getpagedata(){
+
+    }
     public function vginfo(){/** api/gateway?re=fetch/vg_get/vginfo */
         $sql=$this->vg_script->vginfo();
         return $this->query($sql,true);

@@ -7,10 +7,14 @@
                     <img class="profile-user-img img-responsive img-circle" ng-src="api/getfile?name={{pathValue.userphoto+appmainCtrl.userdata.photo}}&size=120" onerror="this.src='assets/img/no-profile-male-img.jpeg'" alt="User profile picture"  onerror="this.src='assets/img/no-profile-male-img.jpeg'" />
                     <a class="_edit" href="javascript:void(0)" ng-click="profilepageCtrl.profile.updatediag()"><i class="fa fa-camera"></i><span>Update</span></a>
                 </div>
-                <h3 class="profile-username text-center">{{profile.fullname}}</h3>
+                <h3 class="profile-username text-center">{{profile.userdata.fullname}}</h3>
 
                 <p class="text-muted text-center">Software Engineer</p>
-
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item" ng-if="profile.vgleader.vgid>0">
+                        <b>Victory Group Leader</b> <a title="No. members" class="pull-right">{{profile.vgleader.memcnt}}</a>
+                    </li>
+                </ul>
             </div>
             <!-- /.box-body -->
         </div>
@@ -26,8 +30,8 @@
                 <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 
                 <p class="text-muted">
-                    <span>{{profile.degree}}</span>
-                    <span ng-if="profile.degree==null">-</span>
+                    <span>{{profile.userdata.degree}}</span>
+                    <span ng-if="profile.userdata.degree==null">-</span>
                 </p>
 
                 <hr>
@@ -35,7 +39,8 @@
                 <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
                 <p class="text-muted">
-                    <span>{{profile.address}}</span>
+                    <span>{{profile.userdata.address}}</span>
+                    <span ng-if="profile.userdata.address==null">-</span>
                 </p>
 
                 <hr>

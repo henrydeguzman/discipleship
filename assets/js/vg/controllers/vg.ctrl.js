@@ -24,7 +24,7 @@ victory.controller('vg.page.controller',['$scope','dialogs','centralFctry','Noti
         });
         if(posted.$$state!==undefined){
             return posted.then(function(v){
-                Notification(notifValues['doneupdating']($scope));
+                Notification(notifValues['updated']($scope));
                 console.log(v.data);
             });
         }
@@ -58,8 +58,11 @@ victory.controller('vg.page.controller',['$scope','dialogs','centralFctry','Noti
         var posted=centralFctry.getData({url:'fetch/vg_get/vginfo'});
         if(posted.$$state!==undefined){
             posted.then(function(v){
+                console.log(v.data);
                 var data=v.data;
-                data['time']=$date+'T'+data['time'];
+                if(v.data!==null){
+                    data['time']=$date+'T'+data['time'];
+                }
                 vm.form.data=v.data;
             });
         }

@@ -30,14 +30,14 @@ class vg_set extends core_model {
         if($time){ $data['time']=date('H:i:s', strtotime($time)); }
         if($venue){ $data['venue']=$venue; }
 
-        if($vginfo->dayoftheweek===null){
-            $data['leaderid']=$leaderid;
-            $data['dateadded']=self::datetime();
+        if($vginfo===null){
+            $last=$this->insert('user_vg',array("leaderid"=>$leaderid,"dateadded"=>self::datetime()));
+            $data['vgid']=$last['lastid'];
             return $this->insert('user_vg_info',$data);
         }
         else{
             $data['dateupdated']=self::datetime();
-            return $this->update('user_vg_info',$data,'leaderid='.$leaderid);
+            return $this->update('user_vg_info',$data,'vgid='.$vginfo->vgid);
         }
     }
     /** api/gateway?re=fetch/vg_set/set_vg */

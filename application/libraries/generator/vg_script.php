@@ -14,7 +14,7 @@ class Vg_Script {
     }
     public static function vginfo(){
         $app_get=self::$instance->data_app_get;
-        return "SELECT a.vgid,b.dayoftheweek,b.time,b.venue FROM user_vg a LEFT JOIN user_vg_info b ON a.leaderid=b.leaderid WHERE a.leaderid=".$app_get->idCurrentUser();
+        return "SELECT a.vgid,b.dayoftheweek,b.time,b.venue FROM user_vg a LEFT JOIN user_vg_info b ON a.vgid=b.vgid WHERE a.leaderid=".$app_get->idCurrentUser();
     }
     public static function getvglist($activefields=null){
         self::$instance->script->load('users_script');

@@ -5,7 +5,7 @@ victory
     .config(['$logProvider','$stateProvider','$urlRouterProvider',function($logProvider,$stateProvider,$urlRouterProvider){
         $stateProvider
             .state('sref_sidebar',{
-                url:'/{tab}',
+                url:'/{tab}/{name}',
                 resolve: {
                     getdata:function($stateParams,pageService){
                         console.log($stateParams);

@@ -24,7 +24,6 @@ date_default_timezone_set('Asia/Manila');
 |
 */
 $config['base_url'] = 'http://localhost/discipleship';
-$config['base_urla'] = 'http://discipleship.000webhostapp.com/';
 
 /*
 |--------------------------------------------------------------------------

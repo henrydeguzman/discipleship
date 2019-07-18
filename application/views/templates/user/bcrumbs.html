@@ -1,14 +1,9 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Blank page
-            <small>it all starts here</small>
-        </h1>
+    <section class="content-header" ng-cloak ng-controller="main.breadcrumb.controller as mainbcrumbCtrl">
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
-            <li class="active">Blank page</li>
+            <li><a ui-sref="sref_sidebar({tab:'dashboard'})"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li ng-repeat="list in tab" ng-if="stateparams.tab!=='dashboard'" class="active">{{list}}</li>
         </ol>
     </section>

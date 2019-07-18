@@ -48,7 +48,16 @@ angular.module('MainControllers',[])
             $scope.required={email:'required',password:'required'};
         }
     }])
-    .controller('main.sidebar.controller',['$stateParams','$scope','$timeout',function($stateParams,$scope,$timeout){
+    .controller('main.sidebar.controller',['$stateParams','$scope',function($stateParams,$scope){
         var vm=this;
         $scope.stateparams=$stateParams;
+    }])
+    .controller('main.breadcrumb.controller',['$stateParams','$scope',function($stateParams,$scope){
+        var vm=this;
+        $scope.stateparams=$stateParams;
+            $scope.$watch('stateparams.name',function(n,o){
+            if(n!==undefined){
+                $scope.tab=n.split(';');
+            }
+        });
     }]);

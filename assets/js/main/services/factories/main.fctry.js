@@ -7,7 +7,13 @@ angular.module('MainFactories',[])
     .factory('glfnc',['$window',glfnc])
     .factory('centralFctry',['$http','$httpParamSerializer','$httpParamSerializerJQLike','pathValue','$sce',centralFctry]);
 function pageService(centralFctry){
-    var vm=this; vm.pages={}; function getdata(params){ var key=params.tab,url=''; if(key==='profile'){ url='fetch/profile_get/getdata'; } else { vm.pages; } vm.pages[key]=centralFctry.getData({url:url}); return vm.pages; }
+    var vm=this; vm.pages={};
+    function getdata(params){
+        var key=params.tab,url='';
+        if(key==='profile'){ url='fetch/profile_get/getpagedata'; }
+        else { vm.pages; }
+        vm.pages[key]=centralFctry.getData({url:url}); return vm.pages;
+    }
     function setdata(data){ vm.response=data; }
     function response(){ return vm.response; }
     return { getdata:getdata,setdata:setdata,response:response };

@@ -14,6 +14,7 @@ angular.module('MainDirectives',[])
     .directive('gtInputrequired',[gtInputrequired])
     .directive('clickAndDisable', function() { return { scope: { clickAndDisable: '&' }, link: function(scope, iElement, iAttrs) { iElement.bind('click', function() { iElement.prop('disabled',true); scope.clickAndDisable().then(function() { iElement.prop('disabled',false); }) }); } }; })
     .directive('gtCombobox',['centralFctry','glfnc','pathValue','$timeout',gtCombobox])
+    .directive('gtTableTitle',[gtTableTitle])
     .directive('gtTableBtns',['$q',gtTableBtns])
     .directive('gtTableCol',['glfnc','$q','tableService',gtTableCol])
     .directive('gtTable',['centralFctry','tableService','pathValue','glfnc','$filter','$http','$q','inifrmtrValue',gtTable])
@@ -451,6 +452,17 @@ function gtCombobox(centralFctry,glfnc,pathValue,$timeout){
         },controllerAs:"gtcmbboxCtrl"
     }
 }
+function gtTableTitle(){
+    return {
+        restrict:'E',transclude:true,require:"^gtTable",
+        link:function(scope,element,attr,ctrl,transclude){
+            console.log(ctrl);
+            transclude(scope, function(clone) {
+                ctrl.headertitle(clone);
+            });
+        }
+    }
+}
 function gtTableBtns($q){
     var i="";
     return {
@@ -546,6 +558,7 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
             if($attrs.header!==undefined&&$attrs.header!==''){
                 $scope.header.show=$attrs.header;
             }
+            vm.headertitle=function(html){ $scope.header.title=html; };
             /* enabled right click on generic table */
             vm.contextmenu={show:false,model:$attrs.contextmodel};
             vm.contextmenu.rclick=function(e,tr,td){

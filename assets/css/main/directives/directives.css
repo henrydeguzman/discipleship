@@ -6,103 +6,146 @@ gt-table .gen-table-container > .gen-table-header {}
 
 /* new header for table2 */
 gt-table .gen-table-container > .gen-table-header {
-    min-height:48px;
+    min-height: 37px;
     /*background:#f2f2f2;*/
     background: #fff; /* update as of 10/16/2018 - slide43 ergonomics pptx */
     border-top:1px solid #E0E0E0;
     border-left:1px solid #E0E0E0;
     border-right:1px solid #E0E0E0;
+    color:#939ba2;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-filters {}
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-filters > ul {
+gt-table .gen-table-container > .gen-table-header > table {
+    width:100%;
+    color:inherit;
+}
+gt-table .gen-table-container > .gen-table-header > table > tbody {
+    color:inherit;
+}
+gt-table .gen-table-container > .gen-table-header > table > tbody > tr {
+    color:inherit;
+}
+gt-table .gen-table-container > .gen-table-header > table > tbody > tr > td {
+    color:inherit;
+
+}
+gt-table .gen-table-container > .gen-table-header > table > tbody > tr > td:not(._title){
+    width:1px;
+    white-space:nowrap;
+}
+gt-table .gen-table-container > .gen-table-header > table > tbody > tr > td._title {
+    position:relative;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:16px;
+    height: 37px;
+    font-weight: normal;
+}
+gt-table .gen-table-container > .gen-table-header > table > tbody > tr > td._title > div {
+    white-space:nowrap;
+    display:inline-block;
+    top:0;
+    bottom:0;
+    margin: 0 5px;
+    line-height: 37px;
+    position:absolute;
+    height: 37px;
+}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters {}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul {
     list-style:none;
     margin:0;padding:0;
     display:inline-block;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-filters > ul > li > i {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul > li > i {
 
     position:relative;
     font-size:22px;
     margin-top:12px;
     color:#939ba2;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-filters > ul > li:hover > i {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul > li:hover > i {
     color:#3fb3c5;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-filters > ul > li:hover{
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul > li:hover{
     background:#ffffff;
     cursor:pointer;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-filters > ul > li {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul > li {
     display:inline-block;
     height:47px;
     width:47px;
     text-align:center;
 
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-search {
-    float:right;
-    padding: 8px;
+
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-search {
+
+    width:173px;
+    margin: 0 8px;
     font-size:12px;
     position:relative;
+    color: #939ba2;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-search > input {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-search > input {
     border-top-right-radius:15px;
     border-bottom-right-radius:15px;
     border-top-left-radius:15px;
     border-bottom-left-radius:15px;
     padding-right:20px;
-
+    height: 28px;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-search:after {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-search:after {
     content:'\f002';
     font-family:FontAwesome;
     width:20px;
     height:20px;
     position:absolute;
-    top:15px;
-    right:8px;
+    top: 5px;
+    right: 0px;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-pagination {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-pagination {
     float:right;
     margin-right:5px;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-pagination > ul {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-pagination > ul {
     list-style:none;
     padding:0;
     margin:0;
     display:inline-block;
 
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-pagination > ul > li {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-pagination > ul > li {
     display:inline-block;
     vertical-align:top;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-pagination > ul > li > div.btn-group,
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-pagination > ul > li > div.dropdown {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-pagination > ul > li > div.btn-group,
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-pagination > ul > li > div.dropdown {
     padding-top:7px;
     position:relative;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns {
-    float:right;
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns {
+    color:inherit;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul {
     list-style:none;
     padding:0;margin:0;
     display:inline-block;
+    color:inherit;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li {
+
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li {
     display:inline-block;
-    height:47px;
-    width:47px;
+    height: 37px;
+    width: 37px;
     text-align:center;
     vertical-align:top;
     position:relative;
+    color:inherit;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btn {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btn {
     height:100%;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist:before {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist:before {
     content:'';
     top:-5px;
     right:19px;
@@ -111,7 +154,7 @@ gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > 
     border-right: 5px solid transparent;
     border-bottom: 5px solid #272a33;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist {
     position:absolute;
     z-index:1;
     background:#272a33;
@@ -124,87 +167,81 @@ gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > 
     -moz-border-radius:3px;
     border-radius:3px;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ._btns {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ._btns {
     padding: 7px;
     text-align:left;
     white-space:nowrap;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ._btns > button {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ._btns > button {
     margin-right:4px;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ._btns > button:last-child {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ._btns > button:last-child {
     margin-right:0;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul.export {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul.export {
     list-style:none;
     margin:0;
     padding:0;
     border: 1px solid #000;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul.export > li {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul.export > li {
     white-space:nowrap;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul.export > li:hover {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul.export > li:hover {
     cursor:pointer;
     background:#ffffff;
     color:black;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul.export > li > i {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul.export > li > i {
     margin-right:5px;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul {
     list-style:none;margin:0;padding:0;
     padding:5px 0;
     border-bottom:1px solid #555;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li {
     padding:3px 10px;
     text-align:left;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li > label {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li > label {
     white-space:nowrap;
     margin:0;padding:0;
     cursor:pointer;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li > label:hover {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li > label:hover {
     color:#3fb3c5;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li > label > input:before {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li > label > input:before {
     content:'';
     position:absolute;
     top:-5px;
     left:-5px;
     background-image: url('../../../img/web-two-style.png');
-    /* background: black; */
     width:18px;
     height:20px;
     background-repeat:no-repeat;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li > label > input:checked:before {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li > label > input:checked:before {
     background-position:0 -20px;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li > label > input {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist > ul > li > label > input {
     vertical-align:top;
     top:-1px;
     position:relative;
-    margin-right:15px;
-    margin-left:5px;
+    margin-right:13px;
+    margin-left:3px;
     cursor:pointer;
     width:.1px;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > i,
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li > div.gen-table-h-btn > i {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > i,
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btn > i {
     position:relative;
     font-size:22px;
-    margin-top:12px;
-    color:#939ba2;
+    margin-top: 7px;
+    color:inherit;
 }
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li:hover > i,
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li:hover > div.gen-table-h-btn > i {
-    color:#3fb3c5;
-}
-gt-table .gen-table-container > .gen-table-header > div.gen-table-h-btns > ul > li:hover{
-    background:#ffffff;
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li:hover{
     cursor:pointer;
 }
 /* end header for table2 */
