@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/bower_components/Ionicons/css/ionicons.min.css'); ?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets/css/AdminLTE/AdminLTE.min.css'); ?>">
+    <!-- custom template -->
+    <link rel="stylesheet" href="<?= base_url('assets/css/main/template.css'); ?>">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?= base_url('assets/css/AdminLTE/skins/_all-skins.min.css'); ?>">
@@ -51,7 +53,7 @@
     <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
     <base href="<?= base_url(); ?>">
 </head>
-<body class="hold-transition skin-blue sidebar-mini fixed" ng-app="app" ng-controller="appmain.controller as appmainCtrl">
+<body class="hold-transition skin-blue sidebar-mini fixed main-gen-template" ng-app="app" ng-controller="appmain.controller as appmainCtrl">
 <!-- Site wrapper -->
 <div class="wrapper">
     <header class="main-header" ng-controller="main.header.controller as mainheaderCtrl">
@@ -201,6 +203,17 @@
                                 </div>
                             </li>
                         </ul>
+                    </li>
+                    <li class="_nav _user">
+                        <a ng-cloak>
+                            <img ng-src="api/getfile?name={{pathValue.userphoto+appmainCtrl.userdata.photo}}&size=32" onerror="this.src='assets/img/no-profile-male-img.jpeg'" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{appmainCtrl.userdata.fullname}}</span>
+                        </a>
+                    </li>
+                    <li class="_nav">
+                        <a>
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </a>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
                     <li>

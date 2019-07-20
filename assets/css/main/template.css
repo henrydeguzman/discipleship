@@ -1,0 +1,25 @@
+.main-gen-template {}
+
+/* header */
+.main-gen-template header {}
+.main-gen-template header {}
+.main-gen-template header .navbar-custom-menu {}
+.main-gen-template header .navbar-custom-menu > ul {}
+.main-gen-template header .navbar-custom-menu > ul > li {}
+.main-gen-template header .navbar-custom-menu > ul > li {}
+.main-gen-template header .navbar-custom-menu > ul > li._nav {
+
+}
+.main-gen-template header .navbar-custom-menu > ul > li._nav._user {}
+.main-gen-template header .navbar-custom-menu > ul > li._nav._user:hover {
+    cursor:pointer;
+}
+.main-gen-template header .navbar-custom-menu > ul > li._nav._user img {
+    width: 25px;
+    height: 25px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+}
