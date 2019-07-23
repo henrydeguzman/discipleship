@@ -9,17 +9,6 @@ angular.module('MainControllers',[])
     }])
     .controller('main.header.controller',['centralFctry',function(centralFctry){
         var vm=this;
-        vm.signout=function(){
-            var posted=centralFctry.postData({ url:'fetch/users_connection/signout',data:{} });
-            if(posted.$$state!==undefined){
-                return posted.then(function(v){
-                    console.log(v.data);
-                    if(v.data.success){
-                        location.reload();
-                    }
-                });
-            }
-        }
     }])
     .controller('main.login.controller',['$scope','centralFctry',function($scope,centralFctry){
         var vm=this;

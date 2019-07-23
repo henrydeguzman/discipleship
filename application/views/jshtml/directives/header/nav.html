@@ -1,0 +1,26 @@
+<ul class="nav navbar-nav gen-header-nav">
+    <li class="user">
+        <a ui-sref="sref_sidebar({tab:'profile',name:'Profile'})">
+            <img ng-src="api/getfile?name={{pathValue.userphoto+gtHeaderNavCtrl.userdata.photo}}&size=32" onerror="this.src='assets/img/no-profile-male-img.jpeg'" class="user-image" alt="User Image">
+            <span class="hidden-xs">{{gtHeaderNavCtrl.userdata.fullname}}</span>
+        </a>
+    </li>
+    <li class="user-settings">
+        <a ng-click="gtHeaderNavCtrl.user.toggle()">
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </a>
+        <div ng-if="gtHeaderNavCtrl.user.show" class="_dropdown">
+            <ul>
+                <li><span>Your Groups</span></li>
+                <li class="separator"></li>
+                <li><span>Activity Log</span></li>
+                <li><span>News Feed Preferences</span></li>
+                <li click-and-disable="gtHeaderNavCtrl.user.signout()"><span>Log Out</span></li>
+            </ul>
+        </div>
+    </li>
+    <!-- Control Sidebar Toggle Button -->
+    <li>
+        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+    </li>
+</ul>

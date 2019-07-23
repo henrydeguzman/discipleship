@@ -75,10 +75,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-
             <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <!-- Messages: style can be found in dropdown.less-->
+                <!--<ul class="nav navbar-nav">
+                    &lt;!&ndash; Messages: style can be found in dropdown.less&ndash;&gt;
                     <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope-o"></i>
@@ -87,9 +86,9 @@
                         <ul class="dropdown-menu">
                             <li class="header">You have 4 messages</li>
                             <li>
-                                <!-- inner menu: contains the actual data -->
+                                &lt;!&ndash; inner menu: contains the actual data &ndash;&gt;
                                 <ul class="menu">
-                                    <li><!-- start message -->
+                                    <li>&lt;!&ndash; start message &ndash;&gt;
                                         <a href="#">
                                             <div class="pull-left">
                                                 <img src="<?= base_url('assets/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
@@ -101,13 +100,13 @@
                                             <p>Why not buy a new awesome theme?</p>
                                         </a>
                                     </li>
-                                    <!-- end message -->
+                                    &lt;!&ndash; end message &ndash;&gt;
                                 </ul>
                             </li>
                             <li class="footer"><a href="#">See All Messages</a></li>
                         </ul>
                     </li>
-                    <!-- Notifications: style can be found in dropdown.less -->
+                    &lt;!&ndash; Notifications: style can be found in dropdown.less &ndash;&gt;
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
@@ -116,7 +115,7 @@
                         <ul class="dropdown-menu">
                             <li class="header">You have 10 notifications</li>
                             <li>
-                                <!-- inner menu: contains the actual data -->
+                                &lt;!&ndash; inner menu: contains the actual data &ndash;&gt;
                                 <ul class="menu">
                                     <li>
                                         <a href="#">
@@ -128,7 +127,7 @@
                             <li class="footer"><a href="#">View all</a></li>
                         </ul>
                     </li>
-                    <!-- Tasks: style can be found in dropdown.less -->
+                    &lt;!&ndash; Tasks: style can be found in dropdown.less &ndash;&gt;
                     <li class="dropdown tasks-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-flag-o"></i>
@@ -137,9 +136,9 @@
                         <ul class="dropdown-menu">
                             <li class="header">You have 9 tasks</li>
                             <li>
-                                <!-- inner menu: contains the actual data -->
+                                &lt;!&ndash; inner menu: contains the actual data &ndash;&gt;
                                 <ul class="menu">
-                                    <li><!-- Task item -->
+                                    <li>&lt;!&ndash; Task item &ndash;&gt;
                                         <a href="#">
                                             <h3>
                                                 Design some buttons
@@ -153,7 +152,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <!-- end task item -->
+                                    &lt;!&ndash; end task item &ndash;&gt;
                                 </ul>
                             </li>
                             <li class="footer">
@@ -161,24 +160,24 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- User Account: style can be found in dropdown.less -->
+                    &lt;!&ndash; User Account: style can be found in dropdown.less &ndash;&gt;
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-cloak>
                             <img ng-src="api/getfile?name={{pathValue.userphoto+appmainCtrl.userdata.photo}}&size=32" onerror="this.src='assets/img/no-profile-male-img.jpeg'" class="user-image" alt="User Image">
                             <span class="hidden-xs">{{appmainCtrl.userdata.fullname}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <!-- User image -->
+                            &lt;!&ndash; User image &ndash;&gt;
                             <li class="user-header">
                                 <img ng-src="api/getfile?name={{pathValue.userphoto+appmainCtrl.userdata.photo}}&size=120" onerror="this.src='assets/img/no-profile-male-img.jpeg'" class="img-circle" alt="User Image">
 
                                 <p>
                                     {{appmainCtrl.userdata.fullname}} - Web Developer
-                                    <!--<small>Member since Nov. 2012</small>-->
+                                    &lt;!&ndash;<small>Member since Nov. 2012</small>&ndash;&gt;
                                     <small>Member since {{appmainCtrl.userdata.datecreated | fltr_asDate | date:'MMM. yyyy'}}</small>
                                 </p>
                             </li>
-                            <!-- Menu Body -->
+                            &lt;!&ndash; Menu Body &ndash;&gt;
                             <li class="user-body">
                                 <div class="row">
                                     <div class="col-xs-4 text-center">
@@ -191,9 +190,9 @@
                                         <a href="#">Friends</a>
                                     </div>
                                 </div>
-                                <!-- /.row -->
+                                &lt;!&ndash; /.row &ndash;&gt;
                             </li>
-                            <!-- Menu Footer-->
+                            &lt;!&ndash; Menu Footer&ndash;&gt;
                             <li class="user-footer">
                                 <div class="pull-left">
                                     <a ui-sref="sref_sidebar({tab:'profile',name:'Profile'})" class="btn btn-default btn-flat">Profile</a>
@@ -205,21 +204,22 @@
                         </ul>
                     </li>
                     <li class="_nav _user">
-                        <a ng-cloak>
+                        <a ng-cloak ui-sref="sref_sidebar({tab:'profile',name:'Profile'})">
                             <img ng-src="api/getfile?name={{pathValue.userphoto+appmainCtrl.userdata.photo}}&size=32" onerror="this.src='assets/img/no-profile-male-img.jpeg'" class="user-image" alt="User Image">
                             <span class="hidden-xs">{{appmainCtrl.userdata.fullname}}</span>
                         </a>
                     </li>
                     <li class="_nav">
-                        <a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-caret-down" aria-hidden="true"></i>
                         </a>
                     </li>
-                    <!-- Control Sidebar Toggle Button -->
+                    &lt;!&ndash; Control Sidebar Toggle Button &ndash;&gt;
                     <li>
                         <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                     </li>
-                </ul>
+                </ul>-->
+                <gt-header-nav></gt-header-nav>
             </div>
         </nav>
     </header>

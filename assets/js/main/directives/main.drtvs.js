@@ -2,6 +2,7 @@
  * Created by Actino-Dev on 11/24/2018.
  */
 angular.module('MainDirectives',[])
+    .directive('gtHeaderNav',['pathValue','genvarsValue','centralFctry','$document',gtHeaderNav])
     .directive('gtAccordion',[gtAccordion])
     .directive('gtAccordionContent',['$timeout',gtAccordionContent])
     .directive('gtProfile',['pathValue','$timeout',gtProfile])
@@ -22,6 +23,41 @@ angular.module('MainDirectives',[])
     .directive('gtTable',['centralFctry','tableService','pathValue','glfnc','$filter','$http','$q','inifrmtrValue',gtTable])
     .directive('gtTableSort',[gtTableSort])
     .directive('bindHtmlCompile',['$compile','$sce',bindHtmlCompile]);
+function gtHeaderNav(pathValue,genvarsValue,centralFctry,$document){
+    return {
+        restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/header/nav.html',
+        scope:{},link:function(scope,element,attrs,ctrl){
+            scope.pathValue=pathValue;
+            element.on('click', elementClick);
+            $document.on('click', documentClick);
+            function documentClick(e) { if(ctrl.user.show){ scope.$apply(function(){ if(ctrl.user.show){ctrl.user.show=false;} }); } }
+            function elementClick(e) { e.stopPropagation(); }
+            /* remove event handlers when directive is destroyed */
+            scope.$on('$destroy', function () { element.off('click', elementClick); $document.off('click', documentClick); });
+        },controller:function(){
+            var vm=this;
+            vm.userdata=genvarsValue.userdata();
+            vm.user={show:false};
+            vm.user.toggle=function(){
+                vm.user.show?vm.user.show=false:vm.user.show=true;
+            };
+            vm.hidedrops=function(){
+                vm.user.toggle(false);
+            };
+            vm.user.signout=function(){
+                var posted=centralFctry.postData({ url:'fetch/users_connection/signout',data:{} });
+                if(posted.$$state!==undefined){
+                    return posted.then(function(v){
+                        console.log(v.data);
+                        if(v.data.success){
+                            location.reload();
+                        }
+                    });
+                }
+            }
+        },controllerAs:'gtHeaderNavCtrl'
+    }
+}
 function gtAccordionContent($timeout){
     return {
         restrict:"E",require:"^gtAccordion",transclude:true,template:'<ng-transclude ng-show="false"></ng-transclude>',

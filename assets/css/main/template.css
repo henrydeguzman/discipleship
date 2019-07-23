@@ -11,6 +11,9 @@
 
 }
 .main-gen-template header .navbar-custom-menu > ul > li._nav._user {}
+.main-gen-template header .navbar-custom-menu > ul > li._nav._user > a:focus {
+    background-color:inherit;
+}
 .main-gen-template header .navbar-custom-menu > ul > li._nav._user:hover {
     cursor:pointer;
 }
