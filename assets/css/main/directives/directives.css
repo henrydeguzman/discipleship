@@ -1295,6 +1295,10 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
     background:inherit;
     cursor:pointer;
 }
+.gen-header-nav > li > ._dropdown > ul > li.separator:hover {
+    cursor:default;
+    background:transparent !important;
+}
 .gen-header-nav > li > ._dropdown > ul > li > span {
     padding:0 22px;
     white-space:nowrap;
