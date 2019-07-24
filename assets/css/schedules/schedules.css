@@ -1,0 +1,41 @@
+.page-schedules {}
+.page-schedules > .gen-calendar-container {}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content {
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1)
+}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._header {
+    padding:10px 15px;;
+}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._header > table {
+    width:100%;
+    table-layout:fixed;
+}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._header > table > tbody {}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._header > table > tbody > tr {}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._header > table > tbody > tr > td {
+
+}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._header > table > tbody > tr > td._title {
+    text-align:center;
+    font-size:25px;
+}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._header > table > tbody > tr > td._left {
+    text-align:left;
+}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._header > table > tbody > tr > td._left,
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._header > table > tbody > tr > td._right  {
+
+}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._header > table > tbody > tr > td._right {
+    text-align:right;
+}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._calendar {}
+.page-schedules > .gen-calendar-container .gen-calendar-c-content > ._footer {}
