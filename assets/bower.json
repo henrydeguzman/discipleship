@@ -7,6 +7,7 @@
     "angular-route": "~1.6.10",
     "angular-ui-router":"",
     "underscore":"1.8.3",
-    "angular-ui-notification":"0.3.6"
+    "angular-ui-notification":"0.3.6",
+    "angular-bootstrap-calendar":"latest"
   }
 }

@@ -27,6 +27,8 @@
 <script src="<?= base_url('assets/bower_components/angular-ui-notification/dist/angular-ui-notification.min.js');?>"></script>
 <script src="<?= base_url('assets/js/main/standalone/dialog/dialog.js'); ?>"></script>
 <script src="<?= base_url('assets/js/main/standalone/main.js'); ?>"></script>
+<script src="<?= base_url('assets/bower_components/moment/moment.js'); ?>"></script>
+<script src="<?= base_url('assets/bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js'); ?>"></script>
 <script type="text/javascript">
     vtr.pathValue={ base_url:'<?= base_url(); ?>', userphoto:'<?= PATH_USERPHOTO; ?>' };
     vtr.userdata='<?= json_encode($this->data_app_get->dataCurrentUser()); ?>';
@@ -65,6 +67,9 @@
 
 <!-- settings -->
 <script src="<?= base_url('assets/js/settings/controllers/settings.ctrl.js'); ?>"></script>
+
+<!-- schedules -->
+<script src="<?= base_url('assets/js/schedules/controllers/schedules.ctrl.js'); ?>"></script>
 <script>
     $(document).ready(function () {
         $('.sidebar-menu').tree()
