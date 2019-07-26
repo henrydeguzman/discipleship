@@ -26,7 +26,7 @@ angular.module('MainDirectives',[])
 function gtHeaderNav(pathValue,genvarsValue,centralFctry,$document){
     return {
         restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/header/nav.html',
-        scope:{},link:function(scope,element,attrs,ctrl){
+        scope:true,link:function(scope,element,attrs,ctrl){
             scope.pathValue=pathValue;
             element.on('click', elementClick);
             $document.on('click', documentClick);
