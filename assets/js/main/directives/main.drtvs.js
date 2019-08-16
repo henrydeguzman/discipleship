@@ -566,11 +566,21 @@ function gtTableTitle(){
 function gtTableBtns($q){
     var i="";
     return {
-        restrict:'E',require:'^gtTable',replace:true,template:'<div class="_tbl-btns" style="display:none;"></div>',
+        restrict:'E',require:'^gtTable',transclude:true,replace:true,template:'<div class="_tbl-btns" style="display:none;"></div>',
         scope:{action:'@',gtclick:'&?'},
-        link:function(scope,element,attr,ctrl){
-            if(scope.action==='add'){i='fa fa-plus';}
-            ctrl.table.header.btns.push({i:i,onclick:scope.gtclick});
+        link:function(scope,element,attr,ctrl,transclude){
+            var html='',data={onclick:scope.gtclick,action:scope.action};
+            if(scope.action==='add'){
+                html='<i class="fa fa-plus" aria-hidden="true"></i>';
+            }
+            else if(scope.action==='button'){
+                transclude(scope,function(clone){
+                    data.clone=clone;
+                    html='<button class="btn" bind-html-compile="item.clone"></button>';
+                });
+            }
+            data.html=html;
+            ctrl.table.header.btns.push(data);
         }
     }
 }

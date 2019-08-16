@@ -207,8 +207,15 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li
     position:relative;
     color:inherit;
 }
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li._btn {
+    width:auto;line-height:32px;
+    margin:0 7px;
+}
 gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btn {
     height:100%;
+}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btn > button {
+    border:1px solid #999999; outline:0; color:#939ba2;
 }
 gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist:before {
     content:'';
