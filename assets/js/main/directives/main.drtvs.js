@@ -18,6 +18,7 @@ angular.module('MainDirectives',[])
     .directive('clickAndDisable', function() { return { scope: { clickAndDisable: '&' }, link: function(scope, iElement, iAttrs) { iElement.bind('click', function() { iElement.prop('disabled',true); scope.clickAndDisable().then(function() { iElement.prop('disabled',false); }) }); } }; })
     .directive('gtCombobox',['centralFctry','glfnc','pathValue','$timeout',gtCombobox])
     .directive('gtTableTitle',[gtTableTitle])
+    .directive('gtTableFilter',['centralFctry',gtTableFilter])
     .directive('gtTableBtns',['$q',gtTableBtns])
     .directive('gtTableCol',['glfnc','$q','tableService',gtTableCol])
     .directive('gtTable',['centralFctry','tableService','pathValue','glfnc','$filter','$http','$q','inifrmtrValue',gtTable])
@@ -538,6 +539,20 @@ function gtCombobox(centralFctry,glfnc,pathValue,$timeout){
         },controllerAs:"gtcmbboxCtrl"
     }
 }
+function gtTableFilter(centralFctry){
+    return {
+        restrict:'E',require:'^gtTable',scope:{model:'@'},link:function(scope,element,attr,ctrl){
+            var get=centralFctry.getData({url:scope.model,json:'page/loadview?dir=jshtml&view=directives/table/tbl_filter/filter.json'});
+            if(get.$$state!==undefined){
+                get.then(function(v){
+                    console.log(v.data);
+                    ctrl.table.filter.data=v.data;
+                });
+            }
+        },
+        controller:function(){}
+    }
+}
 function gtTableTitle(){
     return {
         restrict:'E',transclude:true,require:"^gtTable",
@@ -634,7 +649,9 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
         },
         controller:function($scope,$attrs,$element){
             var vm=this,tblformatter={};
-            vm.table={tr:[],export:{show:false,data:[]},td:{data:[],show:false},data:[],refreshed:1,valid:false,count:0,header:{btns:[]},pagination:{offset:0},settings:{sort:undefined,search:undefined}};
+            vm.table={
+                filter:{data:[]},
+                tr:[],td:{data:[],show:false},export:{show:false,data:[]},data:[],refreshed:1,valid:false,count:0,header:{btns:[]},pagination:{offset:0},settings:{sort:undefined,search:undefined}};
             $scope.header={show:true,style:{}};
             if($attrs.headerstyle!==undefined){$scope.header.style=$scope.$eval($attrs.headerstyle);}
             if($attrs.tablestyle!==undefined){$scope.tablestyle=$scope.$eval($attrs.tablestyle);}
@@ -643,13 +660,37 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
             if($attrs.header!==undefined&&$attrs.header!==''){
                 $scope.header.show=$attrs.header;
             }
+            /** Filter */
+            vm.table.filter.toggle=function(from,index){
+                if(from==='parent'){
+                    vm.table.filter.show?vm.table.filter.show=false:vm.table.filter.show=true;
+                }
+                else if(from==='child'){
+                    if(vm.table.filter.showchild===index){
+                        vm.table.filter.showchild=undefined;return;
+                    }
+                    vm.table.filter.showchild=index;
+                }
+            };
+            vm.table.filter.submit=function(){
+                var data={};
+                if(vm.table.filter.data.length!==0){
+                    for(var x=0;x<vm.table.filter.data.length;x++){
+                        var chaindata=vm.table.filter.data[x].childs,
+                            filtered=_.chain(chaindata).filter({checked:true}).pluck('id').value();
+                        data[vm.table.filter.data[x]['id']]=filtered;
+                    }
+                }
+                console.log(data);
+                console.log(vm.table.filter.compose);
+            };
             vm.headertitle=function(html){ $scope.header.title=html; };
-            /* enabled right click on generic table */
+            /** enabled right click on generic table */
             vm.contextmenu={show:false,model:$attrs.contextmodel};
             vm.contextmenu.rclick=function(e,tr,td){
-                /* assign context fn */
+                /** assign context fn */
                 vm.table.contextFn=td.contextfn;
-                /* end */
+                /** end */
                 vm.contextmenu.node=tr;
                 vm.contextmenu.e=e;
                 var params=angular.copy(tr);

@@ -6,7 +6,7 @@
  * Time: 10:57 AM
  */
 class reports_get extends core_model {
-    /** api/gateway?re=fetch/reports/getlist */
+    /** api/gateway?re=fetch/reports_get/getlist */
     public function getlist(){
 
     }

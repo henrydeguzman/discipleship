@@ -1,7 +1,14 @@
-<div class="tab-victoryweekend">
+<div class="tab-generalsettings" ng-controller="victoryweekend.page.settings.controller as vwSettingsCtrl">
     <div class="_form">
         <form class="gen-form-static">
             <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="gfs-title">Chapter for those qualified to take victory weekend</label>
+                        <select ng-change="vwSettingsCtrl.one2one.selectchapter(key)" ng-options="value.id as value.name for value in vwSettingsCtrl.one2one.chapters" ng-model="vwSettingsCtrl.one2one.form.chapterid"></select>
+                        <!--<option ng-repeat="item in vwSettingsCtrl.one2one.chapters" ng-value="item.id">{{item.name}}</option>-->
+                    </div>
+                </div>
                 <div class="col-md-3">
                     <div class="info-box">
                             <span class="info-box-icon bg-yellow">
@@ -10,10 +17,10 @@
                         <div class="info-box-content no-padding">
                             <span class="info-box-text gen-text-center">Victory weekend</span>
                             <div class="info-box-number content-padding">
-                                <gt-datepicker align="center" validation-model="settingspageCtrl.weekend.validation.weekend_date" input-model="settingspageCtrl.weekend.date.value" gt-options="{opts:{minDate:curdate}}" format="MMM-dd-yyyy"></gt-datepicker>
+                                <gt-datepicker align="center" validation-model="vwSettingsCtrl.weekend.validation.weekend_date" input-model="vwSettingsCtrl.weekend.date.value" gt-options="{opts:{minDate:curdate}}" format="MMM-dd-yyyy"></gt-datepicker>
                             </div>
                             <div class="form-btn-right content-padding-right-left ">
-                                <button click-and-disable="settingspageCtrl.weekend.date.save()" class="btn gen-btn-success btn-xs">save</button>
+                                <button click-and-disable="vwSettingsCtrl.weekend.date.save()" class="btn gen-btn-success btn-xs">save</button>
                             </div>
                         </div>
                         <!-- /.info-box-content -->

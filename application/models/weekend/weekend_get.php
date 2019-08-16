@@ -19,4 +19,18 @@ class weekend_get extends core_model {
         $sql="SELECT a.weekendsetid as id FROM weekend_settings a WHERE a.churchid=".$churchid;
         return $this->query($sql,true);
     }
+    /** api/gateway?re=fetch/weekend_get/getfilters */
+    public function getfilters(){
+        return array(array(
+            "id"=>"active","name"=>"Life Status",
+            "childs"=>array(
+                array("id"=>1,"name"=>"sf"),
+            )
+        ));
+    }
+    /** api/gateway?re=fetch/weekend_get/getvweekendlist */
+    public function getvweekendlist(){
+        $sql=$this->weekend_script->getvweekendlist();
+        return $this->query($sql);
+    }
 }

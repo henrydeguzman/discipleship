@@ -359,3 +359,45 @@ body.skin-yellow-light .gen-box-v-1 {
 ._1din {
     transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }
+
+/* checkbox */
+label.gen-checkbox-style {
+    cursor:pointer;
+    padding:0;margin:0;
+    padding:4px 0px;
+    font-size:12px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+label.gen-checkbox-style > input:before {
+    content:'\f096';
+    font-family:fontAwesome;
+    background:white;
+    font-size:14px;
+    top:-2px;
+    position:relative;
+}
+label.gen-checkbox-style > input:checked:before {
+    content:'\f046';
+    font-family:fontAwesome;
+}
+label.gen-checkbox-style > input {
+    vertical-align:top;
+    position:absolute;
+    margin-right:15px;
+    margin-left:3px;
+    cursor:pointer;
+    width:.1px;
+
+}
+label.gen-checkbox-style > div {
+    top:1px;
+    position:relative;
+    margin-left:20px;
+    white-space: normal;
+}

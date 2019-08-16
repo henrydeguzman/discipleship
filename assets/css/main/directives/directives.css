@@ -6,9 +6,10 @@ gt-table .gen-table-container > .gen-table-header {}
 
 /* new header for table2 */
 gt-table .gen-table-container > .gen-table-header {
-    min-height: 37px;
+    min-height: 45px;
     /*background:#f2f2f2;*/
     background: #fff; /* update as of 10/16/2018 - slide43 ergonomics pptx */
+    border-bottom: 1px solid #E0E0E0;
     border-top:1px solid #E0E0E0;
     border-left:1px solid #E0E0E0;
     border-right:1px solid #E0E0E0;
@@ -37,7 +38,7 @@ gt-table .gen-table-container > .gen-table-header > table > tbody > tr > td._tit
     overflow:hidden;
     text-overflow:ellipsis;
     font-size:16px;
-    height: 37px;
+    height: 45px;
     font-weight: normal;
 }
 gt-table .gen-table-container > .gen-table-header > table > tbody > tr > td._title > div {
@@ -46,37 +47,101 @@ gt-table .gen-table-container > .gen-table-header > table > tbody > tr > td._tit
     top:0;
     bottom:0;
     margin: 0 5px;
-    line-height: 37px;
+    line-height: 42px;
     position:absolute;
-    height: 37px;
+    height: 45px;
 }
-gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters {}
-gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul {
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters {
+    position:relative;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently                                   supported by Chrome and Opera */
+
+}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ._filter {
+    color: #fff;
+    background-color: #40C2D5;
+    width: auto;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin: 0 10px;
+    cursor:pointer;
+}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters ul {
     list-style:none;
     margin:0;padding:0;
     display:inline-block;
+    position:absolute;
+    z-index:1;
+    background:white;
+    color:white;
 }
-gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul > li > i {
 
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent {
+    top:0;
+    left:100%;
+
+}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li {
+    display:inline-block;
+    height:30px;
+    line-height:30px;
+    color: #fff;
+    background-color: #fff;
+    color:#929ba3;
+    border:1px solid #ccc;
+    width: auto;
+    border-radius: 4px;
+    margin: 0 3px;
     position:relative;
-    font-size:22px;
-    margin-top:12px;
-    color:#939ba2;
 }
-gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul > li:hover > i {
-    color:#3fb3c5;
-}
-gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul > li:hover{
-    background:#ffffff;
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li:hover {
     cursor:pointer;
 }
-gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul > li {
-    display:inline-block;
-    height:47px;
-    width:47px;
-    text-align:center;
-
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li > span {
+    position:relative;
+    /* top:-1px; */
+    padding: 7px 10px;
+    line-height: 30px;
 }
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li._clear {
+    background:#BF360C;
+    color:white;
+}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li._filter {
+    background:#3bc67c;
+    color:white;
+}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li:not(._clear):not(._filter) > span:after {
+    content:'\f0d7';
+    font-family:fontAwesome;
+    padding-left:5px;
+    top:1px;
+    position:relative;
+}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li ul._child {
+    top:100%;
+    right:0;
+    color:#939ba1;
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 3px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
+    max-width:100%;
+}
+div.gen-table-h-filters ul._parent > li ul._child > li {
+    line-height:normal;
+    border-bottom:1px solid #e9ebee;
+    margin:2px;
+}
+div.gen-table-h-filters ul._parent > li ul._child > li:last-child {
+    border-bottom:none;
+}
+
 
 gt-table .gen-table-container > .gen-table-header div.gen-table-h-search {
 

@@ -433,8 +433,14 @@ a:hover,a:active,a:focus{
     padding:12px 5px 12px 15px;
     display:block
 }
-.sidebar-menu>li>a>.fa,.sidebar-menu>li>a>.glyphicon,.sidebar-menu>li>a>.ion{
+.sidebar-menu>li>a>.fa,
+.sidebar-menu>li>a> img,
+.sidebar-menu>li>a>.glyphicon,
+.sidebar-menu>li>a>.ion{
     width:20px
+}
+.sidebar-menu>li>a> img{
+    height:20px;
 }
 .sidebar-menu>li .label,.sidebar-menu>li .badge{
     margin-right:5px

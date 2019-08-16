@@ -4,6 +4,32 @@
         <table>
             <tbody>
             <tr>
+                <td ng-if="gtTblCtrl.table.filter.data.length!==0">
+                    <div class="gen-table-h-filters">
+                        <div class="_filter" ng-click="gtTblCtrl.table.filter.toggle('parent')">Filter&nbsp;<i class="fa fa-filter" aria-hidden="true"></i></div>
+                        <ul class="_parent" ng-show="gtTblCtrl.table.filter.show">
+                            <li ng-repeat="(key,item) in gtTblCtrl.table.filter.data">
+                                <span ng-click="gtTblCtrl.table.filter.toggle('child',key)">{{item.name}}</span>
+                                <ul class="_child" ng-show="gtTblCtrl.table.filter.showchild==key">
+                                    <li>
+                                        <label class="gen-checkbox-style">
+                                            <input type="checkbox" />
+                                            <div>Check all</div>
+                                        </label>
+                                    </li>
+                                    <li ng-repeat="child in item.childs">
+                                        <label class="gen-checkbox-style">
+                                            <input ng-model="child.checked" type="checkbox" />
+                                            <div>{{child.name}}</div>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="_clear"><span>Clear Filter</span></li>
+                            <li class="_filter" ng-click="gtTblCtrl.table.filter.submit()"><span>Filter</span></li>
+                        </ul>
+                    </div>
+                </td>
                 <td class="_title"><div bind-html-compile="header.title"></div></td>
                 <td style="display:none;">
                     <div class="gen-table-h-pagination">
@@ -30,13 +56,7 @@
                     </ul>
                 </div>
                 </td>
-                <td style="display:none;">
-                    <div class="gen-table-h-filters">
-                        <ul>
-                            <li><i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i></li>
-                        </ul>
-                    </div>
-                </td>
+
                 <td><div class="gen-table-h-search">
                     <input type="text" ng-model="gtTblCtrl.table.settings.search" ng-model-options="{debounce:800}" ng-change="gtTblCtrl.settings.search()" placeholder="Search..." class="gen-input-control">
                 </div></td>

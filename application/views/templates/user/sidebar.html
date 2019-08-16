@@ -62,6 +62,11 @@
                         <i class="fa fa-bar-chart" aria-hidden="true"></i> <span>Reports</span>
                     </a>
                 </li>
+                <li ng-class="stateparams.tab==='victory_weekend'?'active':''">
+                    <a ui-sref="sref_sidebar({tab:'victory_weekend',name:'Victory Weekend'})">
+                        <img src="<?= base_url('assets/img/victoryweekend/thumbnails/32x32/VW-white32x32.png'); ?>" /></i> <span>Victory Weekend</span>
+                    </a>
+                </li>
 
                 <li class="treeview" ng-class="stateparams.tab.indexOf('admin;')!==-1?'active menu-open':''">
                     <a href="#">

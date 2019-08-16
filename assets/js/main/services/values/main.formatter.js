@@ -13,6 +13,10 @@ angular.module("MainFormatters",[])
             console.log(tr);
             return '<gt-profile photo="tr.photo" userid="tr.userid" name="tr.fullname"></gt-profile>&nbsp;<span>{{tr.fullname}}</span>';
         },
+        fullnameonly:function(tr){
+            console.log(tr);
+            return '{{tr.firstname+" "+tr.lastname}}';
+        },
         fulldate:function(tr){ return "<span>{{tr.date | date:'fullDate'}}</span>"; },
         count:function(tr){ return '{{trindex+1}}'; }
     });

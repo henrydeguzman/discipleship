@@ -1,0 +1,36 @@
+[
+  {
+    "id":"active","name":"First Parent",
+    "childs":[
+      {
+        "id":1,
+        "name":"First Criteria"
+      },
+      {
+        "id":2,
+        "name":"Second Criteria"
+      },
+      {
+        "id":3,
+        "name":"Third Criteria"
+      }
+    ]
+  },
+  {
+    "id":"component","name":"Second Parent",
+    "childs":[
+      {
+        "id":1,
+        "name":"First Criteria"
+      },
+      {
+        "id":2,
+        "name":"Second Criteria"
+      },
+      {
+        "id":3,
+        "name":"Third Criteria"
+      }
+    ]
+  }
+]
