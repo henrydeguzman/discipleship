@@ -88,7 +88,7 @@ function gtAccordionContent($timeout){
 function gtAccordion(){
     return {
         restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/accordion/accordion.html',
-        scope:{},link:function(){},transclude:true,controller:function(){
+        scope:true,link:function(){},transclude:true,controller:function(){
             var vm=this;
             vm.header={text:'Sample header'};
             vm.accords={list:[],c:0};
