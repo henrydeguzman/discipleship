@@ -62,8 +62,8 @@
                 </div></td>
                 <td><div class="gen-table-h-btns">
                     <ul>
-                        <li ng-repeat="item in gtTblCtrl.table.header.btns" ng-click="item.onclick()" ng-class="item.action==='button'?'_btn':''">
-                            <div class="gen-table-h-btn" bind-html-compile="item.html"></div>
+                        <li ng-repeat="item in gtTblCtrl.table.header.btns" ng-class="item.action==='button'?'_btn':''">
+                            <div class="gen-table-h-btn" bind-html-compile="item.html" ng-click="item.onclick()"></div>
                         </li>
                         <li>
                             <div class="gen-table-h-btn" ng-click="gtTblCtrl.table.export.toggle()">

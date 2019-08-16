@@ -564,7 +564,6 @@ function gtTableTitle(){
     }
 }
 function gtTableBtns($q){
-    var i="";
     return {
         restrict:'E',require:'^gtTable',transclude:true,replace:true,template:'<div class="_tbl-btns" style="display:none;"></div>',
         scope:{action:'@',gtclick:'&?'},
@@ -576,7 +575,7 @@ function gtTableBtns($q){
             else if(scope.action==='button'){
                 transclude(scope,function(clone){
                     data.clone=clone;
-                    html='<button class="btn" bind-html-compile="item.clone"></button>';
+                    html='<button class="btn" ng-click="" bind-html-compile="item.clone"></button>';
                 });
             }
             data.html=html;

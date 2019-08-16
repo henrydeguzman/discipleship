@@ -215,7 +215,10 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li
     height:100%;
 }
 gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btn > button {
-    border:1px solid #999999; outline:0; color:#939ba2;
+    border:1px solid #999999;
+    outline:0;
+    color:#939ba2;
+    height: 37px;
 }
 gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li > div.gen-table-h-btnlist:before {
     content:'';
