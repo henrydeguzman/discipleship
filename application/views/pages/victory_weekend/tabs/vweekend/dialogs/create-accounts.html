@@ -1,3 +1,11 @@
 <div class="diag-create-accounts-vweekend" ng-controller="victoryweekend.ctrl.diags.createaccnts as vweekendcreateaccntsCtrl">
-    create accounts victory weekend
+    <form class="gen-form-static">
+        Creating accounts {{data.successcnt}} out of {{data.total==0?'calculating..':data.total}}
+        <div class="progress">
+            <div class="progress-bar" ng-class="data.percent==100?'bg-success':''" role="progressbar" ng-style="{width:data.percent+'%', color: data.percent=='0'?'black':''}" aria-valuenow="{{data.percent}}" aria-valuemin="0" aria-valuemax="100">{{data.percent}}%</div>
+        </div>
+        <div class="form-btn-right" ng-if="data.percent==100">
+            <button class="btn btn-sm gen-btn-success" ng-click="vweekendcreateaccntsCtrl.done()">Done!</button>
+        </div>
+    </form>
 </div>

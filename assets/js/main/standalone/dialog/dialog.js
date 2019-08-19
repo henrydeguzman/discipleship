@@ -16,10 +16,11 @@ try {
 
 
 
-ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,url,otherdata,centralFctry,type){
+ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,url,otherdata,centralFctry,type,model){
     $scope.otherdata=otherdata;
     $scope.url=url;
     $scope.type=type;
+    $scope.model=model;
     /*$scope.data=data;*/
     /*
     * october 30, 2018: data added validation for function that data will fetch on models, old passing data is on else
@@ -99,17 +100,36 @@ angular.module('dialogs.directive',[])
         }
     }]);
 
-ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope','$element',function($compile,$templateRequest,$scope,$element){
-    if($scope.type==='confirm'){
-        $scope.url='uib/template/modal/wraper/types/confirm.html';
-    }
-    else{
-        if($scope.url===''||$scope.url===undefined){return;}
-    }
-    console.log($scope.url,$scope.type);
+ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope','$element','centralFctry',function($compile,$templateRequest,$scope,$element,centralFctry){
+    if($scope.url===''||$scope.url===undefined){return;}
     $templateRequest($scope.url).then(function(res){
+        if($scope.type==='asynchronous'){
+            if($scope.model===undefined){$element.find('.gen-dialog-c-content').html('Please provide model to begin asynchronous process.');return;}
+            var posted={data:{successcnt:0,total:0,percent:0}};$scope.data=posted.data;
+            pushdata();
+            function pushdata(){
+                posted.fn=centralFctry.postData({url:$scope.model,data:posted.data});
+                if(posted.fn.$$state!==undefined){
+                    posted.fn.then(function(v){
+                        console.log(v.data);
+                        if(v.data.success&&(posted.data.successcnt<v.data.successcnt)){
+                            posted.data.successcnt=v.data.successcnt;
+                            posted.data.total=v.data.total;
+                            posted.data.percent=(posted.data.successcnt/posted.data.total)*100;
+                            $scope.data=posted.data;
+                            if(posted.data.total>v.data.successcnt){
+                                pushdata();
+                            } else if(posted.data.total==v.data.successcnt){
+                                //  $scope.$parent.close();
+                            }
+                        }
+                    });
+                }
+            }
+        }
         $element.find('.gen-dialog-c-content').html($compile(res)($scope));
     });
+    console.log($scope.type,$scope.model);
 }]);
 
 /* Services */
@@ -154,7 +174,7 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
                         type:function(){ return params.type; },
                         onclosed:function(){return params.onclosed;},
                         title:function(){ return params.title; },
-                        url:function(){return params.url;},
+                        url:function(){return params.url;},model:function(){return params.model;},
                         otherdata:function(){ if(copy){ return angular.copy(params.otherdata); } },
                         data : function() {
                             if(copy){
@@ -171,11 +191,11 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
                 create:function(params){
                     return load(params);
                 },confirm:function(content,fn){
-                    var params={type:'confirm',data:{confirm:content,fn:fn},options:{backdrop:'static',size:'sm'}};
+                    var params={url:'uib/template/modal/wraper/types/confirm.html',type:'confirm',data:{confirm:content,fn:fn},options:{backdrop:'static',size:'sm'}};
                     return load(params);
                 },asynchronous:function(params){
                     params.type='asynchronous';
-                    if(params.options===undefined){ params.options={backdrop:'static'}; }
+                    if(params.options===undefined){ params.options={backdrop:'static',keyboard:false}; }
                     if(params.options.size===undefined){ params.options.size='sm'; }
                     return load(params);
                 }

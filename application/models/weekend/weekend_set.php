@@ -21,6 +21,7 @@ class weekend_set extends core_model {
             "weekend_date"=>$date,"churchid"=>$churchid
         ));
     }
+    /** api/gateway?re=fetch/weekend_set/setchapter */
     public function setchapter(){
         $chapterid=isset($_POST['chapterid'])?$_POST['chapterid']:0; if(empty($chapterid)){ return array("success"=>false,"info"=>"Invalid chapter");}
         $this->load->model('weekend/weekend_get','weekendget');
@@ -32,5 +33,14 @@ class weekend_set extends core_model {
         else{
             return $this->update('weekend_settings',array("chapterid"=>$chapterid),'weekendsetid='.$result->id);
         }
+    }
+    /** api/gateway?re=fetch/weekend_set/samplethis */
+    public function samplethis(){
+        //usleep(1000000);
+        $get=isset($_POST['successcnt'])?$_POST['successcnt']:0;
+         $get=intval($get)+1;
+        return array(
+            "total"=>5,"success"=>true,"successcnt"=>$get
+        );
     }
 }

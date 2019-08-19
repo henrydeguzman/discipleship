@@ -32,8 +32,15 @@ onclosed:function(params,dgdata)
     - if the $scope.$parent.dgdata is initialized, the dgdata on onclosed will be the value.
 type:'wait','error','notify','confirm'
     - confirm
-        ex. dialogs.create({
-                type:'wait',options:{backdrop:'static'},data:{confirm:'is this awesome or what ?'}
-            })
-
-
+        ex. dialogs.confirm('confirm ?',function(){})
+        - function will be executed when clicked on "Yes"
+    - asynchronous
+        - usual params of dialogs
+        * default but it can be edit *
+            1. size:'sm'
+            2. backdrop:'static'
+            3. keyboard:false
+        * required params *
+            1. model:''
+                - to api data: {successcnt:0} = matic
+                - return value from model should be : {total:5,success:true,successcnt:1} = manual

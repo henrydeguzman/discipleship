@@ -16,7 +16,7 @@ victory
             dialogs.confirm('Are you sure ?',function(){
                 dialogs.asynchronous({
                     url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
-
+                    model:'fetch/weekend_set/samplethis'
                 });
             });
         };

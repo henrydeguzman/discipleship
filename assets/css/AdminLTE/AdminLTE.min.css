@@ -1141,6 +1141,12 @@ a:hover,a:active,a:focus{
     -webkit-box-shadow:none;
     box-shadow:none
 }
+.progress {
+    margin-bottom:10px;
+}
+.progress > .progress-bar.bg-success {
+    background:#28a745!important;
+}
 .progress,.progress>.progress-bar,.progress .progress-bar,.progress>.progress-bar .progress-bar{
     border-radius:1px
 }
