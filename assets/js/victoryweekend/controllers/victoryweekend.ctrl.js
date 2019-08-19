@@ -13,17 +13,11 @@ victory
         vm.create={};
         vm.create.accounts=function(){
             console.log('fired');
-            dialogs.create({
-                type:'confirm',url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
-                options:{backdrop:'static',keyboard:false},data:{confirm:'really ?'},
-                onclosed:function(params){
-                    if(params){
-                        console.log('confirm yes');
-                    }
-                    else{
-                        console.log('confirm no');
-                    }
-                }
+            dialogs.confirm('Are you sure ?',function(){
+                dialogs.asynchronous({
+                    url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
+
+                });
             });
         };
     }])

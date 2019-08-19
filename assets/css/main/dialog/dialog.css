@@ -43,7 +43,7 @@
     display: block;
 }
 /* dialog types */
-.gen-dialog-container.dialog-wait > .gen-dialog-c-title {
+.gen-dialog-container.dialog-asynchronous > .gen-dialog-c-title {
     background:#3a87ad;
     color: #ffffff;
 }
@@ -88,6 +88,8 @@
     padding: 10px 60px 10px 15px;
     border-bottom:1px solid #ccc;
     min-height:39px;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
 }
 .gen-dialog-container > .gen-dialog-c-title > span {
     font-size:16px;

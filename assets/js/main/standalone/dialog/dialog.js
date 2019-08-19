@@ -14,6 +14,8 @@ try {
     ctrls=angular.module('dialogs.controllers',[])
 }
 
+
+
 ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,url,otherdata,centralFctry,type){
     $scope.otherdata=otherdata;
     $scope.url=url;
@@ -43,7 +45,7 @@ ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,u
        }
     };
     switch (type) {
-        case "wait":
+        case "asynchronous":
             $scope.title="<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i>&nbsp;<span>Please Wait</span>";
             $scope.diagwindow.show=false;$scope.closeshow=false;
             break;
@@ -74,7 +76,7 @@ angular.module('dialogs.directive',[])
             template:'',
             link:function(scope,element,attrs,ctrl){
                 if(scope.type==='confirm'){
-                    scope.url='page/loadview?dir=jshtml&view=dialogs/generic-popup/types/confirm.html';
+                    scope.url='uib/template/modal/wraper/types/confirm.html';
                 }
                 else{
                     if(scope.url===''||scope.url===undefined){return;}
@@ -97,6 +99,19 @@ angular.module('dialogs.directive',[])
         }
     }]);
 
+ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope','$element',function($compile,$templateRequest,$scope,$element){
+    if($scope.type==='confirm'){
+        $scope.url='uib/template/modal/wraper/types/confirm.html';
+    }
+    else{
+        if($scope.url===''||$scope.url===undefined){return;}
+    }
+    console.log($scope.url,$scope.type);
+    $templateRequest($scope.url).then(function(res){
+        $element.find('.gen-dialog-c-content').html($compile(res)($scope));
+    });
+}]);
+
 /* Services */
 angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs.directive'])
     .provider('dialogs',[function(){
@@ -116,62 +131,53 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
                 _opts.kb=(angular.isDefined(opts.keyboard)) ? !!opts.keyboard: _k; /* values: true,false */
                 _opts.bd=(angular.isDefined(opts.backdrop)) ? opts.backdrop: _b; /* values: 'static',true,false */
                 _opts.bdc=(angular.isDefined(opts.backdropClass)) ? opts.backdropClass: _bdc; /* additional CSS class(es) to be added to the modal backdrop */
-                _opts.ws=(angular.isDefined(opts.size) && ((opts.size==='sm') || (opts.size==='lg') || (opts.size==='md') || (opts.size==='xl') || (opts.size==='xl-10'))) ? opts.size: _setsize(params); /* values: 'sm','lg','md' */
+                _opts.ws=(angular.isDefined(opts.size) && ((opts.size==='sm') || (opts.size==='lg') || (opts.size==='md') || (opts.size==='xl') || (opts.size==='xl-10'))) ? opts.size: _wSize; /* values: 'sm','lg','md' */
                 _opts.wc=(angular.isDefined(opts.windowClass)) ? opts.windowClass : _w; /* additional CSS class(es) to be added to a modal window */
                 _opts.anim=(angular.isDefined(opts.animation)) ? !!opts.animation : _animation; /* values: true,false *_opts._type=(angular.isDefined(opts._type)) ? !!opts._type : _type; /* values: true,false */
                 return _opts;
             };
-            function _setsize(params){
-                var size='';
-                if(params.type==='confirm'){
-                    size='sm';
-                } else {
-                    size=_wSize;
-                }
-                return size;
-            }
         this.useBackdrop = function(val){ // possible values : true, false, 'static'
             if(angular.isDefined(val))
                 _b = val;
         }; // end useStaticBackdrop
         this.$get=['$uibModal',function($uibModal){
-            return {
-                create:function(params,url,ctrlr,data,opts,ctrlAs){
-                    var copy = (params.options && angular.isDefined(params.options.copy)) ? opts.copy : _copy;
-                    opts = _setOpts(params.options,params);
-                    return $uibModal.open({
-                        template:'<gt-dialog></gt-dialog>',
-                        /*templateUrl:'templates/angular/sample/sample.html',*/
-                        keyboard : opts.kb,
-                        controller:'dCtrl',
-                        backdrop : opts.bd,
-                        backdropClass: opts.bdc,
-                        windowClass: opts.wc,
-                        size: opts.ws,
-                        animation: opts.anim,
-                        resolve : {
-                            type:function(){
-                                return params.type===undefined?'custom':params.type;
-                                },
-                            onclosed:function(){return params.onclosed;},
-                            title:function(){ return params.title; },
-                            url:function(){return params.url;},
-                            otherdata:function(){
-                                if(copy){
-                                    return angular.copy(params.otherdata);
+            function load(params){
+                console.log(params);
+                if(params==undefined){ params={}; }
+                var copy = (params.options && angular.isDefined(params.options.copy)) ? opts.copy : _copy;
+                var opts = _setOpts(params.options,params);
+                return $uibModal.open({
+                    /*template:'<gt-dialog></gt-dialog>',*/
+                    templateUrl:'uib/template/modal/diag-container.html',
+                    keyboard : opts.kb, controller:'dCtrl', backdrop : opts.bd, backdropClass: opts.bdc, windowClass: opts.wc, size: opts.ws, animation: opts.anim,
+                    resolve : {
+                        type:function(){ return params.type; },
+                        onclosed:function(){return params.onclosed;},
+                        title:function(){ return params.title; },
+                        url:function(){return params.url;},
+                        otherdata:function(){ if(copy){ return angular.copy(params.otherdata); } },
+                        data : function() {
+                            if(copy){
+                                if(params.submitfn!==undefined){
+                                    params.data=angular.extend({submitfn:params.submitfn},params.data);
                                 }
-                            },
-                            data : function() {
-                                if(copy){
-                                    if(params.submitfn!==undefined){
-                                        params.data=angular.extend({submitfn:params.submitfn},params.data);
-                                    }
-                                    return angular.copy(params.data);
-                                } else { return params; }
-
-                            }
+                                return angular.copy(params.data);
+                            } else { return params; }
                         }
-                    });
+                    }
+                });
+            }
+            return {
+                create:function(params){
+                    return load(params);
+                },confirm:function(content,fn){
+                    var params={type:'confirm',data:{confirm:content,fn:fn},options:{backdrop:'static',size:'sm'}};
+                    return load(params);
+                },asynchronous:function(params){
+                    params.type='asynchronous';
+                    if(params.options===undefined){ params.options={backdrop:'static'}; }
+                    if(params.options.size===undefined){ params.options.size='sm'; }
+                    return load(params);
                 }
             }
         }];
@@ -181,4 +187,31 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
 angular.module('dialogs.main',['dialogs.services'])
     .run(["$templateCache", function($templateCache) {
         $templateCache.put("uib/template/modal/window.html", "<div ng-class='' class=\"modal-dialog {{size ? 'modal-' + size : ''}}\"  ><div class=\"modal-content\" uib-modal-transclude></div></div>\n");
+        $templateCache.put("uib/template/modal/diag-container.html", '<div ng-controller="appmaindiag.gen.popup as appmaindiagCtrl" class="gen-dialog-container" ng-class="\'dialog-\'+type">\n' +
+            '    <div class="gen-dialog-c-title">\n' +
+            '        <span bind-html-compile="title"></span>\n' +
+            '        <div class="gen-dialog-c-t-btns">\n' +
+            '            <ul>\n' +
+            '                <li ng-if="diagwindow.show">\n' +
+            '                    <button class="btn btn-primary btn-xs" ng-click="diagwindow.toggle()"><i aria-hidden="true" class="fa" ng-class="diagwindow.maximize?\'fa-window-restore\':\'fa-window-maximize\'"></i>\n' +
+            '                    </button>\n' +
+            '                </li>\n' +
+            '                <li ng-if="closeshow">\n' +
+            '                    <button class="btn btn-danger btn-xs" ng-click="close()"><i aria-hidden="true" class="fa fa-times"></i>\n' +
+            '                    </button>\n' +
+            '                </li>\n' +
+            '            </ul>\n' +
+            '        </div>\n' +
+            '    </div>\n' +
+            '    <div class="gen-dialog-c-content"></div>\n' +
+            '</div>');
+        $templateCache.put("uib/template/modal/wraper/types/confirm.html", '<div ng-controller="appmaindiag.diagtype.confirm as appmaindiagcfrmCtrl">\n' +
+            '    <form class="gen-form-static">\n' +
+            '        <span>{{data.confirm}}</span>\n' +
+            '        <div class="form-btn-right">\n' +
+            '            <button type="button" class="btn btn-default btn-sm" ng-click="appmaindiagcfrmCtrl.submit(true)">Yes</button>\n' +
+            '            <button type="button" class="btn btn-primary btn-sm" ng-click="appmaindiagcfrmCtrl.submit()">No</button>\n' +
+            '        </div>\n' +
+            '    </form>\n' +
+            '</div>');
     }]);
