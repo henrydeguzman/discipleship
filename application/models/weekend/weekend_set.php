@@ -33,6 +33,7 @@ class weekend_set extends core_model {
         else{
             return $this->update('weekend_settings',array("chapterid"=>$chapterid),'weekendsetid='.$result->id);
         }
+
     }
     /** api/gateway?re=fetch/weekend_set/samplethis */
     public function samplethis(){
