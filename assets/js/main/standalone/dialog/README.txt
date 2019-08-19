@@ -15,13 +15,15 @@ data: {varia:'value'}
                 - modeldata: is the data fetched from model
                 - exdata: is the data {value:1, name:'name'}
 options:
-    {backdrop:'static'/true/false}
+    {backdrop:'static'/true/false,keyboard:false}
         - 'static' will not close when you click on blury gray outside the dialog, true it will close with callback, false background will not visible outside the dialog
     size:'sm'/'lg'/'md'/'xl'/'xl-10'
         - size of the modal
         - xl-10 with the size of xl and fix margin 10;
     windowClass:'nomargin'
         - no margin on content dialog
+    keyboard: boolean
+        - if true escape will close the dialog box, default: true;
 
 otherdata: {varia:'value'}
     - this data use when you wan't otherdata to bind on actual form data.

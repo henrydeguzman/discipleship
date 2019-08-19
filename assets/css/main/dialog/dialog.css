@@ -42,6 +42,23 @@
 .dialogs-backdrop-default {
     display: block;
 }
+/* dialog types */
+.gen-dialog-container.dialog-wait > .gen-dialog-c-title {
+    background:#3a87ad;
+    color: #ffffff;
+}
+.gen-dialog-container.dialog-error > .gen-dialog-c-title {
+    background:#d2322d;
+    color: #ffffff;
+}
+.gen-dialog-container.dialog-notify > .gen-dialog-c-title {
+    background-color: #eeeeee;
+    color: #3a87ad;
+}
+.gen-dialog-container.dialog-confirm > .gen-dialog-c-title {
+    background-color: #333333;
+    color: #ffffff;
+}
 
 .gen-dialog-container {
 

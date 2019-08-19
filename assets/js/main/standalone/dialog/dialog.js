@@ -14,38 +14,23 @@ try {
     ctrls=angular.module('dialogs.controllers',[])
 }
 
-ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,url,otherdata,centralFctry){
+ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,url,otherdata,centralFctry,type){
     $scope.otherdata=otherdata;
+    $scope.url=url;
+    $scope.type=type;
     /*$scope.data=data;*/
     /*
     * october 30, 2018: data added validation for function that data will fetch on models, old passing data is on else
     * */
     if(typeof(data)==='function'){
         var datafn=data(),dataurl='',urldata={};
-        if(typeof(datafn)==='object'){
-            dataurl=datafn.url;
-            urldata=datafn.urldata;
-        } else if(typeof(datafn)==='string') { dataurl=datafn; } else { $scope.data=undefined; }
+        if(typeof(datafn)==='object'){ dataurl=datafn.url; urldata=datafn.urldata; } else if(typeof(datafn)==='string') { dataurl=datafn; } else { $scope.data=undefined; }
         var posted=centralFctry.getData({url:dataurl,data:urldata});
-        if(posted.$$state!==undefined){
-            posted.then(function(v){
-                if(datafn.exdata!==undefined){
-                    $scope.data={modeldata:v.data,exdata:datafn.exdata};
-                } else { /* if no exdata */
-                    $scope.data=v.data;
-                }
-            });
-        }
-    } else {
-        $scope.data=data;
-    }
-    $scope.title=title;
-    $scope.url=url;
-    $scope.close=function(param){
-        $uibModalInstance.close();
-        if(onclosed!==undefined){ if(typeof(onclosed)==='function'){ onclosed(param,$scope.dgdata); } }
-    };
-    $scope.diagwindow={maximize:false,default:null};
+        if(posted.$$state!==undefined){ posted.then(function(v){ if(datafn.exdata!==undefined){ $scope.data={modeldata:v.data,exdata:datafn.exdata}; } else { /** if no exdata */ $scope.data=v.data; } }); }
+    } else { $scope.data=data; }
+    $scope.close={show:true};
+    $scope.close.confirm=function(param){ $uibModalInstance.close(); if(onclosed!==undefined){ if(typeof(onclosed)==='function'){ onclosed(param,$scope.dgdata); } } };
+    $scope.diagwindow={maximize:false,default:null,show:true};
     $scope.diagwindow.toggle=function(){
         //$scope.diagwindow.maximize?$scope.diagwindow.maximize=false:$scope.diagwindow.maximize=true;
         if($scope.diagwindow.default===null){ $scope.diagwindow.default=$scope.$$childHead.size }
@@ -57,6 +42,27 @@ ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,u
            $scope.diagwindow.maximize=true;
        }
     };
+    switch (type) {
+        case "wait":
+            $scope.title="<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i>&nbsp;<span>Please Wait</span>";
+            $scope.diagwindow.show=false;$scope.close.show=false;
+            break;
+        case "error":
+            $scope.title="<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>&nbsp;<span>Error</span>";
+            $scope.diagwindow.show=false;
+            break;
+        case "notify":
+            $scope.title="<i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i>&nbsp;<span>Something Happened!</span>";
+            $scope.diagwindow.show=false;
+            break;
+        case "confirm":
+            $scope.title="<i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i>&nbsp;<span>Please Confirm</span>";
+            $scope.diagwindow.show=false;
+            break;
+        default:
+            $scope.title=title;
+            break;
+    }
 });
 
 /* directives */
@@ -64,9 +70,10 @@ angular.module('dialogs.directive',[])
     .directive('gtDialog',['$compile','$templateRequest',function($compile,$templateRequest){
         return {
             restrict: 'E',
-            /*templateUrl: 'templates/angular/sample/sample.html',*/
-            template:'<div class=gen-dialog-container><div class=gen-dialog-c-title><span bind-html-compile="title"></span><div class=gen-dialog-c-t-btns><ul><li><button class="btn btn-primary btn-xs" ng-click=diagwindow.toggle()><i aria-hidden=true class="fa" ng-class="diagwindow.maximize?\'fa-window-restore\':\'fa-window-maximize\'"></i></button></li><li><button class="btn btn-danger btn-xs" ng-click=close()><i aria-hidden=true class="fa fa-times"></i></button></li></ul></div></div><div class=gen-dialog-c-content></div></div>',
+            templateUrl: 'page/loadview?dir=jshtml&view=dialogs/generic-popup/generic-popup.html',
+            template:'',
             link:function(scope,element,attrs,ctrl){
+                console.log(scope);
                 if(scope.url===''||scope.url===undefined){return;}
                 $templateRequest(scope.url).then(function(res){
                     element.find('.gen-dialog-c-content').html($compile(res)(scope));
@@ -106,7 +113,7 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
                 _opts.bdc=(angular.isDefined(opts.backdropClass)) ? opts.backdropClass: _bdc; /* additional CSS class(es) to be added to the modal backdrop */
                 _opts.ws=(angular.isDefined(opts.size) && ((opts.size==='sm') || (opts.size==='lg') || (opts.size==='md') || (opts.size==='xl') || (opts.size==='xl-10'))) ? opts.size: _wSize; /* values: 'sm','lg','md' */
                 _opts.wc=(angular.isDefined(opts.windowClass)) ? opts.windowClass : _w; /* additional CSS class(es) to be added to a modal window */
-                _opts.anim=(angular.isDefined(opts.animation)) ? !!opts.animation : _animation; /* values: true,false */
+                _opts.anim=(angular.isDefined(opts.animation)) ? !!opts.animation : _animation; /* values: true,false *_opts._type=(angular.isDefined(opts._type)) ? !!opts._type : _type; /* values: true,false */
                 return _opts;
             };
         this.useBackdrop = function(val){ // possible values : true, false, 'static'
@@ -123,8 +130,13 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
                         /*templateUrl:'templates/angular/sample/sample.html',*/
                         keyboard : opts.kb,
                         controller:'dCtrl',
-                        backdrop : opts.bd, backdropClass: opts.bdc, windowClass: opts.wc, size: opts.ws, animation: opts.anim,
+                        backdrop : opts.bd,
+                        backdropClass: opts.bdc,
+                        windowClass: opts.wc,
+                        size: opts.ws,
+                        animation: opts.anim,
                         resolve : {
+                            type:function(){ return params.type===undefined?'custom':params.type; },
                             onclosed:function(){return params.onclosed;},
                             title:function(){ return params.title; },
                             url:function(){return params.url;},

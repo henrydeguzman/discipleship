@@ -8,11 +8,16 @@ victory
     .controller('victoryweekend.page.controller',['$scope',function($scope){
         var vm=this;
     }])
-    .controller('victoryweekend.page.weekend.controller',['$scope',function($scope){
+    .controller('victoryweekend.page.weekend.controller',['$scope','dialogs',function($scope,dialogs){
         var vm=this;
         vm.create={};
         vm.create.accounts=function(){
             console.log('fired');
+            dialogs.create({
+                type:'wait',
+                url:"page/loadview?dir=jshtml&view=dialogs/processing/processing.html",
+                options:{backdrop:'static',keyboard:false}
+            });
         };
     }])
     .controller('victoryweekend.page.settings.controller',['$scope','centralFctry','genvarsValue','$filter','tableService','Notification','notifValues',function($scope,centralFctry,genvarsValue,$filter,tableService,Notification,notifValues){

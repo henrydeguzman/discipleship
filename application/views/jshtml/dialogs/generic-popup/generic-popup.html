@@ -1,0 +1,18 @@
+<div class="gen-dialog-container" ng-class="'dialog-'+type">
+    <div class="gen-dialog-c-title">
+        <span bind-html-compile="title"></span>
+        <div class="gen-dialog-c-t-btns">
+            <ul>
+                <li ng-if="diagwindow.show">
+                    <button class="btn btn-primary btn-xs" ng-click="diagwindow.toggle()"><i aria-hidden="true" class="fa" ng-class="diagwindow.maximize?'fa-window-restore':'fa-window-maximize'"></i>
+                    </button>
+                </li>
+                <li ng-if="close.show">
+                    <button class="btn btn-danger btn-xs" ng-click="close.confirm()"><i aria-hidden="true" class="fa fa-times"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="gen-dialog-c-content"></div>
+</div>
