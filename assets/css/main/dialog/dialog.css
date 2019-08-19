@@ -59,6 +59,26 @@
     background-color: #333333;
     color: #ffffff;
 }
+.gen-dialog-container.dialog-confirm > .gen-dialog-c-content {}
+.gen-dialog-container.dialog-confirm > .gen-dialog-c-content form {
+    padding-top:10px;    padding-bottom:0;
+}
+.gen-dialog-container.dialog-confirm > .gen-dialog-c-content form > .form-btn-right {
+    padding-top:20px;
+}
+.gen-dialog-container.dialog-confirm > .gen-dialog-c-title > .gen-dialog-c-t-btns > ul > li > button {
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    color: #000;
+    opacity: .2;
+}
+.gen-dialog-container.dialog-confirm > .gen-dialog-c-title > .gen-dialog-c-t-btns > ul > li:hover > button {
+    opacity:.5;
+}
+.gen-dialog-container.dialog-confirm > .gen-dialog-c-title > .gen-dialog-c-t-btns > ul > li > button:hover > i {
+    color:red;
+}
 
 .gen-dialog-container {
 
@@ -82,9 +102,12 @@
 
 }
 .gen-dialog-container > .gen-dialog-c-title > .gen-dialog-c-t-btns > ul {
-    list-style:none;margin:0;padding:0;
-    height:100%;
+    list-style:none;
+    margin:0;
+    padding:0;
+    /* height:100%; */
     top:10px;
+
     position:relative;
 }
 .gen-dialog-container > .gen-dialog-c-title > .gen-dialog-c-t-btns > ul > li {

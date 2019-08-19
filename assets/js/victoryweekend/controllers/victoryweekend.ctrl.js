@@ -14,9 +14,16 @@ victory
         vm.create.accounts=function(){
             console.log('fired');
             dialogs.create({
-                type:'wait',
-                url:"page/loadview?dir=jshtml&view=dialogs/processing/processing.html",
-                options:{backdrop:'static',keyboard:false}
+                type:'confirm',url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
+                options:{backdrop:'static',keyboard:false},data:{confirm:'really ?'},
+                onclosed:function(params){
+                    if(params){
+                        console.log('confirm yes');
+                    }
+                    else{
+                        console.log('confirm no');
+                    }
+                }
             });
         };
     }])

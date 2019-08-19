@@ -77,6 +77,7 @@ form.gen-form-static .form-btn-right{
 }
 form.gen-form-static .form-btn-right button{
     margin:2px 0;
+    outline:0 !important;
 }
 
 /* table */
