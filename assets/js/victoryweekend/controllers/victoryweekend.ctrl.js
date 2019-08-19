@@ -9,7 +9,11 @@ victory
         var vm=this;
     }])
     .controller('victoryweekend.page.weekend.controller',['$scope',function($scope){
-
+        var vm=this;
+        vm.create={};
+        vm.create.accounts=function(){
+            console.log('fired');
+        };
     }])
     .controller('victoryweekend.page.settings.controller',['$scope','centralFctry','genvarsValue','$filter','tableService','Notification','notifValues',function($scope,centralFctry,genvarsValue,$filter,tableService,Notification,notifValues){
         var vm=this;
