@@ -6,7 +6,9 @@
  * Time : 20:09
  */
 class weekend_set extends core_model {
-    public function __construct(){}
+    public function __construct(){
+        $this->load->model('users/users_set','usersget');
+    }
     /** api/gateway?re=fetch/weekend_set/remove */
     public function remove(){
         $dateid=isset($_POST['weekend_dateid'])?$_POST['weekend_dateid']:0; if(empty($dateid)){ return array("success"=>false,"info"=>"invalid weekend date."); }
@@ -33,15 +35,9 @@ class weekend_set extends core_model {
         else{
             return $this->update('weekend_settings',array("chapterid"=>$chapterid),'weekendsetid='.$result->id);
         }
-
     }
-    /** api/gateway?re=fetch/weekend_set/samplethis */
-    public function samplethis(){
-        //usleep(1000000);
-        $get=isset($_POST['successcnt'])?$_POST['successcnt']:0;
-         $get=intval($get)+1;
-        return array(
-            "total"=>5,"success"=>true,"successcnt"=>$get
-        );
+    /** api/gateway?re=fetch/weekend_set/createaccnt */
+    public function createaccnt(){
+        return $this->usersget->tomember();
     }
 }

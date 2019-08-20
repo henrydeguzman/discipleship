@@ -81,7 +81,8 @@ class users_set extends core_model {
         $sql=$this->users_script->getjourney()."WHERE a.userid=".$userid;
         return $this->query($sql,true);
     }
-    public function setjourney(){ /* api/gateway?re=fetch/users_set/setjourney */
+    /** api/gateway?re=fetch/users_set/setjourney */
+    public function setjourney(){
         $userid=$this->data_app_get->idCurrentUser();
         $data=array();
         if(isset($_POST['victory_weekend'])){ $data['victory_weekend']=$_POST['victory_weekend']; }
@@ -98,5 +99,9 @@ class users_set extends core_model {
             $data['userid']=$userid;
             return $this->insert('user_journey',$data);
         }
+    }
+    /** api/gateway?re=fetch/users_set/tomember */
+    public function tomember(){
+        return 'asdf';
     }
 }
