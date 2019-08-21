@@ -116,7 +116,10 @@ css table supports
 2.
 
 ------- gt-table-btns -------
-<gt-table-btns action="add" gtclick="functionname">sample hover/gt-table-btns>
+<gt-table-btns action="add" gtclick="functionname">sample hover</gt-table-btns>
+<gt-table-btns action="button" gtclick="functionname"><span>Create Account!</span></gt-table-btns>
+functionname(vm.table.tr){// gives you tr data on the function
+}
 
 btns params:
 1. action: string

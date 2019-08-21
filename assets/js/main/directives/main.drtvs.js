@@ -568,14 +568,17 @@ function gtTableBtns($q){
         restrict:'E',require:'^gtTable',transclude:true,replace:true,template:'<div class="_tbl-btns" style="display:none;"></div>',
         scope:{action:'@',gtclick:'&?'},
         link:function(scope,element,attr,ctrl,transclude){
-            var html='',data={onclick:scope.gtclick,action:scope.action};
+            console.log(scope.gtclick,typeof scope.gtclick);
+
+
+            var html='',data={onclick:scope.gtclick(),action:scope.action};
             if(scope.action==='add'){
                 html='<i class="fa fa-plus" aria-hidden="true"></i>';
             }
             else if(scope.action==='button'){
                 transclude(scope,function(clone){
                     data.clone=clone;
-                    html='<button class="btn" ng-click="" bind-html-compile="item.clone"></button>';
+                    html='<button class="btn" bind-html-compile="item.clone"></button>';
                 });
             }
             data.html=html;

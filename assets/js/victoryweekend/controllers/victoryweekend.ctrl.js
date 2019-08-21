@@ -11,8 +11,10 @@ victory
     .controller('victoryweekend.page.weekend.controller',['$scope','dialogs',function($scope,dialogs){
         var vm=this;
         vm.create={};
-        vm.create.accounts=function(){
-            console.log('fired');return;
+        vm.create.accounts=function(numb){
+            console.log('fired',numb);
+
+            return;
             dialogs.confirm('Are you sure ?',function(){
                 dialogs.asynchronous({
                     url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
