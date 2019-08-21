@@ -103,8 +103,14 @@
         <table ng-style="tablestyle">
             <thead>
             <tr class="name">
-                <th ng-repeat="item in gtTblCtrl.table.td.data" ng-click="item.isthclickable&&gtTblCtrl.tdkick('th',item)" ng-if="item.show&&item.colif!=false" field="{{item.field}}">
-                    <span bind-html-compile="item.html"></span>
+                <th ng-repeat="item in gtTblCtrl.table.td.data" ng-class="'format-'+item.format" ng-switch="item.format" ng-click="item.isthclickable&&gtTblCtrl.tdkick('th',item)" ng-if="item.show&&item.colif!=false" field="{{item.field}}">
+                    <div ng-switch-when="numchecklist">
+                        <label class="gen-checkbox-style">
+                            <input type="checkbox" ng-change="gtTblCtrl.table.td.kickcheckbox()" ng-model="gtTblCtrl.table.td.checkbox">
+                            <div bind-html-compile="item.html"></div>
+                        </label>
+                    </div>
+                    <span ng-switch-default bind-html-compile="item.html"></span>
                     <gt-table-sort callback="gtTblCtrl.settings.sort" field="item.field"></gt-table-sort>
                 </th>
             </tr>

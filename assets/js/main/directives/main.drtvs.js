@@ -660,7 +660,7 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
             var vm=this,tblformatter={};
             vm.table={
                 filter:{data:[]},
-                tr:[],td:{data:[],show:false},export:{show:false,data:[]},data:[],refreshed:1,valid:false,count:0,header:{btns:[]},pagination:{offset:0},settings:{sort:undefined,search:undefined}};
+                tr:[],td:{data:[],show:false,checkbox:false},export:{show:false,data:[]},data:[],refreshed:1,valid:false,count:0,header:{btns:[]},pagination:{offset:0},settings:{sort:undefined,search:undefined}};
             $scope.header={show:true,style:{}};
             if($attrs.headerstyle!==undefined){$scope.header.style=$scope.$eval($attrs.headerstyle);}
             if($attrs.tablestyle!==undefined){$scope.tablestyle=$scope.$eval($attrs.tablestyle);}
@@ -754,6 +754,12 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 vm.table.valid=true;
                 getData('content');
             };
+            vm.table.td.kickcheckbox=function(){
+                console.log(vm.table.tr);
+                for(var x=0;x<vm.table.tr.length;x++){
+                    vm.table.tr[x]['_checked']=vm.table.td.checkbox;
+                }
+            };
             vm.table.td.toggle=function(){
                 vm.table.export.show=false;
                 vm.table.td.show?vm.table.td.show=false:vm.table.td.show=true;
@@ -772,6 +778,7 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
             vm.listener={};
             var toggle=false;
             vm.tdkick=function(td,tr,inifrmtr){
+                console.log('fired th');
                 if(typeof(td)==='string'&&td==='th'){
                     toggle?toggle=false:toggle=true;
                     if(tr.onclick!==undefined){ tr.onclick(tr,{id:vm.id,model:$attrs.model,toggle:toggle}); }

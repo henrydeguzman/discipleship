@@ -38,13 +38,13 @@ function tableService(glfnc){
             if(type==='tblcol'){
                 if(ctrl.column.settings.list==='dynamic'){return;}
                 transclude(scope, function(clone) {
-                    ctrl.table.td.data.push({html:clone,text:clone.text(),field:scope.field,show:true,colif:scope.colIf});
+                    ctrl.table.td.data.push({html:clone,text:clone.text(),field:scope.field,show:true,colif:scope.colIf,format:scope.format});
                 });
             } else if(type==='dynamic'){
                 var isthclickable=false,onclick=scope.$eval(ctrl.column.settings.rclick);
                 if(onclick!==undefined&&typeof(onclick)==='function'&&scope.field==='reverse'){ isthclickable=true; }
                 if(ctrl.column.settings.rclick!==undefined){}
-                ctrl.table.td.data.push({html:scope.clone,text:scope.text,field:scope.field,show:true,isthclickable:isthclickable,onclick:onclick});
+                ctrl.table.td.data.push({html:scope.clone,text:scope.text,field:scope.field,show:true,isthclickable:isthclickable,onclick:onclick,format:scope.format});
                 ctrl.column.list.push({_apply:this.cols_apply});/* only for dynamic because of scope and attr */
             }
         },

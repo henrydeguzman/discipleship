@@ -350,6 +350,14 @@ gt-table .gen-table-container > .gen-table-content > table > thead > tr.name >  
     background:#f2f2f2;
     position:relative;
 }
+/* table style with format */
+gt-table .gen-table-container > .gen-table-content > table > thead > tr.name >  th.format-numchecklist {
+    padding: 5px 10px 21px 10px;
+}
+gt-table .gen-table-container > .gen-table-content > table > thead > tr.name >  th.format-numchecklist  label {
+    cursor:pointer;
+}
+
 gt-table .gen-table-container > .gen-table-content > table > thead > tr.name >  th:last-child {
     border-right:none;
 }
@@ -373,6 +381,10 @@ gt-table .gen-table-container > .gen-table-content > table > thead > tr.angle > 
     color:white;
     border:1px solid #EBEBEB;
     font-size:11px;
+}
+gt-table .gen-table-container > .gen-table-content > table > thead > tr > th .gen-checkbox-style,
+gt-table .gen-table-container > .gen-table-content > table > tbody > tr > td .gen-checkbox-style{
+    font-size:14px;font-weight:normal;padding:0;
 }
 gt-table .gen-table-container > .gen-table-content > table > tbody {}
 

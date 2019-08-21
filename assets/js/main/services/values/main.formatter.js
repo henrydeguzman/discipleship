@@ -18,8 +18,8 @@ angular.module("MainFormatters",[])
             return '{{tr.firstname+" "+tr.lastname}}';
         },
         numchecklist:function(tr){ /** allow checkbox on every record after row number. ex: [checkbox] 1.  */
-            return '<label style="font-size: 14px;font-weight: normal;" class="gen-checkbox-style">\n' +
-                '<input type="checkbox" />\n' +
+            return '<label class="gen-checkbox-style">\n' +
+                '<input type="checkbox" ng-model="tr._checked" />\n' +
                 '<div class="ng-binding">{{trindex+1}}.</div>\n' +
                 '</label>';
         },
