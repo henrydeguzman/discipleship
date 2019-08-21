@@ -12,11 +12,11 @@ victory
         var vm=this;
         vm.create={};
         vm.create.accounts=function(){
-            console.log('fired');
+            console.log('fired');return;
             dialogs.confirm('Are you sure ?',function(){
                 dialogs.asynchronous({
                     url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
-                    model:'fetch/weekend_set/samplethis'
+                    model:'fetch/weekend_set/createaccnt',data:{}
                 });
             });
         };

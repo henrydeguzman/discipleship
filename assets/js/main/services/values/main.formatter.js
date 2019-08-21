@@ -17,6 +17,12 @@ angular.module("MainFormatters",[])
             console.log(tr);
             return '{{tr.firstname+" "+tr.lastname}}';
         },
+        numchecklist:function(tr){ /** allow checkbox on every record after row number. ex: [checkbox] 1.  */
+            return '<label style="font-size: 14px;font-weight: normal;" class="gen-checkbox-style">\n' +
+                '<input type="checkbox" />\n' +
+                '<div class="ng-binding">{{trindex+1}}.</div>\n' +
+                '</label>';
+        },
         fulldate:function(tr){ return "<span>{{tr.date | date:'fullDate'}}</span>"; },
         count:function(tr){ return '{{trindex+1}}'; }
     });

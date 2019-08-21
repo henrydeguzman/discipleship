@@ -363,6 +363,7 @@ body.skin-yellow-light .gen-box-v-1 {
 /* checkbox */
 label.gen-checkbox-style {
     cursor:pointer;
+    text-align:left;
     padding:0;margin:0;
     padding:4px 0px;
     font-size:12px;
@@ -381,6 +382,7 @@ label.gen-checkbox-style > input:before {
     font-size:14px;
     top:-2px;
     position:relative;
+    outline:0;
 }
 label.gen-checkbox-style > input:checked:before {
     content:'\f046';
@@ -393,10 +395,10 @@ label.gen-checkbox-style > input {
     margin-left:3px;
     cursor:pointer;
     width:.1px;
+    outline:0;
 
 }
 label.gen-checkbox-style > div {
-    top:1px;
     position:relative;
     margin-left:20px;
     white-space: normal;
