@@ -100,8 +100,18 @@ class users_set extends core_model {
             return $this->insert('user_journey',$data);
         }
     }
-    /** api/gateway?re=fetch/users_set/tomember */
-    public function tomember(){
-        return 'asdf';
+    /** api/gateway?re=fetch/users_set/verifytomember */
+    public function verifytomember(){
+        $rows=isset($_POST['rows'])?$_POST['rows']:null; if(empty($rows)){ return array("success"=>false,"info"=>"no data."); }
+        foreach($rows as $row){
+            $id=isset($row['id'])?$row['id']:0; if(empty($id)){ return array("success"=>false,"info"=>"id is required!"); break; }
+            self::tomember($id);
+        }
+
+
+        return array("success"=>true,"successcnt"=>0,"total"=>0);
+    }
+    private function tomember($id=null){
+        if(empty($id)){ return array("success"=>false,"info"=>"id is required!"); }
     }
 }

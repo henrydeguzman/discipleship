@@ -42,5 +42,13 @@ type:'wait','error','notify','confirm'
             3. keyboard:false
         * required params *
             1. model:''
-                - to api data: {successcnt:0} = matic
+                - to api data: {successcnt:0,percent:0,total:0} = matic
                 - return value from model should be : {total:5,success:true,successcnt:1} = manual
+                example data to api.
+                percent: "0"
+                request: "1"
+                rows: [{…}]
+                successcnt: "0" = > count all _done true.
+                total: "0"
+
+                model should have id, if the id already done rows data should append _done:true

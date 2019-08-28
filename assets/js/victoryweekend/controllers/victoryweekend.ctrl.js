@@ -11,14 +11,14 @@ victory
     .controller('victoryweekend.page.weekend.controller',['$scope','dialogs',function($scope,dialogs){
         var vm=this;
         vm.create={};
-        vm.create.accounts=function(numb){
-            console.log('fired',numb);
-
-            return;
+        vm.create.accounts=function(datas){
+            var checked=_.filter(datas,{_checked:true});
+            console.log(checked.length,checked);
+            if(checked.length===0){ dialogs.notify('Please select atleast one user to create account.');return; }
             dialogs.confirm('Are you sure ?',function(){
                 dialogs.asynchronous({
                     url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
-                    model:'fetch/weekend_set/createaccnt',data:{}
+                    model:'fetch/weekend_set/createaccnt',data:checked
                 });
             });
         };

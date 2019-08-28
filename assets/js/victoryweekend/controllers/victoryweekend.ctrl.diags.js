@@ -5,7 +5,6 @@
  * Time: 1:19 PM
  */
 victory.controller('victoryweekend.ctrl.diags.createaccnts',['$scope',function($scope){
-    console.log($scope);
     var vm=this;
     vm.done=function(){
         $scope.$parent.close();

@@ -8,10 +8,17 @@ angular.module('MainDiagController',[])
 .controller('appmaindiag.diagtype.confirm',['$scope',function($scope){
     var vm=this;
     vm.submit=function(bool){
-        console.log($scope.data);
         if(bool&&$scope.data!==undefined&&typeof($scope.data.fn)==='function'){
             $scope.data.fn();
         }
         $scope.$parent.close();
+    };
+}]).controller('appmaindiag.diagtype.notify',['$scope',function($scope){
+    var vm=this;
+    vm.submit=function(){
+        $scope.$parent.close();
+        if($scope.data!==undefined&&typeof($scope.data.fn)==='function'){
+            $scope.data.fn();
+        }
     };
 }]);

@@ -64,7 +64,6 @@ function gtAccordionContent($timeout){
         restrict:"E",require:"^gtAccordion",transclude:true,template:'<ng-transclude ng-show="false"></ng-transclude>',
         scope:{template:'@',active:'@'},
         link:function(scope,element,attrs,ctrl,transclude){
-            console.log(ctrl);
             var data={};
             $timeout(function(){
                 transclude(scope,function(clone){
@@ -101,7 +100,6 @@ function gtAccordion(){
                 vm.loadtemplate(item);
             };
             vm.loadtemplate=function(item,$index){
-                console.log(item);
                 vm.accords.active=$index;
                 item.loaded=true;
                 item.loadtemplate=item.template;
@@ -545,7 +543,6 @@ function gtTableFilter(centralFctry){
             var get=centralFctry.getData({url:scope.model,json:'page/loadview?dir=jshtml&view=directives/table/tbl_filter/filter.json'});
             if(get.$$state!==undefined){
                 get.then(function(v){
-                    console.log(v.data);
                     ctrl.table.filter.data=v.data;
                 });
             }
@@ -568,9 +565,6 @@ function gtTableBtns($q){
         restrict:'E',require:'^gtTable',transclude:true,replace:true,template:'<div class="_tbl-btns" style="display:none;"></div>',
         scope:{action:'@',gtclick:'&?'},
         link:function(scope,element,attr,ctrl,transclude){
-            console.log(scope.gtclick,typeof scope.gtclick);
-
-
             var html='',data={onclick:scope.gtclick(),action:scope.action};
             if(scope.action==='add'){
                 html='<i class="fa fa-plus" aria-hidden="true"></i>';
@@ -758,7 +752,6 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 getData('content');
             };
             vm.table.td.kickcheckbox=function(){
-                console.log(vm.table.tr);
                 for(var x=0;x<vm.table.tr.length;x++){
                     vm.table.tr[x]['_checked']=vm.table.td.checkbox;
                 }

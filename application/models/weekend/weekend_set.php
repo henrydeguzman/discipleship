@@ -7,7 +7,7 @@
  */
 class weekend_set extends core_model {
     public function __construct(){
-        $this->load->model('users/users_set','usersget');
+        $this->load->model('users/users_set','usersset');
     }
     /** api/gateway?re=fetch/weekend_set/remove */
     public function remove(){
@@ -38,6 +38,6 @@ class weekend_set extends core_model {
     }
     /** api/gateway?re=fetch/weekend_set/createaccnt */
     public function createaccnt(){
-        return $this->usersget->tomember();
+        return $this->usersset->verifytomember();
     }
 }

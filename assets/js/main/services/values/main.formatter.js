@@ -14,7 +14,6 @@ angular.module("MainFormatters",[])
             return '<gt-profile photo="tr.photo" userid="tr.userid" name="tr.fullname"></gt-profile>&nbsp;<span>{{tr.fullname}}</span>';
         },
         fullnameonly:function(tr){
-            console.log(tr);
             return '{{tr.firstname+" "+tr.lastname}}';
         },
         numchecklist:function(tr){ /** allow checkbox on every record after row number. ex: [checkbox] 1.  */
