@@ -133,7 +133,6 @@ ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope'
         }
         $element.find('.gen-dialog-c-content').html($compile(res)($scope));
     });
-    console.log($scope.type,$scope.model);
 }]);
 
 /* Services */
@@ -166,7 +165,6 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
         }; // end useStaticBackdrop
         this.$get=['$uibModal',function($uibModal){
             function load(params){
-                console.log(params);
                 if(params==undefined){ params={}; }
                 var copy = (params.options && angular.isDefined(params.options.copy)) ? opts.copy : _copy;
                 var opts = _setOpts(params.options,params);

@@ -112,6 +112,23 @@ class users_set extends core_model {
         return array("success"=>true,"successcnt"=>0,"total"=>0);
     }
     private function tomember($id=null){
+        /**
+         * Fill password
+         * profileid from nonmember(2) to member(1)
+         */
         if(empty($id)){ return array("success"=>false,"info"=>"id is required!"); }
+        $gen=$this->generatePassword();
+        $data=array(
+            "password"=>sha1($gen),
+            "generatedcode"=>$gen,
+            "profileid"=>1,
+            "datecreated"=>self::datetime()
+        );
+        return $this->update('user',$data,'userid='.$id);
     }
+    /** //TODO removes after deploying
+     * $data['generatedcode']
+     */
+
+
 }
