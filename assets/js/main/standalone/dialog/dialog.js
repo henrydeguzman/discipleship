@@ -99,10 +99,9 @@ angular.module('dialogs.directive',[])
         }
     }]);
 
-ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope','$element','centralFctry','dialogs',function($compile,$templateRequest,$scope,$element,centralFctry,dialogs){
+ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope','$element','centralFctry','dialogs','$timeout',function($compile,$templateRequest,$scope,$element,centralFctry,dialogs,$timeout){
     if($scope.url===''||$scope.url===undefined){return;}
     $templateRequest($scope.url).then(function(res){
-        console.log();
         if($scope.type==='asynchronous'){
             if($scope.model===undefined){$element.find('.gen-dialog-c-content').html('Please provide model to begin asynchronous process.');return;}
             var posted={data:{successcnt:0,total:0,percent:0,rows:$scope.data}};
@@ -116,12 +115,9 @@ ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope'
                             posted.data.successcnt=v.data.successcnt;
                             posted.data.total=v.data.total;
                             posted.data.percent=(posted.data.successcnt/posted.data.total)*100;
+                            posted.data.done=v.data.done;
                             $scope.data=posted.data;
-                            if(posted.data.total>v.data.successcnt&&(posted.data.successcnt<v.data.successcnt)){
-                                pushdata();
-                            } else if(posted.data.total==v.data.successcnt){
-                                $scope.$parent.close();
-                            }
+                            if(posted.data.total>v.data.successcnt){ pushdata(); } else if(posted.data.total==v.data.successcnt&&$scope.otherdata.autoclosed==true){ $timeout(function(){ $scope.$parent.close(); },1000); }
                         } else {
                             dialogs.error(v.data.info,function(){
                                 $scope.$parent.close();
@@ -199,6 +195,8 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
                     params.type='asynchronous';
                     if(params.options===undefined){ params.options={backdrop:'static',keyboard:false}; }
                     if(params.options.size===undefined){ params.options.size='sm'; }
+                    if(params.otherdata===undefined){ params.otherdata={autoclosed:true}; }
+                    if(params.otherdata.autoclosed===undefined){ params.otherdata.autoclosed=true; }
                     return load(params);
                 },
                 notify:function(content){
@@ -246,7 +244,7 @@ angular.module('dialogs.main',['dialogs.services'])
             '</div>');
         $templateCache.put("uib/template/modal/wraper/types/content.html", '<div ng-controller="appmaindiag.diagtype.notify as appmaindiagnfyCtrl">\n' +
             '    <form class="gen-form-static">\n' +
-            '        <span>{{data.content}}</span>\n' +
+            '        <div bind-html-compile="data.content"></div>\n' +
             '        <div class="form-btn-right">\n' +
             '            <button type="button" class="btn btn-default btn-sm" ng-click="appmaindiagnfyCtrl.submit()">Ok</button>\n' +
             '        </div>\n' +

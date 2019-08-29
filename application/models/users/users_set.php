@@ -102,33 +102,47 @@ class users_set extends core_model {
     }
     /** api/gateway?re=fetch/users_set/verifytomember */
     public function verifytomember(){
-        $rows=isset($_POST['rows'])?$_POST['rows']:null; if(empty($rows)){ return array("success"=>false,"info"=>"no data."); }
+        $rows=isset($_POST['rows'])?$_POST['rows']:null;
+        if(empty($rows)){ return array("success"=>false,"info"=>"no data."); }
+        $done=isset($_POST['done'])?$_POST['done']:array();
+        $result=array();
+        usleep(3000000);
         foreach($rows as $row){
-            $id=isset($row['id'])?$row['id']:0; if(empty($id)){ return array("success"=>false,"info"=>"id is required!"); break; }
-            self::tomember($id);
+            if(!in_array($row['id'],$done)){
+                $result=self::edit($row['id'],'tomember');
+                /** TODO enter email template or mobile text for credentials */
+                if($result['success']){ array_push($done,$row['id']); }
+                break;
+            }
         }
-
-
-        return array("success"=>true,"successcnt"=>0,"total"=>0);
+        $result['done']=$done;
+        $result['successcnt']=count($done);
+        $result['total']=count($rows);
+        return $result;
     }
-    private function tomember($id=null){
+    /** api/gateway?re=fetch/users_set/edit */
+    public function edit($id=null,$savetype='default'){
         /**
          * Fill password
          * profileid from nonmember(2) to member(1)
          */
+        $id=empty($id)?$_POST['id']:$id;
+        $savetype=empty($savetype)?$_POST['savetype']:$savetype;
         if(empty($id)){ return array("success"=>false,"info"=>"id is required!"); }
-        $gen=$this->generatePassword();
-        $data=array(
-            "password"=>sha1($gen),
-            "generatedcode"=>$gen,
-            "profileid"=>1,
-            "datecreated"=>self::datetime()
-        );
+        if($savetype==='tomember'){
+            $gen=$this->generatePassword();
+            $data=array(
+                "password"=>sha1($gen),
+                "generatedcode"=>$gen, /** TODO remove this on live */
+                "profileid"=>1,
+                "datecreated"=>self::datetime()
+            );
+        }
+        else{
+            $data=array();
+            $data=$this->_isset($data,'email');
+        }
+
         return $this->update('user',$data,'userid='.$id);
     }
-    /** //TODO removes after deploying
-     * $data['generatedcode']
-     */
-
-
 }

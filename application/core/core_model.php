@@ -41,4 +41,8 @@ class core_model extends CI_Model {
         if(trim($whr)==''){ $whr.=' WHERE '.$str; }
         else{ $whr.=" ".$con." ".$str; } return $whr;
     }
+    /** isset validation. if $data has value then it will append to array. commonly used in edit sql */
+    public static function _isset($container,$POSTID,$variable=null){
+        if(isset($_POST[$POSTID])){$container[$variable==null?$POSTID:$variable]=$_POST[$POSTID];} return $container;
+    }
 }

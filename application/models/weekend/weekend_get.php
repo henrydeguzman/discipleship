@@ -30,7 +30,11 @@ class weekend_get extends core_model {
     }
     /** api/gateway?re=fetch/weekend_get/getvweekendlist */
     public function getvweekendlist(){
-        $sql=$this->weekend_script->getvweekendlist();
-        return $this->query($sql);
+        $toprow=false;$whr='';
+        if(isset($_POST['rowid'])){
+            $toprow=true;$whr="AND a.userid=".$_POST['rowid'];
+        }
+        $sql=$this->weekend_script->getvweekendlist().$whr;
+        return $this->query($sql,$toprow);
     }
 }

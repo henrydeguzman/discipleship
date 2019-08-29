@@ -20,7 +20,8 @@ table params:
 
     dataformatter build-in functions /assets/js/main/services/values/main.formatter.js
     - numchecklist
-        - callback:function(tr,td,rowindex{} if gtclick is defined
+        - callback:function('type',tr) if gtclick is defined
+        - type: all/row-#
 
 3. formatter
     -> get javascript function format for all columns
@@ -71,7 +72,7 @@ cols params:
     -> field must define any varible that defined on getlist model.
 2. format: 'string'
     -> format must define any variable that defined on formatter
-    -> must return on formatter -> function(tr,field,col)
+    -> must return on formatter -> function(tr,field,td,index)
 3. addrow:
     -> variable that defined in formatter.
 4. text-align: left/center/right

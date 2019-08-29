@@ -42,10 +42,11 @@ type:'wait','error','notify','confirm'
             1. size:'sm'
             2. backdrop:'static'
             3. keyboard:false
+            4. otherdata:{autoclosed:true}
         * required params *
             1. model:''
                 - to api data: {successcnt:0,percent:0,total:0} = matic
-                - return value from model should be : {total:5,success:true,successcnt:1} = manual
+                - return value from model should be : {total:5,success:true,successcnt:1,done:array()} = manual
                 example data to api.
                 percent: "0"
                 request: "1"

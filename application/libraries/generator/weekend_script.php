@@ -16,6 +16,6 @@ class weekend_script {
         return "SELECT a.userid as id,a.email, a.firstname, a.lastname FROM user a 
                 LEFT JOIN one2one b ON a.userid=b.userid 
                 LEFT JOIN weekend_settings c ON c.churchid=$churchid
-                WHERE a.profileid=2 AND b.chapter=c.chapterid";
+                WHERE a.profileid=2 AND b.chapter=c.chapterid ";
     }
 }

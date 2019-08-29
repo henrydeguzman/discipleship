@@ -101,7 +101,7 @@ function tableService(glfnc){
             else if(c.response.formatter.$$state!==undefined&&scope.format!==undefined&&scope.format!==''){
                 if(c.table.formatter[scope.format]!==undefined){
                     /*produced=angular.extend({value:parent.value+c.table.formatter[scope.format](c.table.tr[x],scope.field)+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:scope.tdStyle,_dropdown:dropdown},c.table.tr[x]);*/
-                    produced={format:scope.format,value:parent.value+c.table.formatter[scope.format](c.table.tr[x],scope.field,c.table.td.data[th_index])+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
+                    produced={format:scope.format,value:parent.value+c.table.formatter[scope.format](c.table.tr[x],scope.field,c.table.td.data[th_index],x)+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
                 }
                 else {
                     produced={format:scope.format,value:'<div class="unset">-</div>',editable:isEditable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};

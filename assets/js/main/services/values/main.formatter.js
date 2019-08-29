@@ -18,8 +18,8 @@ angular.module("MainFormatters",[])
         },
         numchecklist:function(tr,td,a){ /** allow checkbox on every record after row number. ex: [checkbox] 1.  */
             return '<label class="gen-checkbox-style">\n' +
-                '<input type="checkbox" ng-model="tr._checked" ng-change="td.onclick()(tr,td,trindex)" />\n' +
-                '<div class="ng-binding">{{trindex+1}}</div>\n' +
+                '<input type="checkbox" ng-model="tr._checked" ng-change="td.onclick()(\'row-{{trindex}}\',tr)" />\n' +
+                '<div class="ng-binding">{{trindex+1}}.</div>\n' +
                 '</label>';
         },
         fulldate:function(tr){ return "<span>{{tr.date | date:'fullDate'}}</span>"; },

@@ -751,13 +751,13 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 vm.table.valid=true;
                 getData('content');
             };
-            vm.table.td.kickcheckbox=function(tr,item,tdindex){
-                console.log(tr,item,vm.table.td.checkbox);
+            /*vm.table.td.kickcheckbox=function(item){
+                console.log(item,vm.table.td.checkbox);
                 for(var x=0;x<vm.table.tr.length;x++){
                     vm.table.tr[x]['_checked']=vm.table.td.checkbox;
-                    item.onclick()(tr,item,tdindex);
+                    item.onclick()(vm.table.tr[x],item,x);
                 }
-            };
+            };*/
             vm.table.td.toggle=function(){
                 vm.table.export.show=false;
                 vm.table.td.show?vm.table.td.show=false:vm.table.td.show=true;
