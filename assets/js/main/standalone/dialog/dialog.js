@@ -55,7 +55,7 @@ ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,u
             $scope.diagwindow.show=false;
             break;
         case "notify":
-            $scope.title="<i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i>&nbsp;<span>Something Happened!</span>";
+            $scope.title="<i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i>&nbsp;<span>Information</span>";
             $scope.diagwindow.show=false;
             break;
         case "confirm":

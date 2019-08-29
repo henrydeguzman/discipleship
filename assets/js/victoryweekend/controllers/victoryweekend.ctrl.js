@@ -11,8 +11,13 @@ victory
     .controller('victoryweekend.page.weekend.controller',['$scope','dialogs',function($scope,dialogs){
         var vm=this;
         vm.create={};
-        vm.create.check=function(td,tr){
-
+        vm.create.check=function(tr,td,index){
+            console.log(index);
+            if(tr.email==null&&tr._checked){
+                tr._checked=false;
+                dialogs.notify('Please add email on #'+(index+1)+' to continue.');
+            }
+                console.log(tr,td);
         };
         vm.create.accounts=function(datas){
             var checked=_.filter(datas,{_checked:true});

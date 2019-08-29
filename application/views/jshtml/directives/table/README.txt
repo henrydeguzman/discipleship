@@ -20,7 +20,7 @@ table params:
 
     dataformatter build-in functions /assets/js/main/services/values/main.formatter.js
     - numchecklist
-        - callback:function(td,tr){} if gtclick is defined
+        - callback:function(tr,td,rowindex{} if gtclick is defined
 
 3. formatter
     -> get javascript function format for all columns

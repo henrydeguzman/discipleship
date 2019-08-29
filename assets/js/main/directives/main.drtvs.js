@@ -751,9 +751,11 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 vm.table.valid=true;
                 getData('content');
             };
-            vm.table.td.kickcheckbox=function(){
+            vm.table.td.kickcheckbox=function(tr,item,tdindex){
+                console.log(tr,item,vm.table.td.checkbox);
                 for(var x=0;x<vm.table.tr.length;x++){
                     vm.table.tr[x]['_checked']=vm.table.td.checkbox;
+                    item.onclick()(tr,item,tdindex);
                 }
             };
             vm.table.td.toggle=function(){
@@ -774,11 +776,6 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
             vm.listener={};
             var toggle=false;
             vm.tdkick=function(td,tr,inifrmtr){
-                var _tr=angular.copy(tr);
-                if(td.format==='numchecklist'){ /** immediate return when format found. */
-                    _tr.td=""; td.onclick()(td,_tr);
-                td.onclick()(td,_tr);return;
-                }
                 if(typeof(td)==='string'&&td==='th'){
                     toggle?toggle=false:toggle=true;
                     if(tr.onclick!==undefined){ tr.onclick(tr,{id:vm.id,model:$attrs.model,toggle:toggle}); }
@@ -786,6 +783,7 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 else if(inifrmtr in $scope.formatter.inifrmtr){ $scope.formatter.frmtrkik[inifrmtr](td,tr); }
                 else {
                     if(td.onclick!==undefined&&td.onclick()!==undefined){
+                        var _tr=angular.copy(tr);
                         _tr.td=""; td.onclick()(td,_tr);
                     } else if(glfnc.trim(td._dropdown)!==''&&glfnc.trim(td._dropdown)!==undefined){
                         if(!td._dropdown.appended){

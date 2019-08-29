@@ -31,6 +31,8 @@ onclosed:function(params,dgdata)
     - if the $scope.$parent.close(p) is called the "p" should be the params on onclosed function
     - if the $scope.$parent.dgdata is initialized, the dgdata on onclosed will be the value.
 type:'wait','error','notify','confirm'
+    - notify
+        dialogs.notify('notify body content')
     - confirm
         ex. dialogs.confirm('confirm ?',function(){})
         - function will be executed when clicked on "Yes"
