@@ -34,7 +34,7 @@ victory
                         data.tr[x]['_checked']=data.td.checkbox;
                     } else { noemail++; }
                 }
-                if(data.td.checkbox){
+                if(data.td.checkbox&&data.td.checkbox&&noemail>0){
                     dialogs.notify('There are '+noemail+' records that have no email, Please fill their email to send them email about there credentials. If you wish to continue, syterm will not create their account, Thank you.');
                 }
             }
