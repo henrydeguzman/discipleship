@@ -12,9 +12,7 @@ victory
         var vm=this;
         vm.create={};
         vm.create.check=function(td,tr){
-            console.log('checkeing');
-            console.log(td);
-            console.log(tr,'tr');
+
         };
         vm.create.accounts=function(datas){
             var checked=_.filter(datas,{_checked:true});

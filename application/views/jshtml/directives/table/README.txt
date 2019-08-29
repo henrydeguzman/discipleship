@@ -18,8 +18,9 @@ table params:
         e.g {id: "18", dataargs: "comparisonid=1&rowmode=sub", title: "test 2 risk", description: null, elementid: "18", …}
     -> field: from $scope.td['field']
 
-    dataformatter build-in functions
-        - checkbox
+    dataformatter build-in functions /assets/js/main/services/values/main.formatter.js
+    - numchecklist
+        - callback:function(td,tr){} if gtclick is defined
 
 3. formatter
     -> get javascript function format for all columns
