@@ -26,7 +26,6 @@ victory
         };
         vm.create={};
         vm.create.check=function(type,data){
-            console.log(data);
             if(type==='all'){
                 var noemail=0;
                 for(var x=0;x<data.tr.length;x++){
