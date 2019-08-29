@@ -63,12 +63,10 @@ victory
             });
         };
     }])
-    .controller('victoryweekend.page.settings.controller',['$scope','centralFctry','genvarsValue','$filter','tableService','Notification','notifValues',function($scope,centralFctry,genvarsValue,$filter,tableService,Notification,notifValues){
+    .controller('victoryweekend.page.dates.controller',['$scope','tableService','Notification','notifValues','centralFctry','dialogs',function($scope,tableService,Notification,notifValues,centralFctry,dialogs){
         var vm=this;
-        getdataform();
-        $scope.curdate=$filter('date')(genvarsValue.curdate,genvarsValue.dateformat);
-        vm.weekend={date:{format:'MMM-dd-yyyy'},validation:{}};
-        vm.weekend.remove=function(tr){
+        vm.weekend={date:{},validation:{}};
+        vm.weekend.date.remove=function(tr){
             var notif=Notification(notifValues['processing']({message:"Deleting..."},$scope));
             if(confirm('Are you sure want to delete date: '+tr.date+' ?')){
                 var posted=centralFctry.postData({ url:'fetch/weekend_set/remove',data:{weekend_dateid:tr.weekend_dateid} });
@@ -86,22 +84,23 @@ victory
                 notif.then(function(v){ v.kill(true); });
             }
         };
-        vm.weekend.date.save=function(){
-            var notif=Notification(notifValues['processing']({message:"Adding..."},$scope)),
-                posted=centralFctry.postData({ url:'fetch/weekend_set/setdate',data:{weekend_date:vm.weekend.date.value} });
-            if(posted.$$state!==undefined){
-                return posted.then(function(v){
-                    if(v.data.success){
-                        tableService.refresh('victoryweekend.dates');
-                        Notification(notifValues['added']($scope));
-                    } else{
-                        vm.weekend.validation={"weekend_date":"required"};
-                        notif.then(function(v){ v.kill(true); });
+        vm.weekend.date.add=function(){
+            dialogs.create({
+                title:'Add victory weekend date',
+                url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekenddates/dialogs/adddates.html',options:{backdrop:'static',size:'sm'},
+                onclosed:function(params){
+                    if(params!==undefined&&params.success){
+
                     }
-                });
-            }
-        };
-        vm.weekend.date.trig=function(){ vm.weekend.date.show?vm.weekend.date.show=false:vm.weekend.date.show=true; };
+                }
+            })
+        }
+    }])
+    .controller('victoryweekend.page.settings.controller',['$scope','centralFctry','genvarsValue','$filter',function($scope,centralFctry,genvarsValue,$filter){
+        var vm=this;
+        getdataform();
+
+
         vm.one2one={form:{}};
         vm.one2one.selectchapter=function(value){
             var data={chapterid:vm.one2one.form.chapterid};

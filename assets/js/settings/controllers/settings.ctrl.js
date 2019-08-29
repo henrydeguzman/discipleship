@@ -42,7 +42,6 @@ victory.controller('settings.page.controller',['$scope','centralFctry','genvarsV
             });
         }
     };
-    vm.weekend.date.trig=function(){ vm.weekend.date.show?vm.weekend.date.show=false:vm.weekend.date.show=true; };
     vm.one2one={form:{}};
     vm.one2one.selectchapter=function(value){
         var data={chapterid:vm.one2one.form.chapterid};

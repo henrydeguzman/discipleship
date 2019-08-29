@@ -9,30 +9,7 @@
                         <!--<option ng-repeat="item in vwSettingsCtrl.one2one.chapters" ng-value="item.id">{{item.name}}</option>-->
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="info-box">
-                            <span class="info-box-icon bg-yellow">
-                                <i class="fa fa-calendar"></i>
-                            </span>
-                        <div class="info-box-content no-padding">
-                            <span class="info-box-text gen-text-center">Victory weekend</span>
-                            <div class="info-box-number content-padding">
-                                <gt-datepicker align="center" validation-model="vwSettingsCtrl.weekend.validation.weekend_date" input-model="vwSettingsCtrl.weekend.date.value" gt-options="{opts:{minDate:curdate}}" format="MMM-dd-yyyy"></gt-datepicker>
-                            </div>
-                            <div class="form-btn-right content-padding-right-left ">
-                                <button click-and-disable="vwSettingsCtrl.weekend.date.save()" class="btn gen-btn-success btn-xs">save</button>
-                            </div>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                </div>
             </div>
         </form>
-    </div>
-    <div class="_list">
-        <gt-table id="victoryweekend.dates" tablestyle="{'border-left':'none','border-right':'none','border-bottom':'none'}" headerstyle="{'border-left':'none','border-right':'none'}" model="fetch/weekend_get/dates" formatter="settings/formatter/tab-victoryweekend.js">
-            <gt-table-col field="date" format="fulldate">Date</gt-table-col>
-            <gt-table-col field="" format="action" td-style="{width:'50px'}" text-align="center">Action</gt-table-col>
-        </gt-table>
     </div>
 </div>
