@@ -16,9 +16,10 @@ angular.module("MainFormatters",[])
         fullnameonly:function(tr){
             return '{{tr.firstname+" "+tr.lastname}}';
         },
-        numchecklist:function(tr){ /** allow checkbox on every record after row number. ex: [checkbox] 1.  */
+        numchecklist:function(tr,td,a){ /** allow checkbox on every record after row number. ex: [checkbox] 1.  */
+        console.log(tr,td,a);
             return '<label class="gen-checkbox-style">\n' +
-                '<input type="checkbox" ng-model="tr._checked" />\n' +
+                '<input type="checkbox" ng-model="tr._checked" ng-change="gtTblCtrl.tdkick(td,tr)" />\n' +
                 '<div class="ng-binding">{{trindex+1}}.</div>\n' +
                 '</label>';
         },

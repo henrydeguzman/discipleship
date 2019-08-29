@@ -13,7 +13,7 @@ class weekend_script {
     }
     public static function getvweekendlist(){
         $churchid=self::$instance->data_app_get->getchurch('churchid');
-        return "SELECT a.userid as id, a.firstname, a.lastname FROM user a 
+        return "SELECT a.userid as id,a.email, a.firstname, a.lastname FROM user a 
                 LEFT JOIN one2one b ON a.userid=b.userid 
                 LEFT JOIN weekend_settings c ON c.churchid=$churchid
                 WHERE a.profileid=2 AND b.chapter=c.chapterid";

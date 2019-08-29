@@ -51,7 +51,11 @@ function tableService(glfnc){
         cols_apply:function(c,x,params,scope,attr,th_index){ /* gtTableCol apply */
             var produced,addrow='',dropdown=null,parent={type:undefined,value:'',indexes:[],level:1,indent:''},style=scope.tdStyle,tdparent=false;
             var isEditable=false,istdclickable=false,editico='';
-            if(scope.gtclick!==undefined){istdclickable=true;}
+            if(scope.gtclick!==undefined){
+                if(scope.format==='numchecklist'){/** immediate return when format found. */
+                    istdclickable=false;
+                }else { istdclickable=true; }
+            }
             if(attr.editable!==undefined){ isEditable=true;if(attr.editable!==''){editico=attr.editable;}else{editico='_edit';} }
 
             /* added for accessrights editable */
@@ -97,16 +101,16 @@ function tableService(glfnc){
             else if(c.response.formatter.$$state!==undefined&&scope.format!==undefined&&scope.format!==''){
                 if(c.table.formatter[scope.format]!==undefined){
                     /*produced=angular.extend({value:parent.value+c.table.formatter[scope.format](c.table.tr[x],scope.field)+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:scope.tdStyle,_dropdown:dropdown},c.table.tr[x]);*/
-                    produced={value:parent.value+c.table.formatter[scope.format](c.table.tr[x],scope.field,c.table.td.data[th_index])+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
+                    produced={format:scope.format,value:parent.value+c.table.formatter[scope.format](c.table.tr[x],scope.field,c.table.td.data[th_index])+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
                 }
                 else {
-                    produced={value:'<div class="unset">-</div>',editable:isEditable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
+                    produced={format:scope.format,value:'<div class="unset">-</div>',editable:isEditable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
                 }
             } else {
                 var val=c.table.tr[x][scope.field];
                 if(glfnc.trim(val)==='-') { val="<div class='unset'>"+val+"</div>"; }
                 else if(val===null||val===undefined||val===''){val="<div class='unset'>-</div>"; }
-                produced={value:parent.value+val+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
+                produced={format:scope.format,value:parent.value+val+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
             }
             return produced;
         }

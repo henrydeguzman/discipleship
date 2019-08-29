@@ -774,7 +774,11 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
             vm.listener={};
             var toggle=false;
             vm.tdkick=function(td,tr,inifrmtr){
-                console.log('fired th');
+                var _tr=angular.copy(tr);
+                if(td.format==='numchecklist'){ /** immediate return when format found. */
+                    _tr.td=""; td.onclick()(td,_tr);
+                td.onclick()(td,_tr);return;
+                }
                 if(typeof(td)==='string'&&td==='th'){
                     toggle?toggle=false:toggle=true;
                     if(tr.onclick!==undefined){ tr.onclick(tr,{id:vm.id,model:$attrs.model,toggle:toggle}); }
@@ -782,7 +786,6 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 else if(inifrmtr in $scope.formatter.inifrmtr){ $scope.formatter.frmtrkik[inifrmtr](td,tr); }
                 else {
                     if(td.onclick!==undefined&&td.onclick()!==undefined){
-                        var _tr=angular.copy(tr);
                         _tr.td=""; td.onclick()(td,_tr);
                     } else if(glfnc.trim(td._dropdown)!==''&&glfnc.trim(td._dropdown)!==undefined){
                         if(!td._dropdown.appended){
