@@ -113,6 +113,7 @@ class users_set extends core_model {
 
         foreach($rows as $row){
             if(!in_array($row['id'],$done)){
+                $_POST=$row;
                 $result=self::edit($row['id'],'tomember');
                 /** TODO enter email template or mobile text for credentials */
                 if($result['success']){ array_push($done,$row['id']); }
@@ -139,7 +140,8 @@ class users_set extends core_model {
                 "password"=>sha1($gen),
                 "generatedcode"=>$gen, /** TODO remove this on live */
                 "profileid"=>1,
-                "datecreated"=>self::datetime()
+                "datecreated"=>self::datetime(),
+                "weekendid"=>$_POST['weekendid']
             );
         }
         else{

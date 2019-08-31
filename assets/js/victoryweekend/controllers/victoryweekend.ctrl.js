@@ -14,7 +14,7 @@ victory
     }])
     .controller('victoryweekend.page.weekend.controller',['$scope','dialogs','tableService','centralFctry','spinnerValues',function($scope,dialogs,tableService,centralFctry,spinnerValues){
         var vm=this;
-        vm.list={processing:true};
+        vm.list={processing:true,data:{}};
         getdata();
         function getdata(){
             var get=centralFctry.getData({ url:'fetch/weekend_get/processdate' });
@@ -54,22 +54,26 @@ victory
                 }
             }
             else{
-                if(tr.email==null&&tr._checked){
-                    tr._checked=false;
+                console.log(data);
+                if(data.email==null&&data._checked){
+                    data._checked=false;
                     dialogs.notify('Please add email on #'+(index+1)+' to continue.');
                 }
             }
         };
         vm.create.accounts=function(datas){
             var checked=_.filter(datas,{_checked:true});
-            console.log(checked.length,checked);
-            if(checked.length===0){ dialogs.notify('Please select atleast one user to create account.');return; }
+            console.log(vm.list.data);
+            if(vm.list.data==null){ dialogs.notify('Please enter victory weekend date!');return; }
+            else if(checked.length===0){ dialogs.notify('Please select atleast one user to create account.');return; }
             dialogs.confirm('Are you sure ?',function(){
                 dialogs.asynchronous({
                     url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
                     model:'fetch/weekend_set/createaccnt',data:checked,
                     onclosed:function(){
                         tableService.refresh('vweekend.pre.list');
+                        vm.list={processing:true};
+                        getdata();
                         dialogs.notify('<table><tbody><tr>\n' +
                             '<td><i class="fa fa-check ng-scope" aria-hidden="true" style="font-size: 36px;padding-right: 10px;color: green;"></i></td>\n' +
                             '<td><span class="ng-scope">Creating accounts and sending emails is complete!</span></td>\n' +
