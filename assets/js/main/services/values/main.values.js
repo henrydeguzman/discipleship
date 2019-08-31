@@ -10,8 +10,8 @@ angular.module('MainValues',[])
         curdate:new Date(),
         dateformat:'yyyy-MM-dd',
         timeformat:'HH:mm:ss',
-        userdata:function(){
-            if(vtr.userdata!==null&&vtr.userdata!==undefined){return JSON.parse(vtr.userdata); }return {};
+        userdata:function(variable){
+            if(vtr.userdata!==null&&vtr.userdata!==undefined){  return variable==undefined?JSON.parse(vtr.userdata):JSON.parse(vtr.userdata)[variable]; }return {};
         },days:[
             {id:1,name:'Monday'},
             {id:2,name:'Tuesday'},

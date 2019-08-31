@@ -22,11 +22,11 @@ class Vg_Script {
         $user::$export_condition=true;
         $mainscript=$user->getusers();
         $onfields=array_merge(array(
-            "mainlink"=>"x.userid as userid,x.firstname,x.lastname,x.lastname,concat(IFNULL(x.firstname,''),' ',IFNULL(x.middlename,''),' ',IFNULL(x.lastname,'')) as fullname,
+            "mainlink"=>"x_photo.photo, x.userid as userid,x.firstname,x.lastname,x.lastname,concat(IFNULL(x.firstname,''),' ',IFNULL(x.middlename,''),' ',IFNULL(x.lastname,'')) as fullname,
                         x.phonenumber"
         ),$mainscript['onfields']);
         $onjoins=array_merge(array(
-            "mainlink"=>"INNER JOIN user_vg_users uxx ON uxx.vgid=xx.vgid LEFT JOIN user x ON x.userid=uxx.userid"
+            "mainlink"=>"INNER JOIN user_vg_users uxx ON uxx.vgid=xx.vgid LEFT JOIN user x ON x.userid=uxx.userid LEFT JOIN user_photo x_photo ON x_photo.photoid=x.photoid"
         ),$mainscript['onjoins']);
         $condition= array("onfields"=>$onfields,"onjoins"=>$onjoins);
         $dynamic=self::$instance->control->fieldRelationalMapper($condition,$activefields);
