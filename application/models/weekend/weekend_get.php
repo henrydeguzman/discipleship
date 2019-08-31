@@ -29,12 +29,20 @@ class weekend_get extends core_model {
         ));
     }
     /** api/gateway?re=fetch/weekend_get/getvweekendlist */
-    public function getvweekendlist(){
+    public function getvweekendlist($weekenddate){
+        return $weekenddate;
         $toprow=false;$whr='';
         if(isset($_POST['rowid'])){
             $toprow=true;$whr="AND a.userid=".$_POST['rowid'];
         }
         $sql=$this->weekend_script->getvweekendlist().$whr;
         return $this->query($sql,$toprow);
+    }
+    /** api/gateway?re=fetch/weekend_get/processdate */
+    public function processdate(){
+     //   usleep(3000000);
+        $whr="WHERE a.weekend_date >= CURDATE()";
+        $sql=$this->weekend_script->getdates().$whr;
+        return $this->query($sql,true);
     }
 }

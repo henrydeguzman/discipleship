@@ -37,4 +37,7 @@ angular.module('MainValues',[])
         added:function(scope){ if(scope===undefined){return;} scope.notification={type:'done'}; return {message:'Successfully added!',replaceMessage:true,scope:scope}; },
         updated:function(scope){ if(scope===undefined){return;} scope.notification={type:'done'}; return {message:'Successfully updated!',replaceMessage:true,scope:scope}; },
         deleted:function(scope){ if(scope===undefined){return;} scope.notification={type:'done'}; return {message:'Successfully deleted!',replaceMessage:true,scope:scope}; }
+    })
+    .value('spinnerValues',{
+        default:'<div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>'
     });

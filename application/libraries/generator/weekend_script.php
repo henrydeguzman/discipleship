@@ -9,7 +9,7 @@ class weekend_script {
     public static $instance;
     function __construct(){self::$instance = &get_instance();}
     public static function getdates(){
-        return "SELECT a.weekend_dateid,a.weekend_date as `date` FROM weekend_dates a";
+        return "SELECT a.weekendid as id,a.weekend_date as `date` FROM weekend a ";
     }
     public static function getvweekendlist(){
         $churchid=self::$instance->data_app_get->getchurch('churchid');

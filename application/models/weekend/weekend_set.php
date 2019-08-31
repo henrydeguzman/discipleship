@@ -11,15 +11,15 @@ class weekend_set extends core_model {
     }
     /** api/gateway?re=fetch/weekend_set/remove */
     public function remove(){
-        $dateid=isset($_POST['weekend_dateid'])?$_POST['weekend_dateid']:0; if(empty($dateid)){ return array("success"=>false,"info"=>"invalid weekend date."); }
-        return $this->delete('weekend_dates','weekend_dateid='.$dateid);
+        $id=isset($_POST['id'])?$_POST['id']:0; if(empty($id)){ return array("success"=>false,"info"=>"invalid weekend date."); }
+        return $this->delete('weekend','weekendid='.$id);
     }
     /** api/gateway?re=fetch/weekend_set/setdate */
     public function setdate(){
         $churchid=$this->data_app_get->getchurch('churchid');
         $date=isset($_POST['weekend_date'])?$_POST['weekend_date']:null;
         if(empty($date)){ return array("success"=>false,"info"=>"Date is required!");}
-        return $this->insert('weekend_dates',array(
+        return $this->insert('weekend',array(
             "weekend_date"=>$date,"churchid"=>$churchid
         ));
     }

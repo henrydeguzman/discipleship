@@ -7,9 +7,25 @@
 victory
     .controller('victoryweekend.page.controller',['$scope',function($scope){
         var vm=this;
+        vm.tab={};
+        vm.tab.change=function(a,b,c,d){
+
+        };
     }])
-    .controller('victoryweekend.page.weekend.controller',['$scope','dialogs','tableService',function($scope,dialogs,tableService){
+    .controller('victoryweekend.page.weekend.controller',['$scope','dialogs','tableService','centralFctry','spinnerValues',function($scope,dialogs,tableService,centralFctry,spinnerValues){
         var vm=this;
+        vm.list={processing:true};
+        getdata();
+        function getdata(){
+            var get=centralFctry.getData({ url:'fetch/weekend_get/processdate' });
+            if(get.$$state!==undefined){
+                get.then(function(v){
+                    vm.list.processing=false;
+                    vm.list.data=v.data;
+                });
+            }
+        }
+
         vm.email={};
         vm.email.add=function(tr,index){
             console.log(tr,index);
@@ -69,7 +85,7 @@ victory
         vm.weekend.date.remove=function(tr){
             var notif=Notification(notifValues['processing']({message:"Deleting..."},$scope));
             if(confirm('Are you sure want to delete date: '+tr.date+' ?')){
-                var posted=centralFctry.postData({ url:'fetch/weekend_set/remove',data:{weekend_dateid:tr.weekend_dateid} });
+                var posted=centralFctry.postData({ url:'fetch/weekend_set/remove',data:{id:tr.id} });
                 if(posted.$$state!==undefined){
                     return posted.then(function(v){
                         if(v.data.success){

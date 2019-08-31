@@ -2,10 +2,12 @@
  * Created by Actino-Dev on 11/24/2018.
  */
 angular.module('MainControllers',[])
-    .controller('appmain.controller',['$scope','genvarsValue','pathValue',function($scope,genvarsValue,pathValue){
+    .controller('appmain.controller',['$scope','genvarsValue','pathValue','spinnerValues',function($scope,genvarsValue,pathValue,spinnerValues){
         var vm=this;
+        /** declare global variables */
         vm.userdata=genvarsValue.userdata();
         $scope.pathValue=pathValue;
+        $scope.spinnerValues=spinnerValues;
     }])
     .controller('main.header.controller',['centralFctry',function(centralFctry){
         var vm=this;

@@ -29,10 +29,7 @@ ALTER TABLE `user_one2one`
 RENAME TO `one2one`;
 
 CREATE TABLE `weekend` (
-  `weekendid` int NOT NULL AUTO_INCREMENT PRIMARY KEY
-);
-CREATE TABLE `weekend_dates` (
-  `weekend_dateid` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `weekendid` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `weekend_date` date NOT NULL
 );
 
