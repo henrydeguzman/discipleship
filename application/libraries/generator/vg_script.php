@@ -33,8 +33,9 @@ class Vg_Script {
         return "SELECT xx.vgid, xx.dateadded, ".$dynamic['fields']." FROM user_vg xx ".$dynamic['joins']." ";
     }
     public static function getnovg(){
+        $app_get=self::$instance->data_app_get;
         return "SELECT a.userid,a.firstname,a.lastname, CONCAT(a.firstname,' ',a.lastname) as fullname FROM user a 
-                LEFT JOIN user_vg_users b ON a.userid=b.userid WHERE b.userid IS NULL";
+                LEFT JOIN user_vg_users b ON a.userid=b.userid WHERE b.userid IS NULL AND a.userid <> ".$app_get->idCurrentUser();
     }
     public static function getothrvgs(){
         return "SELECT a.vgid FROM user_vg_users a LEFT JOIN user_vg b ON b.vgid=a.vgid ";

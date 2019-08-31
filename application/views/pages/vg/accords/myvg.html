@@ -14,8 +14,8 @@
                 <div class="gen-box-v-1-content content-padding">
                     <div class="form-group">
                         <label class="gfs-title">Day of the week</label>
-                        <select class="gen-input-control" ng-model="vgpageMyVgCtrl.form.data.dayoftheweek">
-                            <option ng-repeat="list in genvarsValue.days" value="list.id">{{list.name}}</option>
+                        <select class="gen-input-control" ng-model="vgpageMyVgCtrl.form.data.dayoftheweek" string-to-number>
+                            <option ng-repeat="list in genvarsValue.days" ng-value="list.id">{{list.name}}</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -34,7 +34,7 @@
     <div class="col-md-8">
         <gt-table id="vg.memlist" model="fetch/vg_get/tablelist" formatter="vg/formatter/vgtable.js">
             <gt-table-btns action="add" gtclick="vgpageMyVgCtrl.form.dialog"></gt-table-btns>
-            <gt-table-col field="no" format="no" text-align="center" td-style="{width:'1px'}">#</gt-table-col>
+            <gt-table-col field="no" format="count" text-align="center" td-style="{width:'1px'}">#</gt-table-col>
             <gt-table-col field="fullname">Name</gt-table-col>
             <gt-table-col field="phonenumber">Contact #</gt-table-col>
             <gt-table-col field="address">Address</gt-table-col>

@@ -68,9 +68,9 @@ victory
             }
         };
         vm.form.dialog=function($id){
-            console.log('fired',$id);
+            console.log('fired',typeof $id);
             var title='Add',data={fromctrl:'vg'};
-            if($id!==undefined){
+            if(typeof($id)==='string'){
                 title='Edit';data={userid:$id};
             }
             dialogs.create({

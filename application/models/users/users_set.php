@@ -106,7 +106,11 @@ class users_set extends core_model {
         if(empty($rows)){ return array("success"=>false,"info"=>"no data."); }
         $done=isset($_POST['done'])?$_POST['done']:array();
         $result=array();
-        usleep(3000000);
+
+        /** register total once. */
+        $total=count($rows);
+        if(count($done)==0&&count($rows)>0){ $this->update('weekend',array("total"=>$total),'weekendid='.$rows[0]['weekendid']); }
+
         foreach($rows as $row){
             if(!in_array($row['id'],$done)){
                 $result=self::edit($row['id'],'tomember');
@@ -117,7 +121,7 @@ class users_set extends core_model {
         }
         $result['done']=$done;
         $result['successcnt']=count($done);
-        $result['total']=count($rows);
+        $result['total']=$total;
         return $result;
     }
     /** api/gateway?re=fetch/users_set/edit */

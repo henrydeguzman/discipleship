@@ -24,7 +24,7 @@ victory.controller('one2one.page.controller',['$scope','dialogs','tableService',
     vm.form.dialog=function($data){
         console.log('fired',$data);
         var title='Add',data={fromctrl:'one2one'};
-        if($data!==undefined){
+        if($data!==undefined&&$data.o2oid!==undefined){
             title='Edit';data=$data;
         }
         dialogs.create({

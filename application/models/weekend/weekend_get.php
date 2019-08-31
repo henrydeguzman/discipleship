@@ -9,7 +9,7 @@ class weekend_get extends core_model {
     public function __construct(){ $this->script->load('weekend_script'); }
     /** api/gateway?re=fetch/weekend_get/dates */
     public function dates($churchid=null){
-        $sql=$this->weekend_script->getdates();
+        $sql=$this->weekend_script->getdates()." ORDER BY a.weekend_date desc";
             //." Where a.churchid=".$churchid;
         return $this->query($sql);
     }
@@ -29,19 +29,17 @@ class weekend_get extends core_model {
         ));
     }
     /** api/gateway?re=fetch/weekend_get/getvweekendlist */
-    public function getvweekendlist($weekenddate){
-        return $weekenddate;
+    public function getvweekendlist($weekendid=null){
+        $weekendid=isset($_POST['weekendid'])?$_POST['weekendid']:$weekendid;
+        if(empty($weekendid)){ return array(); }
         $toprow=false;$whr='';
-        if(isset($_POST['rowid'])){
-            $toprow=true;$whr="AND a.userid=".$_POST['rowid'];
-        }
-        $sql=$this->weekend_script->getvweekendlist().$whr;
+        if(isset($_POST['rowid'])){ $toprow=true;$whr="AND a.userid=".$_POST['rowid']; }
+        $sql=$this->weekend_script->getvweekendlist($weekendid).$whr;
         return $this->query($sql,$toprow);
     }
     /** api/gateway?re=fetch/weekend_get/processdate */
     public function processdate(){
-     //   usleep(3000000);
-        $whr="WHERE a.weekend_date >= CURDATE()";
+        $whr="WHERE a.weekend_date >= CURDATE()  AND a.total=0";
         $sql=$this->weekend_script->getdates().$whr;
         return $this->query($sql,true);
     }

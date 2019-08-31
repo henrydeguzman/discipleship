@@ -25,6 +25,7 @@ class vg_set extends core_model {
         $dayofweek=isset($_POST['dayoftheweek'])?$_POST['dayoftheweek']:false;
         $time=isset($_POST['time'])?$_POST['time']:false;
         $venue=isset($_POST['venue'])?$_POST['venue']:false;
+        //return $_POST;
 
         if($dayofweek){ $data['dayoftheweek']=$dayofweek; }
         if($time){ $data['time']=date('H:i:s', strtotime($time)); }

@@ -20,7 +20,7 @@ angular.module('MainDirectives',[])
     .directive('gtTableTitle',[gtTableTitle])
     .directive('gtTableFilter',['centralFctry',gtTableFilter])
     .directive('gtTableBtns',['$q',gtTableBtns])
-    .directive('gtTableCol',['glfnc','$q','tableService',gtTableCol])
+    .directive('gtTableCol',['glfnc','$q','tableService','$timeout',gtTableCol])
     .directive('gtTable',['centralFctry','tableService','pathValue','glfnc','$filter','$http','$q','inifrmtrValue',gtTable])
     .directive('gtTableSort',[gtTableSort])
     .directive('bindHtmlCompile',['$compile','$sce',bindHtmlCompile]);
@@ -603,22 +603,24 @@ function gtTableSort(){
         },controllerAs:'gtTblSortCtrl'
     }
 }
-function gtTableCol(glfnc,$q,tableService){
+function gtTableCol(glfnc,$q,tableService,$timeout){
     return {
         restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/table/cols.html',transclude:true,
         require:"^gtTable",
         scope:{field:'@',format:'@',gtclick:'&?',addrow:'@',textAlign:'@',addrowStyle:'<',tdStyle:'<',dropdown:'@',parent:'@',accessRights:'<',colIf:'<',context:'@',contextfn:'&'},
         link:function(scope, element, attr, ctrl,transclude){
-            scope.th_index=ctrl.column.count;
-            ctrl.column.count++;
-            if(scope.textAlign===undefined){scope.textAlign='left';}
-            /* ctrl.response.hiddencols; temporary removed */
-            $q.all([ctrl.response.content,ctrl.response.formatter]).then(function(a){
-                tableService.cols_th('tblcol',ctrl,scope,transclude,organize);/* October 9, 2018 = function to service _apply */
-                if(ctrl.column.settings.list===undefined){ /* for not dynamic only */
-                    organize(ctrl);
-                }
-                ctrl.column.list.push({_apply:_apply});/* only for not dynamic because of scope and attr */
+            $timeout(function(){
+                scope.th_index=ctrl.column.count;
+                ctrl.column.count++;
+                if(scope.textAlign===undefined){scope.textAlign='left';}
+                /* ctrl.response.hiddencols; temporary removed */
+                $q.all([ctrl.response.content,ctrl.response.formatter]).then(function(a){
+                    tableService.cols_th('tblcol',ctrl,scope,transclude,organize);/* October 9, 2018 = function to service _apply */
+                    if(ctrl.column.settings.list===undefined){ /* for not dynamic only */
+                        organize(ctrl);
+                    }
+                    ctrl.column.list.push({_apply:_apply});/* only for not dynamic because of scope and attr */
+                });
             });
             function organize(c){
                 for(var x=0;x<c.table.tr.length;x++){ c.table.tr[x]['td'].push(_apply(c,x)); }
@@ -640,7 +642,7 @@ function gtTableCol(glfnc,$q,tableService){
         },controllerAs:'gtTblClCtrl'
     }
 }
-function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inifrmtrValue){
+function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inifrmtrValue,$timeout){
     return {
         restrict:'E',transclude:true,templateUrl:'page/loadview?dir=jshtml&view=directives/table/table.html', scope:true,
         link:function(scope, element, attr, controller){
