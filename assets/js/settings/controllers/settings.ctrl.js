@@ -9,24 +9,6 @@ victory.controller('settings.page.controller',['$scope','centralFctry','genvarsV
     getdataform();
     $scope.curdate=$filter('date')(genvarsValue.curdate,genvarsValue.dateformat);
     vm.weekend={date:{format:'MMM-dd-yyyy'},validation:{}};
-    vm.weekend.remove=function(tr){
-        var notif=Notification(notifValues['processing']({message:"Deleting..."},$scope));
-        if(confirm('Are you sure want to delete date: '+tr.date+' ?')){
-            var posted=centralFctry.postData({ url:'fetch/weekend_set/remove',data:{weekend_dateid:tr.weekend_dateid} });
-            if(posted.$$state!==undefined){
-                return posted.then(function(v){
-                    if(v.data.success){
-                        Notification(notifValues['deleted']($scope));
-                        tableService.refresh('victoryweekend.dates');
-                    } else {
-                        notif.then(function(v){ v.kill(true); });
-                    }
-                });
-            }
-        } else {
-            notif.then(function(v){ v.kill(true); });
-        }
-    };
     vm.weekend.date.save=function(){
         var notif=Notification(notifValues['processing']({message:"Adding..."},$scope)),
             posted=centralFctry.postData({ url:'fetch/weekend_set/setdate',data:{weekend_date:vm.weekend.date.value} });

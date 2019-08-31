@@ -247,14 +247,14 @@ function gtTabset(dialogs,centralFctry){
                 if(type==='remove'){
                     e.stopPropagation();
                     var index=vm.tabs.list.indexOf(item);
-                    if(confirm('Are you sure?')){
+                    dialogs.confirm('Are you sure ?',function(){
                         var posted=centralFctry.postData({ url:'app?api=angular_tabset::removetab', data:{pageid:item.pageid} });
                         if(posted.$$state!==undefined){
                             posted.then(function(v){
                                 vm.tabs.list.splice(index, 1);
                             });
                         }
-                    }
+                    });
                 }
                 else if(type==='add'||type==='edit'){
 

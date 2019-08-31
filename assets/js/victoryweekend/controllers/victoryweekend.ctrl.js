@@ -83,8 +83,8 @@ victory
         var vm=this;
         vm.weekend={date:{},validation:{}};
         vm.weekend.date.remove=function(tr){
-            var notif=Notification(notifValues['processing']({message:"Deleting..."},$scope));
-            if(confirm('Are you sure want to delete date: '+tr.date+' ?')){
+            dialogs.confirm('Are you sure want to delete date: '+tr.date+' ?',function(){
+                var notif=Notification(notifValues['processing']({message:"Deleting..."},$scope));
                 var posted=centralFctry.postData({ url:'fetch/weekend_set/remove',data:{id:tr.id} });
                 if(posted.$$state!==undefined){
                     return posted.then(function(v){
@@ -96,9 +96,7 @@ victory
                         }
                     });
                 }
-            } else {
-                notif.then(function(v){ v.kill(true); });
-            }
+            });
         };
         vm.weekend.date.add=function(){
             dialogs.create({

@@ -40,7 +40,9 @@ victory
         $scope.genvarsValue=genvarsValue;
         vm.delete=function(tr){
             console.log('delete',tr);
-            if(confirm("Are you sure?")){
+
+
+            dialogs.confirm('Are you sure ?',function(){
                 var posted=centralFctry.postData({url:'fetch/vg_set/set_vg',data:{userid:tr.userid,value:0}});
                 if(posted.$$state!==undefined){
                     posted.then(function(v){
@@ -49,7 +51,7 @@ victory
                         }
                     })
                 }
-            }
+            });
         };
         vm.form={data:{}};
         vm.form.save=function(){
