@@ -28,4 +28,19 @@ class users_connection extends core_model {
     public function viewsession(){
         return $_SESSION['user'];
     }
+    /** api/gateway?re=fetch/users_connection/reset_password */
+    public function reset_password(){
+        $email=isset($_POST['email'])?$_POST['email']:null;
+        if(empty($email)){ return array("success"=>false, 'info'=>'email is required'); }
+
+        $sql="SELECT * FROM `user` WHERE email='".$email."'";
+        $result = self::query($sql, true);
+
+        $this->load->library('jwt_generator');
+        $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
+
+        // Generate email here...
+
+        return array("success"=>true, 'info'=>base_url());
+    }
 }

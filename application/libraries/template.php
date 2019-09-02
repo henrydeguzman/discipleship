@@ -10,6 +10,7 @@ class template {
     function __construct() { $this->ci=&get_instance(); }
     function load($body_view=null,$data=null,$layout='user'){
         if($layout==='login'){ $this->content('templates/login/'.$body_view,$data);return; }
+        if($layout==='forgot_password'){ $this->content('templates/forgot_password/'.$body_view,$data);return; }
         $this->ci->load->view("templates/".$layout."/header.html");
         $this->ci->load->view("templates/".$layout."/sidebar.html");
         $this->ci->load->view("templates/".$layout."/bcrumbs.html");

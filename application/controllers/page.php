@@ -24,4 +24,22 @@ class page extends core_controller {
         }
 
     }
+    public function forgot_password(){
+        $values=array();
+        if(isset($_SESSION['user'])){
+            header("location: ".base_url('page/index'));
+        } else {
+            $this->template->load('forgot_password.html',$values,'forgot_password');
+        }
+    }
+    public function link_sent(){
+
+
+        $values=array();
+        if(isset($_SESSION['user'])){
+            header("location: ".base_url('page/index'));
+        } else {
+            $this->template->load('resetlink_sent.html',$values,'forgot_password');
+        }
+    }
 }
