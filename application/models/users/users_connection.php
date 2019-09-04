@@ -1,5 +1,19 @@
 <?php
 /**
+ * !!! STRICTLY FOR DEVELOPMENT PURPOSES ONLY !!!
+ *
+ * This section MUST ONLY BE USED DURING DEVELOPMENT.
+ * Please provide better code/library that will be use on production.
+ */
+require_once "vendor/autoload.php";
+use PHPMailer\PHPMailer\PHPMailer;
+/**
+ * !!! END OF RESTRICTION FOR DEVELOPMENT !!!
+ */
+
+
+
+/**
  * Created by PhpStorm.
  * User: Actino-Dev
  * Date: 1/14/2019
@@ -39,8 +53,56 @@ class users_connection extends core_model {
         $this->load->library('jwt_generator');
         $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
 
-        // Generate email here...
+        /**
+         * !!! STRICTLY FOR DEVELOPMENT PURPOSES ONLY !!!
+         *
+         * This section MUST ONLY BE USED DURING DEVELOPMENT.
+         * Please provide better code/library that will be use on production.
+         */
+        $mail = new PHPMailer;
 
-        return array("success"=>true, 'info'=>base_url());
+        // Tell PHPMailer to use SMTP.
+        $mail->isSMTP();
+
+        // Enable SMPTP Debugging.
+        //  0 = Off (Production Use ONLY)
+        //  1 = Client Only
+        //  2 = Client and Server
+        $mail->SMTPDebug = 2;
+
+        // Set the hostname of the mail server.
+        $mail->Host = 'smtp.gmail.com';
+
+        $mail->Port = 587;
+
+        $mail->SMTPSecure = 'tls';
+
+        // Set whether to use SMTP Authentication.
+        $mail->SMTPAuth = true;
+
+        // Set the Email and Password for Authentication.
+        $mail->Username = "justineang.official@gmail.com";
+        $mail->Password = "Al3x0403Ang99!!!112498";
+
+        // Set some headers for the email.
+        $mail->setFrom('webmaster@discipleship.victory.org.ph');
+        $mail->setReplyTo('no-rely@discipleship.victory.org.ph');
+        $mail->setAddress($result->email);
+        $mail->Subject = "Request to Reset Password";
+        //$mail->msgHtml(); // Use to send HTML Email
+        //$mail->AltBody = ''; // Use to send HTML Email
+        $mail->Body = $token;
+
+        if (!$mail->send()) {
+            return array("success" => false, 'info' => "Mail Error: ".$mail->ErrorInfo);
+        } else {
+            return array("success"=>true, 'info'=>base_url());
+        }
+
+        /**
+         * !!! END OF RESTRICTION FOR DEVELOPMENT !!!
+         */
+
+        //return array("success"=>true, 'info'=>base_url());
     }
 }
