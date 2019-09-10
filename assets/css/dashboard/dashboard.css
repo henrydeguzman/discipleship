@@ -1,0 +1,35 @@
+.page-dashboard {}
+.page-dashboard .small-box {}
+.page-dashboard .small-box._banner .inner {
+    z-index: 10;
+    position: relative;
+}
+.page-dashboard .small-box._banner._banner-victoryweekend {
+    background-image: url(../../../assets/img/bg/establish.png);
+    color:white;
+}
+.page-dashboard .small-box._banner._banner-victoryweekend img {
+    width:80px;
+}
+
+.page-dashboard .small-box._banner._banner-church-community {
+    background-image: url(../../../assets/img/bg/establish.png);
+    color:white;
+}
+
+.page-dashboard .small-box._banner._banner-purple-book img {
+    width:80px;
+}
+
+.page-dashboard .small-box._banner._banner-purple-book {
+    background-image: url(../../../assets/img/bg/establish.png);
+    color:white;
+}
+
+.page-dashboard .small-box._banner._banner-makingdisciple {
+    background-image: url(../../../assets/img/bg/equip.png);
+    color:white;
+}
+.page-dashboard .small-box._banner._banner-makingdisciple img {
+    width:110px;
+}
