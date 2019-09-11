@@ -2,6 +2,7 @@
  * Created by Actino-Dev on 11/24/2018.
  */
 angular.module('MainDirectives',[])
+    .directive('validNumber', ['glfnc',validNumber])
     .directive('gtHeaderNav',['pathValue','genvarsValue','centralFctry','$document',gtHeaderNav])
     .directive('gtAccordion',[gtAccordion])
     .directive('gtAccordionContent',['$timeout',gtAccordionContent])
@@ -24,6 +25,84 @@ angular.module('MainDirectives',[])
     .directive('gtTable',['centralFctry','tableService','pathValue','glfnc','$filter','$http','$q','inifrmtrValue',gtTable])
     .directive('gtTableSort',[gtTableSort])
     .directive('bindHtmlCompile',['$compile','$sce',bindHtmlCompile]);
+function validNumber(glfnc) {
+    return {
+        require: '?ngModel',
+        link: function (scope, element, attrs, ngModelCtrl) {
+            element.on('keydown', function (event) {
+                var keyCode=[]
+                if(attrs.allowNegative == "true") { keyCode = [8,9,36,35,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,109,110,173,190,189]; }
+                else{ var keyCode = [8,9,36,35,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,110,173,190]; }
+                if(attrs.allowDecimal == "false") {
+                    var index = keyCode.indexOf(190);
+                    if (index > -1) { keyCode.splice(index, 1); }
+                }
+                if ($.inArray(event.which, keyCode) == -1) event.preventDefault();
+                else {
+                    var oVal = ngModelCtrl.$modelValue || '';
+                    if ($.inArray(event.which, [109, 173]) > -1 && oVal.indexOf('-') > -1) event.preventDefault();
+                    else if ($.inArray(event.which, [110, 190]) > -1 && oVal.indexOf('.') > -1) event.preventDefault();
+                }
+            }).on('blur', function () {
+                if (element.val() == '' || parseFloat(element.val()) == 0.0 || element.val() == '-') {
+                    var pushtext='';
+                    if(attrs.allowDecimal=="false"){
+                        pushtext='0';
+                    } else {
+                        pushtext='0.00';
+                    }
+                    if(glfnc.trim(attrs.validNumber)!==''){
+                        if(attrs.validNumber==='_'){pushtext='';}
+                        pushtext=attrs.validNumber;
+                    }
+                    ngModelCtrl.$setViewValue(pushtext);
+                }
+                else if(attrs.allowDecimal == "false") { ngModelCtrl.$setViewValue(element.val()); } else{ if(attrs.decimalUpto) { var fixedValue = parseFloat(element.val()).toFixed(attrs.decimalUpto); }  else{ var fixedValue = parseFloat(element.val()).toFixed(2);} ngModelCtrl.$setViewValue(fixedValue); }
+                ngModelCtrl.$render(); scope.$apply();
+            });
+            ngModelCtrl.$parsers.push(function (text) {
+                var oVal = ngModelCtrl.$modelValue;
+                var nVal = ngModelCtrl.$viewValue;
+                if (parseFloat(nVal) != nVal) {
+                    if (nVal === null || nVal === undefined || nVal == '' || nVal == '-') oVal = nVal;
+                    ngModelCtrl.$setViewValue(oVal);
+                    ngModelCtrl.$render();
+                    return oVal;
+                }
+                else {
+                    var decimalCheck = nVal.split('.');
+                    if (!angular.isUndefined(decimalCheck[1])) {
+                        if(attrs.decimalUpto) { decimalCheck[1] = decimalCheck[1].slice(0, attrs.decimalUpto); }
+                        else { decimalCheck[1] = decimalCheck[1].slice(0, 2);}
+                        nVal = decimalCheck[0] + '.' + decimalCheck[1];
+                    }
+                    ngModelCtrl.$setViewValue(nVal); ngModelCtrl.$render(); return nVal;
+                }
+            });
+            ngModelCtrl.$formatters.push(function (text) {
+                if (text == '0' || text == 0 || text == null && attrs.allowDecimal == "false"){
+                    if(glfnc.trim(attrs.validNumber)===''){
+                        return '0';
+                    }else{
+                        if(attrs.validNumber==='_'){return '';}
+                        return attrs.validNumber;
+                    }
+                }
+                else if (text == '0' || text == null && attrs.allowDecimal != "false" && attrs.decimalUpto == undefined){
+                    if(glfnc.trim(attrs.validNumber)===''){
+                        return '0.00';
+                    }else{
+                        if(attrs.validNumber==='_'){return '';}
+                        return attrs.validNumber;
+                    }
+                }
+                else if (text == '0' || text == null && attrs.allowDecimal != "false" && attrs.decimalUpto != undefined){ return parseFloat(0).toFixed(attrs.decimalUpto); }
+                else if (attrs.allowDecimal != "false" && attrs.decimalUpto != undefined){ return parseFloat(text).toFixed(attrs.decimalUpto); }
+                else{ if(attrs.allowDecimal != "false"){return parseFloat(text).toFixed(2);} else { return parseFloat(text); }}
+            });
+        }
+    };
+}
 function gtHeaderNav(pathValue,genvarsValue,centralFctry,$document){
     return {
         restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/header/nav.html',
@@ -201,7 +280,7 @@ function gtTab($timeout){
                     if(scope.active!==undefined){
                         data.loaded=true;
                         data.active=true;
-                        ctrl.loadtemplate(data,ctrl.tabs.c);
+                        ctrl.loadtemplate(data,ctrl.tabs.c,'init');
                     }
                     ctrl.tabs.list[ctrl.tabs.c]=data;
                     ctrl.tabs.c++;
@@ -282,13 +361,13 @@ function gtTabset(dialogs,centralFctry){
                     });
                 }
             };
-            vm.loadtemplate=function(item,$index){
+            vm.loadtemplate=function(item,$index,$numclick){
                 vm.tabs.active=$index;
                 item.loaded=true;
                 item.active=true;
                 item.loadtemplate=item.template;
                 var fn=$scope.$eval($attrs.gtOnchange);
-                if(fn!==undefined){ fn(item,$index,'tab'); }
+                if(fn!==undefined){ fn(item,$index,'tab',$numclick); }
                 hideall($index);
             };
             function hideall(index){
@@ -648,7 +727,13 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
         link:function(scope, element, attr, controller){
             scope.pathValue=pathValue;
             if(attr.id!==undefined){ var modal={id:attr.id,refresh:controller.refresh,refreshrow:controller.refreshrow}; tableService.add(modal); }
-            controller.getData('content');controller.getData('formatter');
+            //controller.getData('content');controller.getData('formatter');
+            /* testing manual from manual call get data content and formatter into observe */
+            attr.$observe('model',function(nval,oval){
+                console.log(nval,oval);
+                controller.table.valid=true;
+                controller.getData('content');controller.getData('formatter');
+            });
             var cols=scope.$eval(attr.columns);
             if(attr.columns!==undefined&&typeof(cols)==='object') {
                 controller.column.settings=cols;
@@ -760,6 +845,7 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                     item.onclick()(vm.table.tr[x],item,x);
                 }
             };*/
+
             vm.table.td.toggle=function(){
                 vm.table.export.show=false;
                 vm.table.td.show?vm.table.td.show=false:vm.table.td.show=true;

@@ -7,11 +7,14 @@
     <gt-table-col field="control" editable gtclick="tabsCtrl.tab1.indicators.controladmn"><?= $this->tr('indicator.control.title');?></gt-table-col>
 </gt-table>
 
+
+
 table params:
 1. id
     -> if you want to refresh the table just provide id to it.
 2. model
     -> getlist
+    -> change on model string will reload the list
 3. bindmodel : built-in in table. also used in dataformatter built in function.
     -> <gt-table-editor> postdata. {field:0,rowid:18,value:'12',args:'comparisonid=1&rowmode=sub'}
     -> note: it will add args value from $scope.tr if there is dataargs

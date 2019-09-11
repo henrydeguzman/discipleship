@@ -21,12 +21,12 @@ class One2one_script {
         $mainscript=$user->getusers();
         $onfields=array_merge(array(
             "mainlink"=>"x.userid as userid,x.firstname,x.lastname,x.lastname,concat(IFNULL(x.firstname,''),' ',IFNULL(x.middlename,''),' ',IFNULL(x.lastname,'')) as fullname, x.phonenumber,subx.photo,x.photoid",
-            "vg"=>"l_b.vgid as hasvgid"
+            "vga"=>"l_b.vgid as hasvgid"
         ),$mainscript['onfields']);
         $onjoins=array_merge(array(
             "mainlink"=>"INNER JOIN user x ON x.userid=xx.userid
                         LEFT JOIN user_photo subx ON x.photoid=subx.photoid AND x.userid=subx.userid",
-            "vg"=>"LEFT JOIN user_vg l_a ON l_a.leaderid=".self::$app_get->idCurrentUser()."
+            "vga"=>"LEFT JOIN user_vg l_a ON l_a.leaderid=".self::$app_get->idCurrentUser()."
                   LEFT JOIN user_vg_users l_b ON l_b.vgid=l_a.vgid AND l_b.userid=x.userid"
         ),$mainscript['onjoins']);
         $condition= array("onfields"=>$onfields,"onjoins"=>$onjoins);

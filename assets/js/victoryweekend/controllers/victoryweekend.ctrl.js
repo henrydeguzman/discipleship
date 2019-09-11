@@ -5,23 +5,48 @@
  * Time: 1:07 PM
  */
 victory
-    .controller('victoryweekend.page.controller',['$scope',function($scope){
+    .controller('victoryweekend.page.controller',['$scope','tableService',function($scope,tableService){
         var vm=this;
         vm.tab={};
-        vm.tab.change=function(a,b,c,d){
+        vm.tab.change=function(tab,index,type,clicktype){
+            console.log('tabchanged',clicktype);
 
+            if(clicktype!=='init'){
+                if(index===0){
+                    //tableService.refresh('vweekend.pre.list');
+
+                }
+                else if(index===1){
+                    //tableService.refresh('victoryweekend.dates');
+
+
+                }
+                else if(index===2){
+                    console.log('general settings tab');
+                }
+                $scope.broadcastEvent(index);
+            }
+        };
+        $scope.broadcastEvent = function(_index) {
+            if(_index===0){
+                $scope.$broadcast('eventBctdVweekend');
+            }
         };
     }])
     .controller('victoryweekend.page.weekend.controller',['$scope','dialogs','tableService','centralFctry','spinnerValues',function($scope,dialogs,tableService,centralFctry,spinnerValues){
         var vm=this;
         vm.list={processing:true,data:{}};
+        $scope.$on('eventBctdVweekend', function(event, data) {
+            getdata();
+        });
         getdata();
-        function getdata(){
+        function getdata(fn){
             var get=centralFctry.getData({ url:'fetch/weekend_get/processdate' });
             if(get.$$state!==undefined){
                 get.then(function(v){
                     vm.list.processing=false;
                     vm.list.data=v.data;
+                    if(fn!==undefined&&typeof(fn)==='function'){ fn(v); }
                 });
             }
         }

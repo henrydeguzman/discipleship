@@ -30,7 +30,6 @@ class vg_set extends core_model {
         if($dayofweek){ $data['dayoftheweek']=$dayofweek; }
         if($time){ $data['time']=date('H:i:s', strtotime($time)); }
         if($venue){ $data['venue']=$venue; }
-
         if($vginfo===null){
             $last=$this->insert('user_vg',array("leaderid"=>$leaderid,"dateadded"=>self::datetime()));
             $data['vgid']=$last['lastid'];
@@ -60,6 +59,7 @@ class vg_set extends core_model {
 
         }else{
             $result=$this->insert('user_vg',array('leaderid'=>$leaderid,'dateadded'=>self::datetime()),'userid='.$userid);
+            $this->insert('user_vg_info',array('vgid'=>$result['lastid']));
             $this->insert('user_vg_users',array('vgid'=>$result['lastid'],'userid'=>$this->data_app_get->idCurrentUser(),'dateadded'=>self::datetime()));
             return $this->insert('user_vg_users',array('vgid'=>$result['lastid'],'userid'=>$userid,'dateadded'=>self::datetime()));
         }

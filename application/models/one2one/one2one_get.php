@@ -13,7 +13,7 @@ class one2one_get extends core_model {
         if(isset($_POST['rowid'])){
             $whr=self::extendwhr($whr,'x.userid='.$_POST['rowid'],"AND");
         }
-        $sql=$this->one2one_script->getlist().$whr;
+        $sql=$this->one2one_script->getlist('mainlink,info,vga').$whr;
         return $this->query($sql);
     }
     /** api/gateway?re=fetch/one2one_get/getinfo/{$onoid} */

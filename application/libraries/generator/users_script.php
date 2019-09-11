@@ -19,10 +19,12 @@ class Users_Script {
     public static function getusers($activefields=null){
         $condition=array(
             "onfields"=>array(
-                "info"=>"a.personal_number,a.current_address as address,a.degree,c.vgid",
+                "info"=>"a.personal_number,a.current_address as address,a.degree",
+                "vg"=>"c.vgid"
             ),
             "onjoins"=>array(
-                "info"=>"LEFT JOIN user_info a ON x.userid=a.userid LEFT JOIN user_vg c ON c.leaderid=x.userid",
+                "info"=>"LEFT JOIN user_info a ON x.userid=a.userid",
+                "vg"=>"LEFT JOIN user_vg c ON c.leaderid=x.userid"
             )
         );
         if(self::$export_condition){return $condition;}
