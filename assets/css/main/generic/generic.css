@@ -403,3 +403,28 @@ label.gen-checkbox-style > div {
     margin-left:20px;
     white-space: normal;
 }
+
+/* un ordered list generic text divider */
+.gen-text-divider {
+    margin:0;
+    padding:0;
+    margin:0 15px 10px 15px;
+    list-style:none;
+    position:relative;
+
+}
+.gen-text-divider > li {
+    display:inline-block;
+    position:relative;
+    z-index:22222222222;
+}
+.gen-text-divider:after {
+    content:'';
+    position:absolute;
+    left:0;
+    right:0;
+    /* top:0; */
+    border-top:1px solid #ccc;
+    top:50%;
+    z-index:1;
+}

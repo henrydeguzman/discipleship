@@ -33,3 +33,19 @@
 .page-dashboard .small-box._banner._banner-makingdisciple img {
     width:110px;
 }
+
+.page-dashboard .small-box._banner._banner-empowering-leaders {
+    background-image: url(../../../assets/img/bg/empower.png);
+    color:white;
+}
+.page-dashboard .small-box._banner._banner-empowering-leaders img {
+    width:110px;
+}
+
+.page-dashboard .small-box._banner._banner-leadership113 {
+    background-image: url(../../../assets/img/bg/empower.png);
+    color:white;
+}
+.page-dashboard .small-box._banner._banner-leadership113 img {
+    width:110px;
+}

@@ -1,4 +1,13 @@
-<div class="page-dashboard">
+<div class="page-dashboard" ng-controller="dashboard.page.controller as dashboardpageCtrl">
+    <div class="row">
+        <ul class="gen-text-divider">
+            <li>
+                <select class="gen-input-control">
+                    <option ng-repeat="i in _dates">{{i}}</option>
+                </select>
+            </li>
+        </ul>
+    </div>
     <div class="row">
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
@@ -51,6 +60,37 @@
                 <div class="inner">
                     <h3>150</h3>
                     <p>Making Disciples</p>
+                </div>
+                <div class="icon">
+                    <!--<i class="ion ion-bag"></i>-->
+                    <img ng-src="api/getfile?name=img/makingdisciple/makingdisciple-border.png&size=120&basepath=assets&ext=.png">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box _banner _banner-empowering-leaders">
+                <div class="inner">
+                    <h3>150</h3>
+                    <p>Empowering Leaders</p>
+                </div>
+                <div class="icon">
+                    <!--<i class="ion ion-bag"></i>-->
+                    <img ng-src="api/getfile?name=img/purple-book/purple-book-border.png&size=120&basepath=assets&ext=.png">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box _banner _banner-leadership113">
+                <div class="inner">
+                    <h3>150</h3>
+                    <p>Leadership 113</p>
                 </div>
                 <div class="icon">
                     <!--<i class="ion ion-bag"></i>-->

@@ -6,6 +6,7 @@ angular.module('MainControllers',[])
         var vm=this;
         /** declare global variables */
         vm.userdata=genvarsValue.userdata();
+        $scope.genvarsValue=genvarsValue;
         $scope.pathValue=pathValue;
         $scope.spinnerValues=spinnerValues;
     }])

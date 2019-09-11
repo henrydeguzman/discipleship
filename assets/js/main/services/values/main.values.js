@@ -8,19 +8,12 @@ angular.module('MainValues',[])
     })
     .value('genvarsValue',{
         curdate:new Date(),
+        curyear:new Date().getFullYear(),
         dateformat:'yyyy-MM-dd',
         timeformat:'HH:mm:ss',
         userdata:function(variable){
             if(vtr.userdata!==null&&vtr.userdata!==undefined){  return variable==undefined?JSON.parse(vtr.userdata):JSON.parse(vtr.userdata)[variable]; }return {};
-        },days:[
-            {id:1,name:'Monday'},
-            {id:2,name:'Tuesday'},
-            {id:3,name:'Wednesday'},
-            {id:4,name:'Thursday'},
-            {id:5,name:'Friday'},
-            {id:6,name:'Saturday'},
-            {id:7,name:'Sunday'},
-        ]
+        },days:[{id:1,name:'Monday'}, {id:2,name:'Tuesday'}, {id:3,name:'Wednesday'}, {id:4,name:'Thursday'}, {id:5,name:'Friday'}, {id:6,name:'Saturday'}, {id:7,name:'Sunday'},]
     })
     .value('mimeTypes',{
         "image":{
