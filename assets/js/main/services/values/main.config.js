@@ -21,7 +21,7 @@ victory
                     }
                 }
             });
-        $urlRouterProvider.otherwise('dashboard');
+        $urlRouterProvider.otherwise('dashboard/Dashboard');
     }])
     .config(function(NotificationProvider){
         NotificationProvider.setOptions({
