@@ -22,13 +22,16 @@ class vg_get extends core_model {
         $sql=$this->vg_script->getothrvgs()."WHERE a.userid='".$this->data_app_get->idCurrentUser()."' AND b.leaderid<>'".$this->data_app_get->idCurrentUser()."'";
         return $this->query($sql);
     }
-
-    public function vginfo($vgid=null){/** api/gateway?re=fetch/vg_get/vginfo */
+    /** api/gateway?re=fetch/vg_get/vginfo */
+    public function vginfo($vgid=null){
         $whr="WHERE a.leaderid=".$this->data_app_get->idCurrentUser();
         if(!empty($vgid)){
             $whr="WHERE a.vgid=".$vgid;
         }
         $sql=$this->vg_script->vginfo().$whr;
         return $this->query($sql,true);
+    }
+    public function count_vgs(){
+
     }
 }
