@@ -5,7 +5,7 @@ angular.module('MainFactories',[])
     .factory('pageService',['centralFctry',pageService])
     .factory('tableService',['glfnc',tableService])
     .factory('glfnc',['$window',glfnc])
-    .factory('centralFctry',['$http','$httpParamSerializer','$httpParamSerializerJQLike','pathValue','$sce',centralFctry]);
+    .factory('centralFctry',['$http','$httpParamSerializer','$httpParamSerializerJQLike','pathValue','dialogs',centralFctry]);
 function pageService(centralFctry){
     var vm=this; vm.pages={};
     function getdata(params){
@@ -122,9 +122,13 @@ function glfnc(){
         isEmpty:function(obj){ var bar; for (bar in obj) { if (obj.hasOwnProperty(bar)) { return false; } } return true; }
     }
 }
-function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,pathValue,$sce){
+function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,pathValue,dialogs){
     var headers={'Content-Type':'application/x-www-form-urlencoded'};
     return {
+        dialoghandler:function(v,cb){
+            if(v.data!==undefined&&v.data.type==='error'){ dialogs.error(v.data.info,function(){ if(cb!==undefined){ cb(); } }); }
+            if(v.data!==undefined&&v.data.type==='notify'){ dialogs.notify(v.data.info,function(){ if(cb!==undefined){ cb(); } }); }
+        },
         getData:function(params){
              var url='',data;
              if(typeof(params)!=='object'){return false;}

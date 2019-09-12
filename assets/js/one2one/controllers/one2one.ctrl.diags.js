@@ -67,7 +67,7 @@ victory.controller('one2one.ctrl.diags.addfrm',['$scope','Notification','notifVa
     }
     function getdata(userid){
         var posted=centralFctry.getData({
-            url:'fetch/one2one_get/getinfo/'+userid
+            url:'fetch/one2one_get/getuser/'+userid
         });
         if(posted.$$state!==undefined){
             posted.then(function(v){

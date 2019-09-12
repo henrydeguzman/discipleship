@@ -39,9 +39,6 @@ victory
         var vm=this;
         $scope.genvarsValue=genvarsValue;
         vm.delete=function(tr){
-            console.log('delete',tr);
-
-
             dialogs.confirm('Are you sure ?',function(){
                 var posted=centralFctry.postData({url:'fetch/vg_set/set_vg',data:{userid:tr.userid,value:0}});
                 if(posted.$$state!==undefined){
@@ -51,6 +48,28 @@ victory
                         }
                     })
                 }
+            });
+        };
+        vm.addtointern=function(value,node){
+            console.log(node);
+            dialogs.confirm('Are you sure ?',function(){
+                var data={value:value,vgid:node.vgid,internid:node.internid,userid:node.userid};
+                console.log(data);
+                var posted=centralFctry.postData({ url:'fetch/vg_intern/set', data:data });
+                if(posted.$$state!==undefined){
+                    posted.then(function(v){
+                        console.log(v.data);
+                        centralFctry.dialoghandler(v);
+                        if(v.data.success){
+                            node.internid=v.data.lastid;
+                        } else {
+                            node.isintern=value==0?1:0;
+
+                        }
+                    });
+                }
+            },function(){
+                node.isintern=value==0?1:0;
             });
         };
         vm.form={data:{}};

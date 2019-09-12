@@ -37,4 +37,7 @@ class One2one_script {
         return "SELECT a.chapterid as id, a.value as name,if(a.chapterid=b.chapterid,true,false) as active FROM one2one_chapter a
                 LEFT JOIN weekend_settings b ON a.chapterid=b.chapterid AND b.churchid=".self::$app_get->getchurch('churchid');
     }
+    public static function getinfo(){
+        return "SELECT one2one.o2oid,one2one.leaderid FROM user user LEFT JOIN one2one one2one ON one2one.userid=user.userid ";
+    }
 }

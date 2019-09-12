@@ -10,6 +10,8 @@ angular.module('MainDiagController',[])
     vm.submit=function(bool){
         if(bool&&$scope.data!==undefined&&typeof($scope.data.fn)==='function'){
             $scope.data.fn();
+        } else {
+            $scope.data.fncancel();
         }
         $scope.$parent.close();
     };

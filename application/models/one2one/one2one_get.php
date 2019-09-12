@@ -16,11 +16,17 @@ class one2one_get extends core_model {
         $sql=$this->one2one_script->getlist('mainlink,info,vga').$whr;
         return $this->query($sql);
     }
-    /** api/gateway?re=fetch/one2one_get/getinfo/{$onoid} */
-    public function getinfo($userid=null){
+    /** api/gateway?re=fetch/one2one_get/getinfo/{$userid} */
+    public function getuser($userid=null,$activemodules=null){
         if($userid===null){return array("success"=>false);}
         $this->load->model('users/users_get','uget');
-        return $this->uget->getusers($userid);
+        return $this->uget->getusers($userid,$activemodules);
+    }
+    /** api/gateway?re=fetch/one2one_get/getinfo/{$userid} */
+    public function getinfo($userid=null){
+        if(empty($userid)){ return array("success"=>false,"info"=>"invalid user"); }
+        $sql=$this->one2one_script->getinfo()."WHERE user.userid=".$userid;
+        return $this->query($sql,true);
     }
     /** api/gateway?re=fetch/one2one_get/chapters/{$onoid} */
     public function chapters(){

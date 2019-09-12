@@ -7,11 +7,13 @@
  */
 class users_set extends core_model {
     public function __construct(){}
-    private function generatePassword($a=5,$b='azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789'){ /* api/gateway?re=fetch/users_set/generatepassword */
+    /** api/gateway?re=fetch/users_set/generatepassword */
+    private function generatePassword($a=5,$b='azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789'){
         if(empty($a)){return;} $bc=strlen($b)-1; $gen=''; for($i=0; $i < intval($a); $i++) { $h = mt_rand(1, $bc); $c = $b[$h]; $gen .= $c; }
         return $gen;
     }
-    public function create($fromadmin=true){ /* api/gateway?re=fetch/users_set/create */
+    /** api/gateway?re=fetch/users_set/create */
+    public function create($fromadmin=true){
         $userid=isset($_POST['userid'])?$_POST['userid']:0;
         $churchid=$this->data_app_get->getchurch('churchid');
         if(empty($churchid)){ return array('success'=>false,'info'=>'User center is required'); }

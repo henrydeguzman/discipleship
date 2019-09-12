@@ -13,7 +13,7 @@ class vg_get extends core_model {
         if(!empty($vgid)){
             $whr="WHERE xx.vgid=".$vgid;
         }
-        $sql=$this->vg_script->getvglist('mainlink,center,info').$whr;
+        $sql=$this->vg_script->getvglist('mainlink,center,info,vg_intern').$whr;
         return $this->query($sql);
     }
     /** api/gateway?re=fetch/vg_get/getothrvgs */

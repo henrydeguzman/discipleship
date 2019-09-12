@@ -188,8 +188,8 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
             return {
                 create:function(params){
                     return load(params);
-                },confirm:function(content,fn){
-                    var params={url:'uib/template/modal/wraper/types/confirm.html',type:'confirm',data:{confirm:content,fn:fn},options:{backdrop:'static',size:'sm'}};
+                },confirm:function(content,fn,fncancel){
+                    var params={url:'uib/template/modal/wraper/types/confirm.html',type:'confirm',data:{confirm:content,fn:fn,fncancel:fncancel},options:{backdrop:'static',size:'sm'}};
                     return load(params);
                 },asynchronous:function(params){
                     params.type='asynchronous';
