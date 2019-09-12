@@ -12,9 +12,7 @@ class vg_intern extends core_model {
     }
     /** api/gateway?re=fetch/vg_intern/set */
     public function set(){
-        //$internid=isset($_POST['internid'])?$_POST['internid']:0; if(empty($internid)){ return array("success"=>false,"info"=>"Invalid internid"); }
         $value=isset($_POST['value'])?$_POST['value']:0;
-        //$info=$this->getinfo($internid);
         if($value=='0'){
             $internid=isset($_POST['internid'])?$_POST['internid']:0; if(empty($internid)){ return array("success"=>false,"info"=>"Invalid internid"); }
             $result=$this->delete('user_vg_intern',"internid=".$internid);
@@ -29,10 +27,5 @@ class vg_intern extends core_model {
             }
         }
         return $result;
-    }
-    private function getinfo($internid){
-        $whr="WHERE user_vg_intern.internid=".$internid;
-        $sql=$this->vg_intern_script->getinfo().$whr;
-        return $this->query($sql,true);
     }
 }

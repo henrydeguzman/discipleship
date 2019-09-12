@@ -51,33 +51,21 @@ victory
             });
         };
         vm.addtointern=function(value,node){
-            console.log(node);
             dialogs.confirm('Are you sure ?',function(){
                 var data={value:value,vgid:node.vgid,internid:node.internid,userid:node.userid};
-                console.log(data);
                 var posted=centralFctry.postData({ url:'fetch/vg_intern/set', data:data });
                 if(posted.$$state!==undefined){
                     posted.then(function(v){
-                        console.log(v.data);
                         centralFctry.dialoghandler(v);
-                        if(v.data.success){
-                            node.internid=v.data.lastid;
-                        } else {
-                            node.isintern=value==0?1:0;
-
-                        }
+                        if(v.data.success){ node.internid=v.data.lastid; } else { node.isintern=value==0?1:0; }
                     });
                 }
-            },function(){
-                node.isintern=value==0?1:0;
-            });
+            },function(){ node.isintern=value==0?1:0; });
         };
         vm.form={data:{}};
         vm.form.save=function(){
             var notif=Notification(notifValues['processing']({message:'Updating...'},$scope)),
-                posted=centralFctry.postData({
-                    url:'fetch/vg_set/set_info ',data:vm.form.data
-                });
+                posted=centralFctry.postData({ url:'fetch/vg_set/set_info ',data:vm.form.data });
             if(posted.$$state!==undefined){
                 return posted.then(function(v){
                     Notification(notifValues['updated']($scope));
