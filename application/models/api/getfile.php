@@ -38,7 +38,7 @@ class getfile extends _API {
     private function getImage($filepath,$filename,$_ext='.jpeg'){
         $size=isset($_GET['size'])?$_GET['size']:0;
         $thumbnail='';
-        if(!empty($size)&&in_array($size,array("32","64","120"))) {
+        if(!empty($size)&&in_array($size,array("32","64","120","22"))) {
             $thumbnail="/thumbnails/".$size."x".$size;
             $filename= strtok($filename,'.');
             $filename=$filename.$_ext;

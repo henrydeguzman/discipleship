@@ -39,13 +39,23 @@
     color:white;
 }
 .page-dashboard .small-box._banner._banner-empowering-leaders img {
-    width:110px;
+    width: 42px;
 }
 
 .page-dashboard .small-box._banner._banner-leadership113 {
     background-image: url(../../../assets/img/bg/empower.png);
     color:white;
+    min-height:128px;
 }
 .page-dashboard .small-box._banner._banner-leadership113 img {
-    width:110px;
+    max-width:100%;
+}
+.page-dashboard .small-box._banner._banner-leadership113 .icon {
+    left: 0px;
+    margin-left:10px;
+}
+.page-dashboard .small-box._banner._banner-leadership113 .small-box-footer {
+    position:absolute;
+    width:100%;
+    bottom:0;
 }
