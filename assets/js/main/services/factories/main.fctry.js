@@ -139,7 +139,7 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
              }
              else if(params.json!==''&&params.json!==undefined){url+=params.json}
              else{return false;}
-             if(params.data!==''&&params.data!==undefined&&params.data.length>0&&typeof(params.data)==='object'){
+             if(params.data!==''&&params.data!==undefined&&typeof(params.data)==='object'){
                  url+="&"+$httpParamSerializer(params.data);
              }
             return $http({method:'GET',data:data,url:url,headers:headers});

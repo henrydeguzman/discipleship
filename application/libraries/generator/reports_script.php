@@ -19,7 +19,6 @@ class Reports_Script {
                 LEFT JOIN (SELECT count(user_journey.making_disciples) as making_disciples_count,user_journey.making_disciples,user.churchid FROM user INNER JOIN user_journey ON user.userid=user_journey.userid WHERE user_journey.making_disciples <> '0000-00-00 00:00:00') making_disciples ON making_disciples.churchid=church.churchid
                 LEFT JOIN (SELECT count(user_journey.empowering_leaders) as empowering_leaders_count,user_journey.empowering_leaders,user.churchid FROM user INNER JOIN user_journey ON user.userid=user_journey.userid WHERE user_journey.empowering_leaders <> '0000-00-00 00:00:00') empowering_leaders ON empowering_leaders.churchid=church.churchid
                 LEFT JOIN (SELECT count(user_journey.leadership_113) as leadership_113_count,user_journey.leadership_113,user.churchid FROM user INNER JOIN user_journey ON user.userid=user_journey.userid WHERE user_journey.leadership_113 <> '0000-00-00 00:00:00') leadership_113 ON leadership_113.churchid=church.churchid
-                LEFT JOIN (SELECT count(user_journey.baptized) as baptized_count,user_journey.baptized,user.churchid FROM user INNER JOIN user_journey ON user.userid=user_journey.userid WHERE user_journey.baptized='1') baptized ON baptized.churchid=church.churchid
-                ";
+                LEFT JOIN (SELECT count(user_journey.baptized) as baptized_count,user_journey.baptized,user.churchid FROM user INNER JOIN user_journey ON user.userid=user_journey.userid WHERE user_journey.baptized='1') baptized ON baptized.churchid=church.churchid ";
     }
 }

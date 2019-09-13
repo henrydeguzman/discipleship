@@ -9,7 +9,10 @@ class reports_get extends core_model {
     public function __construct(){ $this->script->load('reports_script'); }
     /** api/gateway?re=fetch/reports_get/getlist */
     public function getlist(){
-        $sql=$this->reports_script->getlist();
+        $churchid=isset($_GET['churchid'])?$_GET['churchid']:0;
+        $whr='';
+        if(!empty($churchid)){ $whr=self::extendwhr($whr,"church.churchid=".$churchid,"AND"); }
+        $sql=$this->reports_script->getlist().$whr;
         return $this->query($sql);
     }
 }
