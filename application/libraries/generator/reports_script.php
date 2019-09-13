@@ -10,7 +10,7 @@ class Reports_Script {
         return "SELECT user_vg.vg_count,vg_intern.intern_count,
                 victory_weekend.victory_weekend_count,church_community.church_community_count,purple_book.purple_book_count,
                 making_disciples.making_disciples_count,empowering_leaders.empowering_leaders_count,.leadership_113.leadership_113_count,baptized.baptized_count
-                ,church.churchid FROM church
+                ,church.churchid,church.name as churchname FROM church
                 LEFT JOIN (SELECT count(vgid) as vg_count, churchid,vgid FROM user INNER JOIN user_vg ON user.userid=user_vg.leaderid) user_vg ON user_vg.churchid=church.churchid
                 LEFT JOIN (SELECT count(internid) as intern_count, churchid,internid,user_vg_intern.statusid FROM user INNER JOIN user_vg_intern ON user.userid=user_vg_intern.userid) vg_intern ON vg_intern.churchid=church.churchid AND vg_intern.statusid=1
                 LEFT JOIN (SELECT count(user_journey.victory_weekend) as victory_weekend_count,user_journey.victory_weekend,user.churchid FROM user INNER JOIN user_journey ON user.userid=user_journey.userid WHERE user_journey.victory_weekend <> '0000-00-00 00:00:00') victory_weekend ON victory_weekend.churchid=church.churchid
