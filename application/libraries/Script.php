@@ -5,7 +5,7 @@
  * Date: 12/8/2018
  * Time: 02:39 PM
  */
-class script {
+class Script {
     var $ci;
     function __construct() { $this->ci=&get_instance(); }
     function load($cls){ $this->ci->load->library('generator/'.$cls,NULL,$cls); }
