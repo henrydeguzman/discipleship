@@ -21,10 +21,5 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 	    echo 'welcome';
-	    return;
-	    $this->load->model('centers/centers_get','center');
-	    $this->load->model('user/get','user');
-	    echo $this->user->sample();
-	    echo $this->center->sample();
 	}
 }
