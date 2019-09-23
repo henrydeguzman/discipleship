@@ -5,7 +5,7 @@
  * Date: 10/18/2018
  * Time: 12:13 PM
  */
-class template {
+class Template {
     var $ci;
     function __construct() { $this->ci=&get_instance(); }
     function load($body_view=null,$data=null,$layout='user'){
