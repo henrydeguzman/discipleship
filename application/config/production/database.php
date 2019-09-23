@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'	=> '',
-    'hostname' => 'localhost',
-    'username' => 'discipleship',
-    'password' => 'discipleship',
-    'database' => 'id9418900_victory_prod',
+    'hostname' => '108.167.189.107',
+    'username' => 'data2019_prod',
+    'password' => 'DOwaXbH&+9$+',
+    'database' => 'data2019_prod',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,
