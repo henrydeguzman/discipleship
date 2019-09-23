@@ -1,5 +1,5 @@
-RewriteEngine On
-Options -Indexes
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php/$1 [L]
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^rtudiscipleship.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.rtudiscipleship.com$
+RewriteCond %{REQUEST_URI} !discipleship/
+RewriteRule ^discipleship.*$ http://rtudiscipleship.com/discipleship/ [R=301,L]
