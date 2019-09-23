@@ -5,7 +5,7 @@
  * Date: 11/24/2018
  * Time: 08:31 PM
  */
-class core_loader extends CI_Loader {
+class Core_loader extends CI_Loader {
     public function jshtml_view($view, $vars = array(), $get = FALSE) {
         //  ensures leading /
         if ($view[0] != '/') $view = '' . $view;

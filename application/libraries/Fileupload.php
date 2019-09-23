@@ -5,7 +5,7 @@
  * Date: 5/20/2019
  * Time: 4:30 PM
  */
-class fileupload {
+class Fileupload {
     public function upload($_files=null,$type=null,$to='default',$encrypt=true){/* api/gateway?re=fetch/fileupload/upload */
         $allowed=$this->allowed($type);
         $filename= strtok($_files['name'],'?');

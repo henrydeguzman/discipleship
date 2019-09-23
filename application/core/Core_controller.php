@@ -5,7 +5,7 @@
  * Date: 10/18/2018
  * Time: 05:24 PM
  */
-class core_controller extends CI_Controller {
+class Core_controller extends CI_Controller {
     public function __construct() { parent::__construct(); }
     public function loadview(){
         if(isset($_GET['view'])){

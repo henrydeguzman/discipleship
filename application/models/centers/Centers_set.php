@@ -5,7 +5,7 @@
  * Date: 1/14/2019
  * Time: 04:43 PM
  */
-class centers_set extends core_model {
+class Centers_set extends core_model {
     public function __construct()
     {
 

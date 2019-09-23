@@ -5,7 +5,7 @@
  * Date : 2019-05-25
  * Time : 20:16
  */
-class weekend_script {
+class Weekend_script {
     public static $instance;
     function __construct(){self::$instance = &get_instance();}
     public static function getdates(){

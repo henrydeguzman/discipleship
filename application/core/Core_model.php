@@ -6,7 +6,7 @@
  * Time: 04:19 PM
  */
 
-class core_model extends CI_Model {
+class Core_model extends CI_Model {
     private static $_rowcount=0;
     private static $_offset=0;
     public function __construct() { parent::__construct(); }

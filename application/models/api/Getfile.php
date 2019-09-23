@@ -6,7 +6,7 @@
  * Time: 11:13 AM
  */
 require_once 'api.class.php';
-class getfile extends _API {
+class Getfile extends _API {
     protected  $user;
     public function __construct() {}
     protected function name($path){
