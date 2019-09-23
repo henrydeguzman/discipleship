@@ -7,7 +7,7 @@
  */
 class page extends core_controller {
     public function index(){
-        var_dump('see');
+
         if(isset($_SESSION['user'])){
             $this->data_app_get->idCurrentUser();
             $this->template->load();
@@ -17,6 +17,7 @@ class page extends core_controller {
     }
     public function login(){
         //session_destroy();
+        var_dump('see');
         $values=array();
         if(isset($_SESSION['user'])){
             header("location: ".base_url('page/index'));
