@@ -36,7 +36,7 @@ $config['base_url'] = 'http://rtudiscipleship.com/disciplesip/';
 |
 */
 $config['index_page'] = '';
-
+var_dump($config['base_url']);
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
