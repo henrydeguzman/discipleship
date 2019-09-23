@@ -5,7 +5,7 @@
  * Date: 1/14/2019
  * Time: 09:45 PM
  */
-class users_connection extends core_model {
+class Users_connection extends core_model {
     public function __construct() { }
     public function signout(){
         $destroy=session_destroy();
@@ -13,6 +13,7 @@ class users_connection extends core_model {
     }
     /** api/gateway?re=fetch/users_connection/verify */
     public function verify(){
+        return 's';
         /* users profile eligible: 1=member;3=admin;4=super admin */
         $email=isset($_POST['email'])?$_POST['email']:null; if(empty($email)){ return array("success"=>false,'info'=>'email is required'); }
         $password=isset($_POST['password'])?$_POST['password']:null; if(empty($password)){ return array("success"=>false,'info'=>'password is required'); }
