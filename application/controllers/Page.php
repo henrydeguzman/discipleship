@@ -17,7 +17,6 @@ class Page extends Core_Controller {
     }
     public function login(){
         //session_destroy();
-        var_dump('see');
         $values=array();
         if(isset($_SESSION['user'])){
             header("location: ".base_url('page/index'));
