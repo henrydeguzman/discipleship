@@ -24,7 +24,7 @@ class weekend_get extends core_model {
         return array(array(
             "id"=>"active","name"=>"Life Status",
             "childs"=>array(
-                array("id"=>1,"name"=>"sf"),
+                array("id"=>1,"name"=>"Life StatusLife StatusLife StatusLife StatusLife Status"),
             )
         ));
     }

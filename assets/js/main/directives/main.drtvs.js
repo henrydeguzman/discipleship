@@ -765,6 +765,7 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                     vm.table.filter.showchild=index;
                 }
             };
+            vm.table.filter.checkall=function(item){ for(var x=0;x<item.childs.length;x++){ item.childs[0].checked=item.allchecked; } };
             vm.table.filter.submit=function(){
                 var data={};
                 if(vm.table.filter.data.length!==0){
@@ -775,7 +776,6 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                     }
                 }
                 console.log(data);
-                console.log(vm.table.filter.compose);
             };
             vm.headertitle=function(html){ $scope.header.title=html; };
             /** enabled right click on generic table */

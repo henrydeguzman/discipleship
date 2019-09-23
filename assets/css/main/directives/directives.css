@@ -128,7 +128,7 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._
     color:#939ba1;
     background-clip: padding-box;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, .15);
+    border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
     max-width:100%;

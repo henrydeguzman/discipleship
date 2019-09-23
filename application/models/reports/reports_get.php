@@ -15,4 +15,8 @@ class reports_get extends core_model {
         $sql=$this->reports_script->getlist().$whr;
         return $this->query($sql);
     }
+    /** api/gateway?re=fetch/reports_get/getfilters */
+    public function getfilters(){
+
+    }
 }

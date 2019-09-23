@@ -13,7 +13,7 @@
                                 <ul class="_child" ng-show="gtTblCtrl.table.filter.showchild==key">
                                     <li>
                                         <label class="gen-checkbox-style">
-                                            <input type="checkbox" />
+                                            <input ng-change="gtTblCtrl.table.filter.checkall(item)" ng-model="item.allchecked" type="checkbox" />
                                             <div>Check all</div>
                                         </label>
                                     </li>
