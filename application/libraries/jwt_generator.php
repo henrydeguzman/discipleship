@@ -8,6 +8,7 @@
 require_once 'vendor/autoload.php';
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\ExpiredException;
 
 class Jwt_Generator
 {
@@ -104,7 +105,7 @@ class Jwt_Generator
             'aud'   => $this->audience,
             'sub'   => $this->subject,
             'iat'   => $this->issuedAt,
-            'nbf'   => $this->issuedAt + ($this->EXPIRATION_TIME + $this->LEEWAY_TIME),
+            'nbf'   => $this->issuedAt,
             'exp'   => $this->issuedAt + ($this->EXPIRATION_TIME + $this->LEEWAY_TIME)
         );
         $this->jsonWebToken = JWT::encode($token, $secretKey, 'HS512');
@@ -116,8 +117,13 @@ class Jwt_Generator
         if (!is_string($token) || $token === "") { exit; }
         if (!is_string($secretKey) || $secretKey === "") { exit; }
 
-        $decodedToken = (array)JWT::decode($token, $secretKey, array('HS512'));
-        return $decodedToken;
+        $decodedToken = array();
+
+        try {
+            $decodedToken = (array)JWT::decode($token, $secretKey, array('HS512'));
+        } catch (ExpiredException $ex) { }
+
+        return $decodedToken; 
     }
 
     function __destruct()

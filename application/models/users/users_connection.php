@@ -1,17 +1,8 @@
 <?php
-/**
- * !!! STRICTLY FOR DEVELOPMENT PURPOSES ONLY !!!
- *
- * This section MUST ONLY BE USED DURING DEVELOPMENT.
- * Please provide better code/library that will be use on production.
- */
 require_once "vendor/autoload.php";
+
 use PHPMailer\PHPMailer\PHPMailer;
-/**
- * !!! END OF RESTRICTION FOR DEVELOPMENT !!!
- */
-
-
+use PHPMailer\PHPMailer\Exception;
 
 /**
  * Created by PhpStorm.
@@ -49,60 +40,72 @@ class users_connection extends core_model {
 
         $sql="SELECT * FROM `user` WHERE email='".$email."'";
         $result = self::query($sql, true);
+        
+        if ($result) {
+            $this->load->library('jwt_generator');
+            $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
 
-        $this->load->library('jwt_generator');
-        $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
+            $mail = new PHPMailer;
+            $mail->isSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 587;
+            $mail->SMTPSecure = 'tls';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'justineang.official@gmail.com';
+            $mail->Password = 'Al3x0403Ang99!!!112498';
 
-        /**
-         * !!! STRICTLY FOR DEVELOPMENT PURPOSES ONLY !!!
-         *
-         * This section MUST ONLY BE USED DURING DEVELOPMENT.
-         * Please provide better code/library that will be use on production.
-         */
-        $mail = new PHPMailer;
+            $mail->setFrom('webmaster@discipleship.org', 'Discipleship Team');
+            $mail->addReplyTo('no-reply@discipleship.org', 'No-Reply');
+            $mail->addAddress($result->email, $result->firstname.' '.$result->lastname);
+            $mail->Subject = 'Request to Reset Password';
 
-        // Tell PHPMailer to use SMTP.
-        $mail->isSMTP();
+            $mail->msgHtml(file_get_contents('assets/files/htmlemails/html/reset_password_email.html'));
+            $mail->AltBody = file_get_contents('assets/files/htmlemails/plaintext/reset_password_email.txt');
+            //$mail->wrapText($mail->Body, 100);
+            
+            //return array('success' => false, 'info' => $mail->ErrorInfo);
 
-        // Enable SMPTP Debugging.
-        //  0 = Off (Production Use ONLY)
-        //  1 = Client Only
-        //  2 = Client and Server
-        $mail->SMTPDebug = 2;
+            $searchNeedle = array(
+                '{{ Mail::Title }}',
+                '{{ Mail::Recepient }}',
+                '{{ Mail::JSONToken }}',
+                '{{ Mail::Sender }}',
+                '{{ Mail::CopyrightYear }}'
+            );
 
-        // Set the hostname of the mail server.
-        $mail->Host = 'smtp.gmail.com';
+            $replaceStack = array(
+                'Reset Email',
+                $result->firstname,
+                base_url('page/reset_account/'.$result->userid.'/'.$token),
+                'Discipleship Team',
+                date('Y')
+            );
 
-        $mail->Port = 587;
+            $mail->Body = str_replace($searchNeedle, $replaceStack, $mail->Body);
+            $mail->AltBody = str_replace($searchNeedle, $replaceStack, $mail->AltBody);
 
-        $mail->SMTPSecure = 'tls';
+            if (!$mail->send()) {
+                return array("success"=>false, 'info'=>"Error Message: ".$mail->ErrorInfo);
+            } else {
+                // The path to where to save the emails sent.
+                $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
 
-        // Set whether to use SMTP Authentication.
-        $mail->SMTPAuth = true;
+                // Tell your server to open an IMAP connect using
+                // the same username and password used in SMTP.
+                $imapStream = imap_open($path, $mail->Username, $mail->Password);
+                $result = imap_append($imapStream, $path,  $mail->getSentMIMEMessage());
+                imap_close($imapStream);
 
-        // Set the Email and Password for Authentication.
-        $mail->Username = "justineang.official@gmail.com";
-        $mail->Password = "Al3x0403Ang99!!!112498";
-
-        // Set some headers for the email.
-        $mail->setFrom('webmaster@discipleship.victory.org.ph');
-        $mail->setReplyTo('no-rely@discipleship.victory.org.ph');
-        $mail->setAddress($result->email);
-        $mail->Subject = "Request to Reset Password";
-        //$mail->msgHtml(); // Use to send HTML Email
-        //$mail->AltBody = ''; // Use to send HTML Email
-        $mail->Body = $token;
-
-        if (!$mail->send()) {
-            return array("success" => false, 'info' => "Mail Error: ".$mail->ErrorInfo);
+                return array("success"=>true, 'info'=>base_url());
+            }
         } else {
-            return array("success"=>true, 'info'=>base_url());
+            return array("success"=>false, 'info'=>"Sorry, we didn't find any account associated with this email.");
         }
+    }
 
-        /**
-         * !!! END OF RESTRICTION FOR DEVELOPMENT !!!
-         */
-
-        //return array("success"=>true, 'info'=>base_url());
+    public function getuserbyid($userID){
+        $sql="SELECT * FROM `user` WHERE userid=".$userID;
+        return self::query($sql, true);
     }
 }
