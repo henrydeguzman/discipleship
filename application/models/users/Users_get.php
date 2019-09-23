@@ -11,7 +11,7 @@
  * 2:non-member = during one 2 one
  * 3:admin = access administration pages
  * */
-class users_get extends Core_Model {
+class Users_get extends Core_Model {
     public function __construct() { $this->script->load('users_script'); }
     public function tablelist(){ /* api/gateway?re=fetch/users_get/tablelist */
         $whr='WHERE x.profileid=1';$toprow=false;

@@ -5,7 +5,7 @@
  * Date : 2019-05-25
  * Time : 20:11
  */
-class weekend_get extends Core_Model {
+class Weekend_get extends Core_Model {
     public function __construct(){ $this->script->load('weekend_script'); }
     /** api/gateway?re=fetch/weekend_get/dates */
     public function dates($churchid=null){

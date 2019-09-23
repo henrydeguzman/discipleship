@@ -5,7 +5,7 @@
  * Date: 06/07/2019
  * Time: 10:57 AM
  */
-class reports_get extends Core_Model {
+class Reports_get extends Core_Model {
     public function __construct(){ $this->script->load('reports_script'); }
     /** api/gateway?re=fetch/reports_get/getlist */
     public function getlist(){

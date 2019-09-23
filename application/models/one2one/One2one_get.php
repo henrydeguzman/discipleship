@@ -5,7 +5,7 @@
  * Date: 1/19/2019
  * Time: 12:54 PM
  */
-class one2one_get extends Core_Model {
+class One2one_get extends Core_Model {
     public function __construct() { $this->script->load('one2one_script'); }
     /** api/gateway?re=fetch/one2one_get/tablelist */
     public function tablelist(){

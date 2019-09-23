@@ -5,7 +5,7 @@
  * Date: 1/19/2019
  * Time: 10:19 AM
  */
-class one2one_set extends Core_Model {
+class One2one_set extends Core_Model {
     public function __construct(){}
     public function create(){ /** api/gateway?re=fetch/one2one_set/create */
         $this->load->model('users/users_set','uset');

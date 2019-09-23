@@ -5,7 +5,7 @@
  * Date: 2/16/2019
  * Time: 04:25 PM
  */
-class vg_get extends Core_Model {
+class Vg_get extends Core_Model {
     public function __construct(){ $this->script->load('vg_script'); }
     /** api/gateway?re=fetch/vg_get/tablelist */
     public function tablelist($vgid=null){

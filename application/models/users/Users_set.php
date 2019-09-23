@@ -5,7 +5,7 @@
  * Date: 1/14/2019
  * Time: 10:36 PM
  */
-class users_set extends Core_Model {
+class Users_set extends Core_Model {
     public function __construct(){}
     /** api/gateway?re=fetch/users_set/generatepassword */
     private function generatePassword($a=5,$b='azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789'){
