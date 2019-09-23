@@ -36,7 +36,6 @@ $config['base_url'] = 'http://rtudiscipleship.com';
 |
 */
 $config['index_page'] = '';
-var_dump('production');
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
@@ -114,7 +113,7 @@ $config['enable_hooks'] = FALSE;
 | https://codeigniter.com/user_guide/general/creating_libraries.html
 |
 */
-$config['subclass_prefix'] = 'core_';
+$config['subclass_prefix'] = 'Core_';
 
 /*
 |--------------------------------------------------------------------------
