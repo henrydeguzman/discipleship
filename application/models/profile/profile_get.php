@@ -5,7 +5,7 @@
  * Date: 4/13/2019
  * Time: 05:35 PM
  */
-class profile_get extends core_model {
+class profile_get extends Core_Model {
     public function __construct(){ $this->script->load('profile_script'); }
     /** api/gateway?re=fetch/profile_get/getpagedata */
     public function getpagedata(){

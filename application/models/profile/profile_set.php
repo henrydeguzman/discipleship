@@ -5,7 +5,7 @@
  * Date: 4/13/2019
  * Time: 11:04 PM
  */
-class profile_set extends core_model {
+class profile_set extends Core_Model {
     public function __construct(){}
     /** api/gateway?re=fetch/profile_set/uploadphoto */
     public function uploadphoto(){

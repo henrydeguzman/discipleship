@@ -5,7 +5,7 @@
  * Date: 12/09/2019
  * Time: 6:11 PM
  */
-class vg_intern extends core_model {
+class vg_intern extends Core_Model {
     public function __construct(){
         $this->script->load('vg_intern_script');
         $this->load->model('one2one/one2one_get','one2one_get');

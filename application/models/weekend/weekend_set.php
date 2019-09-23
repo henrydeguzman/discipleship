@@ -5,7 +5,7 @@
  * Date : 2019-05-25
  * Time : 20:09
  */
-class weekend_set extends core_model {
+class weekend_set extends Core_Model {
     public function __construct(){
         $this->load->model('users/users_set','usersset');
     }

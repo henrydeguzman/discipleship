@@ -5,7 +5,7 @@
  * Date: 2/16/2019
  * Time: 09:15 PM
  */
-class vg_set extends core_model {
+class vg_set extends Core_Model {
     public function __construct(){}
     /** api/gateway?re=fetch/vg_set/edit */
     public function edit(){

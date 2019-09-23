@@ -5,7 +5,7 @@
  * Date: 21/06/2019
  * Time: 2:27 PM
  */
-class settings_get extends core_model {
+class settings_get extends Core_Model {
     /** api/gateway?re=fetch/settings_get/getdataform */
     public function getdataform(){
         $values=array();

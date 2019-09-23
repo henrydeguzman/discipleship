@@ -6,7 +6,7 @@
  * Time: 04:18 PM
  */
 require_once 'api.class.php';
-class request extends _API{
+class Request extends _API{
     protected  $user;
     public function __construct() {
         parent::__construct($_REQUEST['re']);

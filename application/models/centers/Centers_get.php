@@ -5,7 +5,7 @@
  * Date: 1/14/2019
  * Time: 03:45 PM
  */
-class Centers_get extends core_model {
+class Centers_get extends Core_Model {
     public function __construct() { $this->script->load('centers_script'); }
     public function tablelist(){ /* api/gateway?re=fetch/centers_get/tablelist */
         $whr='';$toprow=false;

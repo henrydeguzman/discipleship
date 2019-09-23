@@ -5,7 +5,7 @@
  * Date: 13/09/2019
  * Time: 4:17 PM
  */
-class dashboard_get extends core_model {
+class Dashboard_get extends Core_Model {
     public function __construct() { }
     /** api/gateway?re=fetch/dashboard_get/getlist */
     public function getlist(){

@@ -5,7 +5,7 @@
  * Date: 1/14/2019
  * Time: 09:45 PM
  */
-class Users_connection extends core_model {
+class Users_connection extends Core_Model {
     public function __construct() { }
     public function signout(){
         $destroy=session_destroy();
