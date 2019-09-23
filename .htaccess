@@ -1,5 +1,0 @@
-RewriteEngine on
-RewriteCond %{HTTP_HOST} ^rtudiscipleship.com$ [NC,OR]
-RewriteCond %{HTTP_HOST} ^www.rtudiscipleship.com$
-RewriteCond %{REQUEST_URI} !discipleship/
-RewriteRule ^discipleship.*$ http://rtudiscipleship.com/discipleship/ [R=301,L]
