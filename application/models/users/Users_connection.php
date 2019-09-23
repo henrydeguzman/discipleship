@@ -13,7 +13,6 @@ class Users_connection extends Core_Model {
     }
     /** api/gateway?re=fetch/users_connection/verify */
     public function verify(){
-        return 's';
         /* users profile eligible: 1=member;3=admin;4=super admin */
         $email=isset($_POST['email'])?$_POST['email']:null; if(empty($email)){ return array("success"=>false,'info'=>'email is required'); }
         $password=isset($_POST['password'])?$_POST['password']:null; if(empty($password)){ return array("success"=>false,'info'=>'password is required'); }
