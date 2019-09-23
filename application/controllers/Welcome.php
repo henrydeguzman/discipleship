@@ -20,6 +20,8 @@ class Welcome extends core_controller {
 	 */
 	public function index()
 	{
+	    echo 'welcome';
+	    return;
 	    $this->load->model('centers/centers_get','center');
 	    $this->load->model('user/get','user');
 	    echo $this->user->sample();
