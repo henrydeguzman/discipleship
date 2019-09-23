@@ -5,7 +5,7 @@
  * Date: 11/24/2018
  * Time: 04:07 PM
  */
-class api extends Core_controller {
+class api extends Core_Controller {
     function gateway(){
         if (!array_key_exists('HTTP_ORIGIN', $_SERVER)) {
             $_SERVER['HTTP_ORIGIN'] = $_SERVER['SERVER_NAME'];

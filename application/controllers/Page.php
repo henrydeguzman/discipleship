@@ -5,7 +5,7 @@
  * Date: 11/24/2018
  * Time: 06:41 PM
  */
-class Page extends Core_controller {
+class Page extends Core_Controller {
     public function index(){
 
         if(isset($_SESSION['user'])){
