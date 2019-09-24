@@ -49,7 +49,7 @@ angular.module('MainControllers',[])
             var posted=centralFctry.postData({ url:'fetch/users_connection/reset_password',data:form });
             if(posted.$$state!==undefined){
                 return posted.then(function(v){
-                    console.log(v.data);return;
+                    console.log(v.data);
                     // if(v.data.success){
                     //     vm.message.info=v.data.info;vm.message.color='green';
                     //     location.reload();
