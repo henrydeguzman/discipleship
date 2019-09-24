@@ -17,6 +17,6 @@ class Reports_get extends Core_Model {
     }
     /** api/gateway?re=fetch/reports_get/getfilters */
     public function getfilters(){
-
+        return 'asdf';
     }
 }

@@ -44,7 +44,6 @@ class Users_connection extends Core_Model {
         if ($result) {
             $this->load->library('jwt_generator');
             $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
-
             $mail = new PHPMailer;
             $mail->isSMTP();
             $mail->SMTPDebug = 0;
@@ -60,8 +59,8 @@ class Users_connection extends Core_Model {
             $mail->addAddress($result->email, $result->firstname.' '.$result->lastname);
             $mail->Subject = 'Request to Reset Password';
 
-            $mail->msgHtml(file_get_contents('assets/files/htmlemails/html/reset_password_email.html'));
-            $mail->AltBody = file_get_contents('assets/files/htmlemails/plaintext/reset_password_email.txt');
+            $mail->msgHtml(file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset_password_email.html'));
+            $mail->AltBody = file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/reset_password_email.txt');
             //$mail->wrapText($mail->Body, 100);
             
             //return array('success' => false, 'info' => $mail->ErrorInfo);

@@ -9,13 +9,20 @@ class Template {
     var $ci;
     function __construct() { $this->ci=&get_instance(); }
     function load($body_view=null,$data=null,$layout='user'){
-        if($layout==='login'){ $this->content('templates/login/'.$body_view,$data);return; }
-        if($layout==='forgot_password'){ $this->content('templates/forgot_password/'.$body_view,$data);return; }
+        $layout=explode('/',$layout);
+        if($layout[0]==='auth'){
+            //var_dump($layout);
+            //var_dump('templates/'.array_shift($layout).'/'.array_shift($layout).'/'.$body_view);return;
+
+
+            $this->content('templates/'.array_shift($layout).'/'.array_shift($layout).'/'.$body_view,$data);return;
+        }
+        $layout=$layout[0];
+        //if($layout==='forgot_password'){ $this->content('templates/forgot_password/'.$body_view,$data);return; }
         $this->ci->load->view("templates/".$layout."/header.html");
         $this->ci->load->view("templates/".$layout."/sidebar.html");
         $this->ci->load->view("templates/".$layout."/bcrumbs.html");
         $this->ci->load->view("templates/".$layout."/content.html");
-        //$this->content($body_view,$data);
         $this->ci->load->view("templates/".$layout."/footer.html");
         $this->ci->load->view("templates/".$layout."/rightmenu.html");
         $this->ci->load->view("templates/".$layout."/javascripts.html");

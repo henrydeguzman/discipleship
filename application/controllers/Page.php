@@ -12,35 +12,47 @@ class Page extends Core_Controller {
             $this->data_app_get->idCurrentUser();
             $this->template->load();
         } else {
-            header("location: ".base_url('page/login'));
+            header("location: ".base_url('page/auth'));
         }
     }
-    public function login(){
+    public function auth($type=null){
         //session_destroy();
         $values=array();
         if(isset($_SESSION['user'])){
             header("location: ".base_url('page/index'));
         } else {
-            $this->template->load('login.html',$values,'login');
+            $path="login";$template=$path;
+            //var_dump($type);
+            switch ($type){
+                case "link-sent":
+                case "create-new-password":
+                    $path="forgot-password";$template=$type;
+                    break;
+                case !null:
+                    //$this->template->load($type.'.html',$values,'auth/'.$type);
+                    $path=$type;$template=$path;
+                    break;
+            }
+            $this->template->load($template.'.html',$values,'auth/'.$path);
         }
 
     }
-    public function forgot_password(){
+   /* public function forgot_password(){
         $values=array();
         if(isset($_SESSION['user'])){
             header("location: ".base_url('page/index'));
         } else {
             $this->template->load('forgot_password.html',$values,'forgot_password');
         }
-    }
-    public function link_sent(){
+    }*/
+   /* public function link_sent(){
         $values=array();
         if(isset($_SESSION['user'])){
             header("location: ".base_url('page/index'));
         } else {
             $this->template->load('resetlink_sent.html',$values,'forgot_password');
         }
-    }
+    }*/
     public function reset_account($userID, $token) {
         $this->load->model('users/users_connection');
         $result = $this->users_connection->getuserbyid($userID);
@@ -65,13 +77,15 @@ class Page extends Core_Controller {
                      * the form.
                      */
                     if ($this->input->get()) {
-                        $this->template->load('create_new_password.html',$values,'forgot_password');
+                        $this->template->load('create-new-password.html',$values,'auth/forgot-password');
+                        //$this->template->load('create_new_password.html',$values,'forgot_password');
                     } else {
                         $this->load->library('form_validation');
                         $this->form_validation->set_rules('password', 'Password', 'trim|required');
                         $this->form_validation->set_rules('passwordconf', 'Password Confirmation', 'trim|required|matches[password]');
                         if ($this->form_validation->run() == false) {
-                            $this->template->load('create_new_password.html',$values,'forgot_password');
+                            $this->template->load('create-new-password.html',$values,'auth/forgot-password');
+                            //$this->template->load('create_new_password.html',$values,'forgot_password');
                         } else {
                             $password = $_POST['password'];
                             $passwordconf = $_POST['passwordconf'];

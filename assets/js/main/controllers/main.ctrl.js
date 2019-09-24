@@ -49,6 +49,7 @@ angular.module('MainControllers',[])
             var posted=centralFctry.postData({ url:'fetch/users_connection/reset_password',data:form });
             if(posted.$$state!==undefined){
                 return posted.then(function(v){
+                    console.log(v.data);return;
                     // if(v.data.success){
                     //     vm.message.info=v.data.info;vm.message.color='green';
                     //     location.reload();
@@ -62,7 +63,7 @@ angular.module('MainControllers',[])
                         vm.message.info=v.data.info;
                         vm.message.color='red';
                     } else {
-                        location.assign(v.data.info+'page/link_sent');
+                        location.assign(v.data.info+'page/auth/link-sent');
                     }
                 });
             }
