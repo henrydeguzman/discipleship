@@ -52,8 +52,8 @@ class users_connection extends core_model {
             $mail->Port = 587;
             $mail->SMTPSecure = 'tls';
             $mail->SMTPAuth = true;
-            $mail->Username = 'justineang.official@gmail.com';
-            $mail->Password = 'Al3x0403Ang99!!!112498';
+            $mail->Username = ''; // Please provide this...
+            $mail->Password = ''; // Please provide this...
 
             $mail->setFrom('webmaster@discipleship.org', 'Discipleship Team');
             $mail->addReplyTo('no-reply@discipleship.org', 'No-Reply');
