@@ -416,7 +416,7 @@ label.gen-checkbox-style > div {
 .gen-text-divider > li {
     display:inline-block;
     position:relative;
-    z-index:22222222222;
+    z-index:2;
 }
 .gen-text-divider:after {
     content:'';
