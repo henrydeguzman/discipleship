@@ -11,13 +11,12 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": ">=5.3.7"
-	},
-	"suggest": {
-		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
+		"php": ">=5.3.7",
+		"firebase/php-jwt": "^5.0",
+		"phpmailer/phpmailer": "^6.0",
+		"league/oauth2-client": "^2.4"
 	},
 	"require-dev": {
-		"mikey179/vfsStream": "1.1.*",
 		"phpunit/phpunit": "4.* || 5.*"
 	}
 }

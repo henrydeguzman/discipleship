@@ -12,6 +12,19 @@ class Users_set extends Core_Model {
         if(empty($a)){return;} $bc=strlen($b)-1; $gen=''; for($i=0; $i < intval($a); $i++) { $h = mt_rand(1, $bc); $c = $b[$h]; $gen .= $c; }
         return $gen;
     }
+    /* api/gateway?re=fetch/users_set/resetPassword */
+    public function resetPassword($newPassword, $confirmPassword, $userId) {
+        $this->load->model('users_connection');
+        $result = $this->users_connection->getuserbyid($userId);
+        if ($result) {
+            if (sha1($newPassword) === sha1($confirmPassword)) {
+                $data = array(
+                    'password' => sha1($newPassword)
+                );
+                $this->update('user', $data, 'userid='.$userId);
+            }
+        }
+    }
     /** api/gateway?re=fetch/users_set/create */
     public function create($fromadmin=true){
         $userid=isset($_POST['userid'])?$_POST['userid']:0;

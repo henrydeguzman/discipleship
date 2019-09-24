@@ -39,6 +39,38 @@ angular.module('MainControllers',[])
             $scope.required={email:'required',password:'required'};
         }
     }])
+    .controller('main.resetpassword.controller',['$scope','centralFctry',function($scope,centralFctry){
+        var vm=this;
+        $scope.form={};
+        $scope.required={};
+        vm.message={info:undefined,color:false};
+        vm.verify=function(form){
+            console.log(form);
+            var posted=centralFctry.postData({ url:'fetch/users_connection/reset_password',data:form });
+            if(posted.$$state!==undefined){
+                return posted.then(function(v){
+                    // if(v.data.success){
+                    //     vm.message.info=v.data.info;vm.message.color='green';
+                    //     location.reload();
+                    // } else {
+                    //     required();
+                    //     vm.message.info=v.data.info;
+                    //     vm.message.color='red';
+                    // }
+                    if(!v.data.success){
+                        required();
+                        vm.message.info=v.data.info;
+                        vm.message.color='red';
+                    } else {
+                        location.assign(v.data.info+'page/link_sent');
+                    }
+                });
+            }
+        };
+        function required(){
+            $scope.required={email:'required'};
+        }
+    }])
     .controller('main.sidebar.controller',['$stateParams','$scope',function($stateParams,$scope){
         var vm=this;
         $scope.stateparams=$stateParams;
