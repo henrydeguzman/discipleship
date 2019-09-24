@@ -2,13 +2,25 @@
  * Created by Actino-Dev on 11/24/2018.
  */
 angular.module('MainControllers',[])
-    .controller('appmain.controller',['$scope','genvarsValue','pathValue','spinnerValues',function($scope,genvarsValue,pathValue,spinnerValues){
+    .provider('globalsetting', function () {
+        var appname = "LAWYER APP";
+        this.setAppName = function (value) {
+            appname = value;
+        }
+        this.$get = function () {
+            return {
+                appName: appname
+            };
+        }
+    })
+    .controller('appmain.controller',['$scope','genvarsValue','pathValue','spinnerValues','isloadingService',function($scope,genvarsValue,pathValue,spinnerValues,isloadingService){
         var vm=this;
         /** declare global variables */
         vm.userdata=genvarsValue.userdata();
         $scope.genvarsValue=genvarsValue;
         $scope.pathValue=pathValue;
         $scope.spinnerValues=spinnerValues;
+        $scope.isloadingService=isloadingService;
     }])
     .controller('main.header.controller',['centralFctry',function(centralFctry){
         var vm=this;

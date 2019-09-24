@@ -3,11 +3,13 @@
  */
 victory
     .config(['$logProvider','$stateProvider','$urlRouterProvider',function($logProvider,$stateProvider,$urlRouterProvider){
+
         $stateProvider
             .state('sref_sidebar',{
                 url:'/{tab}/{name}',
                 resolve: {
-                    getdata:function($stateParams,pageService){
+                    getdata:function($stateParams,pageService,isloadingService){
+                        isloadingService.set('content',true);
                         return pageService.getdata($stateParams);
                     }
                 },
@@ -17,7 +19,10 @@ victory
                             var f=stateParams.tab.split(';'),path=stateParams.tab+"/"+stateParams.tab+".html";
                             if(f.length>1){ path=f.join("/")+'.html'; }
                             return "page/loadview?view="+path;
-                        },controller:function(getdata,pageService,$stateParams){ pageService.setdata(getdata[$stateParams.tab]); }
+                        },controller:function(getdata,pageService,$stateParams,isloadingService){
+                            isloadingService.set('content',false);
+                            pageService.setdata(getdata[$stateParams.tab]);
+                        }
                     }
                 }
             });

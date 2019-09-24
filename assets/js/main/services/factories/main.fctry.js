@@ -2,10 +2,15 @@
  * Created by Actino-Dev on 11/24/2018.
  */
 angular.module('MainFactories',[])
+    .factory('isloadingService',[isloadingService])
     .factory('pageService',['centralFctry',pageService])
     .factory('tableService',['glfnc',tableService])
     .factory('glfnc',['$window',glfnc])
     .factory('centralFctry',['$http','$httpParamSerializer','$httpParamSerializerJQLike','pathValue','dialogs',centralFctry]);
+function isloadingService(){
+    var loading={content:false};
+    return { set:function(type,value){ loading[type]=value; }, get:loading }
+}
 function pageService(centralFctry){
     var vm=this; vm.pages={};
     function getdata(params){

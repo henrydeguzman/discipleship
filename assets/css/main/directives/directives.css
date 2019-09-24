@@ -1237,6 +1237,7 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
     -moz-border-radius: 5px;
     border-radius: 5px;
     padding: 0 0 10px 0;
+    z-index: 1050;
 }
 .gen-profile-container > ._profile > ._cover {
     height:120px;
