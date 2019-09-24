@@ -5,7 +5,7 @@ angular.module('MainFactories',[])
     .factory('pageService',['centralFctry',pageService])
     .factory('tableService',['glfnc',tableService])
     .factory('glfnc',['$window',glfnc])
-    .factory('centralFctry',['$http','$httpParamSerializer','$httpParamSerializerJQLike','pathValue','$sce',centralFctry]);
+    .factory('centralFctry',['$http','$httpParamSerializer','$httpParamSerializerJQLike','pathValue','dialogs',centralFctry]);
 function pageService(centralFctry){
     var vm=this; vm.pages={};
     function getdata(params){
@@ -38,20 +38,24 @@ function tableService(glfnc){
             if(type==='tblcol'){
                 if(ctrl.column.settings.list==='dynamic'){return;}
                 transclude(scope, function(clone) {
-                    ctrl.table.td.data.push({html:clone,text:clone.text(),field:scope.field,show:true,colif:scope.colIf});
+                    ctrl.table.td.data.push({html:clone,text:clone.text(),field:scope.field,show:true,colif:scope.colIf,format:scope.format,onclick:scope.gtclick});
                 });
             } else if(type==='dynamic'){
                 var isthclickable=false,onclick=scope.$eval(ctrl.column.settings.rclick);
                 if(onclick!==undefined&&typeof(onclick)==='function'&&scope.field==='reverse'){ isthclickable=true; }
                 if(ctrl.column.settings.rclick!==undefined){}
-                ctrl.table.td.data.push({html:scope.clone,text:scope.text,field:scope.field,show:true,isthclickable:isthclickable,onclick:onclick});
+                ctrl.table.td.data.push({html:scope.clone,text:scope.text,field:scope.field,show:true,isthclickable:isthclickable,onclick:onclick,format:scope.format,onclick:scope.gtclick});
                 ctrl.column.list.push({_apply:this.cols_apply});/* only for dynamic because of scope and attr */
             }
         },
         cols_apply:function(c,x,params,scope,attr,th_index){ /* gtTableCol apply */
             var produced,addrow='',dropdown=null,parent={type:undefined,value:'',indexes:[],level:1,indent:''},style=scope.tdStyle,tdparent=false;
             var isEditable=false,istdclickable=false,editico='';
-            if(scope.gtclick!==undefined){istdclickable=true;}
+            if(scope.gtclick!==undefined){
+                if(scope.format==='numchecklist'){/** immediate return when format found. */
+                    istdclickable=false;
+                }else { istdclickable=true; }
+            }
             if(attr.editable!==undefined){ isEditable=true;if(attr.editable!==''){editico=attr.editable;}else{editico='_edit';} }
 
             /* added for accessrights editable */
@@ -97,16 +101,16 @@ function tableService(glfnc){
             else if(c.response.formatter.$$state!==undefined&&scope.format!==undefined&&scope.format!==''){
                 if(c.table.formatter[scope.format]!==undefined){
                     /*produced=angular.extend({value:parent.value+c.table.formatter[scope.format](c.table.tr[x],scope.field)+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:scope.tdStyle,_dropdown:dropdown},c.table.tr[x]);*/
-                    produced={value:parent.value+c.table.formatter[scope.format](c.table.tr[x],scope.field,c.table.td.data[th_index])+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
+                    produced={format:scope.format,value:parent.value+c.table.formatter[scope.format](c.table.tr[x],scope.field,c.table.td.data[th_index],x)+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
                 }
                 else {
-                    produced={value:'<div class="unset">-</div>',editable:isEditable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
+                    produced={format:scope.format,value:'<div class="unset">-</div>',editable:isEditable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
                 }
             } else {
                 var val=c.table.tr[x][scope.field];
                 if(glfnc.trim(val)==='-') { val="<div class='unset'>"+val+"</div>"; }
                 else if(val===null||val===undefined||val===''){val="<div class='unset'>-</div>"; }
-                produced={value:parent.value+val+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
+                produced={format:scope.format,value:parent.value+val+addrow,editable:isEditable,onclick:scope.gtclick,istdclickable:istdclickable,txtalign:scope.textAlign,tdstyle:style,_dropdown:dropdown,_parent:parent,context:scope.context,contextfn:scope.contextfn,editico:editico,field:scope.field,parent:tdparent};
             }
             return produced;
         }
@@ -118,9 +122,13 @@ function glfnc(){
         isEmpty:function(obj){ var bar; for (bar in obj) { if (obj.hasOwnProperty(bar)) { return false; } } return true; }
     }
 }
-function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,pathValue,$sce){
+function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,pathValue,dialogs){
     var headers={'Content-Type':'application/x-www-form-urlencoded'};
     return {
+        dialoghandler:function(v,cb){
+            if(v.data!==undefined&&v.data.type==='error'){ dialogs.error(v.data.info,function(){ if(cb!==undefined){ cb(); } }); }
+            if(v.data!==undefined&&v.data.type==='notify'){ dialogs.notify(v.data.info,function(){ if(cb!==undefined){ cb(); } }); }
+        },
         getData:function(params){
              var url='',data;
              if(typeof(params)!=='object'){return false;}
@@ -131,7 +139,7 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
              }
              else if(params.json!==''&&params.json!==undefined){url+=params.json}
              else{return false;}
-             if(params.data!==''&&params.data!==undefined&&params.data.length>0&&typeof(params.data)==='object'){
+             if(params.data!==''&&params.data!==undefined&&typeof(params.data)==='object'){
                  url+="&"+$httpParamSerializer(params.data);
              }
             return $http({method:'GET',data:data,url:url,headers:headers});

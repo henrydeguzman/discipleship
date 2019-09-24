@@ -2,6 +2,7 @@
  * Created by Actino-Dev on 11/24/2018.
  */
 angular.module('MainDirectives',[])
+    .directive('validNumber', ['glfnc',validNumber])
     .directive('gtHeaderNav',['pathValue','genvarsValue','centralFctry','$document',gtHeaderNav])
     .directive('gtAccordion',[gtAccordion])
     .directive('gtAccordionContent',['$timeout',gtAccordionContent])
@@ -20,10 +21,88 @@ angular.module('MainDirectives',[])
     .directive('gtTableTitle',[gtTableTitle])
     .directive('gtTableFilter',['centralFctry',gtTableFilter])
     .directive('gtTableBtns',['$q',gtTableBtns])
-    .directive('gtTableCol',['glfnc','$q','tableService',gtTableCol])
+    .directive('gtTableCol',['glfnc','$q','tableService','$timeout',gtTableCol])
     .directive('gtTable',['centralFctry','tableService','pathValue','glfnc','$filter','$http','$q','inifrmtrValue',gtTable])
     .directive('gtTableSort',[gtTableSort])
     .directive('bindHtmlCompile',['$compile','$sce',bindHtmlCompile]);
+function validNumber(glfnc) {
+    return {
+        require: '?ngModel',
+        link: function (scope, element, attrs, ngModelCtrl) {
+            element.on('keydown', function (event) {
+                var keyCode=[]
+                if(attrs.allowNegative == "true") { keyCode = [8,9,36,35,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,109,110,173,190,189]; }
+                else{ var keyCode = [8,9,36,35,37,39,46,48,49,50,51,52,53,54,55,56,57,96,97,98,99,100,101,102,103,104,105,110,173,190]; }
+                if(attrs.allowDecimal == "false") {
+                    var index = keyCode.indexOf(190);
+                    if (index > -1) { keyCode.splice(index, 1); }
+                }
+                if ($.inArray(event.which, keyCode) == -1) event.preventDefault();
+                else {
+                    var oVal = ngModelCtrl.$modelValue || '';
+                    if ($.inArray(event.which, [109, 173]) > -1 && oVal.indexOf('-') > -1) event.preventDefault();
+                    else if ($.inArray(event.which, [110, 190]) > -1 && oVal.indexOf('.') > -1) event.preventDefault();
+                }
+            }).on('blur', function () {
+                if (element.val() == '' || parseFloat(element.val()) == 0.0 || element.val() == '-') {
+                    var pushtext='';
+                    if(attrs.allowDecimal=="false"){
+                        pushtext='0';
+                    } else {
+                        pushtext='0.00';
+                    }
+                    if(glfnc.trim(attrs.validNumber)!==''){
+                        if(attrs.validNumber==='_'){pushtext='';}
+                        pushtext=attrs.validNumber;
+                    }
+                    ngModelCtrl.$setViewValue(pushtext);
+                }
+                else if(attrs.allowDecimal == "false") { ngModelCtrl.$setViewValue(element.val()); } else{ if(attrs.decimalUpto) { var fixedValue = parseFloat(element.val()).toFixed(attrs.decimalUpto); }  else{ var fixedValue = parseFloat(element.val()).toFixed(2);} ngModelCtrl.$setViewValue(fixedValue); }
+                ngModelCtrl.$render(); scope.$apply();
+            });
+            ngModelCtrl.$parsers.push(function (text) {
+                var oVal = ngModelCtrl.$modelValue;
+                var nVal = ngModelCtrl.$viewValue;
+                if (parseFloat(nVal) != nVal) {
+                    if (nVal === null || nVal === undefined || nVal == '' || nVal == '-') oVal = nVal;
+                    ngModelCtrl.$setViewValue(oVal);
+                    ngModelCtrl.$render();
+                    return oVal;
+                }
+                else {
+                    var decimalCheck = nVal.split('.');
+                    if (!angular.isUndefined(decimalCheck[1])) {
+                        if(attrs.decimalUpto) { decimalCheck[1] = decimalCheck[1].slice(0, attrs.decimalUpto); }
+                        else { decimalCheck[1] = decimalCheck[1].slice(0, 2);}
+                        nVal = decimalCheck[0] + '.' + decimalCheck[1];
+                    }
+                    ngModelCtrl.$setViewValue(nVal); ngModelCtrl.$render(); return nVal;
+                }
+            });
+            ngModelCtrl.$formatters.push(function (text) {
+                if (text == '0' || text == 0 || text == null && attrs.allowDecimal == "false"){
+                    if(glfnc.trim(attrs.validNumber)===''){
+                        return '0';
+                    }else{
+                        if(attrs.validNumber==='_'){return '';}
+                        return attrs.validNumber;
+                    }
+                }
+                else if (text == '0' || text == null && attrs.allowDecimal != "false" && attrs.decimalUpto == undefined){
+                    if(glfnc.trim(attrs.validNumber)===''){
+                        return '0.00';
+                    }else{
+                        if(attrs.validNumber==='_'){return '';}
+                        return attrs.validNumber;
+                    }
+                }
+                else if (text == '0' || text == null && attrs.allowDecimal != "false" && attrs.decimalUpto != undefined){ return parseFloat(0).toFixed(attrs.decimalUpto); }
+                else if (attrs.allowDecimal != "false" && attrs.decimalUpto != undefined){ return parseFloat(text).toFixed(attrs.decimalUpto); }
+                else{ if(attrs.allowDecimal != "false"){return parseFloat(text).toFixed(2);} else { return parseFloat(text); }}
+            });
+        }
+    };
+}
 function gtHeaderNav(pathValue,genvarsValue,centralFctry,$document){
     return {
         restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/header/nav.html',
@@ -64,7 +143,6 @@ function gtAccordionContent($timeout){
         restrict:"E",require:"^gtAccordion",transclude:true,template:'<ng-transclude ng-show="false"></ng-transclude>',
         scope:{template:'@',active:'@'},
         link:function(scope,element,attrs,ctrl,transclude){
-            console.log(ctrl);
             var data={};
             $timeout(function(){
                 transclude(scope,function(clone){
@@ -101,7 +179,6 @@ function gtAccordion(){
                 vm.loadtemplate(item);
             };
             vm.loadtemplate=function(item,$index){
-                console.log(item);
                 vm.accords.active=$index;
                 item.loaded=true;
                 item.loadtemplate=item.template;
@@ -203,7 +280,7 @@ function gtTab($timeout){
                     if(scope.active!==undefined){
                         data.loaded=true;
                         data.active=true;
-                        ctrl.loadtemplate(data,ctrl.tabs.c);
+                        ctrl.loadtemplate(data,ctrl.tabs.c,'init');
                     }
                     ctrl.tabs.list[ctrl.tabs.c]=data;
                     ctrl.tabs.c++;
@@ -249,14 +326,14 @@ function gtTabset(dialogs,centralFctry){
                 if(type==='remove'){
                     e.stopPropagation();
                     var index=vm.tabs.list.indexOf(item);
-                    if(confirm('Are you sure?')){
+                    dialogs.confirm('Are you sure ?',function(){
                         var posted=centralFctry.postData({ url:'app?api=angular_tabset::removetab', data:{pageid:item.pageid} });
                         if(posted.$$state!==undefined){
                             posted.then(function(v){
                                 vm.tabs.list.splice(index, 1);
                             });
                         }
-                    }
+                    });
                 }
                 else if(type==='add'||type==='edit'){
 
@@ -284,13 +361,13 @@ function gtTabset(dialogs,centralFctry){
                     });
                 }
             };
-            vm.loadtemplate=function(item,$index){
+            vm.loadtemplate=function(item,$index,$numclick){
                 vm.tabs.active=$index;
                 item.loaded=true;
                 item.active=true;
                 item.loadtemplate=item.template;
                 var fn=$scope.$eval($attrs.gtOnchange);
-                if(fn!==undefined){ fn(item,$index,'tab'); }
+                if(fn!==undefined){ fn(item,$index,'tab',$numclick); }
                 hideall($index);
             };
             function hideall(index){
@@ -545,7 +622,6 @@ function gtTableFilter(centralFctry){
             var get=centralFctry.getData({url:scope.model,json:'page/loadview?dir=jshtml&view=directives/table/tbl_filter/filter.json'});
             if(get.$$state!==undefined){
                 get.then(function(v){
-                    console.log(v.data);
                     ctrl.table.filter.data=v.data;
                 });
             }
@@ -568,14 +644,14 @@ function gtTableBtns($q){
         restrict:'E',require:'^gtTable',transclude:true,replace:true,template:'<div class="_tbl-btns" style="display:none;"></div>',
         scope:{action:'@',gtclick:'&?'},
         link:function(scope,element,attr,ctrl,transclude){
-            var html='',data={onclick:scope.gtclick,action:scope.action};
+            var html='',data={onclick:scope.gtclick(),action:scope.action};
             if(scope.action==='add'){
                 html='<i class="fa fa-plus" aria-hidden="true"></i>';
             }
             else if(scope.action==='button'){
                 transclude(scope,function(clone){
                     data.clone=clone;
-                    html='<button class="btn" ng-click="" bind-html-compile="item.clone"></button>';
+                    html='<button class="btn" bind-html-compile="item.clone"></button>';
                 });
             }
             data.html=html;
@@ -606,22 +682,24 @@ function gtTableSort(){
         },controllerAs:'gtTblSortCtrl'
     }
 }
-function gtTableCol(glfnc,$q,tableService){
+function gtTableCol(glfnc,$q,tableService,$timeout){
     return {
         restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/table/cols.html',transclude:true,
         require:"^gtTable",
         scope:{field:'@',format:'@',gtclick:'&?',addrow:'@',textAlign:'@',addrowStyle:'<',tdStyle:'<',dropdown:'@',parent:'@',accessRights:'<',colIf:'<',context:'@',contextfn:'&'},
         link:function(scope, element, attr, ctrl,transclude){
-            scope.th_index=ctrl.column.count;
-            ctrl.column.count++;
-            if(scope.textAlign===undefined){scope.textAlign='left';}
-            /* ctrl.response.hiddencols; temporary removed */
-            $q.all([ctrl.response.content,ctrl.response.formatter]).then(function(a){
-                tableService.cols_th('tblcol',ctrl,scope,transclude,organize);/* October 9, 2018 = function to service _apply */
-                if(ctrl.column.settings.list===undefined){ /* for not dynamic only */
-                    organize(ctrl);
-                }
-                ctrl.column.list.push({_apply:_apply});/* only for not dynamic because of scope and attr */
+            $timeout(function(){
+                scope.th_index=ctrl.column.count;
+                ctrl.column.count++;
+                if(scope.textAlign===undefined){scope.textAlign='left';}
+                /* ctrl.response.hiddencols; temporary removed */
+                $q.all([ctrl.response.content,ctrl.response.formatter]).then(function(a){
+                    tableService.cols_th('tblcol',ctrl,scope,transclude,organize);/* October 9, 2018 = function to service _apply */
+                    if(ctrl.column.settings.list===undefined){ /* for not dynamic only */
+                        organize(ctrl);
+                    }
+                    ctrl.column.list.push({_apply:_apply});/* only for not dynamic because of scope and attr */
+                });
             });
             function organize(c){
                 for(var x=0;x<c.table.tr.length;x++){ c.table.tr[x]['td'].push(_apply(c,x)); }
@@ -643,13 +721,19 @@ function gtTableCol(glfnc,$q,tableService){
         },controllerAs:'gtTblClCtrl'
     }
 }
-function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inifrmtrValue){
+function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inifrmtrValue,$timeout){
     return {
         restrict:'E',transclude:true,templateUrl:'page/loadview?dir=jshtml&view=directives/table/table.html', scope:true,
         link:function(scope, element, attr, controller){
             scope.pathValue=pathValue;
             if(attr.id!==undefined){ var modal={id:attr.id,refresh:controller.refresh,refreshrow:controller.refreshrow}; tableService.add(modal); }
-            controller.getData('content');controller.getData('formatter');
+            //controller.getData('content');controller.getData('formatter');
+            /* testing manual from manual call get data content and formatter into observe */
+            attr.$observe('model',function(nval,oval){
+                console.log(nval,oval);
+                controller.table.valid=true;
+                controller.getData('content');controller.getData('formatter');
+            });
             var cols=scope.$eval(attr.columns);
             if(attr.columns!==undefined&&typeof(cols)==='object') {
                 controller.column.settings=cols;
@@ -660,7 +744,7 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
             var vm=this,tblformatter={};
             vm.table={
                 filter:{data:[]},
-                tr:[],td:{data:[],show:false},export:{show:false,data:[]},data:[],refreshed:1,valid:false,count:0,header:{btns:[]},pagination:{offset:0},settings:{sort:undefined,search:undefined}};
+                tr:[],td:{data:[],show:false,checkbox:false},export:{show:false,data:[]},data:[],refreshed:1,valid:false,count:0,header:{btns:[]},pagination:{offset:0},settings:{sort:undefined,search:undefined}};
             $scope.header={show:true,style:{}};
             if($attrs.headerstyle!==undefined){$scope.header.style=$scope.$eval($attrs.headerstyle);}
             if($attrs.tablestyle!==undefined){$scope.tablestyle=$scope.$eval($attrs.tablestyle);}
@@ -681,6 +765,7 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                     vm.table.filter.showchild=index;
                 }
             };
+            vm.table.filter.checkall=function(item){ for(var x=0;x<item.childs.length;x++){ item.childs[0].checked=item.allchecked; } };
             vm.table.filter.submit=function(){
                 var data={};
                 if(vm.table.filter.data.length!==0){
@@ -691,7 +776,6 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                     }
                 }
                 console.log(data);
-                console.log(vm.table.filter.compose);
             };
             vm.headertitle=function(html){ $scope.header.title=html; };
             /** enabled right click on generic table */
@@ -754,6 +838,14 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 vm.table.valid=true;
                 getData('content');
             };
+            /*vm.table.td.kickcheckbox=function(item){
+                console.log(item,vm.table.td.checkbox);
+                for(var x=0;x<vm.table.tr.length;x++){
+                    vm.table.tr[x]['_checked']=vm.table.td.checkbox;
+                    item.onclick()(vm.table.tr[x],item,x);
+                }
+            };*/
+
             vm.table.td.toggle=function(){
                 vm.table.export.show=false;
                 vm.table.td.show?vm.table.td.show=false:vm.table.td.show=true;

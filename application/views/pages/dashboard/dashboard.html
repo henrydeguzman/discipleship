@@ -1,1 +1,103 @@
-<div>sample dashboard</div>
+<div class="page-dashboard" ng-controller="dashboard.page.controller as dashboardpageCtrl">
+    <div class="row">
+        <ul class="gen-text-divider">
+            <li>
+                <select class="gen-input-control">
+                    <option ng-repeat="i in _dates">{{i}}</option>
+                </select>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box _banner _banner-victoryweekend">
+                <div class="inner">
+                    <h3>{{dashboardpageCtrl.list.data.victory_weekend_count | fltr_zeroifnull}}</h3>
+                    <p>Victory weekend</p>
+                </div>
+                <div class="icon">
+                    <!--<i class="ion ion-bag"></i>-->
+                    <img ng-src="api/getfile?name=img/victoryweekend/victoryweekend-border.png&size=120&basepath=assets&ext=.png">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box _banner _banner-church-community">
+                <div class="inner">
+                    <h3>{{dashboardpageCtrl.list.data.church_community_count | fltr_zeroifnull}}</h3>
+                    <p>Church Community</p>
+                </div>
+                <div class="icon">
+                    <!--<i class="ion ion-bag"></i>-->
+                    <img ng-src="api/getfile?name=img/church-community/church-community-border.png&size=120&basepath=assets&ext=.png">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box _banner _banner-purple-book">
+                <div class="inner">
+                    <h3>{{dashboardpageCtrl.list.data.purple_book_count | fltr_zeroifnull}}</h3>
+                    <p>Purple Book</p>
+                </div>
+                <div class="icon">
+                    <!--<i class="ion ion-bag"></i>-->
+                    <img ng-src="api/getfile?name=img/purple-book/purple-book-border.png&size=120&basepath=assets&ext=.png">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box _banner _banner-makingdisciple">
+                <div class="inner">
+                    <h3>{{dashboardpageCtrl.list.data.making_disciples_count | fltr_zeroifnull}}</h3>
+                    <p>Making Disciples</p>
+                </div>
+                <div class="icon">
+                    <!--<i class="ion ion-bag"></i>-->
+                    <img ng-src="api/getfile?name=img/makingdisciple/makingdisciple-border.png&size=120&basepath=assets&ext=.png">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box _banner _banner-empowering-leaders">
+                <div class="inner">
+                    <h3>{{dashboardpageCtrl.list.data.empowering_leaders_count | fltr_zeroifnull}}</h3>
+                    <p>Empowering Leaders</p>
+                </div>
+                <div class="icon">
+                    <!--<i class="ion ion-bag"></i>-->
+                    <img ng-src="api/getfile?name=img/empowering-leader/empowering-leader-border.png&size=64&basepath=assets&ext=.png">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box _banner _banner-leadership113">
+                <div class="inner">
+                    <h3>{{dashboardpageCtrl.list.data.leadership_113_count | fltr_zeroifnull}}</h3>
+                    <p></p>
+                </div>
+                <div class="icon">
+                    <!--<i class="ion ion-bag"></i>-->
+                    <img ng-src="api/getfile?name=img/leadership113/leadership113-border.png&size=22&basepath=assets&ext=.png">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

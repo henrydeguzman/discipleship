@@ -3,6 +3,7 @@
  */
 victory.controller('one2one.ctrl.diags.addfrm',['$scope','Notification','notifValues','centralFctry','tableService','genvarsValue',function($scope,Notification,notifValues,centralFctry,tableService,genvarsValue){
     var vm=this;
+    console.log($scope.data);
     $scope.form={type:'add',ismember:0};
     $scope.required={};
     $scope.selected={center:{}};
@@ -66,7 +67,7 @@ victory.controller('one2one.ctrl.diags.addfrm',['$scope','Notification','notifVa
     }
     function getdata(userid){
         var posted=centralFctry.getData({
-            url:'fetch/one2one_get/getinfo/'+userid
+            url:'fetch/one2one_get/getuser/'+userid
         });
         if(posted.$$state!==undefined){
             posted.then(function(v){

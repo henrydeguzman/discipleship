@@ -39,8 +39,7 @@ victory
         var vm=this;
         $scope.genvarsValue=genvarsValue;
         vm.delete=function(tr){
-            console.log('delete',tr);
-            if(confirm("Are you sure?")){
+            dialogs.confirm('Are you sure ?',function(){
                 var posted=centralFctry.postData({url:'fetch/vg_set/set_vg',data:{userid:tr.userid,value:0}});
                 if(posted.$$state!==undefined){
                     posted.then(function(v){
@@ -49,14 +48,24 @@ victory
                         }
                     })
                 }
-            }
+            });
+        };
+        vm.addtointern=function(value,node){
+            dialogs.confirm('Are you sure ?',function(){
+                var data={value:value,vgid:node.vgid,internid:node.internid,userid:node.userid};
+                var posted=centralFctry.postData({ url:'fetch/vg_intern/set', data:data });
+                if(posted.$$state!==undefined){
+                    posted.then(function(v){
+                        centralFctry.dialoghandler(v);
+                        if(v.data.success){ node.internid=v.data.lastid; } else { node.isintern=value==0?1:0; }
+                    });
+                }
+            },function(){ node.isintern=value==0?1:0; });
         };
         vm.form={data:{}};
         vm.form.save=function(){
             var notif=Notification(notifValues['processing']({message:'Updating...'},$scope)),
-                posted=centralFctry.postData({
-                    url:'fetch/vg_set/set_info ',data:vm.form.data
-                });
+                posted=centralFctry.postData({ url:'fetch/vg_set/set_info ',data:vm.form.data });
             if(posted.$$state!==undefined){
                 return posted.then(function(v){
                     Notification(notifValues['updated']($scope));
@@ -68,9 +77,9 @@ victory
             }
         };
         vm.form.dialog=function($id){
-            console.log('fired',$id);
+            console.log('fired',typeof $id);
             var title='Add',data={fromctrl:'vg'};
-            if($id!==undefined){
+            if(typeof($id)==='string'){
                 title='Edit';data={userid:$id};
             }
             dialogs.create({

@@ -1,0 +1,11 @@
+<div ng-controller="victoryweekend.ctrl.diags.email as vweekendEmailsCtrl">
+    <form class="gen-form-static">
+        <div class="form-group">
+            <label class="gfs-title">#{{data.index}}: {{data.tr.firstname+' '+data.tr.lastname}}</label>
+            <input type="email" ng-model="form.email" class="gen-input-control" placeholder="Please enter email address" />
+        </div>
+        <div class="form-btn-right">
+            <button ng-click="vweekendEmailsCtrl.submit()" class="btn btn-success btn-xs">Submit</button>
+        </div>
+    </form>
+</div>

@@ -1,6 +1,6 @@
 <div class="page-one2one" ng-controller="one2one.page.controller as one2onepageCtrl">
     <gt-table id="one2one.memlist" model="fetch/one2one_get/tablelist" formatter="one2one/formatter/one2onetable.js">
-        <gt-table-btns action="add" gtclick="one2onepageCtrl.form.dialog()"></gt-table-btns>
+        <gt-table-btns action="add" gtclick="one2onepageCtrl.form.dialog"></gt-table-btns>
         <gt-table-col field="no" format="count" text-align="center" td-style="{width:'1px'}">#</gt-table-col>
         <gt-table-col field="fullname" format="fullname">Name</gt-table-col>
         <gt-table-col field="phonenumber">Contact #</gt-table-col>

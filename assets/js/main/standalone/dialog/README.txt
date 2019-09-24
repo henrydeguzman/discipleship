@@ -31,6 +31,10 @@ onclosed:function(params,dgdata)
     - if the $scope.$parent.close(p) is called the "p" should be the params on onclosed function
     - if the $scope.$parent.dgdata is initialized, the dgdata on onclosed will be the value.
 type:'wait','error','notify','confirm'
+    - error
+        dialogs.error('content',function(){})
+    - notify
+        dialogs.notify('notify body content')
     - confirm
         ex. dialogs.confirm('confirm ?',function(){})
         - function will be executed when clicked on "Yes"
@@ -40,7 +44,16 @@ type:'wait','error','notify','confirm'
             1. size:'sm'
             2. backdrop:'static'
             3. keyboard:false
+            4. otherdata:{autoclosed:true}
         * required params *
             1. model:''
-                - to api data: {successcnt:0} = matic
-                - return value from model should be : {total:5,success:true,successcnt:1} = manual
+                - to api data: {successcnt:0,percent:0,total:0} = matic
+                - return value from model should be : {total:5,success:true,successcnt:1,done:array()} = manual
+                example data to api.
+                percent: "0"
+                request: "1"
+                rows: [{…}]
+                successcnt: "0" = > count all _done true.
+                total: "0"
+
+                model should have id, if the id already done rows data should append _done:true

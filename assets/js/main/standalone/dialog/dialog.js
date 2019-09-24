@@ -55,7 +55,7 @@ ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,u
             $scope.diagwindow.show=false;
             break;
         case "notify":
-            $scope.title="<i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i>&nbsp;<span>Something Happened!</span>";
+            $scope.title="<i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i>&nbsp;<span>Information</span>";
             $scope.diagwindow.show=false;
             break;
         case "confirm":
@@ -74,7 +74,6 @@ angular.module('dialogs.directive',[])
         return {
             restrict: 'E',
             templateUrl: 'page/loadview?dir=jshtml&view=dialogs/generic-popup/generic-popup.html',
-            template:'',
             link:function(scope,element,attrs,ctrl){
                 if(scope.type==='confirm'){
                     scope.url='uib/template/modal/wraper/types/confirm.html';
@@ -100,28 +99,29 @@ angular.module('dialogs.directive',[])
         }
     }]);
 
-ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope','$element','centralFctry',function($compile,$templateRequest,$scope,$element,centralFctry){
+ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope','$element','centralFctry','dialogs','$timeout',function($compile,$templateRequest,$scope,$element,centralFctry,dialogs,$timeout){
     if($scope.url===''||$scope.url===undefined){return;}
     $templateRequest($scope.url).then(function(res){
         if($scope.type==='asynchronous'){
             if($scope.model===undefined){$element.find('.gen-dialog-c-content').html('Please provide model to begin asynchronous process.');return;}
-            var posted={data:{successcnt:0,total:0,percent:0}};$scope.data=posted.data;
+            var posted={data:{successcnt:0,total:0,percent:0,rows:$scope.data}};
             pushdata();
             function pushdata(){
-                posted.fn=centralFctry.postData({url:$scope.model,data:posted.data});
+                posted.fn=centralFctry.postData({url:$scope.model,data:posted.data,serializer:'jqlike'});
                 if(posted.fn.$$state!==undefined){
                     posted.fn.then(function(v){
                         console.log(v.data);
-                        if(v.data.success&&(posted.data.successcnt<v.data.successcnt)){
+                        if(v.data.success){
                             posted.data.successcnt=v.data.successcnt;
                             posted.data.total=v.data.total;
                             posted.data.percent=(posted.data.successcnt/posted.data.total)*100;
+                            posted.data.done=v.data.done;
                             $scope.data=posted.data;
-                            if(posted.data.total>v.data.successcnt){
-                                pushdata();
-                            } else if(posted.data.total==v.data.successcnt){
-                                //  $scope.$parent.close();
-                            }
+                            if(posted.data.total>v.data.successcnt){ pushdata(); } else if(posted.data.total==v.data.successcnt&&$scope.otherdata.autoclosed==true){ $timeout(function(){ $scope.$parent.close(); },1000); }
+                        } else {
+                            dialogs.error(v.data.info,function(){
+                                $scope.$parent.close();
+                            });
                         }
                     });
                 }
@@ -129,7 +129,6 @@ ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope'
         }
         $element.find('.gen-dialog-c-content').html($compile(res)($scope));
     });
-    console.log($scope.type,$scope.model);
 }]);
 
 /* Services */
@@ -162,7 +161,6 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
         }; // end useStaticBackdrop
         this.$get=['$uibModal',function($uibModal){
             function load(params){
-                console.log(params);
                 if(params==undefined){ params={}; }
                 var copy = (params.options && angular.isDefined(params.options.copy)) ? opts.copy : _copy;
                 var opts = _setOpts(params.options,params);
@@ -190,13 +188,23 @@ angular.module('dialogs.services',['ui.bootstrap','dialogs.controllers','dialogs
             return {
                 create:function(params){
                     return load(params);
-                },confirm:function(content,fn){
-                    var params={url:'uib/template/modal/wraper/types/confirm.html',type:'confirm',data:{confirm:content,fn:fn},options:{backdrop:'static',size:'sm'}};
+                },confirm:function(content,fn,fncancel){
+                    var params={url:'uib/template/modal/wraper/types/confirm.html',type:'confirm',data:{confirm:content,fn:fn,fncancel:fncancel},options:{backdrop:'static',size:'sm'}};
                     return load(params);
                 },asynchronous:function(params){
                     params.type='asynchronous';
                     if(params.options===undefined){ params.options={backdrop:'static',keyboard:false}; }
                     if(params.options.size===undefined){ params.options.size='sm'; }
+                    if(params.otherdata===undefined){ params.otherdata={autoclosed:true}; }
+                    if(params.otherdata.autoclosed===undefined){ params.otherdata.autoclosed=true; }
+                    return load(params);
+                },
+                notify:function(content){
+                    var params={url:'uib/template/modal/wraper/types/content.html',data:{content:content},type:'notify',options:{backdrop:'static',size:'sm'}};
+                    return load(params);
+                },
+                error:function(content,fn){
+                    var params={url:'uib/template/modal/wraper/types/content.html',data:{content:content,fn:fn},type:'error',options:{backdrop:'static',size:'sm'}};
                     return load(params);
                 }
             }
@@ -231,6 +239,14 @@ angular.module('dialogs.main',['dialogs.services'])
             '        <div class="form-btn-right">\n' +
             '            <button type="button" class="btn btn-default btn-sm" ng-click="appmaindiagcfrmCtrl.submit(true)">Yes</button>\n' +
             '            <button type="button" class="btn btn-primary btn-sm" ng-click="appmaindiagcfrmCtrl.submit()">No</button>\n' +
+            '        </div>\n' +
+            '    </form>\n' +
+            '</div>');
+        $templateCache.put("uib/template/modal/wraper/types/content.html", '<div ng-controller="appmaindiag.diagtype.notify as appmaindiagnfyCtrl">\n' +
+            '    <form class="gen-form-static">\n' +
+            '        <div bind-html-compile="data.content"></div>\n' +
+            '        <div class="form-btn-right">\n' +
+            '            <button type="button" class="btn btn-default btn-sm" ng-click="appmaindiagnfyCtrl.submit()">Ok</button>\n' +
             '        </div>\n' +
             '    </form>\n' +
             '</div>');

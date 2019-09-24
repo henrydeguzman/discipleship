@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+var_dump('welcome');
+class Welcome extends CI_Controller {
 
-class Welcome extends core_controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,9 +21,6 @@ class Welcome extends core_controller {
 	 */
 	public function index()
 	{
-	    $this->load->model('centers/centers_get','center');
-	    $this->load->model('user/get','user');
-	    echo $this->user->sample();
-	    echo $this->center->sample();
+	    echo 'welcome';
 	}
 }

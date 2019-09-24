@@ -2,10 +2,13 @@
  * Created by Actino-Dev on 11/24/2018.
  */
 angular.module('MainControllers',[])
-    .controller('appmain.controller',['$scope','genvarsValue','pathValue',function($scope,genvarsValue,pathValue){
+    .controller('appmain.controller',['$scope','genvarsValue','pathValue','spinnerValues',function($scope,genvarsValue,pathValue,spinnerValues){
         var vm=this;
+        /** declare global variables */
         vm.userdata=genvarsValue.userdata();
+        $scope.genvarsValue=genvarsValue;
         $scope.pathValue=pathValue;
+        $scope.spinnerValues=spinnerValues;
     }])
     .controller('main.header.controller',['centralFctry',function(centralFctry){
         var vm=this;
@@ -46,6 +49,7 @@ angular.module('MainControllers',[])
             var posted=centralFctry.postData({ url:'fetch/users_connection/reset_password',data:form });
             if(posted.$$state!==undefined){
                 return posted.then(function(v){
+                    console.log(v.data);
                     // if(v.data.success){
                     //     vm.message.info=v.data.info;vm.message.color='green';
                     //     location.reload();
@@ -59,7 +63,7 @@ angular.module('MainControllers',[])
                         vm.message.info=v.data.info;
                         vm.message.color='red';
                     } else {
-                        location.assign(v.data.info+'page/link_sent');
+                        location.assign(v.data.info+'page/auth/link-sent');
                     }
                 });
             }

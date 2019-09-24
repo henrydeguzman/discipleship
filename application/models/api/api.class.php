@@ -5,7 +5,7 @@
  * Date: 11/24/2018
  * Time: 04:13 PM
  */
-abstract class _API extends core_model {
+abstract class _API extends Core_Model {
     /**
      * Property: method
      * The HTTP method this request was made in, either GET, POST, PUT or DELETE

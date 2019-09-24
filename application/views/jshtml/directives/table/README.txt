@@ -7,19 +7,24 @@
     <gt-table-col field="control" editable gtclick="tabsCtrl.tab1.indicators.controladmn"><?= $this->tr('indicator.control.title');?></gt-table-col>
 </gt-table>
 
+
+
 table params:
 1. id
     -> if you want to refresh the table just provide id to it.
 2. model
     -> getlist
+    -> change on model string will reload the list
 3. bindmodel : built-in in table. also used in dataformatter built in function.
     -> <gt-table-editor> postdata. {field:0,rowid:18,value:'12',args:'comparisonid=1&rowmode=sub'}
     -> note: it will add args value from $scope.tr if there is dataargs
         e.g {id: "18", dataargs: "comparisonid=1&rowmode=sub", title: "test 2 risk", description: null, elementid: "18", …}
     -> field: from $scope.td['field']
 
-    dataformatter build-in functions
-        - checkbox
+    dataformatter build-in functions /assets/js/main/services/values/main.formatter.js
+    - numchecklist
+        - callback:function('type',tr) if gtclick is defined
+        - type: all/row-#
 
 3. formatter
     -> get javascript function format for all columns
@@ -70,7 +75,7 @@ cols params:
     -> field must define any varible that defined on getlist model.
 2. format: 'string'
     -> format must define any variable that defined on formatter
-    -> must return on formatter -> function(tr,field,col)
+    -> must return on formatter -> function(tr,field,td,index)
 3. addrow:
     -> variable that defined in formatter.
 4. text-align: left/center/right
@@ -116,7 +121,10 @@ css table supports
 2.
 
 ------- gt-table-btns -------
-<gt-table-btns action="add" gtclick="functionname">sample hover/gt-table-btns>
+<gt-table-btns action="add" gtclick="functionname">sample hover</gt-table-btns>
+<gt-table-btns action="button" gtclick="functionname"><span>Create Account!</span></gt-table-btns>
+functionname(vm.table.tr){// gives you tr data on the function
+}
 
 btns params:
 1. action: string
