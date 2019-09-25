@@ -33,6 +33,18 @@ class Smpt {
             //$mail->send();
             //echo 'Message has been sent';
 
+        $this->mail->addAddress('henrydeguzman.java73@gmail.com');
+        $this->mail->addReplyTo(self::TEAM_User, 'Information');
+
+        $this->mail->isHTML(true);
+        $this->mail->Subject='yes subject';
+        $this->mail->Body='yes body';
+        try {
+            $this->mail->send();
+        } catch (Exception $e) {
+            return array("success"=>false,'info'=>"Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}");
+        }
+
     }
     public function send($data=null){
         //Recipients
