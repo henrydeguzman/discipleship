@@ -66,13 +66,14 @@ angular.module('MainControllers',[])
                 });
             }
         };
-        vm.verify=function(form){
+        vm.verify={};
+        vm.verify.submit=function(form){
             console.log(form);
             var posted=centralFctry.postData({ url:'fetch/users_connection/reset_password',data:form });
             if(posted.$$state!==undefined){
                 return posted.then(function(v){
                     console.log(v.data);
-                    if(!v.data.success){ required(); vm.message.info=v.data.info; vm.message.color='red'; }
+                    if(!v.data.success){ required(); vm.verify.info=v.data.info; vm.verify.color='red'; }
                     else { location.assign(vtr.pathValue.base_url+'page/auth/link-sent'); }
                 });
             }
