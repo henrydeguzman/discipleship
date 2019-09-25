@@ -72,7 +72,8 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ._fi
 }
 gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters ul {
     list-style:none;
-    margin:0;padding:0;
+    margin:0;
+    padding:0;
     display:inline-block;
     position:absolute;
     z-index:1;
@@ -122,16 +123,19 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._
     top:1px;
     position:relative;
 }
-gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li ul._child {
-    top:100%;
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li ._child-container {
+    position:absolute;
     right:0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
+}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li ul._child {
     color:#939ba1;
     background-clip: padding-box;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
-    max-width:100%;
+    padding:0 5px;
+    position: relative;
 }
 div.gen-table-h-filters ul._parent > li ul._child > li {
     line-height:normal;

@@ -23,7 +23,8 @@ class Centers_get extends Core_Model {
         $data['whr']=$whr;
         return $data;
     }
-    public function getlist($churchid=0){ /* api/gateway?re=fetch/centers_get/getlist/{$churchid} */
+    /** api/gateway?re=fetch/centers_get/getlist/{$churchid} */
+    public function getlist($churchid=0){
         $toprow=false;$whr='';
         if(!empty($churchid)){
             $whr="WHERE a.churchid=".$churchid;$toprow=true;

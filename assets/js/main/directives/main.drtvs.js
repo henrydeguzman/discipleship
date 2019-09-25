@@ -22,7 +22,7 @@ angular.module('MainDirectives',[])
     .directive('gtTableFilter',['centralFctry',gtTableFilter])
     .directive('gtTableBtns',['$q',gtTableBtns])
     .directive('gtTableCol',['glfnc','$q','tableService','$timeout',gtTableCol])
-    .directive('gtTable',['centralFctry','tableService','pathValue','glfnc','$filter','$http','$q','inifrmtrValue',gtTable])
+    .directive('gtTable',['centralFctry','tableService','pathValue','glfnc','$filter','$http','$q','inifrmtrValue','$timeout',gtTable])
     .directive('gtTableSort',[gtTableSort])
     .directive('bindHtmlCompile',['$compile','$sce',bindHtmlCompile]);
 function validNumber(glfnc) {
@@ -622,7 +622,9 @@ function gtTableFilter(centralFctry){
             var get=centralFctry.getData({url:scope.model,json:'page/loadview?dir=jshtml&view=directives/table/tbl_filter/filter.json'});
             if(get.$$state!==undefined){
                 get.then(function(v){
-                    ctrl.table.filter.data=v.data;
+                    var data=[];
+                    if(v!==undefined&&typeof(v.data)=='object'){ data=v.data; }
+                    ctrl.table.filter.data=data;
                 });
             }
         },
@@ -754,7 +756,8 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 $scope.header.show=$attrs.header;
             }
             /** Filter */
-            vm.table.filter.toggle=function(from,index){
+            vm.table.filter.toggle=function(from,index,e){
+
                 if(from==='parent'){
                     vm.table.filter.show?vm.table.filter.show=false:vm.table.filter.show=true;
                 }
@@ -763,9 +766,15 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                         vm.table.filter.showchild=undefined;return;
                     }
                     vm.table.filter.showchild=index;
+                    var elem=angular.element(e.currentTarget).parent().find('._child');
+                    $timeout(function(){
+                        if (typeof $.fn.slimScroll !== 'undefined',elem[0].clientHeight>250) {
+                            $(elem[0]).slimScroll({ "height": '250px' });
+                        }
+                    },0);
                 }
             };
-            vm.table.filter.checkall=function(item){ for(var x=0;x<item.childs.length;x++){ item.childs[0].checked=item.allchecked; } };
+            vm.table.filter.checkall=function(item){ for(var x=0;x<item.childs.length;x++){ item.childs[x].checked=item.allchecked; } };
             vm.table.filter.submit=function(){
                 var data={};
                 if(vm.table.filter.data.length!==0){

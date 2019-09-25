@@ -6,7 +6,10 @@
  * Time: 10:57 AM
  */
 class Reports_get extends Core_Model {
-    public function __construct(){ $this->script->load('reports_script'); }
+    public function __construct(){
+        $this->script->load('reports_script');
+        $this->load->model('global/global_filters','gfilters');
+    }
     /** api/gateway?re=fetch/reports_get/getlist */
     public function getlist(){
         $churchid=isset($_GET['churchid'])?$_GET['churchid']:0;
@@ -17,6 +20,10 @@ class Reports_get extends Core_Model {
     }
     /** api/gateway?re=fetch/reports_get/getfilters */
     public function getfilters(){
-        return 'asdf';
+        return array(
+            array("id"=>"lifestatus","name"=>"Life Status","childs"=>$this->gfilters->getfilters('lifestatus')),
+            array("id"=>"center","name"=>"Center","childs"=>$this->gfilters->getfilters('church')),
+            array("id"=>"year","name"=>"Year","childs"=>$this->gfilters->getfilters('year'))
+        );
     }
 }
