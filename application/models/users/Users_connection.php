@@ -44,6 +44,7 @@ class Users_connection extends Core_Model {
         if ($result) {
             $this->load->library('jwt_generator');
             $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
+            
             $mail = new PHPMailer;
             $mail->isSMTP();
             $mail->SMTPDebug = 0;
@@ -51,17 +52,16 @@ class Users_connection extends Core_Model {
             $mail->Port = 587;
             $mail->SMTPSecure = 'tls';
             $mail->SMTPAuth = true;
-            $mail->Username = ''; // Please provide this...
-            $mail->Password = ''; // Please provide this...
+            $mail->Username = 'team@rtudiscipleship.com'; // Please provide this...
+            $mail->Password = 'kkzdqpprpn'; // Please provide this...
 
-            $mail->setFrom('webmaster@discipleship.org', 'Discipleship Team');
-            $mail->addReplyTo('no-reply@discipleship.org', 'No-Reply');
+            $mail->setFrom($mail->Username, 'Discipleship Team');
             $mail->addAddress($result->email, $result->firstname.' '.$result->lastname);
             $mail->Subject = 'Request to Reset Password';
 
             $mail->msgHtml(file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset_password_email.html'));
             $mail->AltBody = file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/reset_password_email.txt');
-            //$mail->wrapText($mail->Body, 100);
+            $mail->wrapText($mail->Body, 100);
             
             //return array('success' => false, 'info' => $mail->ErrorInfo);
 
@@ -88,7 +88,7 @@ class Users_connection extends Core_Model {
                 return array("success"=>false, 'info'=>"Error Message: ".$mail->ErrorInfo);
             } else {
                 // The path to where to save the emails sent.
-                $path = "{imap.gmail.com:993/imap/ssl}[Gmail]/Sent Mail";
+                $path = "{mail.rtudiscipleship.com:993}";
 
                 // Tell your server to open an IMAP connect using
                 // the same username and password used in SMTP.
