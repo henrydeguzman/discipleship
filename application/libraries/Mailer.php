@@ -2,12 +2,8 @@
 
 require_once 'vendor/autoload.php';
 
-use PHPMailer\PHPMailer\OAuth;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
-use League\OAuth2\Client\Provider\Google;
-use League\OAuth2\Client\Grant\RefreshToken;
 
 /**
  * Mailer class.
@@ -23,18 +19,17 @@ class Mailer {
      */
     protected $PHPMailer;
 
-    /**
-     * Holds an object instance of OAuth class.
-     * 
-     * @var object
-     */
-    protected $OAuth;
-
-    /**
-     * Holds an object instance of OAuth Provider class.
-     */
-    protected $OAuthProvider;
+    protected const HOST = 'mail.rtudiscipleship.com';
+    protected const SMTP_PORT = 465;
+    protected const IMAP_PORT = 993;
+    protected const POP3_PORT = 995;
+    protected const SMTP_SECURE = 'tls';
+    protected const SMTP_AUTH = true;
+    protected const IMAP_PATH = '{mail.rtudiscipleship.com:993}';
     
+
+    protected const EMAIL_USERNAME = 'team@rtudiscipleship.com';
+    protected const EMAIL_PASSWORD = 'kkzdqpprpn';
 
     /**
      * Mailer constructor.
@@ -44,9 +39,9 @@ class Mailer {
      * 
      * @param array $params
      */
-    public function __constructor($params) {
+    public function __constructor() {
 
-        $this->PHPMailer = new PHPMailer();
+        $this->PHPMailer = new PHPMailer;
 
         // Tell PHPMailer to use SMTP.
         $this->PHPMailer->isSMTP();
@@ -55,22 +50,11 @@ class Mailer {
         //   0 = Off (Production Use Only)
         //   1 = Client Messages Only
         //   2 = Client and Server Messages
-        $this->PHPMailer->SMTPDebug = 0;
-
-        // Set the hostname of the mail server.
-        $this->PHPMailer->Host = $params["host"];
-
-        // Set the SMTP Port number.
-        //   587 for Authenticated TLS (a.k.a RFC4409)
-        $this->PHPMailer->Port = $params["port"];
-
-        // Set the encryption system to use.
-        //    SSL
-        //    TLS (RFC4409)
-        $this->PHPMailer->SMTPSecure = $params["encryption"];
-
-        // Whether to use SMTP Authentication.
-        $this->PHPMailer->SMTPAuth = true;
+        $this->PHPMailer->SMTPDebug     = 0;
+        $this->PHPMailer->Host          = self::HOST;
+        $this->PHPMailer->Port          = self::SMTP_PORT;
+        $this->PHPMailer->SMTPSecure    = self::SMTP_SECURE;
+        $this->PHPMailer->SMTPAuth      = self::SMTP_AUTH;
     }
 
     /**
@@ -78,14 +62,14 @@ class Mailer {
      * 
      * @param string $username
      */
-    public function setUsername($username) {
+    public function setUsername($username = self::EMAIL_USERNAME) {
         if (is_string($username) && $username !== "") {
-            $this->SMTPMailer->Username = $username;
+            $this->PHPMailer->Username = $username;
         }
     }
 
     public function getUsername() {
-        return $this->SMTPMailer->Username;
+        return $this->PHPMailer->Username;
     }
 
     /**
@@ -93,14 +77,14 @@ class Mailer {
      * 
      * @param string $password
      */
-    public function setPassword($password) {
+    public function setPassword($password = self::EMAIL_PASSWORD) {
         if (is_string($password) && $password !== "") {
-            $this->SMTPMailer->Password = $password;
+            $this->PHPMailer->Password = $password;
         }
     }
 
     public function getPassword() {
-        return $this->SMTPMailer->Password;
+        return $this->PHPMailer->Password;
     }
 
     /**
@@ -109,10 +93,10 @@ class Mailer {
      * @param string $senderEmail
      * @param string $name
      */
-    public function setSender($senderEmail, $name = '') {
+    public function setSender($name = '', $senderEmail = self::EMAIL_USERNAME) {
         if (is_string($senderEmail) && $senderEmail !== "") {
             if (filter_var($senderEmail, FILTER_VALID_EMAIL)) {
-                $this->SMTPMailer->setFrom($senderEmail, $name);
+                $this->PHPMailer->setFrom($senderEmail, $name);
             }
         }
     }
@@ -123,10 +107,10 @@ class Mailer {
      * @param string $replyAddress
      * @param string $name
      */
-    public function setReplyTo($replyAddress, $name = '') {
+    public function setReplyTo($name = '', $replyAddress = self::EMAIL_USERNAME) {
         if (is_string($replyAddress) && $replyAddress !== "") {
             if (filter_var($replyAddress, FILTER_VALID_EMAIL)) {
-                $this->SMTPMailer->addReplyTo($replyAddress, $name);
+                $this->PHPMailer->addReplyTo($replyAddress, $name);
             }
         }
     }
@@ -134,7 +118,7 @@ class Mailer {
     public function setRecepient($recepientAddress, $name = '') {
         if (is_string($recepientAddress) && $recepientAddress !== "") {
             if (filter_var($recepientAddress, FILTER_VALID_EMAIL)) {
-                $this->SMTPMailer->addAddress($recepientAddress, $name);
+                $this->PHPMailer->addAddress($recepientAddress, $name);
             }
         }
     }
@@ -151,23 +135,26 @@ class Mailer {
         }
     }
 
-    public function setHTMLEmail($htmlEmailFilename, $plainTextAltFilename) {
+    public function setHTMLEmail($htmlEmailFilename, $plainTextAltFilename, $baseDirectory) {
         if ((is_string($htmlEmailFilename) && $htmlEmailFilename !== "") &&
             (is_string($plainTextAltFilename) && $plainTextAltFilename !== "")) {
-                $this->PHPMailer->msgHTML(file_get_contents($htmlEmailFilename), 
-                                          base_dir('assets/files/htmlemails/html/'));
-                $this->PHPMailer->AltBody = file_get_contents(
-                                                base_dir('assets/files/htmlemails/plaintext/').$plainTextAltFilename
-                                            );
+                $this->PHPMailer->msgHTML(file_get_contents($htmlEmailFilename), $baseDirectory.'html/'.$htmlEmailFilename);
+                $this->PHPMailer->AltBody = file_get_contents($baseDirectory.'plaintext/'.$plainTextAltFilename);
         }
     }
 
-    public function addAttachement($path, $name = '', $encoding = self::ENCODING_BASE64, $type = '', $disposition = 'attachment') {
-        $this->PHPMailer->addAttachement($path, $name, $encoding, $type, $disposition);
+    public function addAttachement($path, $name = '', $encoding = 'base64', $type = '', $disposition = 'attachment') {
+        $this->PHPMailer->addAttachement($path, $name, $encoding, $type, $disposition); 
     }
 
     public function sendEmail() {
-        return $this->PHPMailer->send();
+        if (!$this->PHPMailer->send()) {
+            return false;
+        } else {
+            $this->saveEmail();
+        }
+
+        return true;
     }
 
     public function replaceHTMLEmailVariables($search, $replace, $replacementCount = 0) {
@@ -182,7 +169,13 @@ class Mailer {
         $this->PHPMailer->ErrorInfo;
     }
 
-    public function getSentMIMEMessage() {
-        return $this->PHPMailer->getSentMIMEMessage();
+    // public function getSentMIMEMessage() {
+    //     return $this->PHPMailer->getSentMIMEMessage();
+    // }
+
+    private function saveEmail() {
+        $imapStream = imap_open(self::IMAP_PATH, self::EMAIL_USERNAME, self::EMAIL_PASSWORD);
+        $result = imap_append($imapStream, self::IMAP_PATH,  $this->PHPMailer->getSentMIMEMessage());
+        imap_close($imapStream);
     }
 }
