@@ -12,42 +12,59 @@ require './assets/dependencies/phpmailer/Exception.php';
 require './assets/dependencies/phpmailer/PHPMailer.php';
 require './assets/dependencies/phpmailer/SMTP.php';
 class Smpt {
+    var $ci;
+    const HOST = 'mail.rtudiscipleship.com';
+    const TEAM_User = 'team@rtudiscipleship.com';
+    const Team_Pass = 'kkzdqpprpn';
+    protected $mail;
     public function __construct()
     {
-        $mail = new PHPMailer(true);
-        try {
+        $this->ci=&get_instance();
+        $this->mail = new PHPMailer(true);
+
             //Server settings
-            $mail->SMTPDebug = 2;                                       // Enable verbose debug output
-            $mail->isSMTP();                                            // Set mailer to use SMTP
-            $mail->Host       = 'mail.rtudiscipleship.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = 'team@rtudiscipleship.com';                     // SMTP username
-            $mail->Password   = 'kkzdqpprpn';                               // SMTP password
-            $mail->SMTPSecure = 'ssl';         // Enable TLS encryption, `PHPMailer::ENCRYPTION_SMTPS` also accepted
-            $mail->Port       = 465;                                    // TCP port to connect to
+            $this->mail->SMTPDebug = 0;
+            $this->mail->isSMTP();
+            $this->mail->Host=self::HOST;
+            $this->mail->SMTPAuth=true;
+            $this->mail->Username=self::Team_Pass;
+            $this->mail->Password=self::TEAM_User;
+            $this->mail->SMTPSecure='ssl';
+            $this->mail->Port=465;
+            $this->mail->setFrom(self::TEAM_User, 'Discipleship Team');
+            //$mail->send();
+            //echo 'Message has been sent';
 
-            //Recipients
-            $mail->setFrom($mail->Username, 'Mailer');
-            $mail->addAddress('henrydeguzman.java73@gmail.com', 'Henry De Guzman');     // Add a recipient
-            //$mail->addAddress('ellen@example.com');               // Name is optional
-            $mail->addReplyTo($mail->Username, 'Information');
-            //$mail->addCC('cc@example.com');
-            //$mail->addBCC('bcc@example.com');
+    }
+    public function send($data=null){
+        //Recipients
+        if(!empty($data)){
+            $recipient=isset($data['recipient'])?$data['recipient']:null; if(empty($recipient)){ return array("success"=>false,"info"=>'Invalid recipient!');}
+            $subject=isset($data['subject'])?$data['subject']:'Test Subject';
+            $body=isset($data['body'])?$data['body']:'Test content';
+            $alt=isset($data['alt'])?$data['alt']:'';
+            $ishtml=isset($data['ishtml'])&&gettype($data['ishtml'])==="boolean"?$data['body']:false;
 
-            // Attachments
-            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
-            // Content
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Here is the subject';
-            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $this->mail->addAddress($recipient);
+            $this->mail->addReplyTo(self::TEAM_User, 'Information');
 
-            $mail->send();
-            echo 'Message has been sent';
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            $this->mail->isHTML($ishtml);
+            $this->mail->Subject=$subject;
+            $this->mail->Body=$body;
+            //$this->mail->wrapText($this->mail->Body, 100);
+            $this->mail->AltBody=$alt;
+            try {
+                $this->mail->send();
+            } catch (Exception $e) {
+                return array("success"=>false,'info'=>"Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}");
+            }
+        } else {
+            return array('success'=>false,'info'=>'Unable to send enable. Please check required parameters.');
         }
+
+
+
+        $this->mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
     }
 }

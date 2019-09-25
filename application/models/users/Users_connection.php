@@ -49,10 +49,32 @@ class Users_connection extends Core_Model {
             $this->load->library('jwt_generator');
             $this->load->library('smpt');
             $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
+            //return gettype('true');
 
-            return;
-            $mail = new PHPMailer;
+            $searchNeedle = array(
+                '{{ Mail::Title }}','{{ Mail::Recepient }}',
+                '{{ Mail::JSONToken }}','{{ Mail::Sender }}',
+                '{{ Mail::CopyrightYear }}');
 
+            $replaceStack = array(
+                'Reset Email',
+                $result->firstname,
+                base_url('page/reset_account/'.$result->userid.'/'.$token),
+                'Discipleship Team',
+                date('Y')
+            );
+            $bodyhtml=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset_password_email.html');
+            return $this->smpt->send(array(
+                "body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
+                "alt"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
+                "recipient"=>'henrydeguzman.java73@gmail.com',
+                "subject"=>'Request to reset password'
+            ));
+            /*
+             * ishtml = boolean; default: false
+             * body = string|html; default: 'Who knows?'
+             * subject = string; default: 'Test subject'
+             * */
 
 
             $mail->isSMTP();
