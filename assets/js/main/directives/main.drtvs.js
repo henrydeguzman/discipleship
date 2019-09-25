@@ -778,16 +778,19 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 }
             };
             vm.table.filter.checkall=function(item){ for(var x=0;x<item.childs.length;x++){ item.childs[x].checked=item.allchecked; } };
+            vm.table.filter.clear=function(){
+                vm.table.filter.querydata=undefined;vm.refresh();
+            };
             vm.table.filter.submit=function(){
                 var data={};
                 if(vm.table.filter.data.length!==0){
                     for(var x=0;x<vm.table.filter.data.length;x++){
-                        var chaindata=vm.table.filter.data[x].childs,
-                            filtered=_.chain(chaindata).filter({checked:true}).pluck('id').value();
-                        data[vm.table.filter.data[x]['id']]=filtered;
+                        var chaindata=vm.table.filter.data[x].childs,filtered=_.chain(chaindata).filter({checked:true}).pluck('id').value();
+                        if(filtered.length>0){ data[vm.table.filter.data[x]['id']]=filtered.join(','); }
                     }
                 }
-                console.log(data);
+                vm.table.filter.querydata=data; vm.refresh();
+                console.log(vm.table.filter.querydata);
             };
             vm.headertitle=function(html){ $scope.header.title=html; };
             /** enabled right click on generic table */
@@ -976,11 +979,15 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                         if(params!==undefined&&params.sorter!==undefined){ data.sorter=params.sorter; }
                     }
                     if(vm.table.settings.sort!==undefined){data.sorter=vm.table.settings.sort;}
-                    if(vm.table.settings.search!==undefined){data.search=vm.table.settings.search;}
+                    if(vm.table.settings.search!==undefined){method='postData';data.search=vm.table.settings.search;}
+                    if(vm.table.filter.querydata!==undefined){method='postData';data.filters=vm.table.filter.querydata;}
                     if(params!==undefined&&params.modelext!==undefined){
                         model+=params.modelext;
                     }
-                    vm.response.content=centralFctry[method]({url:model,data:data,json:'page/loadview?dir=jshtml&view=directives/table/table.json'});
+                    console.log('---table data---');
+                    console.log(data);
+                    console.log('---end---');
+                    vm.response.content=centralFctry[method]({url:model,data:data,json:'page/loadview?dir=jshtml&view=directives/table/table.json',serializer:'jqlike'});
                     if(vm.response.content.$$state!==undefined){
                         vm.response.content.then(function(v){
                             if(typeof (v.data)==='string'){console.log(v.data); return;}

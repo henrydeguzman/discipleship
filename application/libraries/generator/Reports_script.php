@@ -7,7 +7,7 @@
  */
 class Reports_Script {
     function getlist(){
-        return "SELECT user_vg.vg_count,vg_intern.intern_count,
+        return "SELECT SQL_CALC_FOUND_ROWS user_vg.vg_count,vg_intern.intern_count,
                 victory_weekend.victory_weekend_count,church_community.church_community_count,purple_book.purple_book_count,
                 making_disciples.making_disciples_count,empowering_leaders.empowering_leaders_count,.leadership_113.leadership_113_count,baptized.baptized_count
                 ,church.churchid,church.name as churchname FROM church
