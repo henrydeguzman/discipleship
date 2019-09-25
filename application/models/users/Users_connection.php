@@ -92,12 +92,12 @@ class Users_connection extends Core_Model {
                 'Discipleship Team', date('Y'));
 
             $bodyhtml=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset_password_email.html');
-            return $this->smpt->send(array(
+            /*return $this->smpt->send(array(
                 "body"=>"body html",
                 "alt"=>"sample alt",
                 "recipient"=>'henrydeguzman.java73@gmail.com',
                 "subject"=>'Request to reset password'
-            ));
+            ));*/
             return $this->smpt->send(array(
                 "body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
                 "alt"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),

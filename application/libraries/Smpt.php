@@ -53,7 +53,8 @@ class Smpt {
             $this->mail->wrapText($this->mail->Body, 100);
             $this->mail->AltBody=$alt;
             try {
-                return $this->mail->send();
+                $result=$this->mail->send();
+                return array("success"=>$result,"info"=>"");
                 //if($this->mail->send()){
 
                    // $path = "{mail.rtudiscipleship.com:993}";
