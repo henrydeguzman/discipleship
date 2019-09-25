@@ -52,7 +52,7 @@ class Smpt {
             $this->mail->Body=$body;
             //$this->mail->wrapText($this->mail->Body, 100);
             //$this->mail->AltBody=$alt;
-           // return $data;
+            //return self::TEAM_User;
             try {
                 $this->mail->send();
             } catch (Exception $e) {
@@ -61,9 +61,5 @@ class Smpt {
         } else {
             return array('success'=>false,'info'=>'Unable to send enable. Please check required parameters.');
         }
-
-
-
-        $this->mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
     }
 }
