@@ -48,7 +48,7 @@ class Users_connection extends Core_Model {
             //return $result;
             $this->load->library('jwt_generator');
             $this->load->library('smpt');
-            return;
+
             $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
             //return gettype('true');
 
