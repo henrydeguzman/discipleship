@@ -21,7 +21,7 @@ class Smpt {
         $this->mail = new PHPMailer(true);
 
             //Server settings
-            $this->mail->SMTPDebug = 0;
+            $this->mail->SMTPDebug = 2;
             $this->mail->isSMTP();
             $this->mail->Host=self::HOST;
             $this->mail->SMTPAuth=true;
