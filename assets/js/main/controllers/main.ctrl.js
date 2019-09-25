@@ -73,7 +73,7 @@ angular.module('MainControllers',[])
                 return posted.then(function(v){
                     console.log(v.data);
                     if(!v.data.success){ required(); vm.message.info=v.data.info; vm.message.color='red'; }
-                    else { location.assign(v.data.info+'page/auth/link-sent'); }
+                    else { location.assign(vtr.pathValue.base_url+'page/auth/link-sent'); }
                 });
             }
         };
