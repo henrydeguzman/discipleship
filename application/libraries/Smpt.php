@@ -12,14 +12,12 @@ require './assets/dependencies/phpmailer/Exception.php';
 require './assets/dependencies/phpmailer/PHPMailer.php';
 require './assets/dependencies/phpmailer/SMTP.php';
 class Smpt {
-    var $ci;
     const HOST = 'mail.rtudiscipleship.com';
     const TEAM_User = 'team@rtudiscipleship.com';
     const Team_Pass = 'kkzdqpprpn';
     protected $mail;
     public function __construct()
     {
-        $this->ci=&get_instance();
         $this->mail = new PHPMailer(true);
 
             //Server settings
