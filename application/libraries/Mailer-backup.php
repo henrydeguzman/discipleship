@@ -1,5 +1,5 @@
 <?php
-
+var_dump('loaded');
 require_once 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;

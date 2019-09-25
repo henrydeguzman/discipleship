@@ -47,9 +47,13 @@ class Users_connection extends Core_Model {
         if ($result) {
             //return $result;
             $this->load->library('jwt_generator');
+            $this->load->library('smpt');
             $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
 
+            return;
             $mail = new PHPMailer;
+
+
 
             $mail->isSMTP();
             $mail->SMTPDebug = 2; //Alternative to above constant
