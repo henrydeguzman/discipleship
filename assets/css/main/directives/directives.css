@@ -330,8 +330,21 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li
 gt-table .gen-table-container > .gen-table-content {
     /*overflow-x:auto;*/
     background:#ebebeb;
+    position:relative;
 }
+gt-table .gen-table-container > .gen-table-content .gen-table-content-loading {
+    position:absolute;
+    top:0;
+    left:1px;
+    right:1px;
+    bottom:1px;
+    z-index: 2000;
+    background: rgba(191, 191, 191, 0.12);
 
+}
+gt-table .gen-table-container > .gen-table-content .gen-table-content-loading .spinner > div {
+    opacity:.3;
+}
 gt-table .gen-table-container > .gen-table-content > table {
     width:100%;
     /* border:1px solid #E0E0E0; */

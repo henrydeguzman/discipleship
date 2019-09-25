@@ -745,8 +745,11 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
         controller:function($scope,$attrs,$element){
             var vm=this,tblformatter={};
             vm.table={
+                loading:{content:true},
                 filter:{data:[]},
-                tr:[],td:{data:[],show:false,checkbox:false},export:{show:false,data:[]},data:[],refreshed:1,valid:false,count:0,header:{btns:[]},pagination:{offset:0},settings:{sort:undefined,search:undefined}};
+                tr:[],td:{data:[],show:false,checkbox:false},
+                export:{show:false,data:[]},
+                data:[],refreshed:1,valid:false,count:0,header:{btns:[]},pagination:{offset:0},settings:{sort:undefined,search:undefined}};
             $scope.header={show:true,style:{}};
             if($attrs.headerstyle!==undefined){$scope.header.style=$scope.$eval($attrs.headerstyle);}
             if($attrs.tablestyle!==undefined){$scope.tablestyle=$scope.$eval($attrs.tablestyle);}
@@ -965,6 +968,7 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
             }};
             function getData(type,params){
                 if(type==='content'){
+                    vm.table.loading.content=true;
                     var method='getData',data={},model=$attrs.model;
                     if($attrs.limit!==undefined&&glfnc.trim($attrs.limit)!==''){
                         method='postData'; data.rowcount=$attrs.limit;
@@ -1000,6 +1004,7 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                                     vm.addrow.ncols++;
                                 }
                             }
+                            vm.table.loading.content=false;
                         });
                     }
                 } else if(type==='formatter') {

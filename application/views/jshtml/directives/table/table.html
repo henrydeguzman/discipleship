@@ -68,6 +68,11 @@
                             <div class="gen-table-h-btn" bind-html-compile="item.html" ng-click="item.onclick(gtTblCtrl.table.tr)"></div>
                         </li>
                         <li>
+                            <div class="gen-table-h-btn" ng-click="gtTblCtrl.refresh()">
+                                <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>
+                            </div>
+                        </li>
+                        <li>
                             <div class="gen-table-h-btn" ng-click="gtTblCtrl.table.export.toggle()">
                                 <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
                             </div>
@@ -102,6 +107,7 @@
         </table>
     </div>
     <div class="gen-table-content">
+        <div class="gen-table-content-loading" ng-show="gtTblCtrl.table.loading.content"><div class="spinner-container" bind-html-compile="spinnerValues.default"></div></div>
         <table ng-style="tablestyle">
             <thead>
             <tr class="name">
