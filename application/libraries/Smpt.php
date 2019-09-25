@@ -18,6 +18,7 @@ class Smpt {
     protected $mail;
     public function __construct()
     {
+        try {
         $this->mail = new PHPMailer(true);
 
             //Server settings
@@ -39,7 +40,7 @@ class Smpt {
         $this->mail->isHTML(true);
         $this->mail->Subject='yes subject';
         $this->mail->Body='yes body';
-        try {
+
             $this->mail->send();
         } catch (Exception $e) {
             return array("success"=>false,'info'=>"Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}");
