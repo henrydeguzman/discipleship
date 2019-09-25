@@ -13,12 +13,11 @@ require './assets/dependencies/phpmailer/PHPMailer.php';
 require './assets/dependencies/phpmailer/SMTP.php';
 class Smpt {
     const HOST = 'mail.rtudiscipleship.com';
-    const TEAM_User = 'team@rtudiscipleship.com';
-    const Team_Pass = 'kkzdqpprpn';
+    const TEAM_USER = 'team@rtudiscipleship.com';
+    const TEAM_PASS = 'kkzdqpprpn';
     protected $mail;
     public function __construct()
     {
-        try {
         $this->mail = new PHPMailer(true);
 
             //Server settings
@@ -26,25 +25,13 @@ class Smpt {
             $this->mail->isSMTP();
             $this->mail->Host=self::HOST;
             $this->mail->SMTPAuth=true;
-            $this->mail->Username=self::Team_Pass;
-            $this->mail->Password=self::TEAM_User;
+            $this->mail->Username=self::TEAM_USER;
+            $this->mail->Password=self::TEAM_PASS;
             $this->mail->SMTPSecure='ssl';
             $this->mail->Port=465;
-            $this->mail->setFrom(self::TEAM_User, 'Discipleship Team');
+            $this->mail->setFrom(self::TEAM_USER, 'Discipleship Team');
             //$mail->send();
             //echo 'Message has been sent';
-
-        $this->mail->addAddress('henrydeguzman.java73@gmail.com');
-        $this->mail->addReplyTo(self::TEAM_User, 'Information');
-
-        $this->mail->isHTML(true);
-        $this->mail->Subject='yes subject';
-        $this->mail->Body='yes body';
-
-            $this->mail->send();
-        } catch (Exception $e) {
-            return array("success"=>false,'info'=>"Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}");
-        }
 
     }
     public function send($data=null){
@@ -58,14 +45,13 @@ class Smpt {
 
 
             $this->mail->addAddress($recipient);
-            $this->mail->addReplyTo(self::TEAM_User, 'Information');
+            $this->mail->addReplyTo(self::TEAM_USER, 'Information');
 
             $this->mail->isHTML($ishtml);
             $this->mail->Subject=$subject;
             $this->mail->Body=$body;
-            //$this->mail->wrapText($this->mail->Body, 100);
-            //$this->mail->AltBody=$alt;
-            //return self::TEAM_User;
+            $this->mail->wrapText($this->mail->Body, 100);
+            $this->mail->AltBody=$alt;
             try {
                 $this->mail->send();
             } catch (Exception $e) {
@@ -74,5 +60,9 @@ class Smpt {
         } else {
             return array('success'=>false,'info'=>'Unable to send enable. Please check required parameters.');
         }
+
+
+
+        $this->mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
     }
 }
