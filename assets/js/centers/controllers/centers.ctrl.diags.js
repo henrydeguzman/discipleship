@@ -7,6 +7,7 @@ victory
         $scope.form={type:'add'};
         $scope.required={};
         if($scope.data!==undefined&&$scope.data.id!==undefined){
+            console.log($scope.data.id);
             getdata($scope.data.id);
         }
         vm.save=function(form){

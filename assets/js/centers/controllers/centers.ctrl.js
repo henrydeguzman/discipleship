@@ -5,7 +5,7 @@ victory
     .controller('admin.centers.page.controller',['dialogs','tableService',function(dialogs,tableService){
         var vm=this;
         vm.form={};
-        vm.form.dialog=function($id){
+        vm.form.dialog=function(alldata,$id){
             var title='Add',data={};
             if($id!==undefined){
                 title='Edit';data={id:$id};
