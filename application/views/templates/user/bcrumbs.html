@@ -1,5 +1,6 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+    <div class="content-loading ng-hide" ng-show="isloadingService.get.content"><div class="spinner-container" bind-html-compile="spinnerValues.default"></div></div>
     <!-- Content Header (Page header) -->
     <section class="content-header" ng-cloak ng-controller="main.breadcrumb.controller as mainbcrumbCtrl">
         <ol class="breadcrumb">

@@ -39,7 +39,7 @@ victory
                 url:'fetch/users_set/edit',data:$scope.form
             });
             if(posted.$$state!==undefined){
-                posted.then(function(v){
+                return posted.then(function(v){
                     console.log(v.data);
                     if(v.data.success){
                         $scope.$parent.close(v.data);

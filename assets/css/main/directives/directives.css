@@ -72,7 +72,8 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ._fi
 }
 gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters ul {
     list-style:none;
-    margin:0;padding:0;
+    margin:0;
+    padding:0;
     display:inline-block;
     position:absolute;
     z-index:1;
@@ -122,16 +123,19 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._
     top:1px;
     position:relative;
 }
-gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li ul._child {
-    top:100%;
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li ._child-container {
+    position:absolute;
     right:0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
+}
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li ul._child {
     color:#939ba1;
     background-clip: padding-box;
     background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, .3);
-    max-width:100%;
+    padding:0 5px;
+    position: relative;
 }
 div.gen-table-h-filters ul._parent > li ul._child > li {
     line-height:normal;
@@ -326,8 +330,21 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-btns > ul > li
 gt-table .gen-table-container > .gen-table-content {
     /*overflow-x:auto;*/
     background:#ebebeb;
+    position:relative;
 }
+gt-table .gen-table-container > .gen-table-content .gen-table-content-loading {
+    position:absolute;
+    top:0;
+    left:1px;
+    right:1px;
+    bottom:1px;
+    z-index: 2000;
+    background: rgba(191, 191, 191, 0.12);
 
+}
+gt-table .gen-table-container > .gen-table-content .gen-table-content-loading .spinner > div {
+    opacity:.3;
+}
 gt-table .gen-table-container > .gen-table-content > table {
     width:100%;
     /* border:1px solid #E0E0E0; */
@@ -1237,6 +1254,7 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
     -moz-border-radius: 5px;
     border-radius: 5px;
     padding: 0 0 10px 0;
+    z-index: 1050;
 }
 .gen-profile-container > ._profile > ._cover {
     height:120px;
