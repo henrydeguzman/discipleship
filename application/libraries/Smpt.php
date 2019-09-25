@@ -12,9 +12,9 @@ require './assets/dependencies/phpmailer/Exception.php';
 require './assets/dependencies/phpmailer/PHPMailer.php';
 require './assets/dependencies/phpmailer/SMTP.php';
 class Smpt {
-    const HOST = 'mail.rtudiscipleship.com';
-    const TEAM_User = 'team@rtudiscipleship.com';
-    const Team_Pass = 'kkzdqpprpn';
+    protected const HOST = 'mail.rtudiscipleship.com';
+    protected const TEAM_User = 'team@rtudiscipleship.com';
+    protected const Team_Pass = 'kkzdqpprpn';
     protected $mail;
     public function __construct()
     {
