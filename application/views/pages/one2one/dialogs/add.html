@@ -47,7 +47,7 @@
                 <input type="text" gt-inputrequired="required.address" ng-model="form.address" class="gen-input-control" />
             </div>
             <div class="form-btn-right">
-                <button class="btn btn-sm gen-btn-success" ng-click="o2oaddfrmdiagsCtrl.save(form)">
+                <button class="btn btn-sm gen-btn-success" click-and-disable="o2oaddfrmdiagsCtrl.save(form)">
                     <span ng-if="form.type==='add'">Add</span>
                     <span ng-if="form.type==='edit'">Update</span>
                 </button>
