@@ -73,12 +73,8 @@ class Users_connection extends Core_Model {
     /** api/gateway?re=fetch/users_connection/reset_password */
     public function reset_password(){
         $email=isset($_POST['email'])?$_POST['email']:null;
-        /** testing */
-        $email='henrydeguzman.java73@gmail.com';
-        /** end */
         if(empty($email)){ return array("success"=>false, 'info'=>'email is required'); }
-        $sql="SELECT user.email,user.userid,user.password,user.firstname,user.lastname FROM `user` 
-              WHERE email='".$email."'";$result = self::query($sql, true);
+        $sql="SELECT user.email,user.userid,user.password,user.firstname,user.lastname FROM `user` WHERE email='".$email."'";$result = self::query($sql, true);
         if ($result) {
             $this->load->library('smpt');
             $token = self::createtoken($result->userid);
@@ -86,11 +82,9 @@ class Users_connection extends Core_Model {
                 '{{ Mail::Title }}','{{ Mail::Recepient }}',
                 '{{ Mail::JSONToken }}','{{ Mail::Sender }}',
                 '{{ Mail::CopyrightYear }}');
-
             $replaceStack = array('Reset Email',$result->firstname,
                 base_url('page/reset_account/'.$result->userid.'/'.$token),
                 'Discipleship Team', date('Y'));
-
             $bodyhtml=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset_password_email.html');
             /*return $this->smpt->send(array(
                 "body"=>"body html",
@@ -101,72 +95,12 @@ class Users_connection extends Core_Model {
             return $this->smpt->send(array(
                 "body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
                 "alt"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
-                "recipient"=>'henrydeguzman.java73@gmail.com',
-                "subject"=>'Request to reset password',
-                "ishtml"=>true
-            ));
+                "recipient"=>$email, "subject"=>'Request to reset password', "ishtml"=>true ));
             /*
              * ishtml = boolean; default: false
              * body = string|html; default: 'Who knows?'
              * subject = string; default: 'Test subject'
              * */
-
-
-            $mail->isSMTP();
-            $mail->SMTPDebug = 2; //Alternative to above constant
-            $mail->Host = 'mail.rtudiscipleship.com';
-            $mail->Port = 465;
-            $mail->SMTPSecure = 'tls';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'team@rtudiscipleship.com'; // Please provide this...
-            $mail->Password = 'kkzdqpprpn'; // Please provide this...
-            $mail->setFrom($mail->Username, 'Discipleship Team');
-            $mail->addAddress($result->email, $result->firstname.' '.$result->lastname);
-            $mail->Subject = 'Request to Reset Password';
-
-            //$mail->msgHtml(file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset_password_email.html'));
-            //$mail->AltBody = file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/reset_password_email.txt');
-            $mail->msgHtml('sample');
-            $mail->wrapText($mail->Body, 100);
-            
-            //return array('success' => false, 'info' => $mail->ErrorInfo);
-
-            $searchNeedle = array(
-                '{{ Mail::Title }}',
-                '{{ Mail::Recepient }}',
-                '{{ Mail::JSONToken }}',
-                '{{ Mail::Sender }}',
-                '{{ Mail::CopyrightYear }}'
-            );
-
-            $replaceStack = array(
-                'Reset Email',
-                $result->firstname,
-                base_url('page/reset_account/'.$result->userid.'/'.$token),
-                'Discipleship Team',
-                date('Y')
-            );
-
-            $mail->Body = str_replace($searchNeedle, $replaceStack, $mail->Body);
-            $mail->AltBody = str_replace($searchNeedle, $replaceStack, $mail->AltBody);
-            return $mail->send();
-            if (!$mail->send()) {
-                return array("success"=>false, 'info'=>"Error Message: ".$mail->ErrorInfo);
-            } else {
-                // The path to where to save the emails sent.
-                return 'sent';
-                $path = "{mail.rtudiscipleship.com:993}";
-
-                // Tell your server to open an IMAP connect using
-                // the same username and password used in SMTP.
-                $imapStream = imap_open($path, $mail->Username, $mail->Password);
-                $result = imap_append($imapStream, $path,  $mail->getSentMIMEMessage());
-                imap_close($imapStream);
-
-                return array("success"=>true, 'info'=>base_url());
-            }
-        } else {
-            return array("success"=>false, 'info'=>"");
-        }
+        } else { return array("success"=>false, 'info'=>"Sorry, we didn't find any account associated with this email."); }
     }
 }
