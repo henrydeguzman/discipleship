@@ -80,10 +80,8 @@ class Users_connection extends Core_Model {
         $sql="SELECT user.email,user.userid,user.password,user.firstname,user.lastname FROM `user` 
               WHERE email='".$email."'";$result = self::query($sql, true);
         if ($result) {
-            $this->load->library('jwt_generator');
             $this->load->library('smpt');
-            $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
-
+            $token = self::createtoken($result->userid);
             $searchNeedle = array(
                 '{{ Mail::Title }}','{{ Mail::Recepient }}',
                 '{{ Mail::JSONToken }}','{{ Mail::Sender }}',
