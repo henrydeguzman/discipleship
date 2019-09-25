@@ -19,8 +19,12 @@ victory.controller('one2one.ctrl.diags.addfrm',['$scope','Notification','notifVa
         var userdata=genvarsValue.userdata();
         var posted=centralFctry.postData({url:'fetch/one2one_set/add',data:{o2oid:tr.o2oid,userid:tr.userid,leaderid:userdata.userid}});
         if(posted.$$state!==undefined){
-            posted.then(function(v){
+            return posted.then(function(v){
                 console.log(v.data);
+                if(v.data!==undefined&&v.data.success){
+                    tableService.refresh('one2one.memlist');
+                }
+                tableService.refresh('users.notyetone2one');
             });
         }
     };
@@ -28,7 +32,7 @@ victory.controller('one2one.ctrl.diags.addfrm',['$scope','Notification','notifVa
         console.log(tr);
         var posted=centralFctry.postData({url:'fetch/vg_set/set_vg',data:{userid:tr.userid,value:1}});
         if(posted.$$state!==undefined){
-            posted.then(function(v){
+            return posted.then(function(v){
                 console.log(v.data);
                 if(v.data!==undefined&&v.data.success){
                     if($scope.data.fromctrl=='vg'){
