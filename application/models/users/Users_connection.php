@@ -48,8 +48,8 @@ class Users_connection extends Core_Model {
             $mail = new PHPMailer;
             $mail->isSMTP();
             $mail->SMTPDebug = 0;
-            $mail->Host = 'smtp.gmail.com';
-            $mail->Port = 587;
+            $mail->Host = 'mail.rtudiscipleship.com';
+            $mail->Port = 465;
             $mail->SMTPSecure = 'tls';
             $mail->SMTPAuth = true;
             $mail->Username = 'team@rtudiscipleship.com'; // Please provide this...
