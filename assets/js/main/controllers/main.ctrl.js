@@ -54,7 +54,7 @@ angular.module('MainControllers',[])
             $scope.form.token=token;$scope.form.userid=userid;
             var posted=centralFctry.postData({ url:'fetch/users_connection/recover', data:$scope.form });
             if(posted.$$state!==undefined){
-                posted.then(function(v){
+                return posted.then(function(v){
                     console.log(v.data);
                     if(v.data.success){
                         location.assign(vtr.pathValue.base_url+'page/auth/reset-success');
