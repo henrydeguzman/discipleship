@@ -67,7 +67,7 @@ class Users_connection extends Core_Model {
             $password=isset($_POST['password'])?$_POST['password']:null; if(empty($password)) { return array("success"=>false,"info"=>"New password is required."); }
             $confirm=isset($_POST['confirm'])?$_POST['confirm']:null; if(empty($confirm)) { return array("success"=>false,"info"=>"Need to confirm password."); }
             // update password;
-            return 'update';
+            return array("success"=>true);
         }else{return $result;}
     }
     /** api/gateway?re=fetch/users_connection/reset_password */

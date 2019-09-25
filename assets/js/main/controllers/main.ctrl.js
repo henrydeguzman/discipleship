@@ -2,17 +2,6 @@
  * Created by Actino-Dev on 11/24/2018.
  */
 angular.module('MainControllers',[])
-    .provider('globalsetting', function () {
-        var appname = "LAWYER APP";
-        this.setAppName = function (value) {
-            appname = value;
-        }
-        this.$get = function () {
-            return {
-                appName: appname
-            };
-        }
-    })
     .controller('appmain.controller',['$scope','genvarsValue','pathValue','spinnerValues','isloadingService',function($scope,genvarsValue,pathValue,spinnerValues,isloadingService){
         var vm=this;
         /** declare global variables */
@@ -22,9 +11,7 @@ angular.module('MainControllers',[])
         $scope.spinnerValues=spinnerValues;
         $scope.isloadingService=isloadingService;
     }])
-    .controller('main.header.controller',['centralFctry',function(centralFctry){
-        var vm=this;
-    }])
+    .controller('main.header.controller',['centralFctry',function(centralFctry){ var vm=this; }])
     .controller('main.login.controller',['$scope','centralFctry',function($scope,centralFctry){
         var vm=this;
         $scope.form={};
@@ -59,17 +46,19 @@ angular.module('MainControllers',[])
         vm.recover.required=function(){ $scope.required={password:'required',confirm:'required'}; };
         vm.recover.submit=function(userid,token){
             //console.log('fired',userid,token);
-
             if($scope.form.password===undefined||$scope.form.confirm===undefined){vm.recover.required();}
             if($scope.form.password!==$scope.form.confirm&&$scope.form.password!==undefined&&$scope.form.confirm!==undefined&&glfnc.trim($scope.form.password)!==""&&glfnc.trim($scope.form.confirm)!==""){
                 vm.recover.success=false;vm.recover.info="Confirm password does not match!";
-                $scope.form.password=undefined;$scope.form.confirm=undefined;$scope.required={};
+                $scope.form.password=undefined;$scope.form.confirm=undefined;$scope.required={};return;
             }
-            var posted=centralFctry.postData({ url:'fetch/users_connection/recover', data:{userid:userid,token:token} });
+            $scope.form.token=token;$scope.form.userid=userid;
+            var posted=centralFctry.postData({ url:'fetch/users_connection/recover', data:$scope.form });
             if(posted.$$state!==undefined){
                 posted.then(function(v){
                     console.log(v.data);
-                    if(v.data.success){}
+                    if(v.data.success){
+                        location.assign(vtr.pathValue.base_url+'page/auth/reset-success');
+                    }
                     else {
                         vm.recover.success=v.data.success;vm.recover.info=v.data.info;
                         vm.recover.required();
