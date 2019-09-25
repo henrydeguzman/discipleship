@@ -5,10 +5,13 @@
  * Date: 29/08/2019
  * Time: 11:29 PM
  */
-require_once 'vendor/autoload.php';
+//require_once 'vendor/autoload.php';
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\ExpiredException;
+
+require './assets/dependencies/firebase/JWT.php';
+require './assets/dependencies/firebase/ExpiredException.php';
 
 class Jwt_Generator
 {
@@ -121,7 +124,9 @@ class Jwt_Generator
 
         try {
             $decodedToken = (array)JWT::decode($token, $secretKey, array('HS512'));
-        } catch (ExpiredException $ex) { }
+        } catch (ExpiredException $ex) {
+            echo "Message could not decode. Jwt_generator Error: {$ex}";
+        }
 
         return $decodedToken; 
     }

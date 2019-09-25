@@ -26,6 +26,7 @@ class Page extends Core_Controller {
             switch ($type){
                 case "link-sent":
                 case "create-new-password":
+                case "reset-success":
                     $path="forgot-password";$template=$type;
                     break;
                 case !null:
@@ -53,24 +54,18 @@ class Page extends Core_Controller {
             $this->template->load('resetlink_sent.html',$values,'forgot_password');
         }
     }*/
-    public function reset_account($userID, $token) {
+    public function reset_account($uid, $token) {
         $this->load->model('users/users_connection');
-        $result = $this->users_connection->getuserbyid($userID);
-
-        if ($result) {
-            $this->load->library('jwt_generator');
-            $decodedToken = array();
-
-            try {
-                $this->jwt_generator->decodeToken($token, $result->password);
-            } catch (\Throwable $th) {
-                header("location: ".base_url('page/index'));
-            }
-
-            // Check for the two parties involved!
-            if (!empty($decodedToken)) {
-                if (($result->email === $decodedToken["aud"]) && $decodedToken["iss"] === "Victory Urdaneta Discipleship") {
-                    $values = array();
+        $result=$this->users_connection->validatetoken($uid,$token);
+        //echo json_encode($result);return;
+        if ($result['success']) {
+            $result['token']=$token;
+            $result['userid']=$uid;
+            $this->template->load('create-new-password.html', $result, 'auth/forgot-password');
+        } else {
+            $this->template->load('error.html', $result, 'auth/forgot-password');
+        }
+            return;
                     /*
                      * If the request is $_GET, then display the form
                      * for creating a new password, otherwise process
@@ -94,11 +89,8 @@ class Page extends Core_Controller {
                             header("location: ".base_url('page/index'));
                         }
                     }
-                }
-            } else {
-                header("location: ".base_url('page/index'));
-            }
-        }
+
+        //}
     }
     public function verify_new_password() {
         if (!$_POST) {

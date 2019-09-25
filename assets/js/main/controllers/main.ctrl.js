@@ -51,39 +51,44 @@ angular.module('MainControllers',[])
             $scope.required={email:'required',password:'required'};
         }
     }])
-    .controller('main.resetpassword.controller',['$scope','centralFctry',function($scope,centralFctry){
+    .controller('main.resetpassword.controller',['$scope','centralFctry','glfnc',function($scope,centralFctry,glfnc){
         var vm=this;
         $scope.form={};
         $scope.required={};
-        vm.message={info:undefined,color:false};
-        vm.back=function(){};
+        vm.recover={};
+        vm.recover.required=function(){ $scope.required={password:'required',confirm:'required'}; };
+        vm.recover.submit=function(userid,token){
+            //console.log('fired',userid,token);
+
+            if($scope.form.password===undefined||$scope.form.confirm===undefined){vm.recover.required();}
+            if($scope.form.password!==$scope.form.confirm&&$scope.form.password!==undefined&&$scope.form.confirm!==undefined&&glfnc.trim($scope.form.password)!==""&&glfnc.trim($scope.form.confirm)!==""){
+                vm.recover.success=false;vm.recover.info="Confirm password does not match!";
+                $scope.form.password=undefined;$scope.form.confirm=undefined;$scope.required={};
+            }
+            var posted=centralFctry.postData({ url:'fetch/users_connection/recover', data:{userid:userid,token:token} });
+            if(posted.$$state!==undefined){
+                posted.then(function(v){
+                    console.log(v.data);
+                    if(v.data.success){}
+                    else {
+                        vm.recover.success=v.data.success;vm.recover.info=v.data.info;
+                        vm.recover.required();
+                    }
+                });
+            }
+        };
         vm.verify=function(form){
             console.log(form);
             var posted=centralFctry.postData({ url:'fetch/users_connection/reset_password',data:form });
             if(posted.$$state!==undefined){
                 return posted.then(function(v){
                     console.log(v.data);
-                    // if(v.data.success){
-                    //     vm.message.info=v.data.info;vm.message.color='green';
-                    //     location.reload();
-                    // } else {
-                    //     required();
-                    //     vm.message.info=v.data.info;
-                    //     vm.message.color='red';
-                    // }
-                    if(!v.data.success){
-                        required();
-                        vm.message.info=v.data.info;
-                        vm.message.color='red';
-                    } else {
-                        location.assign(v.data.info+'page/auth/link-sent');
-                    }
+                    if(!v.data.success){ required(); vm.message.info=v.data.info; vm.message.color='red'; }
+                    else { location.assign(v.data.info+'page/auth/link-sent'); }
                 });
             }
         };
-        function required(){
-            $scope.required={email:'required'};
-        }
+        function required(){ $scope.required={email:'required'}; }
     }])
     .controller('main.sidebar.controller',['$stateParams','$scope',function($stateParams,$scope){
         var vm=this;

@@ -53,7 +53,12 @@ class Smpt {
             $this->mail->wrapText($this->mail->Body, 100);
             $this->mail->AltBody=$alt;
             try {
-                $this->mail->send();
+                if($this->mail->send()){
+                    $path = "{mail.rtudiscipleship.com:993}";
+                    $imapStream = imap_open($path, $mail->Username, $mail->Password);
+                    $result = imap_append($imapStream, $path,  $mail->getSentMIMEMessage());
+                    imap_close($imapStream);
+                }
             } catch (Exception $e) {
                 return array("success"=>false,'info'=>"Message could not be sent. Mailer Error: {$this->mail->ErrorInfo}");
             }

@@ -11,6 +11,7 @@ use PHPMailer\PHPMailer\Exception;
  * Time: 09:45 PM
  */
 class Users_connection extends Core_Model {
+    const SECRETKEY="&gqFee#e6ks7";
     public function __construct() { }
     public function signout(){
         $destroy=session_destroy();
@@ -33,39 +34,66 @@ class Users_connection extends Core_Model {
     public function viewsession(){
         return $_SESSION['user'];
     }
+    /** api/gateway?re=fetch/users_connection/createtoken */
+    public function createtoken($userid=null){
+        if(empty($userid)){ return array("success"=>false,'info'=>'Invalid User'); }
+        $this->load->library('tokenizer');
+        $user=$this->getuserbyid($userid);
+        return $this->tokenizer->create($user->email,$user->password.self::SECRETKEY);
+    }
+    public function getuserbyid($userID){
+        $sql="SELECT user.password,user.email FROM `user` WHERE userid=".$userID;
+        return self::query($sql, true);
+    }
+    public function validatetoken($userid=null,$token=null){
+        if(empty($userid)){ return array('success'=>false,"info"=>'Invalid User'); }
+        $user=$this->getuserbyid($userid);
+        if($user){
+            $this->load->library('tokenizer');
+            $result=$this->tokenizer->validate($token,$user->password.self::SECRETKEY);
+            if($result['success']&&$result['aud']!==$user->email){ $result=array("success"=>false,"info"=>"Wrong token for this email");}
+            else if($result['success']&&$result['iss']!=="victory-urdaneta-discipleship"){ $result=array("success"=>false,"info"=>"Invalid token issuer."); }
+            return $result;
+        } else {
+            return array("success"=>false,"info"=>"Sorry, we didn't find any account associated with this email.");
+        }
+    }
+    /** api/gateway?re=fetch/users_connection/recover */
+    public function recover(){
+        $token=isset($_POST['token'])?$_POST['token']:null; if(empty($token)) { return array("success"=>false,"info"=>"Token is required."); }
+        $userid=isset($_POST['userid'])?$_POST['userid']:null; if(empty($userid)) { return array("success"=>false,"info"=>"Token is required."); }
+        $result=self::validatetoken($userid,$token);
+        if($result['success']){
+            $password=isset($_POST['password'])?$_POST['password']:null; if(empty($password)) { return array("success"=>false,"info"=>"New password is required."); }
+            $confirm=isset($_POST['confirm'])?$_POST['confirm']:null; if(empty($confirm)) { return array("success"=>false,"info"=>"Need to confirm password."); }
+            // update password;
+            return 'update';
+        }else{return $result;}
+    }
     /** api/gateway?re=fetch/users_connection/reset_password */
     public function reset_password(){
         $email=isset($_POST['email'])?$_POST['email']:null;
         /** testing */
         $email='henrydeguzman.java73@gmail.com';
         /** end */
-
         if(empty($email)){ return array("success"=>false, 'info'=>'email is required'); }
         $sql="SELECT user.email,user.userid,user.password,user.firstname,user.lastname FROM `user` 
               WHERE email='".$email."'";$result = self::query($sql, true);
-        
         if ($result) {
-            //return $result;
             $this->load->library('jwt_generator');
             $this->load->library('smpt');
-
             $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
-            //return gettype('true');
 
             $searchNeedle = array(
                 '{{ Mail::Title }}','{{ Mail::Recepient }}',
                 '{{ Mail::JSONToken }}','{{ Mail::Sender }}',
                 '{{ Mail::CopyrightYear }}');
 
-            $replaceStack = array(
-                'Reset Email',
-                $result->firstname,
+            $replaceStack = array('Reset Email',$result->firstname,
                 base_url('page/reset_account/'.$result->userid.'/'.$token),
-                'Discipleship Team',
-                date('Y')
-            );
+                'Discipleship Team', date('Y'));
+
             $bodyhtml=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset_password_email.html');
-            //return $this->smpt->send(array( "body"=>'sample body', "alt"=>'sample alt body', "recipient"=>'henrydeguzman.java73@gmail.com', "subject"=>'Request to reset password' ));
             return $this->smpt->send(array(
                 "body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
                 "alt"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
@@ -133,12 +161,7 @@ class Users_connection extends Core_Model {
                 return array("success"=>true, 'info'=>base_url());
             }
         } else {
-            return array("success"=>false, 'info'=>"Sorry, we didn't find any account associated with this email.");
+            return array("success"=>false, 'info'=>"");
         }
-    }
-
-    public function getuserbyid($userID){
-        $sql="SELECT * FROM `user` WHERE userid=".$userID;
-        return self::query($sql, true);
     }
 }
