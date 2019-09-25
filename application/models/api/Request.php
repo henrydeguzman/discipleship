@@ -10,15 +10,15 @@ class Request extends _API{
     protected  $user;
     public function __construct() {
         parent::__construct($_REQUEST['re']);
-       // if ($this->method != 'centersGet'){return "Only accepts GET HTTP Request Method";}
     }
     protected function fetch() {
-        if($this->dtModule!='' && is_array($this->args)){
+        $modelrr=implode('-',explode('/',$this->dtModule));
+        if(!isset($_SESSION['user'])&&strtolower($modelrr)!=='users-users_connection'){return "No rights.";}
+        else if($this->dtModule!='' && is_array($this->args)){
             $func =  array_shift($this->args);
             $this->load->model($this->dtModule,'mod');
             if(method_exists($this->mod,$func)){
                 return call_user_func_array(array($this->mod,$func),$this->args);
-                //$this->mod->$func($this->args);
             }
         }
     }

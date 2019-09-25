@@ -24,6 +24,7 @@ class Users_get extends Core_Model {
     }
     /** api/gateway?re=fetch/users_get/getusers */
     public function getusers($userid=null,$activefields=null){
+        //return 'd';
         $whr='WHERE x.churchid='.$this->data_app_get->getchurch('churchid');$toponly=false;
         if($userid!=null){ $whr=self::extendwhr($whr,"x.userid=".$userid,"AND"); $toponly=true; }
         $sql=$this->users_script->getusers($activefields).$whr;

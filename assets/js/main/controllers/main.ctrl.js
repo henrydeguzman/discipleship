@@ -56,6 +56,7 @@ angular.module('MainControllers',[])
         $scope.form={};
         $scope.required={};
         vm.message={info:undefined,color:false};
+        vm.back=function(){};
         vm.verify=function(form){
             console.log(form);
             var posted=centralFctry.postData({ url:'fetch/users_connection/reset_password',data:form });

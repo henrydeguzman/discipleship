@@ -36,31 +36,36 @@ class Users_connection extends Core_Model {
     /** api/gateway?re=fetch/users_connection/reset_password */
     public function reset_password(){
         $email=isset($_POST['email'])?$_POST['email']:null;
-        if(empty($email)){ return array("success"=>false, 'info'=>'email is required'); }
+        /** testing */
+        $email='henrydeguzman.java73@gmail.com';
+        /** end */
 
-        $sql="SELECT * FROM `user` WHERE email='".$email."'";
-        $result = self::query($sql, true);
+        if(empty($email)){ return array("success"=>false, 'info'=>'email is required'); }
+        $sql="SELECT user.email,user.userid,user.password,user.firstname,user.lastname FROM `user` 
+              WHERE email='".$email."'";$result = self::query($sql, true);
         
         if ($result) {
+            //return $result;
             $this->load->library('jwt_generator');
             $token = $this->jwt_generator->createToken($result->email, $result->userid, $result->password);
-            
+
             $mail = new PHPMailer;
+
             $mail->isSMTP();
-            $mail->SMTPDebug = 0;
+            $mail->SMTPDebug = 2; //Alternative to above constant
             $mail->Host = 'mail.rtudiscipleship.com';
             $mail->Port = 465;
             $mail->SMTPSecure = 'tls';
             $mail->SMTPAuth = true;
             $mail->Username = 'team@rtudiscipleship.com'; // Please provide this...
             $mail->Password = 'kkzdqpprpn'; // Please provide this...
-
             $mail->setFrom($mail->Username, 'Discipleship Team');
             $mail->addAddress($result->email, $result->firstname.' '.$result->lastname);
             $mail->Subject = 'Request to Reset Password';
 
-            $mail->msgHtml(file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset_password_email.html'));
-            $mail->AltBody = file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/reset_password_email.txt');
+            //$mail->msgHtml(file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset_password_email.html'));
+            //$mail->AltBody = file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/reset_password_email.txt');
+            $mail->msgHtml('sample');
             $mail->wrapText($mail->Body, 100);
             
             //return array('success' => false, 'info' => $mail->ErrorInfo);
@@ -83,11 +88,12 @@ class Users_connection extends Core_Model {
 
             $mail->Body = str_replace($searchNeedle, $replaceStack, $mail->Body);
             $mail->AltBody = str_replace($searchNeedle, $replaceStack, $mail->AltBody);
-
+            return $mail->send();
             if (!$mail->send()) {
                 return array("success"=>false, 'info'=>"Error Message: ".$mail->ErrorInfo);
             } else {
                 // The path to where to save the emails sent.
+                return 'sent';
                 $path = "{mail.rtudiscipleship.com:993}";
 
                 // Tell your server to open an IMAP connect using
