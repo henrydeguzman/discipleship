@@ -41,7 +41,7 @@ class Smpt {
             $subject=isset($data['subject'])?$data['subject']:'Test Subject';
             $body=isset($data['body'])?$data['body']:'Test content';
             $alt=isset($data['alt'])?$data['alt']:'';
-            $ishtml=isset($data['ishtml'])&&gettype($data['ishtml'])==="boolean"?$data['body']:false;
+            $ishtml=isset($data['ishtml'])&&gettype($data['ishtml'])==="boolean"?$data['ishtml']:false;
 
 
             $this->mail->addAddress($recipient);
