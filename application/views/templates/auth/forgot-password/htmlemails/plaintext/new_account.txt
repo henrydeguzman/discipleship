@@ -1,0 +1,20 @@
+Hello {{ Mail::Recepient }}!
+
+We have created an account for you which you can use for our future trainings. You can also download exclusive discipleship materials using your account.
+
+Please click the button below to login on your account.
+
+https://rtudiscipleship.com/
+
+We have also generated a one-time password that you can use for the first time you login. Please remember to exercise caution and change your password after you login. For security purposes, this one-time password will expire in fifteen (15) days after you received this email.
+
+{{ Mail::OTP }}
+
+In case you missed this message, please approach one of our discipleship volunteers personally so we can generate new one-time password for you. Please delete this message after you login for security purposes.
+
+
+Regards,
+
+{{ Mail::Sender }}
+
+Copyright (c) {{ Mail::CopyrightYear }} RTU Discipleship Team. All righs reserved.
