@@ -48,7 +48,7 @@ class Users_set extends Core_Model {
             $profileid=1;
             if(empty($userid)){ /** add */
                 $gen=$this->generatePassword();
-                $data['password']=sha1($gen);
+                $data['password']=self::encrypt($gen);
                 $data['generatedcode']=$gen;
             }else{ /** update */
 
