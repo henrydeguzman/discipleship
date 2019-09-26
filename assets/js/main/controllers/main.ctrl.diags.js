@@ -8,10 +8,13 @@ angular.module('MainDiagController',[])
 .controller('appmaindiag.diagtype.confirm',['$scope',function($scope){
     var vm=this;
     vm.submit=function(bool){
+         console.log($scope.data);
         if(bool&&$scope.data!==undefined&&typeof($scope.data.fn)==='function'){
             $scope.data.fn();
         } else {
-            $scope.data.fncancel();
+             if($scope.data!==undefined&&typeof($scope.data.fncancel)==='function'){
+                  $scope.data.fncancel();    
+             }     
         }
         $scope.$parent.close();
     };
