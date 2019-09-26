@@ -7,7 +7,7 @@
 */
 class Users_set extends Core_Model {
      public function __construct(){
-          
+          $this->load->library('smpt');          
      }
      /** api/gateway?re=fetch/users_set/generatepassword */
      private function generatePassword($a=5,$b='azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789'){
@@ -139,6 +139,7 @@ class Users_set extends Core_Model {
                     $result=array('success'=>true);
                     /** end testing */
                     /** TODO enter email template or mobile text for credentials */
+                    $result['email']=self::sendemail('testsamplepass',$row['email']);
                     if($result['success']){ array_push($done,$row['id']); }
                     break;
                }
@@ -147,6 +148,33 @@ class Users_set extends Core_Model {
           $result['successcnt']=count($done);
           $result['total']=$total;
           return $result;
+     }
+     private function sendemail($password,$email=null){          
+          $searchNeedle = array(
+               '{{ Mail::Title }}',
+               '{{ Mail::Recepient }}',               
+               '{{ Mail::Sender }}',
+               '{{ Mail::Team }}',
+               '{{ Mail::CopyrightYear }}',
+               '{{ Mail::OTP }}'
+          );
+          $replaceStack = array(
+               'Account created',
+               $email,               
+               ORG_TEAM_NAME,
+               ORG_TEAM_NAME,
+               date('Y'),
+               $password
+          );
+          $bodyhtml=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/new-account.html');
+          $altbody=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/new-account.txt');              
+          /*
+          * ishtml = boolean; default: false
+          * body = string|html; default: 'Who knows?'
+          * subject = string; default: 'Test subject'
+          * */
+          return $this->smpt->send(array("body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),"alt"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
+          "recipient"=>$email, "subject"=>ORG_TEAM_NAME." created you an account!", "ishtml"=>true ));   
      }
      /** api/gateway?re=fetch/users_set/edit */
      public function edit($id=null,$savetype='default'){
@@ -159,8 +187,9 @@ class Users_set extends Core_Model {
           if(empty($id)){ return array("success"=>false,"info"=>"id is required!"); }
           if($savetype==='tomember'){
                $gen=$this->generatePassword();
+               $encrypted=sha1($gen);
                $data=array(
-                    "password"=>sha1($gen),
+                    "password"=>$encrypted,
                     "generatedcode"=>$gen, /** TODO remove this on live */
                     "profileid"=>1,
                     "datecreated"=>self::datetime(),
@@ -172,6 +201,8 @@ class Users_set extends Core_Model {
                $data=$this->_isset($data,'email');
           }
           
-          return $this->update('user',$data,'userid='.$id);
+          $result=$this->update('user',$data,'userid='.$id);
+          if($encrypted!==null){$result['password']=$encrypted;}          
+          return $result;
      }
 }

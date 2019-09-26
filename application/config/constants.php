@@ -92,3 +92,4 @@ define('PATH_VIEW','application/views/');
 define('ORG_NAME','Discipleship');
 define('ORG_TAG','');
 
+define('ORG_TEAM_NAME','RTU Discipleship Team');
