@@ -183,10 +183,9 @@ class Users_set extends Core_Model {
           $savetype=empty($savetype)?$_POST['savetype']:$savetype;
           if(empty($id)){ return array("success"=>false,"info"=>"id is required!"); }
           if($savetype==='tomember'){
-               $gen=$this->generatePassword();
-               $encrypted=sha1($gen);
+               $gen=$this->generatePassword();               
                $data=array(
-                    "password"=>$encrypted,
+                    "password"=>sha1($gen),
                     "generatedcode"=>$gen, /** TODO remove this on live */
                     "profileid"=>1,
                     "datecreated"=>self::datetime(),
@@ -199,7 +198,7 @@ class Users_set extends Core_Model {
           }
           
           $result=$this->update('user',$data,'userid='.$id);
-          if($encrypted!==null){$result['password']=$encrypted;}          
+          if($gen!==null){$result['password']=$gen;}          
           return $result;
      }
 }
