@@ -34,7 +34,7 @@ class Weekend_get extends Core_Model {
         if(empty($weekendid)){ return array(); }
         $toprow=false;$whr='';
         if(isset($_POST['rowid'])){ $toprow=true;$whr="AND a.userid=".$_POST['rowid']; }
-        $sql=$this->weekend_script->getvweekendlist($weekendid).$whr;
+        $sql=$this->weekend_script->getvweekendlist($weekendid).$whr;     
         return $this->query($sql,$toprow);
     }
     /** api/gateway?re=fetch/weekend_get/processdate */

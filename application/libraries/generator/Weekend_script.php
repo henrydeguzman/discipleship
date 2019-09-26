@@ -18,6 +18,6 @@ class Weekend_script {
                 LEFT JOIN one2one b ON a.userid=b.userid 
                 LEFT JOIN weekend_settings c ON c.churchid=$churchid
                 LEFT JOIN weekend d ON d.weekendid=".$weekendid." AND d.weekend_date >= CURDATE() AND d.total=0
-                WHERE a.profileid=2 AND b.chapter=c.chapterid ";
+                WHERE a.profileid=2 AND b.chapter>=c.chapterid ";
     }
 }
