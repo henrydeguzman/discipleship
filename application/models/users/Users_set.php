@@ -137,6 +137,8 @@ class Users_set extends Core_Model {
                     $result=self::edit($row['id'],'tomember');                    
                     /** TODO enter email template or mobile text for credentials */
                     $result['email']=self::sendemail($result['password'],$row['email']);
+                    // remove password
+                    $result['password']='Ops it\'s Confidential :)';
                     if($result['success']){ array_push($done,$row['id']); }
                     break;
                }
