@@ -98,9 +98,7 @@ victory
             console.log(datas);
             if(vm.list.data==null){ dialogs.notify('Please enter victory weekend date!');return; }
             else if(checked.length===0){ dialogs.notify('Please select atleast one user to create account.');return; }
-            /** id and weekendid only */
-            console.log(datas);
-            console.log(checked);return;
+            /** id and weekendid only */            
             dialogs.confirm('Are you sure ?',function(){
                 dialogs.asynchronous({
                     url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
