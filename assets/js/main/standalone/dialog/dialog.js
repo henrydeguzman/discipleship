@@ -114,7 +114,9 @@ ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope'
                         if(v.data.success){
                             posted.data.successcnt=v.data.successcnt;
                             posted.data.total=v.data.total;
-                            posted.data.percent=(posted.data.successcnt/posted.data.total)*100;
+                             var percent = (posted.data.successcnt / posted.data.total) * 100;
+                             if (typeof percent === 'number') { percent=percent.toFixed(0); }
+                            posted.data.percent=percent;                            
                             posted.data.done=v.data.done;
                             $scope.data=posted.data;
                             if(posted.data.total>v.data.successcnt){ pushdata(); } else if(posted.data.total==v.data.successcnt&&$scope.otherdata.autoclosed==true){ $timeout(function(){ $scope.$parent.close(); },1000); }
