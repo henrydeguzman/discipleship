@@ -31,25 +31,65 @@
     <!-- forms -->
     <link rel="stylesheet" href="<?= base_url('assets/css/main/form/form.css'); ?>">
     <!-- login css -->
-    <link rel="stylesheet" href="<?= base_url('assets/css/login/login.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/login/login-v2.css'); ?>">
     <!-- icon -->
     <link rel="icon" type="image/png" href="assets/img/logo/logo64x64.png" />
     <!-- Google Font -->
     <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
 </head>
-<body class="hold-transition login-page" ng-app="app" ng-controller="main.resetpassword.controller as mainResetCtrl">
-<div class="login-box">
+<body class="hold-transition loginv2-page" ng-app="app" ng-controller="main.login.controller as mainloginCtrl">
+<div class="login-box" style="display:none;">
     <div class="login-logo">
         <a href="<?= base_url(); ?>"><img src="<?= base_url('assets/img/logo/logo64x64.png'); ?>" /></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <h1 class="text-center text-green"><span class="fa fa-check fa-3x"></span></h1>
-        <h4 class="login-box-msg">Password reset success!</h4>
-        <a class="btn btn-block btn-info" role="button" href="<?=base_url('page/auth/login');?>">Login now</a>
+        <p class="login-box-msg">v2 Sign in to start your session</p>
+        <a href="<?= base_url('page/auth/forgot-password'); ?>">I forgot my password</a><br>
+
     </div>
     <!-- /.login-box-body -->
 </div>
+
+<div class="login-box">
+     <div class="login-logo">
+        <a class="logo" href="<?= base_url(); ?>"><img src="<?= base_url('assets/img/logo/logo120x120.png'); ?>" /></a>
+        <img class="journey" src="<?= base_url('assets/img/logo/discipleship-journey-text.png'); ?>" />
+    </div>
+    <div class="_info" ng-cloak ng-class="mainloginCtrl.message.color" ng-if="mainloginCtrl.message.info!==undefined"><div bind-html-compile="mainloginCtrl.message.info"></div></div>
+     <form class="gen-form-static">
+            <div class="form-group">
+                <input autofocus type="email" ng-model="form.email" gt-inputrequired="required.email" class="gen-input-control" placeholder="Email">
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="form-group">
+                <input type="password" ng-model="form.password" gt-inputrequired="required.password" class="gen-input-control" placeholder="Password">
+                <i class="fa fa-lock"></i>
+            </div>
+            <div class="row">               
+                <!-- /.col -->
+                <div class="col-xs-12">
+                    <button click-and-disable="mainloginCtrl.verify(form)" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+                <!-- /.col -->
+            </div>
+            <div class="row">
+               <div class="col-xs-6">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox"> Remember Me
+                        </label>
+                    </div>
+               </div>
+               <div class="col-xs-6">
+                    <div class="forgot">
+                         <a href="<?= base_url('page/auth/forgot-password'); ?>">I forgot my password</a><br>
+                    </div>               
+               </div>
+            </div>
+        </form>
+</div>
+
 <!-- /.login-box -->
 
 <!-- jQuery 3 -->
@@ -58,15 +98,15 @@
 <script src="<?= base_url('assets/bower_components/bootstrap/js/bootstrap.min.js'); ?>"></script>
 <!-- iCheck -->
 <script src="<?= base_url('assets/bower_components/bootstrap/plugins/iCheck/icheck.min.js'); ?>"></script>
-<!--<script>-->
-<!--    $(function () {-->
-<!--        $('input').iCheck({-->
-<!--            checkboxClass: 'icheckbox_square-blue',-->
-<!--            radioClass: 'iradio_square-blue',-->
-<!--            increaseArea: '20%' /* optional */-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
+<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' /* optional */
+        });
+    });
+</script>
 <!-- angular dependencies -->
 <script src="<?= base_url('assets/bower_components/angular/angular.min.js'); ?>"></script>
 <script src="<?= base_url('assets/bower_components/angular-sanitize/angular-sanitize.min.js'); ?>"></script>
