@@ -1,57 +1,70 @@
 <div class="diag-one2one-addfrm" ng-controller="one2one.ctrl.diags.addfrm as o2oaddfrmdiagsCtrl">
-    <form class="gen-form-static">
-        <div class="form-group">
-            <div class="gen-radio-group-inline">
-                <label class="gfs-title">
-                    <span>New</span>
-                    <input ng-value="0" ng-model="form.ismember" type="radio" name="bradio" />
-                </label>
-                <label class="gfs-title">
-                    <span>Existing</span>
-                    <input ng-value="1" ng-model="form.ismember" type="radio" name="bradio" />
-                </label>
-            </div>
-        </div>
-        <div ng-if="form.ismember==1&&data.fromctrl==='vg'">
-            <!--<div class="form-group">
-                <label class="gfs-title">Please select user:</label>
-                <gt-combobox type="users" model="fetch/users_get/getlist" input-model="form.userid"></gt-combobox>
-            </div>-->
-            <gt-table id="users.novg" model="fetch/users_get/novg" formatter="one2one/formatter/novg.js">
-                <gt-table-col field="fullname">Name</gt-table-col>
-                <gt-table-col format="action" td-style="{width:'40px'}" text-align="center">Action</gt-table-col>
-            </gt-table>
-        </div>
-        <div ng-if="form.ismember==1&&data.fromctrl==='one2one'">
-            <gt-table id="users.notyetone2one" model="fetch/users_get/notyetone2one" formatter="one2one/formatter/notyetone2one.js">
-                <gt-table-col field="fullname" format="fullname">Name</gt-table-col>
-                <gt-table-col field="leader" format="leader">Vg leader</gt-table-col>
-                <gt-table-col format="action" td-style="{width:'100px'}" text-align="center">Action</gt-table-col>
-            </gt-table>
-        </div>
-        <div ng-if="form.ismember==0">
-            <div class="form-group">
-                <label class="gfs-title">Firstname</label>
-                <input type="text" gt-inputrequired="required.firstname" ng-model="form.firstname" class="gen-input-control" />
-            </div>
-            <div class="form-group">
-                <label class="gfs-title">Lastname</label>
-                <input type="text" gt-inputrequired="required.lastname" ng-model="form.lastname" class="gen-input-control" />
-            </div>
-            <div class="form-group">
-                <label class="gfs-title">Contact #</label>
-                <input valid-number="_" allow-decimal="false" type="text" gt-inputrequired="required.contact" ng-model="form.phonenumber" class="gen-input-control" />
-            </div>
-            <div class="form-group">
-                <label class="gfs-title">Address</label>
-                <input type="text" gt-inputrequired="required.address" ng-model="form.address" class="gen-input-control" />
-            </div>
-            <div class="form-btn-right">
-                <button class="btn btn-sm gen-btn-success" click-and-disable="o2oaddfrmdiagsCtrl.save(form)">
-                    <span ng-if="form.type==='add'">Add</span>
-                    <span ng-if="form.type==='edit'">Update</span>
-                </button>
-            </div>
-        </div>
-    </form>
+     <form class="gen-form-static">
+          <div class="form-group">
+               <div class="gen-radio-group-inline">
+                    <label class="gfs-title">
+                         <span>New</span>
+                         <input ng-value="0" ng-model="form.ismember" type="radio" name="bradio" />
+                    </label>
+                    <label class="gfs-title">
+                         <span>Existing</span>
+                         <input ng-value="1" ng-model="form.ismember" type="radio" name="bradio" />
+                    </label>
+               </div>
+          </div>
+          <div ng-if="form.ismember==1&&data.fromctrl==='vg'">
+               <!--<div class="form-group">
+                    <label class="gfs-title">Please select user:</label>
+                    <gt-combobox type="users" model="fetch/users_get/getlist" input-model="form.userid"></gt-combobox>
+               </div>-->
+               <gt-table id="users.novg" model="fetch/users_get/novg" formatter="one2one/formatter/novg.js">
+                    <gt-table-col field="fullname">Name</gt-table-col>
+                    <gt-table-col format="action" td-style="{width:'40px'}" text-align="center">Action</gt-table-col>
+               </gt-table>
+          </div>
+          <div ng-if="form.ismember==1&&data.fromctrl==='one2one'">
+               <gt-table id="users.notyetone2one" model="fetch/users_get/notyetone2one" formatter="one2one/formatter/notyetone2one.js">
+                    <gt-table-col field="fullname" format="fullname">Name</gt-table-col>
+                    <gt-table-col field="leader" format="leader">Vg leader</gt-table-col>
+                    <gt-table-col format="action" td-style="{width:'100px'}" text-align="center">Action</gt-table-col>
+               </gt-table>
+          </div>
+          <div ng-if="form.ismember==0">
+               <div class="row">
+                    <div class="col-md-6">
+                         <div class="form-group">
+                              <label class="gfs-title">Firstname</label>
+                              <input type="text" gt-inputrequired="required.firstname" ng-model="form.firstname" class="gen-input-control" />
+                         </div>
+                    </div>
+                    <div class="col-md-6">
+                         <div class="form-group">
+                              <label class="gfs-title">Lastname</label>
+                              <input type="text" gt-inputrequired="required.lastname" ng-model="form.lastname" class="gen-input-control" />
+                         </div>
+                    </div>
+               </div>
+               <div class="row">
+                    <div class="col-md-6">
+                         <div class="form-group">
+                              <label class="gfs-title">Contact #</label>
+                              <input valid-number="_" allow-decimal="false" type="text" gt-inputrequired="required.contact" ng-model="form.phonenumber" class="gen-input-control" />
+                         </div>
+                    </div>
+                    <div class="col-md-6">
+                         <div class="form-group">
+                              <label class="gfs-title">Address</label>
+                              <input type="text" gt-inputrequired="required.address" ng-model="form.address" class="gen-input-control" />
+                         </div>
+                    </div>
+               </div>          
+               
+               <div class="form-btn-right">
+                    <button class="btn btn-sm gen-btn-success" click-and-disable="o2oaddfrmdiagsCtrl.save(form)">
+                         <span ng-if="form.type==='add'">Add</span>
+                         <span ng-if="form.type==='edit'">Update</span>
+                    </button>
+               </div>
+          </div>
+     </form>
 </div>
