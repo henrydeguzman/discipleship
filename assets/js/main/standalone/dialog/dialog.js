@@ -109,8 +109,7 @@ ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope'
             function pushdata(){
                 posted.fn=centralFctry.postData({url:$scope.model,data:posted.data,serializer:'jqlike'});
                 if(posted.fn.$$state!==undefined){
-                    posted.fn.then(function(v){
-                        console.log(v.data);
+                    posted.fn.then(function(v){                        
                         if(v.data.success){
                             posted.data.successcnt=v.data.successcnt;
                             posted.data.total=v.data.total;
@@ -120,11 +119,7 @@ ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope'
                             posted.data.done=v.data.done;
                             $scope.data=posted.data;
                             if(posted.data.total>v.data.successcnt){ pushdata(); } else if(posted.data.total==v.data.successcnt&&$scope.otherdata.autoclosed==true){ $timeout(function(){ $scope.$parent.close(); },1000); }
-                        } else {
-                            dialogs.error(v.data.info,function(){
-                                $scope.$parent.close();
-                            });
-                        }
+                        } else { dialogs.error(v.data.info,function(){ $scope.$parent.close(); }); }
                     });
                 }
             }

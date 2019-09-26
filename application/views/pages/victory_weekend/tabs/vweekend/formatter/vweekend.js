@@ -5,8 +5,7 @@
  * Time: 11:25 AM
  */
 var tblformatter={
-    email:function(tr,field,td,index){
-        console.log(tr,field,td,index,tr.email);
+    email:function(tr,field,td,index){        
         return '<div style="display:inline-block;"><button ng-click="vWeekendCtrl.email.add(tr,'+(index+1)+')" style="text-align: center;" type="button" class="btn btn-success btn-xs" ng-if="tr.email===\'\'||tr.email===null">Add email</button><span ng-if="!empty(tr.email)">{{tr.email}}</span></div>';
     }
 };

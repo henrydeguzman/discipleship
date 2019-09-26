@@ -984,9 +984,6 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                     if(params!==undefined&&params.modelext!==undefined){
                         model+=params.modelext;
                     }
-                    console.log('---table data---');
-                    console.log(data);
-                    console.log('---end---');
                     vm.response.content=centralFctry[method]({url:model,data:data,json:'page/loadview?dir=jshtml&view=directives/table/table.json',serializer:'jqlike'});
                     if(vm.response.content.$$state!==undefined){
                         vm.response.content.then(function(v){
