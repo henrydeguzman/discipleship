@@ -126,7 +126,10 @@ class Users_set extends Core_Model {
           
           /** register total once. */
           $total=count($rows);
-          if(count($done)==0&&count($rows)>0){ $this->update('weekend',array("total"=>$total),'weekendid='.$rows[0]['weekendid']); }
+          if(count($done)==0&&count($rows)>0){ 
+               // TODO uncomment this after testing
+               // $this->update('weekend',array("total"=>$total),'weekendid='.$rows[0]['weekendid']); 
+          }
           
           foreach($rows as $row){
                if(!in_array($row['id'],$done)){
