@@ -89,5 +89,6 @@ define("PATH_UPLOAD", "assets/uploads/");/** UPLOAD FOLDER */
 define("PATH_USERPHOTO", "img/userphoto/");/** USERPHOTO */
 define('URI_UPLOAD', 'api/getfile?name='); //mvs/app?run=upload::getfile&name= //May 8, 2018
 define('PATH_VIEW','application/views/');
-
+define('ORG_NAME','Discipleship');
+define('ORG_TAG','');
 
