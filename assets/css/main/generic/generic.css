@@ -13,6 +13,7 @@ button:focus {
 .gen-div-control {
     width:100%;
     border: 1px solid #999 !important;
+    border: 1px solid #ccc !important;
     padding: 5px;
     /* padding: 6px; */
     -webkit-border-radius:2px;
