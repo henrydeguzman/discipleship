@@ -83,7 +83,7 @@ victory
                  if (type !== "") { index = type.split('-')[1]; }
                 if(data.email==null&&data._checked){
                     data._checked=false;
-                    dialogs.notify('Please add email on #'+(index+1)+' to continue.');
+                     dialogs.notify('Please add email on #' + (parseInt(index)+1)+' to continue.');
                 }
             }
         };
