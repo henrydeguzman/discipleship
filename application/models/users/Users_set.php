@@ -128,18 +128,15 @@ class Users_set extends Core_Model {
           $total=count($rows);
           if(count($done)==0&&count($rows)>0){ 
                // TODO uncomment this after testing
-               // $this->update('weekend',array("total"=>$total),'weekendid='.$rows[0]['weekendid']); 
+                $this->update('weekend',array("total"=>$total),'weekendid='.$rows[0]['weekendid']); 
           }
           
           foreach($rows as $row){
                if(!in_array($row['id'],$done)){
                     $_POST=$row;
-                    //$result=self::edit($row['id'],'tomember');
-                    /** testing code */
-                    $result=array('success'=>true);
-                    /** end testing */
+                    $result=self::edit($row['id'],'tomember');                    
                     /** TODO enter email template or mobile text for credentials */
-                    $result['email']=self::sendemail('testsamplepass',$row['email']);
+                    $result['email']=self::sendemail($result['password'],$row['email']);
                     if($result['success']){ array_push($done,$row['id']); }
                     break;
                }
