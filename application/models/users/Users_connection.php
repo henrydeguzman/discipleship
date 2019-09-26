@@ -82,7 +82,7 @@ class Users_connection extends Core_Model {
                base_url('page/reset_account/'.$result->userid.'/'.$token),
                'Discipleship Team', date('Y'));
                $bodyhtml=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset-password-email.html');
-               $altbody=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/reset-password-email.txt');
+               $altbody=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/reset-password-email.txt')               
                /*return $this->smpt->send(array(
                     "body"=>"body html",
                     "alt"=>"sample alt",
