@@ -13,8 +13,6 @@ class Template {
         if($layout[0]==='auth'){
             //var_dump($layout);
             //var_dump('templates/'.array_shift($layout).'/'.array_shift($layout).'/'.$body_view);return;
-
-
             $this->content('templates/'.array_shift($layout).'/'.array_shift($layout).'/'.$body_view,$data);return;
         }
         $layout=$layout[0];

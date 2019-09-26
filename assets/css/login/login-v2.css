@@ -1,0 +1,84 @@
+html {
+     height: auto;
+}
+
+.loginv2-page {
+     background: -webkit-gradient(radial, center center, 0, center center, 460, from(#fff), to(#808080)); /* Safari 4-5, Chrome 1-9 Can't specify a percentage size*/
+     background: -webkit-radial-gradient(circle, #fff, #808080); /* Safari 5.1+, Chrome 10+ */
+     background: -moz-radial-gradient(circle, #fff #808080); /* Firefox 3.6+ */
+     background: -ms-radial-gradient(circle, #fff, #808080); /* IE 10 */
+}
+.login-box {
+    width:320px;
+    padding:20px;
+    background:#f1f1f1;
+    border-radius:5px;
+    margin:0 auto;
+    margin-top: 50px;
+    box-shadow:0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.login-box ._info {
+    margin-bottom:10px;
+    color:white;
+    font-size:12px;
+}
+.login-box ._info > div {
+    padding:10px;
+    border-radius:3px;
+   
+}
+.login-box ._info > div:first-letter {
+   text-transform:capitalize; 
+}
+
+.login-box ._info.red > div {
+    background:#c30f06;
+}
+.login-box ._info.green > div {
+     background:#196620;
+}
+
+.login-box input {
+    margin-bottom:10px !important;
+    height:42px;
+    border-radius: 5px;
+    padding-left:35px !important;
+}
+.login-box .form-group {
+    position:relative;
+}
+.login-box .form-group i {
+    position:absolute;
+    left:11px;
+    top: 11px;
+    font-size:22px;
+    color:#b2b2b2;
+}
+.login-box .checkbox {
+    font-size:12px;
+}
+
+.login-box .checkbox input[type=checkbox]{
+     visibility: hidden;    
+}
+
+.login-box .forgot{    
+        display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+     font-size:12px;
+
+
+}
+.login-box .forgot a {
+    color:#333333;
+    font-style:italic;
+}
+.login-box .forgot a:hover {
+    text-decoration:underline;
+}
+
+.login-box .login-logo .journey {
+    width:150px;
+}
