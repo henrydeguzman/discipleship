@@ -67,6 +67,7 @@ victory
         };
         vm.create={};
         vm.create.check=function(type,data){
+             console.log(type,data);
             if(type==='all'){
                 var noemail=0;
                 for(var x=0;x<data.tr.length;x++){
@@ -79,7 +80,8 @@ victory
                 }
             }
             else{
-                console.log(data);
+                var index=0;
+                if(type!==""){index=type.split('-'[1])}
                 if(data.email==null&&data._checked){
                     data._checked=false;
                     dialogs.notify('Please add email on #'+(index+1)+' to continue.');
