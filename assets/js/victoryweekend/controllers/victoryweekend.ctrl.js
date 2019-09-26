@@ -89,10 +89,18 @@ victory
             }
         };
         vm.create.accounts=function(datas){
-            var checked=_.filter(datas,{_checked:true});
-            console.log(vm.list.data);
+            //var checked=_.filter(datas,{_checked:true});
+            var checked=[];
+            for(var x=0;x<datas.length;x++){
+                 if(datas[x]['_checked']==true){
+                      checked.push({ id: datas[x]['id'], weekendid: datas[x]['weekendid'] });
+                 }          
+            }
+            console.log(datas);
             if(vm.list.data==null){ dialogs.notify('Please enter victory weekend date!');return; }
             else if(checked.length===0){ dialogs.notify('Please select atleast one user to create account.');return; }
+            /** id and weekendid only */
+            //console.log(checked);return;
             dialogs.confirm('Are you sure ?',function(){
                 dialogs.asynchronous({
                     url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
