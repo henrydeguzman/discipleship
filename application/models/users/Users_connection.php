@@ -49,9 +49,7 @@ class Users_connection extends Core_Model {
                if($result['success']&&$result['aud']!==$user->email){ $result=array("success"=>false,"info"=>"Wrong token for this email");}
                else if($result['success']&&$result['iss']!=="victory-urdaneta-discipleship"){ $result=array("success"=>false,"info"=>"Invalid token issuer."); }
                return $result;
-          } else {
-               return array("success"=>false,"info"=>"Sorry, we didn't find any account associated with this email.");
-          }
+          } else { return array("success"=>false,"info"=>"Sorry, we didn't find any account associated with this email."); }
      }
      /** api/gateway?re=fetch/users_connection/recover */
      public function recover(){
@@ -73,32 +71,18 @@ class Users_connection extends Core_Model {
           if ($result) {
                $this->load->library('smpt');
                $token = self::createtoken($result->userid);
-               $searchNeedle = array(
-                    '{{ Mail::Title }}','{{ Mail::Recepient }}',
-                    '{{ Mail::JSONToken }}','{{ Mail::Sender }}',
-                    '{{ Mail::CopyrightYear }}'
-               );
-               $replaceStack = array('Reset Email',$result->firstname,
-               base_url('page/reset_account/'.$result->userid.'/'.$token),
-               'Discipleship Team', date('Y'));
+               $searchNeedle = array('{{ Mail::Title }}','{{ Mail::Recepient }}','{{ Mail::JSONToken }}','{{ Mail::Sender }}','{{ Mail::CopyrightYear }}');
+               $replaceStack = array('Reset Email',$result->firstname,base_url('page/reset_account/'.$result->userid.'/'.$token),'Discipleship Team', date('Y'));
                $bodyhtml=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/reset-password-email.html');
-               $altbody=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/reset-password-email.txt');         
-               /*return $this->smpt->send(array(
-                    "body"=>"body html",
-                    "alt"=>"sample alt",
-                    "recipient"=>'henrydeguzman.java73@gmail.com',
-                    "subject"=>'Request to reset password'
-               ));*/
-               return $this->smpt->send(array(
-                    "body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
-                    "alt"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
-                    "recipient"=>$email, "subject"=>'Request to reset password', "ishtml"=>true 
-               ));
+               $altbody=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/reset-password-email.txt');              
                /*
                * ishtml = boolean; default: false
                * body = string|html; default: 'Who knows?'
                * subject = string; default: 'Test subject'
                * */
+               return $this->smpt->send(array("body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),"alt"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
+                    "recipient"=>$email, "subject"=>'Request to reset password', "ishtml"=>true 
+               ));          
           } else { return array("success"=>false, 'info'=>"Sorry, we didn't find any account associated with this email."); }
      }
 }
