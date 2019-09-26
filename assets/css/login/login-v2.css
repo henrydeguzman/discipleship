@@ -8,13 +8,12 @@ html {
      background: -moz-radial-gradient(circle, #fff #808080); /* Firefox 3.6+ */
      background: -ms-radial-gradient(circle, #fff, #808080); /* IE 10 */
 }
-.login-box {
+.login-box {    
     width:320px;
     padding:20px;
     background:#f1f1f1;
-    border-radius:5px;
-    margin:0 auto;
-    margin-top: 50px;
+    border-radius:5px;margin:0 auto;
+    margin-top:100px;
     box-shadow:0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
 }
 
