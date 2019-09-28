@@ -9,6 +9,7 @@ class Profile_set extends Core_Model {
     public function __construct(){}
     /** api/gateway?re=fetch/profile_set/uploadphoto */
     public function uploadphoto(){
+        // var_dump($_POST);       
         $curuser=$this->data_app_get->idCurrentUser();
         $file=$_FILES['file'];
         $upload=$this->fileupload->upload($file,'image',PATH_USERPHOTO);

@@ -39,22 +39,46 @@ victory
         * 0=unset,1=start,2=done,*/
         $scope.profile={upload:{status:0}};
         $scope.profile.upload.process=function(file){
-             alert("Sorry this is under development.");return;
+             //alert("Sorry this is under development.");return;
              //console.log(file);return;
 
              var posted = centralFctry.uploadfile2({
                   url:'fetch/profile_set/uploadphoto',
-                  data:file,
+                  data:{file:file,data:'sss'},
+                  onreadystatechange:function(xhr,data){
+                       console.log('----on ready state change----');                       
+                       if (xhr.readyState == 3) {
+                            // loading
+                       }
+                       if (xhr.readyState == 4) {
+
+                       }
+                  },
                   onprogress:function(evt,loaded,total,percent){
                        console.log('=>>>Upload progress: ' + percent + '%');
-                       $scope.profile.upload.value = percent;
-                       $scope.profile.upload.style = { 'width': percent + '%' };
+                       $scope.$apply(function () {
+                            $scope.profile.upload.value = percent;
+                            $scope.profile.upload.style = { 'width': percent + '%' };
+                       });                    
                   },
                   onstart: function () {
-                       console.log('started');
+                       console.log('=>>>onstart');
                        $scope.profile.upload.status = 1;
                   },
-
+                  onsuccess:function(v){
+                       console.log('=>>>onsuccess');
+                       $timeout(function () {
+                            $scope.profile.upload.status = 2;
+                            $scope.$parent.close(v);
+                            console.log('response stathe:', v); // JSON response
+                       }, 1000);
+                  },
+                  onerror:function(){
+                       console.log('=>>>onerror');
+                  },
+                  onabort:function(){
+                       console.log('=>>>onabort');
+                  }
              });
              console.log('fired',file);
              return;

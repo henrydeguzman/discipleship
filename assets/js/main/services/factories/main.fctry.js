@@ -157,17 +157,22 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
                   if (params.newurl === 'static' && params.newurl !== undefined) { url = ''; }
                   url += params.url;
              }
-             //console.log(params.data);return;
-
-             var xhr = new XMLHttpRequest();
-             xhr.setRequestHeader("Content-Type", "application/octet-stream");
+             var xhr = new XMLHttpRequest();          
              xhr.upload.addEventListener('progress', onprogressHandler, false);
-             xhr.upload.addEventListener('onloadstart', onloadstartHandler,false);
-             xhr.upload.addEventListener('onload', onloadHandler);
-             xhr.upload.addEventListener('onerror', onerrorHandler);
-             xhr.upload.addEventListener('onabort', onabortHandler);
-             xhr.open('POST', url, true);
-             xhr.send(params.data); // Simple!
+             xhr.upload.onloadstart=onloadstartHandler;
+             xhr.upload.onload=onloadHandler;
+             xhr.upload.onerror=onerrorHandler;
+             xhr.upload.onabort=onabortHandler;
+             var form = new FormData();
+             xhr.open('POST', url, true);          
+             xhr.onreadystatechange=function(){
+                  if (params.data !== undefined && params.onreadystatechange !== undefined) {
+                       params.onreadystatechange(xhr, this.response);
+                  }
+             }             
+             form.append('file', params.data.file);
+             if(params.data!==undefined && params.data.data!==undefined) { form.append('data', params.data.data); }
+             xhr.send(form); // Simple!
 
              function onprogressHandler(evt) {
                   var percent = evt.loaded / evt.total * 100;
@@ -175,16 +180,21 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
                   if (params !== undefined && params.onprogress !== undefined) { params.onprogress(evt, evt.loaded, evt.total, percent); }
              }
              /** the upload begins */
-             function onloadstartHandler(evt) {
-                  console.log('onsgart');
+             function onloadstartHandler(evt) {                  
                   if (params !== undefined && params.onstart !== undefined) { params.onstart(evt); }
              }
              /** the upload ends successfully */
-             function onloadHandler(evt) {}
+             function onloadHandler(evt) {
+                  if (params !== undefined && params.onsuccess !== undefined) { params.onsuccess(evt); }
+             }
              /** the upload ends in error */
-             function onerrorHandler(evt) {}
+             function onerrorHandler(evt) {
+                  if (params !== undefined && params.onerror !== undefined) { params.onerror(evt); }
+             }
              /** the upload has been aborted by the user */
-             function onabortHandler(evt) {}
+             function onabortHandler(evt) {
+                  if (params !== undefined && params.onabort !== undefined) { params.onabort(evt); }
+             }
         },
         uploadfile:function(params){
             var url='api/gateway?re=',data;
