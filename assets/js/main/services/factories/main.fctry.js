@@ -149,6 +149,34 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
              }
             return $http({method:'GET',data:data,url:url,headers:headers});
         },
+        uploadfile2:function(params){
+             /** Try with the usual upload using xmlhttprequest */             
+             var url='api/gateway?re=',data;
+             if (typeof (params) !== 'object') { return false; }
+             if (params.url !== '' && params.url !== undefined) {
+                  if (params.newurl === 'static' && params.newurl !== undefined) { url = ''; }
+                  url += params.url;
+             }
+             //console.log(params.data);return;
+
+             var xhr = new XMLHttpRequest();
+             xhr.upload.addEventListener('progress', onprogressHandler, false);
+             xhr.upload.addEventListener('onloadstart', onloadstartHandler);
+             xhr.upload.addEventListener('onload', onloadHandler);
+             xhr.upload.addEventListener('onerror', onerrorHandler);
+             xhr.upload.addEventListener('onabort', onabortHandler);
+             xhr.open('POST', url, true);
+             xhr.send(params.data); // Simple!
+
+             function onprogressHandler(evt) {
+                  var percent = evt.loaded / evt.total * 100;
+                  console.log('=>>>Upload progress: ' + percent + '%');
+             }
+             function onloadstartHandler(evt) {}
+             function onloadHandler(evt) {}
+             function onerrorHandler(evt) {}
+             function onabortHandler(evt) {}
+        },
         uploadfile:function(params){
             var url='api/gateway?re=',data;
             if(typeof(params)!=='object'){return false;}

@@ -39,6 +39,18 @@ victory
         * 0=unset,1=start,2=done,*/
         $scope.profile={upload:{status:0}};
         $scope.profile.upload.process=function(file){
+             //console.log(file);return;
+
+             var posted = centralFctry.uploadfile2({
+                  url:'fetch/profile_set/uploadphoto',
+                  data:file,
+                  progress:function(){
+                       
+                  }
+             });
+             console.log('fired',file);
+             return;
+
             var posted=centralFctry.uploadfile({
                 url:'fetch/profile_set/uploadphoto',data:
                     {
