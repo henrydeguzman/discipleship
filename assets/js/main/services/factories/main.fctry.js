@@ -160,8 +160,9 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
              //console.log(params.data);return;
 
              var xhr = new XMLHttpRequest();
+             xhr.setRequestHeader("Content-Type", "application/octet-stream");
              xhr.upload.addEventListener('progress', onprogressHandler, false);
-             xhr.upload.addEventListener('onloadstart', onloadstartHandler);
+             xhr.upload.addEventListener('onloadstart', onloadstartHandler,false);
              xhr.upload.addEventListener('onload', onloadHandler);
              xhr.upload.addEventListener('onerror', onerrorHandler);
              xhr.upload.addEventListener('onabort', onabortHandler);
@@ -170,11 +171,19 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
 
              function onprogressHandler(evt) {
                   var percent = evt.loaded / evt.total * 100;
-                  console.log('=>>>Upload progress: ' + percent + '%');
+                  // console.log('=>>>Upload progress: ' + percent + '%');
+                  if (params !== undefined && params.onprogress !== undefined) { params.onprogress(evt, evt.loaded, evt.total, percent); }
              }
-             function onloadstartHandler(evt) {}
+             /** the upload begins */
+             function onloadstartHandler(evt) {
+                  console.log('onsgart');
+                  if (params !== undefined && params.onstart !== undefined) { params.onstart(evt); }
+             }
+             /** the upload ends successfully */
              function onloadHandler(evt) {}
+             /** the upload ends in error */
              function onerrorHandler(evt) {}
+             /** the upload has been aborted by the user */
              function onabortHandler(evt) {}
         },
         uploadfile:function(params){

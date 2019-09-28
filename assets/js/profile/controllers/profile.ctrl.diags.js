@@ -39,14 +39,22 @@ victory
         * 0=unset,1=start,2=done,*/
         $scope.profile={upload:{status:0}};
         $scope.profile.upload.process=function(file){
+             alert("Sorry this is under development.");return;
              //console.log(file);return;
 
              var posted = centralFctry.uploadfile2({
                   url:'fetch/profile_set/uploadphoto',
                   data:file,
-                  progress:function(){
-                       
-                  }
+                  onprogress:function(evt,loaded,total,percent){
+                       console.log('=>>>Upload progress: ' + percent + '%');
+                       $scope.profile.upload.value = percent;
+                       $scope.profile.upload.style = { 'width': percent + '%' };
+                  },
+                  onstart: function () {
+                       console.log('started');
+                       $scope.profile.upload.status = 1;
+                  },
+
              });
              console.log('fired',file);
              return;
