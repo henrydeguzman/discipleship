@@ -42,7 +42,7 @@ victory
              //alert("Sorry this is under development.");return;
              //console.log(file);return;
 
-             var posted = centralFctry.uploadfile2({
+             var posted = centralFctry.uploadfile({
                   url:'fetch/profile_set/uploadphoto',
                   data:{file:file,data:'sss'},
                   onreadystatechange:function(xhr,data){

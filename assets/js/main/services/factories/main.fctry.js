@@ -149,7 +149,7 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
              }
             return $http({method:'GET',data:data,url:url,headers:headers});
         },
-        uploadfile2:function(params){
+        uploadfile:function(params){
              /** Try with the usual upload using xmlhttprequest */             
              var url='api/gateway?re=',data;
              if (typeof (params) !== 'object') { return false; }
@@ -176,6 +176,7 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
 
              function onprogressHandler(evt) {
                   var percent = evt.loaded / evt.total * 100;
+                  if (typeof percent === 'number') { percent = percent.toFixed(0); }
                   // console.log('=>>>Upload progress: ' + percent + '%');
                   if (params !== undefined && params.onprogress !== undefined) { params.onprogress(evt, evt.loaded, evt.total, percent); }
              }
@@ -196,7 +197,7 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
                   if (params !== undefined && params.onabort !== undefined) { params.onabort(evt); }
              }
         },
-        uploadfile:function(params){
+        uploadfile2_notworking:function(params){
             var url='api/gateway?re=',data;
             if(typeof(params)!=='object'){return false;}
             if(params.url!==''&&params.url!==undefined){
