@@ -10,6 +10,12 @@ angular.module('MainControllers',[])
         $scope.pathValue=pathValue;
         $scope.spinnerValues=spinnerValues;
         $scope.isloadingService=isloadingService;
+        console.log(vtr.userdata.photo);
+         $scope.$on('emiter_appmainctrl', function (event, args) {
+              console.log('fired emit');
+              
+              vm.userdata.photo = args.photo;
+         });    
     }])
     .controller('main.header.controller',['centralFctry',function(centralFctry){ var vm=this; }])
     .controller('main.login.controller',['$scope','centralFctry',function($scope,centralFctry){

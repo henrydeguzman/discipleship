@@ -4,11 +4,10 @@
             <tbody>
             <tr>
                 <td class="_upload">
-
                     <label ng-if="profile.upload.status==0" class="_empty">
                         <span>Select photo</span><i class="fa fa-plus"></i>
 
-                        <input type="file" fileread="{callback:profile.upload.process,accept:mimeTypes.image.types}" />
+                        <input type="file" node="appmainCtrl" fileread="{callback:profile.upload.process,accept:mimeTypes.image.types}" />
                     </label>
                     <div ng-if="profile.upload.status==1" class="_loading">
                         <label>{{profile.upload.value}}% done</label>

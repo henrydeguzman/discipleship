@@ -19,6 +19,8 @@ class Profile_set extends Core_Model {
                 "photo"=>$upload->name,"defaultname"=>$upload->default_filename
             ),$upload);
             $this->update('user',array('photoid'=>$result['lastid']),'userid='.$curuser);
+            // update session
+            $this->data_app_set->dataCurrentUser('photo',$upload->name);
             return $result;
         } else { return array("success"=>false,"info"=>"error upload","data"=>$upload); }
     }

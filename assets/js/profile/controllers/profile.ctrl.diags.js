@@ -30,28 +30,32 @@ victory
             }
         }
     }])
-    .controller('profile.ctrl.diags.choosephoto',['$scope','mimeTypes','centralFctry','dialogs','$timeout',function($scope,mimeTypes,centralFctry,dialogs,$timeout){
+     .controller('profile.ctrl.diags.choosephoto', ['$scope', 'mimeTypes', 'centralFctry', 'dialogs', '$timeout', 'setdataService', '$rootScope', function ($scope, mimeTypes, centralFctry, dialogs, $timeout, setdataService, $rootScope){
         var vm=this;
         $scope.mimeTypes=mimeTypes;
         $scope.form={};
+        
         /*
         * Uploading stat
         * 0=unset,1=start,2=done,*/
-        $scope.profile={upload:{status:0}};
-        $scope.profile.upload.process=function(file){
-             //alert("Sorry this is under development.");return;
-             //console.log(file);return;
-
+        $scope.profile={upload:{status:0}};        
+        $scope.profile.upload.process=function(file){            
              var posted = centralFctry.uploadfile({
                   url:'fetch/profile_set/uploadphoto',
-                  data:{file:file,data:'sss'},
+                  data:{file:file},
                   onreadystatechange:function(xhr,data){
                        console.log('----on ready state change----');                       
                        if (xhr.readyState == 3) {
                             // loading
                        }
                        if (xhr.readyState == 4) {
-
+                            console.log(data);
+                            $timeout(function () {
+                                 $scope.profile.upload.status = 2;
+                                 $scope.$parent.close(data);
+                                 //onsole.log('response stathe:', v); // JSON response
+                                 setdataService.userdata.photo($rootScope, data.returndata.name);
+                            }, 1000);
                        }
                   },
                   onprogress:function(evt,loaded,total,percent){
@@ -66,12 +70,7 @@ victory
                        $scope.profile.upload.status = 1;
                   },
                   onsuccess:function(v){
-                       console.log('=>>>onsuccess');
-                       $timeout(function () {
-                            $scope.profile.upload.status = 2;
-                            $scope.$parent.close(v);
-                            console.log('response stathe:', v); // JSON response
-                       }, 1000);
+                       console.log('=>>>onsuccess');                       
                   },
                   onerror:function(){
                        console.log('=>>>onerror');
@@ -79,8 +78,7 @@ victory
                   onabort:function(){
                        console.log('=>>>onabort');
                   }
-             });
-             console.log('fired',file);
+             });          
              return;
 
             var posted=centralFctry.uploadfile({

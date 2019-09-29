@@ -3,7 +3,7 @@
  */
 angular.module('MainDirectives',[])
     .directive('validNumber', ['glfnc',validNumber])
-    .directive('gtHeaderNav',['pathValue','genvarsValue','centralFctry','$document',gtHeaderNav])
+    .directive('gtHeaderNav',['pathValue','centralFctry','$document',gtHeaderNav])
     .directive('gtAccordion',[gtAccordion])
     .directive('gtAccordionContent',['$timeout',gtAccordionContent])
     .directive('gtProfile',['pathValue','$timeout',gtProfile])
@@ -103,7 +103,7 @@ function validNumber(glfnc) {
         }
     };
 }
-function gtHeaderNav(pathValue,genvarsValue,centralFctry,$document){
+function gtHeaderNav(pathValue,centralFctry,$document){
     return {
         restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/header/nav.html',
         scope:true,link:function(scope,element,attrs,ctrl){
@@ -115,8 +115,7 @@ function gtHeaderNav(pathValue,genvarsValue,centralFctry,$document){
             /* remove event handlers when directive is destroyed */
             scope.$on('$destroy', function () { element.off('click', elementClick); $document.off('click', documentClick); });
         },controller:function(){
-            var vm=this;
-            vm.userdata=genvarsValue.userdata();
+            var vm=this;            
             vm.user={show:false};
             vm.user.toggle=function(){
                 vm.user.show?vm.user.show=false:vm.user.show=true;
