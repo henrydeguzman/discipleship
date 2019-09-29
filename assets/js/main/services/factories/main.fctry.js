@@ -2,21 +2,14 @@
 * Created by Actino-Dev on 11/24/2018.
 */
 angular.module('MainFactories',[])     
-     .factory('setdataService', ['genvarsValue',setdataService])
+.factory('setdataService', ['genvarsValue',setdataService])
 .factory('isloadingService',[isloadingService])
 .factory('pageService',['centralFctry',pageService])
 .factory('tableService',['glfnc',tableService])
 .factory('glfnc',['$window',glfnc])
 .factory('centralFctry',['$http','$httpParamSerializer','$httpParamSerializerJQLike','pathValue','dialogs',centralFctry]);
 function setdataService(genvarsValue){     
-     return {
-          userdata:{
-               photo: function (scope,photo){  
-                    console.log('emit!');
-                    scope.$broadcast('emiter_appmainctrl', {photo:photo});                             
-               }
-          }
-     }
+     return { userdata:{ photo: function (scope,photo){ scope.$broadcast('emiter_appmainctrl', {photo:photo}); } } }
 }
 function isloadingService(){
      var loading={content:false};
