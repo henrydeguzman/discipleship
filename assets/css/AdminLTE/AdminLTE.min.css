@@ -189,7 +189,7 @@ a:hover,a:active,a:focus{
     float:left;
     background-color:transparent;
     background-image:none;
-    padding:15px 15px;
+    padding:20px 20px;
     font-family:fontAwesome
 }
 .main-header .sidebar-toggle:before{
@@ -222,9 +222,9 @@ a:hover,a:active,a:focus{
     transition:width .3s ease-in-out;
     display:block;
     float:left;
-    height:50px;
+    height:60px;
     font-size:20px;
-    line-height:50px;
+    line-height:60px;
     text-align:center;
     width:230px;
     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -420,6 +420,7 @@ a:hover,a:active,a:focus{
     margin-right:3px
 }
 .sidebar-menu{
+    margin-top:20px !important;
     list-style:none;
     margin:0;
     padding:0
@@ -434,6 +435,9 @@ a:hover,a:active,a:focus{
     display:block
 }
 .sidebar-menu>li>a>.fa,
+.sidebar-menu>li>a>.fas,
+.sidebar-menu>li>a>.far,
+.sidebar-menu>li>a>.fal,
 .sidebar-menu>li>a> img,
 .sidebar-menu>li>a>.glyphicon,
 .sidebar-menu>li>a>.ion{

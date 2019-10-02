@@ -1345,14 +1345,28 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
     display:block;
 }
 /* Directive:gtHeaderNav */
-.gen-header-nav {}
+.gen-header-nav {
+    height:60px;
+}
 .gen-header-nav > li {
     position:relative;
+    vertical-align: top;
 }
-.gen-header-nav > li > a {}
+.gen-header-nav > li > a[data-toggle='control-sidebar'] {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.gen-header-nav > li.user-settings {
+    cursor:pointer;
+}
+.gen-header-nav > li > a {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
 /* users */
 .gen-header-nav > li.user > a {
-    padding-bottom:12px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 .gen-header-nav > li.user > a:focus {
     background-color:transparent !important;
@@ -1360,10 +1374,11 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
 .gen-header-nav > li.user > a > img {
     width:25px;
     height:25px;
+    width:42px;
+    height:42px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    margin-right: 10px;
     margin-top: -2px;
 }
 

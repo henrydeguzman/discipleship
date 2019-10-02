@@ -6,6 +6,10 @@
 [data-skin='app-skin-blue'] div:nth-child(1) > span:nth-child(2) {
     background-color: #184289;
 }
+.app-skin-blue .main-header .navbar .nav > li > a[data-toggle='control-sidebar'] {
+    color:#082447 !important;
+    font-size: 30px;
+}
 .app-skin-blue .main-header .navbar .nav > li > a {
     color: #ffffff;
 }
@@ -71,6 +75,25 @@
 }
 .app-skin-blue .sidebar-menu > li.header {
     color: #c1c1c1;
+    position:relative;
+    font-size:10px;
+
+}
+.app-skin-blue .sidebar-menu > li.header > span {
+    background-color:#082447;
+    z-index:1;
+    padding-right:5px;
+}
+.app-skin-blue .sidebar-menu > li.header:after {
+    z-index:-1;
+    content:'';
+    position:absolute;
+    border-top:1px solid #707070;
+    top:50%;
+    margin-left:20px;
+    margin-right:10px;
+    left:1px;
+    right:1px;
 }
 .app-skin-blue .sidebar-menu > li > a {
     border-left: 3px solid transparent;

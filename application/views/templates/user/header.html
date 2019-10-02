@@ -12,7 +12,11 @@
     <!--  -->
     <link href="<?= base_url('assets/bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css'); ?>" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?= base_url('assets/bower_components/font-awesome/css/font-awesome.min.css'); ?>">
+    <!--<link rel="stylesheet" href="<?= base_url('assets/bower_components/font-awesome/css/font-awesome.min.css'); ?>">-->
+
+    <!-- new font awesome-->
+    <link href="<?= base_url('assets/font-awesome/css/all.css'); ?>" rel="stylesheet"> <!--load all styles -->
+
     <!-- notifications -->
     <link rel="stylesheet" href="<?= base_url('assets/bower_components/angular-ui-notification/dist/angular-ui-notification.min.css')?>">
     <!-- Ionicons -->
@@ -72,10 +76,10 @@
         <a href="<?= base_url(); ?>" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini">
-                <img width="32" height="32" src="<?= base_url('assets/img/logo/logo64x64.png'); ?>"/>&nbsp;<b>A</b>LT
+                <img width="42" height="42" src="<?= base_url('assets/img/logo/logo64x64.png'); ?>"/>
             </span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><img width="32" height="32" src="<?= base_url('assets/img/logo/logo64x64.png'); ?>"/>&nbsp;<b>Disciple</b>ship</span>
+            <span class="logo-lg"><img style="top: -3px;margin-right: 5px;position: relative;" width="42" height="42" src="<?= base_url('assets/img/logo/logo64x64.png'); ?>"/>&nbsp;<b>DISCIPLE</b>SHIP</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -233,7 +237,7 @@
                 <gt-header-nav></gt-header-nav>
                 <ul class="nav navbar-nav gen-header-nav">
                     <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        <a href="#" data-toggle="control-sidebar"><i class="fas fa-th"></i></a>
                     </li>
                 </ul>
             </div>
