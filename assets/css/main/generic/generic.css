@@ -231,13 +231,13 @@ body.skin-yellow-light .gen-box-v-1 {
 }
 
 .gen-box-v-1 {
-	border: 1px solid #fb4209;
+	border: 1px solid #153c79;
 
 	margin-bottom: 10px;
 }
 .gen-box-v-1 > .gen-box-v-1-header {
 	height: 37px;
-	background: #fb4209;
+	background: #184289;
 	color: white;
 }
 .gen-box-v-1 > .gen-box-v-1-header > span {
@@ -261,10 +261,10 @@ body.skin-yellow-light .gen-box-v-1 {
 	height: inherit;
 }
 .gen-box-v-1
-	> .gen-box-v-1-header
-	> .gen-box-v-h-buttons
-	> ul
-	> li:not(.libtn):hover {
+> .gen-box-v-1-header
+> .gen-box-v-h-buttons
+> ul
+> li:not(.libtn):hover {
 	background: #eeeeee;
 	color: black;
 	cursor: pointer;
