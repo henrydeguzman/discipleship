@@ -88,7 +88,7 @@ $(function () {
     $settings.append('<h4 class="control-sidebar-heading">Skins</h4>')
     $settings.append($skinsList);
     $tabPane.append($settings);
-    $('#control-sidebar-home-tab').after($tabPane);
+   // $('#control-sidebar-home-tab').after($tabPane);
 
     function skintemplate(arr){
         $prefix="app-skin-";

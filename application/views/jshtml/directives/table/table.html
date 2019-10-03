@@ -69,23 +69,23 @@
                         </li>
                         <li>
                             <div class="gen-table-h-btn" ng-click="gtTblCtrl.refresh()">
-                                <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>
+                                <i class="fas fa-sync-alt"></i>
                             </div>
                         </li>
                         <li>
                             <div class="gen-table-h-btn" ng-click="gtTblCtrl.table.export.toggle()">
-                                <i class="fa fa-file-text-o fa-2x" aria-hidden="true"></i>
+                                <i class="fas fa-file-export"></i>
                             </div>
                             <div class="gen-table-h-btnlist" ng-show="gtTblCtrl.table.export.show">
                                 <ul class="export">
-                                    <li ng-click="gtTblCtrl.table.export.submit('word')"><i class="fa fa-file-word-o"></i><span>Export to Word</span></li>
-                                    <li ng-click="gtTblCtrl.table.export.submit('excel')"><i class="fa fa-file-excel-o"></i><span>Export to Excel</span></li>
-                                    <li ng-click="gtTblCtrl.table.export.submit('pdf')"><i class="fa fa-file-pdf-o"></i><span>Export to PDF</span></li>
+                                    <li ng-click="gtTblCtrl.table.export.submit('word')"><i class="far fa-file-word"></i><span>Export to Word</span></li>
+                                    <li ng-click="gtTblCtrl.table.export.submit('excel')"><i class="far fa-file-excel"></i></i><span>Export to Excel</span></li>
+                                    <li ng-click="gtTblCtrl.table.export.submit('pdf')"><i class="far fa-file-pdf"></i><span>Export to PDF</span></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <div class="gen-table-h-btn" ng-click="gtTblCtrl.table.td.toggle()"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></div>
+                            <div class="gen-table-h-btn" ng-click="gtTblCtrl.table.td.toggle()"><i class="fas fa-columns"></i></div>
                             <div class="gen-table-h-btnlist" ng-show="gtTblCtrl.table.td.show">
                                 <ul>
                                     <li ng-repeat="item in gtTblCtrl.table.td.data" ng-if="item.text.trim()!=''&&item.colif!=false">

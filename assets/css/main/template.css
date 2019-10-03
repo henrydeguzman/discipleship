@@ -1,4 +1,35 @@
-.main-gen-template {}
+-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+
+.main-gen-template {
+    overflow-y: hidden;
+}
+.main-gen-template > .wrapper > .content-wrapper::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+.main-gen-template > .wrapper > .content-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(left, #96A6BF, #63738C);
+    box-shadow: inset 0 0 1px 1px #9E9E9E;
+    background:#c1c1c1;
+}
+
+.main-gen-template > .wrapper > .content-wrapper::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #eee;
+    box-shadow: 0 0 1px 1px #bbb, inset 0 0 7px rgba(0,0,0,0.3)
+}
+
+.main-gen-template > .wrapper > .content-wrapper::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(left, #8391A6, #536175);
+}
+
+
+
 
 /* header */
 .main-gen-template header {}
@@ -28,6 +59,7 @@
 }
 .main-gen-template .content-wrapper {
     position:relative;
+    overflow-y: scroll;
 }
 .main-gen-template .content-wrapper > .content-loading {
     position:absolute;

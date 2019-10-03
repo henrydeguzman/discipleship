@@ -1359,6 +1359,11 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
 .gen-header-nav > li.user-settings {
     cursor:pointer;
 }
+.gen-header-nav > li.user-settings a {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    font-size:30px;
+}
 .gen-header-nav > li > a {
     padding-bottom: 20px;
     padding-top: 20px;

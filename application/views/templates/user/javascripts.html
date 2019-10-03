@@ -79,7 +79,11 @@
 <script src="<?= base_url('assets/js/schedules/controllers/schedules.ctrl.js'); ?>"></script>
 <script>
     $(document).ready(function () {
-        $('.sidebar-menu').tree()
+        $('.sidebar-menu').tree();
+        if (typeof $.fn.slimScroll !== 'undefined') {
+            //$('body > .wrapper > .content-wrapper').slimScroll({height:'auto'});
+            //$('body > .wrapper > .content-wrapper').slimScroll().height('auto');
+        }
     })
 </script>
 </body>
