@@ -3,15 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d6589c1b-f834-4710-890d-f51f9c0f2e9b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/jshtml/directives/header/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/jshtml/directives/header/nav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/jshtml/directives/table/table.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/jshtml/directives/table/table.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/templates/user/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/user/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/templates/user/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/user/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/templates/user/javascripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/user/javascripts.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/main/directives/directives.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main/directives/directives.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/main/template.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main/template.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/AdminLTE/adminlte.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/AdminLTE/adminlte.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/AdminLTE/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/AdminLTE/init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/main/generic/generic.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main/generic/generic.css" afterDir="false" />
     </list>
     <manually-removed-from-ignored>
       <directory path="assets/uploads/" />
@@ -29,14 +22,14 @@
     <favorites_list name="discipleship" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.577633">
+    <splitter split-orientation="vertical" split-proportion="0.5722041">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/css/main/generic/generic.css">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="149">
-                  <caret line="423" column="23" lean-forward="true" selection-start-line="423" selection-start-column="23" selection-end-line="423" selection-end-column="23" />
+                  <caret line="425" column="23" lean-forward="true" selection-start-line="425" selection-start-column="23" selection-end-line="425" selection-end-column="23" />
                 </state>
               </provider>
             </entry>
@@ -88,8 +81,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/application/views/jshtml/directives/table/table.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
-                  <caret line="77" column="34" lean-forward="true" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
+                <state relative-caret-position="294">
+                  <caret line="83" column="37" lean-forward="true" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
                 </state>
               </provider>
             </entry>
@@ -98,7 +91,7 @@
             <entry file="file://$PROJECT_DIR$/assets/css/main/directives/directives.css">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="267">
-                  <caret line="1478" column="1" selection-start-line="1478" selection-start-column="1" selection-end-line="1478" selection-end-column="1" />
+                  <caret line="1482" column="1" selection-start-line="1482" selection-start-column="1" selection-end-line="1482" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -131,8 +124,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/assets/css/app/skins/app-skins.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="216">
-                  <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
+                <state relative-caret-position="104">
+                  <caret line="158" column="1" lean-forward="true" selection-start-line="158" selection-start-column="1" selection-end-line="158" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -207,7 +200,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$jwtID</find>
       <find>throw new</find>
       <find>main.resetpassword.controller</find>
       <find>verify</find>
@@ -237,6 +229,7 @@
       <find>main-footer</find>
       <find>max</find>
       <find>sidebar-toggle</find>
+      <find>fontAw</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -628,28 +621,7 @@
       <workItem from="1569672302857" duration="867000" />
       <workItem from="1569917124938" duration="5000" />
       <workItem from="1570008814708" duration="15054000" />
-      <workItem from="1570069483313" duration="5471000" />
-    </task>
-    <task id="LOCAL-00145" summary="class file naming correction">
-      <created>1569300875650</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1569300875650</updated>
-    </task>
-    <task id="LOCAL-00146" summary="class file naming correction">
-      <created>1569300969395</created>
-      <option name="number" value="00146" />
-      <option name="presentableId" value="LOCAL-00146" />
-      <option name="project" value="LOCAL" />
-      <updated>1569300969395</updated>
-    </task>
-    <task id="LOCAL-00147" summary="fixed bugs">
-      <created>1569301405693</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1569301405693</updated>
+      <workItem from="1570069483313" duration="6107000" />
     </task>
     <task id="LOCAL-00148" summary="fixed bugs">
       <created>1569301602748</created>
@@ -973,11 +945,32 @@
       <option name="project" value="LOCAL" />
       <updated>1570069942548</updated>
     </task>
-    <option name="localTasksCounter" value="194" />
+    <task id="LOCAL-00194" summary="Updates">
+      <created>1570076096631</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1570076096631</updated>
+    </task>
+    <task id="LOCAL-00195" summary="Updates">
+      <created>1570076309417</created>
+      <option name="number" value="00195" />
+      <option name="presentableId" value="LOCAL-00195" />
+      <option name="project" value="LOCAL" />
+      <updated>1570076309418</updated>
+    </task>
+    <task id="LOCAL-00196" summary="Updates">
+      <created>1570076544209</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1570076544209</updated>
+    </task>
+    <option name="localTasksCounter" value="197" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="381417000" />
+    <option name="totallyTimeSpent" value="382053000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -990,7 +983,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1013" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945712" visible="true" weight="0.15335463" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1024,8 +1016,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <option name="SHOW_UNVERSIONED_FILES_WHILE_COMMIT" value="false" />
-    <MESSAGE value="Major update on how victory group and one 2 one should communicate.&#10;Also includes automatic refresh of table when the model changes." />
     <MESSAGE value="preparing report template and data" />
     <MESSAGE value="added = generic error handle&#10;added = cancel callback(3rd param) of generic confirm dialog&#10;added = victory group interns" />
     <MESSAGE value="added = generic error handler&#10;added = cancel callback(3rd param) of generic confirm dialog&#10;added = victory group interns" />
@@ -1050,7 +1040,8 @@
     <MESSAGE value="templates update" />
     <MESSAGE value="Template updates" />
     <MESSAGE value="Replaced unnecessary files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Replaced unnecessary files" />
+    <MESSAGE value="Updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/application/config/development/database.php">
@@ -1195,6 +1186,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
           <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+          <folding>
+            <element signature="e#94#115#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1305,7 +1299,7 @@
     <entry file="file://$PROJECT_DIR$/assets/css/main/generic/generic.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
-          <caret line="423" column="23" lean-forward="true" selection-start-line="423" selection-start-column="23" selection-end-line="423" selection-end-column="23" />
+          <caret line="425" column="23" lean-forward="true" selection-start-line="425" selection-start-column="23" selection-end-line="425" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1336,7 +1330,7 @@
     <entry file="file://$PROJECT_DIR$/assets/css/main/directives/directives.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="267">
-          <caret line="1478" column="1" selection-start-line="1478" selection-start-column="1" selection-end-line="1478" selection-end-column="1" />
+          <caret line="1482" column="1" selection-start-line="1482" selection-start-column="1" selection-end-line="1482" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1386,13 +1380,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/app/skins/app-skins.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/templates/user/header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -1403,10 +1390,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/app/skins/app-skins.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="158" column="1" lean-forward="true" selection-start-line="158" selection-start-column="1" selection-end-line="158" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/jshtml/directives/table/table.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="77" column="34" lean-forward="true" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
+        <state relative-caret-position="294">
+          <caret line="83" column="37" lean-forward="true" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
         </state>
       </provider>
     </entry>

@@ -118,6 +118,7 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._
 }
 gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li:not(._clear):not(._filter) > span:after {
     content:'\f0d7';
+    font-weight: 900;
     font-family:"Font Awesome 5 Free";
     padding-left:5px;
     top:1px;
@@ -165,6 +166,7 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-search > input
 }
 gt-table .gen-table-container > .gen-table-header div.gen-table-h-search:after {
     content:'\f002';
+    font-weight: 900;
     font-family:"Font Awesome 5 Free";
     width:20px;
     height:20px;
@@ -689,6 +691,7 @@ gt-table .gen-table-container > .gen-table-content > table > tbody > tr > td .gt
 gt-table .gen-table-container > .gen-table-content > table > tbody > tr > td.editable:hover:after,
 gt-table .gen-table-container > .gen-table-content > table > tbody > tr > td .gttbl_editable:hover:after {
     content:'\f044';
+    font-weight: 900;
     font-family:"Font Awesome 5 Free";
     position:absolute;
     top:50%;
@@ -1326,6 +1329,7 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
 .gen-accordion > .gen-accordion-row > .gen-accordion-header:after {
     content:'\f105';
     font-family:"Font Awesome 5 Free";
+    font-weight: 900;
     position:absolute;
     right:10px;
     font-size: 1.47rem;

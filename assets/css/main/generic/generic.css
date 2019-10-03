@@ -380,6 +380,7 @@ label.gen-checkbox-style {
 }
 label.gen-checkbox-style > input:before {
 	content: "\f096";
+	font-weight: 900;
 	font-family: "Font Awesome 5 Free";
 	background: white;
 	font-size: 14px;
@@ -389,6 +390,7 @@ label.gen-checkbox-style > input:before {
 }
 label.gen-checkbox-style > input:checked:before {
 	content: "\f046";
+	font-weight: 900;
 	font-family: "Font Awesome 5 Free";
 }
 label.gen-checkbox-style > input {
