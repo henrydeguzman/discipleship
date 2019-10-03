@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d6589c1b-f834-4710-890d-f51f9c0f2e9b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/main/directives/directives.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main/directives/directives.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/main/generic/generic.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main/generic/generic.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/pages/dashboard/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/dashboard/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/dashboard/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/dashboard/controllers/dashboard.ctrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/dashboard/controllers/dashboard.ctrl.js" afterDir="false" />
     </list>
     <manually-removed-from-ignored>
       <directory path="assets/uploads/" />
@@ -22,23 +23,14 @@
     <favorites_list name="discipleship" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.5722041">
+    <splitter split-orientation="vertical" split-proportion="0.4082519">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/css/main/generic/generic.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="149">
+                <state relative-caret-position="253">
                   <caret line="425" column="23" lean-forward="true" selection-start-line="425" selection-start-column="23" selection-end-line="425" selection-end-column="23" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/application/views/templates/auth/login/login.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="924">
-                  <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -78,11 +70,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/application/views/jshtml/directives/table/table.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="294">
-                  <caret line="83" column="37" lean-forward="true" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
+                <state relative-caret-position="231">
+                  <caret line="80" column="74" selection-start-line="80" selection-start-column="74" selection-end-line="80" selection-end-column="74" />
                 </state>
               </provider>
             </entry>
@@ -90,20 +82,26 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/css/main/directives/directives.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="267">
-                  <caret line="1482" column="1" selection-start-line="1482" selection-start-column="1" selection-end-line="1482" selection-end-column="1" />
+                <state relative-caret-position="332">
+                  <caret line="1509" column="16" lean-forward="true" selection-start-line="1509" selection-start-column="16" selection-end-line="1509" selection-end-column="16" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/application/views/pages/dashboard/dashboard.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="164">
+                  <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/application/views/templates/auth/login/login-v2.html">
+            <entry file="file://$PROJECT_DIR$/assets/css/dashboard/dashboard.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="882">
-                  <caret line="53" column="33" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
-                  <folding>
-                    <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-                  </folding>
+                <state relative-caret-position="160">
+                  <caret line="55" column="16" lean-forward="true" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
                 </state>
               </provider>
             </entry>
@@ -121,11 +119,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/css/app/skins/app-skins.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="104">
-                  <caret line="158" column="1" lean-forward="true" selection-start-line="158" selection-start-column="1" selection-end-line="158" selection-end-column="1" />
+                <state relative-caret-position="149">
+                  <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
                 </state>
               </provider>
             </entry>
@@ -141,6 +139,15 @@
                     <element signature="n#style#0;n#form#0;n#section#0;n#aside#0;n#!!top" expanded="true" />
                     <element signature="n#form#0;n#section#0;n#aside#0;n#!!top" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/application/views/templates/auth/login/login.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="84">
+                  <caret line="4" column="57" lean-forward="true" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
                 </state>
               </provider>
             </entry>
@@ -185,6 +192,15 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/assets/js/dashboard/controllers/dashboard.ctrl.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="63">
+                  <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-second>
     </splitter>
@@ -200,8 +216,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>throw new</find>
-      <find>main.resetpassword.controller</find>
       <find>verify</find>
       <find>email is required</find>
       <find>actino |</find>
@@ -230,6 +244,8 @@
       <find>max</find>
       <find>sidebar-toggle</find>
       <find>fontAw</find>
+      <find>Font Awesome 5</find>
+      <find>fa-f</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -251,11 +267,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assets/js/centers/controllers/centers.ctrl.js" />
-        <option value="$PROJECT_DIR$/application/models/users/Users_get.php" />
-        <option value="$PROJECT_DIR$/application/models/api/api.class.php" />
         <option value="$PROJECT_DIR$/application/models/api/Request.php" />
-        <option value="$PROJECT_DIR$/application/views/templates/auth/login/login.html" />
         <option value="$PROJECT_DIR$/application/libraries/Mailer.php" />
         <option value="$PROJECT_DIR$/assets/dependencies/phpmailer/Exception.php" />
         <option value="$PROJECT_DIR$/application/libraries/Mailer-backup.php" />
@@ -294,7 +306,6 @@
         <option value="$PROJECT_DIR$/assets/js/AdminLTE/init.js" />
         <option value="$PROJECT_DIR$/application/views/templates/user/rightmenu.html" />
         <option value="$PROJECT_DIR$/application/views/jshtml/directives/header/nav.html" />
-        <option value="$PROJECT_DIR$/assets/css/main/directives/directives.css" />
         <option value="$PROJECT_DIR$/application/views/templates/user/javascripts.html" />
         <option value="$PROJECT_DIR$/assets/css/app/app.css" />
         <option value="$PROJECT_DIR$/assets/js/AdminLTE/adminlte.min.js" />
@@ -302,6 +313,11 @@
         <option value="$PROJECT_DIR$/application/views/templates/user/header.html" />
         <option value="$PROJECT_DIR$/assets/css/app/skins/app-skins.css" />
         <option value="$PROJECT_DIR$/application/views/jshtml/directives/table/table.html" />
+        <option value="$PROJECT_DIR$/assets/css/main/directives/directives.css" />
+        <option value="$PROJECT_DIR$/assets/css/dashboard/dashboard.css" />
+        <option value="$PROJECT_DIR$/assets/js/dashboard/controllers/dashboard.ctrl.js" />
+        <option value="$PROJECT_DIR$/application/views/pages/dashboard/dashboard.html" />
+        <option value="$PROJECT_DIR$/application/views/templates/auth/login/login.html" />
       </list>
     </option>
   </component>
@@ -394,6 +410,21 @@
               <item name="discipleship" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="discipleship" type="b2602c69:ProjectViewProjectNode" />
+              <item name="discipleship" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="discipleship" type="b2602c69:ProjectViewProjectNode" />
+              <item name="discipleship" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -473,7 +504,21 @@
               <item name="discipleship" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="discipleship" type="b2602c69:ProjectViewProjectNode" />
+              <item name="discipleship" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="discipleship" type="b2602c69:ProjectViewProjectNode" />
+              <item name="discipleship" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="vg" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="discipleship" type="b2602c69:ProjectViewProjectNode" />
@@ -621,21 +666,7 @@
       <workItem from="1569672302857" duration="867000" />
       <workItem from="1569917124938" duration="5000" />
       <workItem from="1570008814708" duration="15054000" />
-      <workItem from="1570069483313" duration="6107000" />
-    </task>
-    <task id="LOCAL-00148" summary="fixed bugs">
-      <created>1569301602748</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1569301602748</updated>
-    </task>
-    <task id="LOCAL-00149" summary="fixed bugs">
-      <created>1569301654154</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1569301654154</updated>
+      <workItem from="1570069483313" duration="10066000" />
     </task>
     <task id="LOCAL-00150" summary="Adding loading service. It also include the creation of content already.">
       <created>1569335450871</created>
@@ -966,11 +997,25 @@
       <option name="project" value="LOCAL" />
       <updated>1570076544209</updated>
     </task>
-    <option name="localTasksCounter" value="197" />
+    <task id="LOCAL-00197" summary="Updates">
+      <created>1570076754819</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1570076754819</updated>
+    </task>
+    <task id="LOCAL-00198" summary="Updates">
+      <created>1570077643740</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1570077643741</updated>
+    </task>
+    <option name="localTasksCounter" value="199" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="382053000" />
+    <option name="totallyTimeSpent" value="386012000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -983,6 +1028,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1013" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945712" visible="true" weight="0.15335463" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1044,34 +1090,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Updates" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/config/development/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1596">
-          <caret line="76" column="18" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/development/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="66" selection-start-line="17" selection-start-column="66" selection-end-line="17" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/libraries/Jwt_generator-backup.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2520">
@@ -1244,13 +1262,6 @@
     <entry file="file://$PROJECT_DIR$/assets/css/main/generic/spinner.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/templates/auth/login/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/templates/auth/login/login-v2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="882">
@@ -1298,7 +1309,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/main/generic/generic.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
+        <state relative-caret-position="253">
           <caret line="425" column="23" lean-forward="true" selection-start-line="425" selection-start-column="23" selection-end-line="425" selection-end-column="23" />
         </state>
       </provider>
@@ -1324,13 +1335,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/main/directives/directives.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="1482" column="1" selection-start-line="1482" selection-start-column="1" selection-end-line="1482" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1390,17 +1394,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/app/skins/app-skins.css">
+    <entry file="file://$PROJECT_DIR$/application/views/jshtml/directives/table/table.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="158" column="1" lean-forward="true" selection-start-line="158" selection-start-column="1" selection-end-line="158" selection-end-column="1" />
+        <state relative-caret-position="231">
+          <caret line="80" column="74" selection-start-line="80" selection-start-column="74" selection-end-line="80" selection-end-column="74" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/jshtml/directives/table/table.html">
+    <entry file="file://$PROJECT_DIR$/assets/css/main/directives/directives.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="83" column="37" lean-forward="true" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
+        <state relative-caret-position="332">
+          <caret line="1509" column="16" lean-forward="true" selection-start-line="1509" selection-start-column="16" selection-end-line="1509" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/dashboard/dashboard.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="55" column="16" lean-forward="true" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/app/skins/app-skins.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/bower_components/bootstrap/plugins/jQueryUI/jquery-ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5">
+          <caret line="14814" column="22" lean-forward="true" selection-start-line="14814" selection-start-column="22" selection-end-line="14814" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/dashboard/controllers/dashboard.ctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pages/dashboard/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/templates/auth/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="57" lean-forward="true" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
         </state>
       </provider>
     </entry>

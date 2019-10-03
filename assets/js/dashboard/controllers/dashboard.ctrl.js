@@ -6,10 +6,7 @@
  */
 victory.controller('dashboard.page.controller',['$scope','genvarsValue','centralFctry',function($scope,genvarsValue,centralFctry){
     var vm=this;
-    $scope.baseyear=2019;$scope._dates=[];
-    for(var x=genvarsValue.curyear;x>=$scope.baseyear;x--){
-        $scope._dates.push(x);
-    }
+
     vm.list={};
     getdata();
     function getdata(){

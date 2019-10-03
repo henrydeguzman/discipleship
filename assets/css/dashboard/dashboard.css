@@ -4,6 +4,31 @@
     z-index: 10;
     position: relative;
 }
+
+.page-dashboard .small-box._banner._banner-one2one {
+    background:#2452c2;
+    color:white;
+}
+
+.page-dashboard .small-box._banner._banner-vggroup {
+    background:#792f84;
+    color:white;
+}
+
+.page-dashboard .small-box._banner._banner-vginterns {
+    background:#78b824;
+    color:white;
+}
+.page-dashboard .small-box._banner._banner-vwcandidates {
+    background:#ea2129;
+    color:white;
+}
+.page-dashboard .small-box._banner._banner-inactiveleaders {
+    background:#2452c2;
+    color:white;
+}
+
+
 .page-dashboard .small-box._banner._banner-victoryweekend {
     background-image: url(../../../assets/img/bg/establish.png);
     color:white;
