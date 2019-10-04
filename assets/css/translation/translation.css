@@ -1,0 +1,7 @@
+.page-translation-table {
+    width:100%;
+    table-layout:fixed;
+}
+.page-translation-table > thead > tr > td {
+    text-align:center;
+}

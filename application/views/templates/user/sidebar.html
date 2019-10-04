@@ -27,8 +27,8 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li ng-class="stateparams.tab==='dashboard'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'dashboard',name:'Dashboard'})">
-                        <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                    <a ui-sref="sref_sidebar({tab:'dashboard',name:'<?= $this->lang->line('navlink_dash'); ?>'})">
+                        <i class="fas fa-tachometer-alt"></i> <span><?= $this->lang->line('navlink_dash'); ?></span>
                     </a>
                 </li>
                 <li ng-class="stateparams.tab==='discipleship'?'active':''">
@@ -100,6 +100,11 @@
                     </a>
                 </li>
                 <li class="header"><span>Super admin</span></li>
+                <li ng-class="stateparams.tab==='translation'?'active':''">
+                    <a ui-sref="sref_sidebar({tab:'translation',name:'Translation'})">
+                        <i class="fas fa-language"></i> <span>Translation</span>
+                    </a>
+                </li>
                 <li class="treeview" ng-class="stateparams.tab.indexOf('admin;')!==-1?'active menu-open':''">
                     <a href="#">
                         <i class="fa fa-user-secret"></i> <span>Administration</span>
