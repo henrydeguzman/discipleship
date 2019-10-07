@@ -31,13 +31,13 @@ class One2one_script {
         ),$mainscript['onjoins']);
         $condition= array("onfields"=>$onfields,"onjoins"=>$onjoins);
         $dynamic=self::$instance->control->fieldRelationalMapper($condition,$activefields);
-        return "SELECT xx.o2oid, xx.chapter, ".$dynamic['fields']." FROM one2one xx ".$dynamic['joins']." ";
+        return "SELECT xx.o2oid, xx.chapter, ".$dynamic['fields']." FROM development_one2one xx ".$dynamic['joins']." ";
     }
     public static function getchapters(){
-        return "SELECT a.chapterid as id, a.value as name,if(a.chapterid=b.chapterid,true,false) as active FROM one2one_chapter a
-                LEFT JOIN weekend_settings b ON a.chapterid=b.chapterid AND b.churchid=".self::$app_get->getchurch('churchid');
+        return "SELECT a.chapterid as id, a.value as name,if(a.chapterid=b.chapterid,true,false) as active FROM development_one2one_chapter a
+                LEFT JOIN development_weekend_settings b ON a.chapterid=b.chapterid AND b.churchid=".self::$app_get->getchurch('churchid');
     }
     public static function getinfo(){
-        return "SELECT one2one.o2oid,one2one.leaderid FROM user user LEFT JOIN one2one one2one ON one2one.userid=user.userid ";
+        return "SELECT one2one.o2oid,one2one.leaderid FROM user user LEFT JOIN development_one2one one2one ON one2one.userid=user.userid ";
     }
 }

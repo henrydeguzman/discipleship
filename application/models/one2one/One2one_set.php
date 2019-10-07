@@ -22,7 +22,7 @@ class One2one_set extends Core_Model {
         if(!empty($userid)){ $data['userid']=$userid; }
 
         if(!empty($o2oid)){
-            return $this->update('one2one',$data,'o2oid='.$o2oid);
+            return $this->update('development_one2one',$data,'o2oid='.$o2oid);
         } else {
             if(empty($userid)){ return array('success'=>false,'info'=>'Cannot find user'); }
             $data['datecreated']=self::datetime();

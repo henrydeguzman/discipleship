@@ -379,7 +379,7 @@ label.gen-checkbox-style {
                                   supported by Chrome and Opera */
 }
 label.gen-checkbox-style > input:before {
-	content: "\f096";
+	content: "\f0c8";
 	font-weight: 900;
 	font-family: "Font Awesome 5 Free";
 	background: white;
@@ -389,7 +389,7 @@ label.gen-checkbox-style > input:before {
 	outline: 0;
 }
 label.gen-checkbox-style > input:checked:before {
-	content: "\f046";
+	content: "\f14a";
 	font-weight: 900;
 	font-family: "Font Awesome 5 Free";
 }

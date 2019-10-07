@@ -80,7 +80,7 @@ class Users_set extends Core_Model {
                          $this->setvg($result['lastid'],1);
                          $leaderid=0;
                     }
-                    $this->insert('one2one',array("userid"=>$result['lastid'],"leaderid"=>$leaderid,"datecreated"=>self::datetime()));
+                    $this->insert('development_one2one',array("userid"=>$result['lastid'],"leaderid"=>$leaderid,"datecreated"=>self::datetime()));
                }
           }else {
                $result=$this->update('user',$data,'userid='.$userid);
@@ -184,6 +184,7 @@ class Users_set extends Core_Model {
           $id=empty($id)?$_POST['id']:$id;
           $savetype=empty($savetype)?$_POST['savetype']:$savetype;
           if(empty($id)){ return array("success"=>false,"info"=>"id is required!"); }
+          $gen=null;
           if($savetype==='tomember'){
                $gen=$this->generatePassword();               
                $data=array(

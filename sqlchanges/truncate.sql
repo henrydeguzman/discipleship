@@ -1,4 +1,5 @@
-TRUNCATE TABLE one2one;
+TRUNCATE TABLE development_one2one;
+TRUNCATE TABLE development_weekend;
 TRUNCATE TABLE user;
 TRUNCATE TABLE user_info;
 TRUNCATE TABLE user_journey;
@@ -6,10 +7,9 @@ TRUNCATE TABLE user_vg;
 TRUNCATE TABLE user_vg_info;
 TRUNCATE TABLE user_vg_intern;
 TRUNCATE TABLE user_vg_users;
-TRUNCATE TABLE weekend;
 
 INSERT INTO `user` (`userid`,`username`, `password`, `email`, `firstname`, `lastname`, `middlename`, `photoid`, `phonenumber`, `datecreated`, `profileid`, `statusid`, `churchid`, `generatedcode`, `weekendid`)
-VALUES (1,NULL, '3eca10f30041813f045165784e24b5a950a6cc7e', 'henrydeguzman.java73@gmail.com', 'Henry', 'De Guzman', 'Garcia', '0', NULL, now(), '4', '3', '13', 'henry', NULL);
+VALUES (1,NULL, '3eca10f30041813f045165784e24b5a950a6cc7e', 'henrydeguzman.java73@gmail.com', 'Henry', 'De Guzman', 'Garcia', '1', NULL, now(), '4', '3', '13', 'henry', NULL);
 
 INSERT INTO `user_info` (`userid`, `personal_number`, `work_number`, `sss_number`, `pagibig_number`, `philhealth_number`, `personal_email`, `current_address`, `permanent_address`, `birthdate`, `about`, `languages`, `degree`)
 VALUES (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
