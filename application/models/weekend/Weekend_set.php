@@ -12,7 +12,7 @@ class Weekend_set extends Core_Model {
     /** api/gateway?re=fetch/weekend_set/remove */
     public function remove(){
         $id=isset($_POST['id'])?$_POST['id']:0; if(empty($id)){ return array("success"=>false,"info"=>"invalid weekend date."); }
-        return $this->delete('weekend','weekendid='.$id);
+        return $this->delete('development_weekend_dates','weekendid='.$id);
     }
     /** api/gateway?re=fetch/weekend_set/setdate */
     public function setdate(){

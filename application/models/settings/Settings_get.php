@@ -11,11 +11,7 @@ class Settings_get extends Core_Model {
         $values=array();
         $this->load->model('one2one/one2one_get','one2onemod');
         $values['chapters']=$this->one2onemod->chapters();
-        foreach ($values['chapters'] as $value){
-            if($value->active=='1'){
-                $values['chapteractive']=$value->id;
-            }
-        }
+        foreach ($values['chapters'] as $value){ if($value->active=='1'){ $values['chapteractive']=$value->id; } }
         return $values;
     }
 }

@@ -115,6 +115,18 @@ victory
                 });
             });
         };
+        vm.date={};
+        vm.date.create=function(){
+            dialogs.create({
+                title:'Add victory weekend date',
+                url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekenddates/dialogs/adddates.html',options:{backdrop:'static',size:'sm'},
+                onclosed:function(params){
+                    if(params!==undefined&&params.success){
+                        getdata();
+                    }
+                }
+            })
+        };
     }])
     .controller('victoryweekend.page.dates.controller',['$scope','tableService','Notification','notifValues','centralFctry','dialogs',function($scope,tableService,Notification,notifValues,centralFctry,dialogs){
         var vm=this;
@@ -125,6 +137,7 @@ victory
                 var posted=centralFctry.postData({ url:'fetch/weekend_set/remove',data:{id:tr.id} });
                 if(posted.$$state!==undefined){
                     return posted.then(function(v){
+                        console.log(v.data);
                         if(v.data.success){
                             Notification(notifValues['deleted']($scope));
                             tableService.refresh('victoryweekend.dates');

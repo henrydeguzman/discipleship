@@ -5,6 +5,22 @@
 .page-victoryweekend .tab-victoryweekend {
 
 }
+.page-victoryweekend .tab-victoryweekend ._adddate {
+    text-align:center;
+    font-size:30px;
+    padding:20px;
+    color:#757575;
+
+}
+.page-victoryweekend .tab-victoryweekend ._adddate i {
+    cursor:pointer;
+    color:#194389;
+    font-size:50px;
+    vertical-align:middle;
+    position:relative;
+    top:-5px;
+    padding:5px;
+}
 .page-victoryweekend .tab-victoryweekend > ._form {
     padding:10px;
 }
