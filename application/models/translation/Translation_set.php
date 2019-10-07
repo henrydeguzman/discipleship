@@ -8,6 +8,8 @@
 class Translation_set extends Core_Model {
     /** api/gateway?re=fetch/translation_set/setlist */
     public function setlist($filename=null){
+        return $_GET;
+        return 'yehey!';
         $filename='sample.php';
         $html_content='<?php ';
         $html_content.='return 1;';

@@ -87,9 +87,9 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 /** custom constant */
 define("PATH_UPLOAD", "assets/uploads/");/** UPLOAD FOLDER */
 define("PATH_USERPHOTO", "img/userphoto/");/** USERPHOTO */
-define('URI_UPLOAD', 'api/getfile?name='); //mvs/app?run=upload::getfile&name= //May 8, 2018
 define('PATH_VIEW','application/views/');
+define('PATH_LANG','application/language/');
+define('URI_UPLOAD', 'api/getfile?name='); //mvs/app?run=upload::getfile&name= //May 8, 2018
 define('ORG_NAME','DISCIPLESHIP');
 define('ORG_TAG','');
-
 define('ORG_TEAM_NAME','RTU Discipleship Team');

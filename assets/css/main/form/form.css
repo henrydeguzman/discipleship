@@ -36,9 +36,16 @@ form.gen-form-static .gfs-img-ico{
 
 form.gen-form-static .form-group {
     margin-bottom:5px;
+
+    color:#444;
 }
 form.gen-form-static .form-group label {
 
+}
+form.gen-form-static .form-group label.gfs-info {
+    font-size:11px;font-weight:normal;
+    font-style:italic;
+    color:#9E9E9E;
 }
 form.gen-form-static .form-group select,
 form.gen-form-static .form-group input

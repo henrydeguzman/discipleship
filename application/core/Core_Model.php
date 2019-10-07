@@ -21,6 +21,15 @@ class Core_Model extends CI_Model {
         $result=$this->db->insert($table,$data);
         return array('querytype'=>'add','success'=>$result,"lastid"=>$this->db->insert_id(),"error"=>$this->db->error('message'),"returndata"=>$returndata);
     }
+    public function updateinsert($table,$data,$whr=''){
+        $result=$this->update($table,$data,$whr);
+        $affectedrows=$this->db->affected_rows();
+        if($affectedrows===-1||$affectedrows===0){
+            /** can't find record then it will inserted */
+            $result=$this->insert($table,$data);
+        }
+        return $result;
+    }
     public function update($table,$data,$whr=''){
         $result=$this->db->update($table,$data,$whr);
         return array('querytype'=>'update','success'=>$result,"affectedrows"=>$this->db->affected_rows(),"error"=>$this->db->error('message'));

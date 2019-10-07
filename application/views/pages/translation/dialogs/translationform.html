@@ -1,0 +1,14 @@
+<div class="diag-translation-frm" ng-controller="translation.ctrl.diags.frm as transdiagCtrl">
+    <div ng-init="$parent.title='<?= $this->lang->line('trans_form_diagtitle') ?>'"></div>
+    <form class="gen-form-static">
+        <div class="form-group trans-diag-search">
+            <label class="gfs-title"><?= $this->lang->line('trans_form_code'); ?></label>
+            <div>
+                <input ng-model="form.code" ng-change="transdiagCtrl.search.code()" type="text" class="gen-input-control" />
+                <i class="fas fa-search" ng-if="!transdiagCtrl.search.isloading"></i>
+                <i class="fas fa-spinner fa-spin" ng-if="transdiagCtrl.search.isloading"></i>
+            </div>
+            <label class="gfs-info"><?= $this->lang->line('trans_form_code=>desc'); ?></label>
+        </div>
+    </form>
+</div>

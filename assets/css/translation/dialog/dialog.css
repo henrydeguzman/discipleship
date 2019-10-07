@@ -1,0 +1,13 @@
+.diag-translation-frm {}
+.diag-translation-frm .trans-diag-search {
+    position:relative;
+}
+.diag-translation-frm .trans-diag-search > div {
+    position:relative;
+}
+.diag-translation-frm .trans-diag-search i {
+    position:absolute;
+    top:9px;
+    right:9px;
+    color:#a6a6a6;
+}

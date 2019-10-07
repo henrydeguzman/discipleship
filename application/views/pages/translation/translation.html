@@ -1,6 +1,6 @@
 <div class="page-translation" ng-controller="translation.page.controller as translationpageCtrl">
     <gt-table id="translation.list" model="fetch/translation_get/getlist" formatter="translation/formatter/translation.js">
-        <gt-table-btns action="add" gtclick=""></gt-table-btns>
+        <gt-table-btns action="add" gtclick="translationpageCtrl.translation.form"></gt-table-btns>
         <gt-table-col field="variable">Variable</gt-table-col>
         <!--<gt-table-col field="languages" format="translations">languages</gt-table-col>-->
         <gt-table-col field="filipino" format="language"><img ng-src="api/getfile?name=flags/philippines.png&size=32&ext=.png" alt="User Image">&nbsp;Filipino</gt-table-col>
