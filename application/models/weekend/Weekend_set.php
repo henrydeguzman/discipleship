@@ -19,7 +19,7 @@ class Weekend_set extends Core_Model {
         $churchid=$this->data_app_get->getchurch('churchid');
         $date=isset($_POST['weekend_date'])?$_POST['weekend_date']:null;
         if(empty($date)){ return array("success"=>false,"info"=>"Date is required!");}
-        return $this->insert('weekend',array(
+        return $this->insert('development_weekend_dates',array(
             "weekend_date"=>$date,"churchid"=>$churchid
         ));
     }
@@ -30,10 +30,10 @@ class Weekend_set extends Core_Model {
         $result=$this->weekendget->getchapter();
         if(empty($result)){
             $churchid=$this->data_app_get->getchurch('churchid');
-            return $this->insert('weekend_settings',array("chapterid"=>$chapterid,"churchid"=>$churchid));
+            return $this->insert('development_weekend_settings',array("chapterid"=>$chapterid,"churchid"=>$churchid));
         }
         else{
-            return $this->update('weekend_settings',array("chapterid"=>$chapterid),'weekendsetid='.$result->id);
+            return $this->update('development_weekend_settings',array("chapterid"=>$chapterid),'weekendsetid='.$result->id);
         }
     }
     /** api/gateway?re=fetch/weekend_set/createaccnt */

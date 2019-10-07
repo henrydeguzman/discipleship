@@ -16,7 +16,7 @@ class Weekend_get extends Core_Model {
     /** api/gateway?re=fetch/weekend_get/getchapter */
     public function getchapter(){
         $churchid=$this->data_app_get->getchurch('churchid');
-        $sql="SELECT a.weekendsetid as id FROM weekend_settings a WHERE a.churchid=".$churchid;
+        $sql="SELECT a.weekendsetid as id FROM development_weekend_settings a WHERE a.churchid=".$churchid;
         return $this->query($sql,true);
     }
     /** api/gateway?re=fetch/weekend_get/getfilters */

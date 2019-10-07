@@ -10,7 +10,7 @@ var tblformatter = {
     },
     action:function(){
         return '<ul class="gttbl-btns horizontal">' +
-            '<li ng-click="one2onepageCtrl.form.dialog(tr)"><i class="fa fa-pencil-square-o"></i></li>' +
-            '<li ng-click="one2onepageCtrl.form.delete(tr.o2oid)"><i class="fa fa-trash-o"></i></li></ul>';
+            '<li ng-click="one2onepageCtrl.form.dialog(tr)"><i class="far fa-edit"></i></li>' +
+            '<li ng-click="one2onepageCtrl.form.delete(tr.o2oid)"><i class="far fa-trash-alt"></i></li></ul>';
     }
 };
