@@ -118,35 +118,13 @@ class Users_set extends Core_Model {
           }
      }
      /** api/gateway?re=fetch/users_set/verifytomember */
-     public function verifytomember(){
-          $rows=isset($_POST['rows'])?$_POST['rows']:null;
-          if(empty($rows)){ return array("success"=>false,"info"=>"no data."); }
-          $done=isset($_POST['done'])?$_POST['done']:array();
-          $result=array();
-          
-          /** register total once. */
-          $total=count($rows);
-          if(count($done)==0&&count($rows)>0){ 
-               // TODO uncomment this after testing
-                $this->update('weekend',array("total"=>$total),'weekendid='.$rows[0]['weekendid']); 
-          }
-          
-          foreach($rows as $row){
-               if(!in_array($row['id'],$done)){
-                    $_POST=$row;
-                    $result=self::edit($row['id'],'tomember');                    
-                    /** TODO enter email template or mobile text for credentials */
-                    $result['email']=self::sendemail($result['password'],$row['email']);
-                    // remove password
-                    $result['password']='Ops it\'s Confidential :)';
-                    if($result['success']){ array_push($done,$row['id']); }
-                    break;
-               }
-          }
-          $result['done']=$done;
-          $result['successcnt']=count($done);
-          $result['total']=$total;
-          return $result;
+     public function verifytomember($userid,$email){
+         $result=self::edit($userid,'tomember');
+         if(!empty($email)){
+             /** TODO mobile text for credentials */
+             $result['email']=self::sendemail($result['password'],$email);
+         } else { $result['email']='empty email!'; }
+         return $result;
      }
      private function sendemail($password,$email=null){          
           $searchNeedle = array(
@@ -191,8 +169,7 @@ class Users_set extends Core_Model {
                     "password"=>sha1($gen),
                     "generatedcode"=>$gen, /** TODO remove this on live */
                     "profileid"=>1,
-                    "datecreated"=>self::datetime(),
-                    "weekendid"=>$_POST['weekendid']
+                    "datecreated"=>self::datetime()
                );
           }
           else{

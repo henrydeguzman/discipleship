@@ -16,3 +16,4 @@ $lang['trans.controls'] = "Controls";
 $lang['trans.date'] = "Date";
 $lang['trans.victoryweekend.date.list'] = "Victory Weekend Date List";
 $lang['trans.victoryweekend.date.add'] = "Please Add Victory Weekend Date";
+$lang['trans.mark.as.done'] = "Mark as done";

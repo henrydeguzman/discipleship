@@ -8,7 +8,7 @@
             <gt-table id="vweekend.pre.list" formatter="victory_weekend/tabs/vweekend/formatter/vweekend.js" model="fetch/weekend_get/getvweekendlist/{{vWeekendCtrl.list.data.id}}" tablestyle="{'border-bottom':'none','border-right':'none','border-left':'none'}" headerstyle="{'border-top':'none','border-right':'none','border-left':'none'}">
                 <gt-table-filter model="fetch/weekend_get/getfilters"></gt-table-filter>
                 <gt-table-title>{{vWeekendCtrl.list.data.date | date:'MMMM dd, yyyy'}}</gt-table-title>
-                <gt-table-btns action="button" gtclick="vWeekendCtrl.create.accounts"><span>Create Account(s)!</span></gt-table-btns>
+                <gt-table-btns action="button" gtclick="vWeekendCtrl.create.accounts"><span><?= $this->lang->line('trans.mark.as.done');?></span></gt-table-btns>
                 <gt-table-col gtclick="vWeekendCtrl.create.check" field="no" format="numchecklist" text-align="center" td-style="{width:'1px'}">#</gt-table-col>
                 <gt-table-col field="fullname" format="fullnameonly">Name</gt-table-col>
                 <gt-table-col field="email" format="email" text-align="center">Email Address</gt-table-col>

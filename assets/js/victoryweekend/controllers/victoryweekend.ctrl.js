@@ -102,7 +102,7 @@ victory
             dialogs.confirm('Are you sure ?',function(){
                 dialogs.asynchronous({
                     url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/create-accounts.html',
-                    model:'fetch/weekend_set/createaccnt',data:checked,
+                    model:'fetch/weekend_set/markasdone',data:checked,
                     onclosed:function(){
                         tableService.refresh('vweekend.pre.list');
                         vm.list={processing:true};
