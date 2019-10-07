@@ -1,0 +1,11 @@
+<div class="tab-dates" ng-controller="churchcommunity.page.dates.controller as cCommunityDatesCtrl">
+    <div class="_list">
+        <gt-table id="churchcommunity.dates" model="fetch/churchcommunity_get/dates" formatter="church_community/tabs/churchcommunitydates/formatter/tab-churchcommunity.js" tablestyle="{'border-left':'none','border-right':'none','border-bottom':'none'}" headerstyle="{'border-top':'none','border-left':'none','border-right':'none'}">
+            <gt-table-title><?= $this->lang->line('trans.churchcommunity.date.list');?></gt-table-title>
+            <gt-table-btns action="add" gtclick="cCommunityDatesCtrl.community.date.add"></gt-table-btns>
+            <gt-table-col field="date" format="fulldate"><?= $this->lang->line('trans.date');?></gt-table-col>
+            <gt-table-col field="total" text-align="center" td-style="{width:'50px'}"><?= $this->lang->line('trans.total');?></gt-table-col>
+            <gt-table-col field="" format="controls" td-style="{width:'50px'}" text-align="center"><?= $this->lang->line('trans.controls');?></gt-table-col>
+        </gt-table>
+    </div>
+</div>

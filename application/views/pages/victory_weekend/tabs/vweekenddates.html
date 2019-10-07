@@ -2,7 +2,7 @@
     <div class="_list">
         <gt-table id="victoryweekend.dates" model="fetch/weekend_get/dates" formatter="victory_weekend/tabs/vweekenddates/formatter/tab-victoryweekend.js" tablestyle="{'border-left':'none','border-right':'none','border-bottom':'none'}" headerstyle="{'border-top':'none','border-left':'none','border-right':'none'}">
             <gt-table-title><?= $this->lang->line('trans.victoryweekend.date.list');?></gt-table-title>
-            <gt-table-btns action="add" gtclick="vwDatesCtrl.weekend.date.add"></gt-table-btns>
+            <!--<gt-table-btns action="add" gtclick="vwDatesCtrl.weekend.date.add"></gt-table-btns>-->
             <gt-table-col field="date" format="fulldate"><?= $this->lang->line('trans.date');?></gt-table-col>
             <gt-table-col field="total" text-align="center" td-style="{width:'50px'}"><?= $this->lang->line('trans.total');?></gt-table-col>
             <gt-table-col field="" format="controls" td-style="{width:'50px'}" text-align="center"><?= $this->lang->line('trans.controls');?></gt-table-col>

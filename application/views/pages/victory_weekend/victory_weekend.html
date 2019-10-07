@@ -1,7 +1,7 @@
 <div class="page-victoryweekend" ng-controller="victoryweekend.page.controller as vwpageCtrl">
     <gt-tabset gt-onchange="vwpageCtrl.tab.change">
-        <gt-tab active template="page/loadview?dir=pages&view=victory_weekend/tabs/victoryweekend.html"><i class="fa fa-check-circle" aria-hidden="true"></i> Victory Weekend</gt-tab>
-        <gt-tab template="page/loadview?dir=pages&view=victory_weekend/tabs/vweekenddates.html"><i class="fa fa-calendar" aria-hidden="true"></i> Dates</gt-tab>
-        <gt-tab template="page/loadview?dir=pages&view=victory_weekend/tabs/generalsettings.html"><i class="fa fa-cog" aria-hidden="true"></i> General settings</gt-tab>
+        <gt-tab active template="page/loadview?dir=pages&view=victory_weekend/tabs/victoryweekend.html"><i class="fas fa-check-circle"></i> <?= $this->lang->line('trans.victoryweekend');?></gt-tab>
+        <gt-tab template="page/loadview?dir=pages&view=victory_weekend/tabs/vweekenddates.html"><i class="far fa-calendar-alt"></i> <?= $this->lang->line('trans.date');?></gt-tab>
+        <gt-tab template="page/loadview?dir=pages&view=victory_weekend/tabs/generalsettings.html"><i class="fas fa-cog"></i> <?= $this->lang->line('trans.general.settings');?></gt-tab>
     </gt-tabset>
 </div>

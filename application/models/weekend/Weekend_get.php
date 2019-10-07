@@ -8,9 +8,8 @@
 class Weekend_get extends Core_Model {
     public function __construct(){ $this->script->load('weekend_script'); }
     /** api/gateway?re=fetch/weekend_get/dates */
-    public function dates($churchid=null){
+    public function dates(){
         $sql=$this->weekend_script->getdates()." ORDER BY a.weekend_date desc";
-            //." Where a.churchid=".$churchid;
         return $this->query($sql);
     }
     /** api/gateway?re=fetch/weekend_get/getchapter */
@@ -18,15 +17,6 @@ class Weekend_get extends Core_Model {
         $churchid=$this->data_app_get->getchurch('churchid');
         $sql="SELECT a.weekendsetid as id FROM development_weekend_settings a WHERE a.churchid=".$churchid;
         return $this->query($sql,true);
-    }
-    /** api/gateway?re=fetch/weekend_get/getfilters */
-    public function getfilters(){
-        return array(array(
-            "id"=>"active","name"=>"Life Status",
-            "childs"=>array(
-                array("id"=>1,"name"=>"Life StatusLife StatusLife StatusLife StatusLife Status"),
-            )
-        ));
     }
     /** api/gateway?re=fetch/weekend_get/getvweekendlist */
     public function getvweekendlist($weekendid=null){

@@ -1,0 +1,7 @@
+<div class="page-churchcommunity" ng-controller="churchcommunity.page.controller as ccummunitypageCtrl">
+    <gt-tabset gt-onchange="ccummunitypageCtrl.tab.change">
+        <gt-tab active template="page/loadview?dir=pages&view=church_community/tabs/churchcommunity.html"><i class="fas fa-check-circle"></i> <?= $this->lang->line('trans.churchcommunity');?></gt-tab>
+        <gt-tab template="page/loadview?dir=pages&view=church_community/tabs/churchcommunitydates.html"><i class="far fa-calendar-alt"></i> <?= $this->lang->line('trans.date');?></gt-tab>
+        <!--<gt-tab template="page/loadview?dir=pages&view=church_community/tabs/generalsettings.html"><i class="fas fa-cog"></i> <?= $this->lang->line('trans.general.settings');?></gt-tab>-->
+    </gt-tabset>
+</div>

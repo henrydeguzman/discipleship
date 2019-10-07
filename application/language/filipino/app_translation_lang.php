@@ -16,4 +16,12 @@ $lang['trans.date'] = "Petsa";
 $lang['trans.victoryweekend.date.list'] = "Listahan ng Petsa ng Linggo ng Tagumpay";
 $lang['trans.victoryweekend.date.add'] = "Mangyaring Magdagdag ng Petsa ng Tagumpay sa Linggo";
 $lang['trans.mark.as.done'] = "Markahan bilang tapos na";
-
+$lang['trans.church'] = "Simbahan";
+$lang['trans.no.victoryweekend'] = "Bilang ng Tagumpay sa Linggo ng Tagumpay";
+$lang['trans.victoryweekend'] = "Tagumpay sa Linggo ng Tagumpay";
+$lang['trans.no.baptized'] = "Bilang ng Nabinyagan";
+$lang['trans.no.victorygroup'] = "Bilang ng Victory Group";
+$lang['trans.general.settings'] = "Pangkalahatang mga Setting";
+$lang['trans.churchcommunity'] = "Komunidad ng Simbahan";
+$lang['trans.churchcommunity.date.add'] = "Mangyaring Magdagdag ng Petsa ng Komunidad ng Simbahan";
+$lang['trans.churchcommunity.date.list'] = "Listahan ng Petsa ng Komunidad ng Simbahan";
