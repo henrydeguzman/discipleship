@@ -28,6 +28,9 @@ victory
             getdata();
         });
         getdata();
+        vm.markasdone=function(a){
+
+        };
         function getdata(fn){
             var get=centralFctry.getData({url:'fetch/churchcommunity_get/processdate'});
             if(get.$$state!==undefined){
