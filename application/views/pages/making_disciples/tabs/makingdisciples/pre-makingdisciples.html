@@ -1,0 +1,11 @@
+<div>
+    <div class="_selectdate" ng-if="makingdisciplesCtrl.list.processing"><div class="spinner-container" bind-html-compile="spinnerValues.default"></div></div>
+    <div class="_table" ng-if="!makingdisciplesCtrl.list.processing">
+        <div class="_adddate" ng-if="makingdisciplesCtrl.list.data===null">
+            <?= $this->lang->line('trans.makingdisciples.date.add');?> <i ng-click="makingdisciplesCtrl.date.create()" class="far fa-calendar-plus"></i>
+        </div>
+        <div ng-if="makingdisciplesCtrl.list.data!==null">
+            table list
+        </div>
+    </div>
+</div>

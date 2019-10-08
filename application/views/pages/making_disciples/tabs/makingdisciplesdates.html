@@ -1,0 +1,11 @@
+<div class="tab-dates" ng-controller="makingdisciples.page.dates.controller as makingdisciplesDatesCtrl">
+    <div class="_list">
+        <gt-table id="makingdisciples.dates" model="fetch/makingdisciples_get/dates" formatter="making_disciples/tabs/makingdisciplesdates/formatter/tab-makingdisciples.js" tablestyle="{'border-left':'none','border-right':'none','border-bottom':'none'}" headerstyle="{'border-top':'none','border-left':'none','border-right':'none'}">
+            <gt-table-title><?= $this->lang->line('trans.makingdisciples.date.list');?></gt-table-title>
+            <gt-table-btns action="add" gtclick="makingdisciplesDatesCtrl.disciples.date.add"></gt-table-btns>
+            <gt-table-col field="date" format="fulldate"><?= $this->lang->line('trans.date');?></gt-table-col>
+            <gt-table-col field="total" text-align="center" td-style="{width:'50px'}"><?= $this->lang->line('trans.total');?></gt-table-col>
+            <gt-table-col field="" format="controls" td-style="{width:'50px'}" text-align="center"><?= $this->lang->line('trans.controls');?></gt-table-col>
+        </gt-table>
+    </div>
+</div>

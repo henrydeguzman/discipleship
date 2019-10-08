@@ -28,3 +28,6 @@ $lang['trans.churchcommunity.date.add'] = "Please Add Church Community Date";
 $lang['trans.churchcommunity.date.list'] = "Church Community Date List";
 $lang['trans.purplebook'] = "Purple book";
 $lang['trans.purplebook.date.add'] = "Please Add Purple Book Date";
+$lang['trans.makingdisciples']="Making Disciples";
+$lang['trans.makingdisciples.date.list'] = "Making Disciples Date List";
+$lang['trans.makingdisciples.date.add'] = "Please Add Purple Book Date";

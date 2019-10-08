@@ -1,0 +1,11 @@
+<div ng-controller="makingdisciples.ctrl.diags.adddates as makingdisciplesdatesCtrl">
+    <form class="gen-form-static">
+        <div class="form-group">
+            <label class="gfs-title">Date</label>
+            <gt-datepicker align="center" validation-model="makingdisciplesdatesCtrl.date.validation.makingdisciples_date" input-model="makingdisciplesdatesCtrl.date.value" gt-options="{opts:{minDate:curdate}}" format="MMM-dd-yyyy"></gt-datepicker>
+        </div>
+        <div class="form-btn-right">
+            <button class="btn btn-sm gen-btn-success" click-and-disable="makingdisciplesdatesCtrl.date.save()">Add</button>
+        </div>
+    </form>
+</div>

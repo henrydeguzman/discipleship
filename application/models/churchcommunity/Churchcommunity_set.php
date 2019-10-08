@@ -18,7 +18,7 @@ class Churchcommunity_set extends Core_Model {
     }
     /** api/gateway?re=fetch/churchcommunity_set/remove */
     public function remove(){
-        $id=isset($_POST['id'])?$_POST['id']:0; if(empty($id)){ return array("success"=>false,"info"=>"invalid weekend date."); }
+        $id=isset($_POST['id'])?$_POST['id']:0; if(empty($id)){ return array("success"=>false,"info"=>"invalid church community date."); }
         return $this->delete('development_churchcommunity_dates','churchcommunityid='.$id);
     }
 }
