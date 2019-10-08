@@ -30,3 +30,4 @@ $lang['trans.purplebook.date.add'] = "Mangyaring Magdagdag ng Petsa ng Book ng P
 $lang['trans.makingdisciples']="Paggawa ng mga Disipulo";
 $lang['trans.makingdisciples.date.list'] = "Paggawa ng Listahan ng Petsa ng Mga Mag-aaral";
 $lang['trans.makingdisciples.date.add'] = "Mangyaring Magdagdag ng Petsa ng Book ng Purple";
+$lang['trans.fullname']="Buong pangalan";

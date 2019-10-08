@@ -10,7 +10,7 @@ angular.module("MainFormatters",[])
             return '<div ng-if="tr[td.field]!==undefined" class="gttbl_inifrmtr"><i ng-click="gtTblCtrl.tdkick(td,tr,\'checkbox\')" class="fa _checkbox" ng-class="tr[td.field]===\'1\'?\'fa-check-square-o\':\' fa-square-o\'"></i></div><div ng-if="tr[td.field]==undefined" class="unset">-</div>';
         },
         fullname:function(tr){
-            return '<gt-profile photo="tr.photo" userid="tr.userid" name="tr.fullname"></gt-profile>&nbsp;<span>{{tr.fullname}}</span>&nbsp;<span ng-if="genvarsValue.userdata(\'userid\')==tr.userid">(You)</span>';
+            return '<gt-profile photo="tr.photo" userid="tr.userid" name="tr.fullname"></gt-profile>&nbsp;<span>{{tr.firstname+" "+tr.lastname}}</span>&nbsp;<span ng-if="genvarsValue.userdata(\'userid\')==tr.userid">(You)</span>';
         },
         fullnameonly:function(tr){
             return '{{tr.firstname+" "+tr.lastname}}';

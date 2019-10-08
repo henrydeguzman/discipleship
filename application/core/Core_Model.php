@@ -12,7 +12,7 @@ class Core_Model extends CI_Model {
     public function __construct() { parent::__construct(); }
     public function query($sql,$onerow=false,$pagination=false){
         $result=$this->db->query($sql);
-        if(!$result){ $this->db->error(); }
+        if(!$result){ return $this->db->error(); }
         $data=$onerow?$result->row():$result->result();
         if($pagination){ $dataarr['rows']=$data; $count=$this->db->query("SELECT FOUND_ROWS() as x;"); $dataarr['count']=$count->row('x'); $data = $dataarr; }
         return $data;

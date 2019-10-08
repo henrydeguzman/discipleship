@@ -21,10 +21,8 @@ class Churchcommunity_get extends Core_Model {
         return $this->query($sql);
     }
     /** api/gateway?re=fetch/churchcommunity_get/$churchcommunityid */
-    public function getchurchcommunitylist($churchcommunityid=null){
-        $churchcommunityid=isset($_POST['churchcommunityid'])?$_POST['churchcommunityid']:$churchcommunityid;
-        if(empty($weekendid)){ return array(); }
-        $toprow=false;$whr='';
+    public function getchurchcommunitylist($churchcommunityid){
+        $toprow=false;$whr='AND development_churchcommunity_dates.churchcommunityid IS NOT NULL';
         if(isset($_POST['rowid'])){ $toprow=true;$whr="AND a.userid=".$_POST['rowid']; }
         $sql=$this->churchcommunity_script->getchurchcommunitylist($churchcommunityid).$whr;
         return $this->query($sql,$toprow);

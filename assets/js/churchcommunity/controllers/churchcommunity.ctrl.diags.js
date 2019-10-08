@@ -4,7 +4,9 @@
  * Date: 07/10/2019
  * Time: 8:10 PM
  */
-victory.controller('church_community.ctrl.diags.adddates',['$scope','Notification','centralFctry','tableService','notifValues','$filter','genvarsValue',function($scope,Notification,centralFctry,tableService,notifValues,$filter,genvarsValue){
+victory
+    .controller('church_community.ctrl.diags.markasdone',[function(){}])
+    .controller('church_community.ctrl.diags.adddates',['$scope','Notification','centralFctry','tableService','notifValues','$filter','genvarsValue',function($scope,Notification,centralFctry,tableService,notifValues,$filter,genvarsValue){
     var vm=this;
     $scope.curdate=$filter('date')(genvarsValue.curdate,genvarsValue.dateformat);
     vm.date={format:'MMM-dd-yyyy'};

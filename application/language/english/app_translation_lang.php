@@ -31,3 +31,4 @@ $lang['trans.purplebook.date.add'] = "Please Add Purple Book Date";
 $lang['trans.makingdisciples']="Making Disciples";
 $lang['trans.makingdisciples.date.list'] = "Making Disciples Date List";
 $lang['trans.makingdisciples.date.add'] = "Please Add Purple Book Date";
+$lang['trans.fullname']="Fullname";
