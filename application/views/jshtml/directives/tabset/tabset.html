@@ -6,7 +6,7 @@
             <li ng-click="gtTbsetCtrl.loadtemplate(item,$index)" ng-repeat="item in gtTbsetCtrl.tabs.list" ng-class="{'active':item.active===true,'asurl':item.as!==undefined&&item.as==='url'}" ng-if="item.ngif==undefined||item.ngif==true">
                 <a ng-if="item.as!==undefined&&item.as==='url'" ui-sref="tabset(item.node)" bind-html-compile="item.html"></a>
                 <span bind-html-compile="item.html" ng-if="item.as===undefined||item.as!=='url'"></span>
-                <ul class="_btn" ng-if="item.as===undefined||item.as!=='url'">
+                <ul class="_btn" ng-if="gtTbsetCtrl.btns.length>0&&(item.as===undefined||item.as!=='url')">
                     <li ng-if="gtTbsetCtrl.btns[1]" title="{{gtTbsetCtrl.btns[1].tooltip}}" ng-click="gtTbsetCtrl.btnfn('edit',$event,item)"><i ng-class="gtTbsetCtrl.btns[1].icon"></i></li>
                     <li ng-if="gtTbsetCtrl.btns[2]&&item.candelete==1" title="{{gtTbsetCtrl.btns[2].tooltip}}" ng-click="gtTbsetCtrl.btnfn('remove',$event,item)"><i ng-class="gtTbsetCtrl.btns[2].icon"></i></li>
                 </ul>
