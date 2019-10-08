@@ -26,3 +26,5 @@ $lang['trans.general.settings'] = "General Settings";
 $lang['trans.churchcommunity'] = "Church Community";
 $lang['trans.churchcommunity.date.add'] = "Please Add Church Community Date";
 $lang['trans.churchcommunity.date.list'] = "Church Community Date List";
+$lang['trans.purplebook'] = "Purple book";
+$lang['trans.purplebook.date.add'] = "Please Add Purple Book Date";

@@ -9,7 +9,7 @@ class Churchcommunity_script {
     public static $instance;
     function __construct(){self::$instance = &get_instance();}
     public static function getdates(){
-        return "SELECT a.churchcommunityid as id,a.churchcommunity_date as `date`, a.total FROM development_churchcommunity_date a ";
+        return "SELECT a.churchcommunityid as id,a.churchcommunity_date as `date`, a.total FROM development_churchcommunity_dates a ";
     }
     public static function getchurchcommunitylist($churchcommunityid){
         return "";

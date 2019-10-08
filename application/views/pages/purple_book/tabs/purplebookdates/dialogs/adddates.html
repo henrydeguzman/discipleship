@@ -1,0 +1,11 @@
+<div ng-controller="purple_book.ctrl.diags.adddates as purplebookdatesCtrl">
+    <form class="gen-form-static">
+        <div class="form-group">
+            <label class="gfs-title">Date</label>
+            <gt-datepicker align="center" validation-model="purplebookdatesCtrl.date.validation.purplebook_date" input-model="purplebookdatesCtrl.date.value" gt-options="{opts:{minDate:curdate}}" format="MMM-dd-yyyy"></gt-datepicker>
+        </div>
+        <div class="form-btn-right">
+            <button class="btn btn-sm gen-btn-success" click-and-disable="purplebookdatesCtrl.date.save()">Add</button>
+        </div>
+    </form>
+</div>

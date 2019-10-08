@@ -1,0 +1,16 @@
+.page-purplebook {}
+.page-purplebook .tab-purplebook ._adddate {
+    text-align:center;
+    font-size:30px;
+    padding:20px;
+    color:#757575;
+}
+.page-purplebook .tab-purplebook ._adddate i {
+    cursor:pointer;
+    color:#194389;
+    font-size:50px;
+    vertical-align:middle;
+    position:relative;
+    top:-5px;
+    padding:5px;
+}

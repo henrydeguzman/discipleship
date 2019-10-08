@@ -25,3 +25,5 @@ $lang['trans.general.settings'] = "Pangkalahatang mga Setting";
 $lang['trans.churchcommunity'] = "Komunidad ng Simbahan";
 $lang['trans.churchcommunity.date.add'] = "Mangyaring Magdagdag ng Petsa ng Komunidad ng Simbahan";
 $lang['trans.churchcommunity.date.list'] = "Listahan ng Petsa ng Komunidad ng Simbahan";
+$lang['trans.purplebook'] = "Purple book";
+$lang['trans.purplebook.date.add'] = "Mangyaring Magdagdag ng Petsa ng Book ng Purple";
