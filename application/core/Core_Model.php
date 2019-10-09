@@ -9,7 +9,8 @@
 class Core_Model extends CI_Model {
     private static $_rowcount=0;
     private static $_offset=0;
-    public function __construct() { parent::__construct(); }
+    const SECRETKEY="&gqFee#e6ks7!@#$#(secure!)";
+    public function __construct() { $this->load->library('tokenizer'); parent::__construct(); }
     public function query($sql,$onerow=false,$pagination=false){
         $result=$this->db->query($sql);
         if(!$result){ return $this->db->error(); }
@@ -55,5 +56,15 @@ class Core_Model extends CI_Model {
     /** isset validation. if $data has value then it will append to array. commonly used in edit sql */
     public static function _isset($container,$POSTID,$variable=null){
         if(isset($_POST[$POSTID])){$container[$variable==null?$POSTID:$variable]=$_POST[$POSTID];} return $container;
+    }
+    public function _secureid($id=null){
+        //1 day validity
+        if(empty($id)){ return false; }
+        return $this->tokenizer->create($id,self::SECRETKEY,86400);
+    }
+    public function _getsecureid($token=null){
+        if(empty($token)){ return false; }
+        $result=$this->tokenizer->validate($token,self::SECRETKEY);
+        return $result['success']?$result['aud']:false;
     }
 }

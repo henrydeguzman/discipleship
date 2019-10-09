@@ -36,16 +36,17 @@ class Tokenizer {
      * after the generation time with 60 seconds leeway. This leeway ensures
      * that there is enough time to encode and decode the token.
      */
-    public function create($audience=null, $secretKey=null){
+    public function create($audience=null, $secretKey=null, $extime=NULL){
         if(!is_string($audience)||empty($audience)){ return array('error'=>'Invalid audience.'); }
         //if(!is_numeric($jwtID)||$jwtID<=0){ return array('error'=>'Id is not numeric.'); }
         if(!is_string($secretKey)||empty($secretKey)){ return array('error'=>'Please provide secret key.'); }
+        if(empty($extime)){$extime=$this->EXPIRATION_TIME;};
         $token = array('iss'=>$this->issuer,
             'aud'=>$audience,
             'sub'=>$this->subject,
             'iat'=>$this->issuedAt,
             'nbf'=>$this->issuedAt,
-            'exp'=>$this->issuedAt + ($this->EXPIRATION_TIME + $this->LEEWAY_TIME)
+            'exp'=>$this->issuedAt + ($extime + $this->LEEWAY_TIME)
         );
         $this->token = JWT::encode($token, $secretKey, 'HS512');
         return $this->token;

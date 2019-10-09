@@ -28,6 +28,38 @@ victory
             getdata();
         });
         getdata();
+        vm.markasdone={};
+        vm.markasdone.check=function(type,data){
+            if(type==='all'){
+                for(var x=0;x<data.tr.length;x++){
+                    data.tr[x]['_checked']=data.td.checkbox;
+                }
+            }
+        };
+        vm.markasdone.go=function(datas){
+            var checked=[];
+            for(var x=0;x<datas.length;x++){
+                if(datas[x]['_checked']==true){
+                    checked.push({ userid: datas[x]['userid'], purplebookid:datas[x]['purplebookid'],churchcommunityid:datas[x]['churchcommunityid']});
+                }
+            }
+            if(checked.length===0){ dialogs.notify('Please select atleast one user to proceed.');return; }
+            dialogs.confirm('Are you sure ?',function(){
+                dialogs.asynchronous({
+                    url:'page/loadview?dir=pages&view=purple_book/tabs/purplebook/dialogs/markasdone.html',
+                    model:'fetch/purplebook_set/markasdone',data:checked,
+                    onclosed:function(){
+                        tableService.refresh('purplebook.pre.list');
+                        vm.list={processing:true};
+                        getdata();
+                        dialogs.notify('<table><tbody><tr>\n' +
+                            '<td><i class="fa fa-check ng-scope" aria-hidden="true" style="font-size: 36px;padding-right: 10px;color: green;"></i></td>\n' +
+                            '<td><span class="ng-scope">Process is complete!</span></td>\n' +
+                            '</tr></tbody></table>');
+                    }
+                });
+            });
+        };
         function getdata(fn){
             var get=centralFctry.getData({url:'fetch/purplebook_get/processdate'});
             if(get.$$state!==undefined){

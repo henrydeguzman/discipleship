@@ -12,6 +12,7 @@ class Churchcommunity_script {
         return "SELECT a.churchcommunityid as id,a.churchcommunity_date as `date`, a.total FROM development_churchcommunity_dates a ";
     }
     public static function getchurchcommunitylist($churchcommunityid){
+        if(!$churchcommunityid){ return 'invalid_token'; }
         return "SELECT development_weekend.devweekendid,development_weekend.userid,development_weekend.weekendid,
                 development_churchcommunity_dates.churchcommunityid,
                 user.firstname, user.lastname, user_photo.photo

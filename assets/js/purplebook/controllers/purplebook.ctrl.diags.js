@@ -4,7 +4,9 @@
  * Date: 07/10/2019
  * Time: 9:27 PM
  */
-victory.controller('purple_book.ctrl.diags.adddates',['$scope','Notification','centralFctry','tableService','notifValues','$filter','genvarsValue',function($scope,Notification,centralFctry,tableService,notifValues,$filter,genvarsValue){
+victory
+    .controller('purplebook.ctrl.diags.markasdone',[function(){}])
+    .controller('purple_book.ctrl.diags.adddates',['$scope','Notification','centralFctry','tableService','notifValues','$filter','genvarsValue',function($scope,Notification,centralFctry,tableService,notifValues,$filter,genvarsValue){
     var vm=this;
     $scope.curdate=$filter('date')(genvarsValue.curdate,genvarsValue.dateformat);
     vm.date={format:'MMM-dd-yyyy'};
