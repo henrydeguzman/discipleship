@@ -13,9 +13,9 @@ class Users_Script {
         // Assign by reference with "&" so we don't create a copy
         self::$instance = &get_instance();
     }
-    public static function getjourney(){
+    /*public static function getjourney(){
         return "SELECT a.userid,a.victory_weekend,a.church_community,a.purple_book,a.making_disciples,a.empowering_leaders,a.leadership_113,a.baptized FROM user_journey a ";
-    }
+    }*/
     public static function getusers($activefields=null){
         $condition=array(
             "onfields"=>array(

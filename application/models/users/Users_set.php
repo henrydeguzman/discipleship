@@ -51,7 +51,6 @@ class Users_set extends Core_Model {
                if(empty($userid)){ /** add */
                     $gen=$this->generatePassword();
                     $data['password']=self::encrypt($gen);
-                    $data['generatedcode']=$gen;
                }else{ /** update */
                     
                }
@@ -99,7 +98,7 @@ class Users_set extends Core_Model {
           return $this->query($sql,true);
      }
      /** api/gateway?re=fetch/users_set/setjourney */
-     public function setjourney(){
+    /* public function setjourney(){
           $userid=$this->data_app_get->idCurrentUser();
           $data=array();
           if(isset($_POST['victory_weekend'])){ $data['victory_weekend']=$_POST['victory_weekend']; }
@@ -110,13 +109,13 @@ class Users_set extends Core_Model {
           if(isset($_POST['leadership_113'])){ $data['leadership_113']=$_POST['leadership_113']; }
           if(isset($_POST['baptized'])){ $data['baptized']=$_POST['baptized']; }
           $journey=$this->getjourney($userid);
-          if(!empty($journey)){ /* update */
+          if(!empty($journey)){
                return $this->update('user_journey',$data,'userid='.$userid);
-          } else { /* add */
+          } else {
                $data['userid']=$userid;
                return $this->insert('user_journey',$data);
           }
-     }
+     }*/
      /** api/gateway?re=fetch/users_set/verifytomember */
      public function verifytomember($userid,$email){
          $result=self::edit($userid,'tomember');

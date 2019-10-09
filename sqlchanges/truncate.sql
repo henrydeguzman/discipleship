@@ -2,7 +2,7 @@ TRUNCATE TABLE development_one2one;
 TRUNCATE TABLE development_weekend;
 TRUNCATE TABLE user;
 TRUNCATE TABLE user_info;
-TRUNCATE TABLE user_journey;
+
 TRUNCATE TABLE user_vg;
 TRUNCATE TABLE user_vg_info;
 TRUNCATE TABLE user_vg_intern;
