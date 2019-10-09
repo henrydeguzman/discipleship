@@ -14,7 +14,7 @@
 class Users_get extends Core_Model {
     public function __construct() { $this->script->load('users_script'); }
     public function tablelist(){ /* api/gateway?re=fetch/users_get/tablelist */
-        $whr='WHERE x.profileid=1';$toprow=false;
+        $whr='';$toprow=false;
         if(isset($_POST['rowid'])){
             $whr=self::extendwhr($whr,'x.userid='.$_POST['rowid'],"AND");
             $toprow=true;

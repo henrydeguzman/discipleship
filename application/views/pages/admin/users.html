@@ -1,9 +1,9 @@
 <div class="page-admin-users" ng-controller="admin.users.page.controller as userpageCtrl">
     <gt-table id="admin.users.tablelist" model="fetch/users_get/tablelist" formatter="admin/formatter/users.js">
         <gt-table-btns action="add" gtclick="userpageCtrl.form.dialog"></gt-table-btns>
-        <gt-table-col field="fullname">Fullname</gt-table-col>
+        <gt-table-col field="fullname" format="fullname"><?= $this->lang->line('trans.fullname');?></gt-table-col>
         <gt-table-col field="email">Email</gt-table-col>
         <gt-table-col field="phonenumber">Contact</gt-table-col>
-        <gt-table-col format="action" text-align="center" td-style="{width:'20px'}">Action</gt-table-col>
+        <gt-table-col format="action" text-align="center" td-style="{width:'20px'}"><?= $this->lang->line('trans.controls');?></gt-table-col>
     </gt-table>
 </div>
