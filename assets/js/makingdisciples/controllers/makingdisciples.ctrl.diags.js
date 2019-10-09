@@ -5,6 +5,7 @@
  * Time: 8:56 PM
  */
 victory
+    .controller('makingdisciples.ctrl.diags.markasdone',[function(){}])
     .controller('makingdisciples.ctrl.diags.adddates',['$scope','Notification','centralFctry','tableService','notifValues','$filter','genvarsValue',function($scope,Notification,centralFctry,tableService,notifValues,$filter,genvarsValue){
         var vm=this;
         $scope.curdate=$filter('date')(genvarsValue.curdate,genvarsValue.dateformat);
