@@ -142,14 +142,14 @@ angular
 			}
 		}
 	])
-	.controller("main.sidebar.controller", [
-		"$stateParams",
-		"$scope",
-		function($stateParams, $scope) {
-			var vm = this;
-			$scope.stateparams = $stateParams;
+	.controller("main.sidebar.controller", ["$stateParams","$scope",'centralFctry',function($stateParams, $scope,centralFctry) {
+        var vm = this;
+        $scope.stateparams = $stateParams;
+		var posted=centralFctry.getData({url:'fetch/links/sidebar'});
+		if(posted.$$state!==undefined){
+			posted.then(function(v){ vm.data=v.data;console.log(v.data); });
 		}
-	])
+	}])
 	.controller("main.breadcrumb.controller", [
 		"$stateParams",
 		"$scope",

@@ -6,6 +6,8 @@
  * Time: 02:26 PM
  */
 class App extends Core_Model {
+    public function __construct(){ $this->load->model('links'); }
+
     /** api/gateway?re=fetch/app/init */
     public function init(){
         return array(
@@ -25,26 +27,34 @@ class App extends Core_Model {
             case "schedules":
                 break;
             case "reports":
+
                 break;
             case "one2one":
+
                 break;
             case "victory_weekend":
                 break;
             case "church_community":
+
                 break;
             case "purple_book":
                 break;
             case "making_disciples":
+
                 break;
             case "empowering_leaders":
+
                 break;
             case "vg;interns":
+
                 break;
             case "leadership113":
+
                 break;
             case "translation":
                 break;
             case "admin;users":
+
                 break;
             case "admin;centers":
 

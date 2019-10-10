@@ -80,35 +80,38 @@
 }
 .app-skin-blue .sidebar-menu > li.header > span {
     background-color:#082447;
-    z-index:1;
-    padding-right:5px;
+
 }
-.app-skin-blue .sidebar-menu > li.header:after {
-    z-index:-1;
-    content:'';
-    position:absolute;
+.app-skin-blue .sidebar-menu > li.header> span:after {
     border-top:1px solid #707070;
-    top:50%;
-    margin-left:20px;
-    margin-right:10px;
-    left:1px;
-    right:1px;
 }
-.app-skin-blue .sidebar-menu > li > a {
+
+
+
+.app-skin-blue .sidebar-menu > li > a,
+.app-skin-blue .sidebar-menu > li ul._childs > li > a {
     border-left: 3px solid transparent;
 }
 .app-skin-blue .sidebar-menu > li:hover > a,
 .app-skin-blue .sidebar-menu > li.active > a,
-.app-skin-blue .sidebar-menu > li.menu-open > a {
+.app-skin-blue .sidebar-menu > li.menu-open > a,
+.sidebar-menu ul._childs li:hover,
+.sidebar-menu ul._childs li.active {
     color: #c1c1c1;
     background: #194389;
 }
-.app-skin-blue .sidebar-menu > li.active > a {
+.app-skin-blue .sidebar-menu > li.active > a,
+.app-skin-blue .sidebar-menu > li ul._childs > li.active > a,
+.app-skin-blue .sidebar-menu > li  ul._childs.treeview-menu > li.active > a,
+.app-skin-blue .sidebar-menu > li.active  ul._childs.treeview-menu > li > a,
+.app-skin-blue .sidebar-menu > li.treeview.active > a {
     border-left-color: #3c8dbc;
 }
 .app-skin-blue .sidebar-menu > li > .treeview-menu {
-    margin: 0 1px;
     background: #082447;
+}
+.app-skin-blue .sidebar-menu > li.treeview.active > a {
+
 }
 .app-skin-blue .sidebar a {
     color: #c1c1c1;

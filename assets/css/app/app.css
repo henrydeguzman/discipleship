@@ -423,9 +423,15 @@ a:hover,a:active,a:focus{
     margin:0;
     padding:0
 }
-.sidebar-menu>li>a{
+.sidebar-menu>li > ul,
+.sidebar-menu ul._childs {
+    margin:0;padding:0;list-style:none;
+}
+.sidebar-menu>li>a,
+.sidebar-menu ul._childs > li > a {
     padding:12px 5px 12px 15px;
-    display:block
+    display:block;
+    font-size:14px;
 }
 .sidebar-menu>li>a>.fa,
 .sidebar-menu>li>a>.fas,
@@ -433,7 +439,11 @@ a:hover,a:active,a:focus{
 .sidebar-menu>li>a>.fal,
 .sidebar-menu>li>a> img,
 .sidebar-menu>li>a>.glyphicon,
-.sidebar-menu>li>a>.ion{
+.sidebar-menu>li>a>.ion,
+.sidebar-menu>li ul._childs > li >a>.fa,
+.sidebar-menu>li ul._childs > li >a>.fas,
+.sidebar-menu>li ul._childs > li >a>.far,
+.sidebar-menu>li ul._childs > li >a>.fal {
     width:20px
 }
 .sidebar-menu>li>a> img{
@@ -446,8 +456,11 @@ a:hover,a:active,a:focus{
     margin-top:3px
 }
 .sidebar-menu li.header{
-    padding:10px 25px 10px 15px;
-    font-size:12px
+    font-size:12px;
+}
+.sidebar-menu li.header > span {
+    padding: 10px 25px 10px 15px;
+    line-height: 34px;
 }
 .sidebar-menu li>a>.fa-angle-left,.sidebar-menu li>a>.pull-right-container>.fa-angle-left{
     width:auto;
@@ -558,17 +571,32 @@ a:hover,a:active,a:focus{
 }
 .sidebar-menu,.main-sidebar .user-panel,.sidebar-menu>li.header{
     white-space:nowrap;
-    overflow:hidden
+    overflow:hidden;
 }
 .sidebar-menu:hover{
     overflow:visible
 }
 .sidebar-form,.sidebar-menu>li.header{
     overflow:hidden;
-    text-overflow:clip
+    text-overflow:clip;
 }
 .sidebar-menu li>a{
-    position:relative
+    position:relative;
+    white-space: normal;
+}
+.sidebar-menu > li.header > span {
+
+    z-index:1;
+    padding-right:5px;
+    position:relative;
+}
+.sidebar-menu > li.header> span:after {
+    z-index:-1;
+    content:'';
+    position:absolute;
+    top:50%;
+    left:0;
+    width: 219px;
 }
 .sidebar-menu li>a>.pull-right-container{
     position:absolute;

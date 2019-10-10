@@ -26,95 +26,24 @@
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li ng-class="stateparams.tab==='dashboard'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'dashboard',name:'<?= $this->lang->line('navlink_dash'); ?>'})">
-                        <i class="fas fa-tachometer-alt"></i> <span><?= $this->lang->line('navlink_dash'); ?></span>
+                <li ng-repeat="link in mainsbarCtrl.data"
+                    ng-class="{'active':stateparams.tab===link.code,'header':link.code==null&&link.collapsible==0,'treeview':link.collapsible==1,'active menu-open':link.collapsible==1&&link.code===null&&stateparams.tab.indexOf('admin;')!==-1}">
+                    <span ng-if="link.code===null&&link.collapsible==0">{{link.name}}</span>
+                    <a ng-if="link.code!==null" ui-sref="sref_sidebar({tab:link.code,name:link.name})">
+                        <i ng-class="link.icon" ng-if="link.icon"></i> <span>{{link.name}}</span>
                     </a>
-                </li>
-                <li ng-class="stateparams.tab==='discipleship'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'discipleship',name:'Discipleship Journey'})">
-                        <i class="fas fa-route"></i> <span>My Journey</span>
-                    </a>
-                </li>
-                <li ng-class="stateparams.tab==='vg'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'vg',name:'Victory Group'})">
-                        <!--<i class="fa fa-group"></i> <span>Victory Groups</span>-->
-                        <i class="fas fa-users"></i> <span>Victory Groups</span>
-                    </a>
-                </li>
-                <li ng-class="stateparams.tab==='schedules'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'schedules',name:'Schedules'})">
-                        <i class="far fa-calendar-alt"></i> <span>Schedules</span>
-                    </a>
-                </li>
-                <li ng-class="stateparams.tab==='reports'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'reports',name:'Reports'})">
-                        <i class="fas fa-chart-line"></i> <span>Reports</span>
-                    </a>
-                </li>
-                <li class="header"><span>Discipleship Development</span></li>
-                <li ng-class="stateparams.tab==='one2one'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'one2one',name:'One 2 One'})">
-                        <i class="fa fa-adjust"></i> <span>One 2 One</span>
-                    </a>
-                </li>
-                <li ng-class="stateparams.tab==='victory_weekend'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'victory_weekend',name:'Victory Weekend'})">
-                        <i class="fa fa-adjust"></i> <span>Victory Weekend</span>
-                    </a>
-                </li>
-                <li ng-class="stateparams.tab==='church_community'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'church_community',name:'Church Community'})">
-                        <i class="fa fa-adjust"></i> <span>Church Community</span>
-                    </a>
-                </li>
-                <li ng-class="stateparams.tab==='purple_book'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'purple_book',name:'Purple Book'})">
-                        <i class="fa fa-adjust"></i> <span>Purple Book</span>
-                    </a>
-                </li>
-                <li ng-class="stateparams.tab==='making_disciples'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'making_disciples',name:'Making Disciples'})">
-                        <i class="fa fa-adjust"></i> <span>Making Disciples</span>
-                    </a>
-                </li>
-                <li ng-class="stateparams.tab==='empowering_leaders'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'empowering_leaders',name:'Empowering Leaders'})">
-                        <i class="fa fa-adjust"></i> <span>Empowering Leaders</span>
-                    </a>
-                </li>
-                <li class="header"><span>Internship and Leadership Development</span></li>
-                <!--<li ng-class="stateparams.tab==='settings'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'settings',name:'Settings'})">
-                        <i class="fa fa-gears"></i> <span>Settings</span>
-                    </a>
-                </li>-->
-                <li ng-class="stateparams.tab.indexOf('vg;interns')!==-1?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'vg;interns',name:'Victory Group Interns'})">
-                        <i class="fa fa-adjust"></i> <span>Victory Group Interns</span>
-                    </a>
-                </li>
-                <li ng-class="stateparams.tab==='leadership113'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'leadership113',name:'Leadership 113'})">
-                        <i class="fa fa-adjust"></i> <span>Leadership 113</span>
-                    </a>
-                </li>
-                <li class="header"><span>Super admin</span></li>
-                <li ng-class="stateparams.tab==='translation'?'active':''">
-                    <a ui-sref="sref_sidebar({tab:'translation',name:'Translation'})">
-                        <i class="fas fa-language"></i> <span>Translation</span>
-                    </a>
-                </li>
-                <li class="treeview" ng-class="stateparams.tab.indexOf('admin;')!==-1?'active menu-open':''">
-                    <a href="#">
-                        <i class="fa fa-user-secret"></i> <span>Administration</span>
+                    <a href="#" ng-if="link.code===null&&link.collapsible==1">
+                        <i class="fa fa-user-secret"></i> <span>{{link.name}}</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu" ng-style="{'display':stateparams.tab.indexOf('admin;')!==-1?'block':'none'}">
-                        <li ng-class="stateparams.tab.indexOf('admin;users')!==-1?'active':''"><a ui-sref="sref_sidebar({tab:'admin;users',name:'Administration;User'})"><i class="fa fa-circle-o"></i> Users</a></li>
-                        <li ng-class="stateparams.tab.indexOf('admin;centers')!==-1?'active':''"><a ui-sref="sref_sidebar({tab:'admin;centers'})"><i class="fa fa-circle-o"></i> Centers</a></li>
+                    <ul ng-class="{'treeview-menu':link.collapsible==1}" ng-style="{'display':stateparams.tab.indexOf('admin;')!==-1?'block':''}" class="_childs" ng-if="link.childs.length>0">
+                        <li ng-repeat="childs in link.childs" ng-class="{'active':stateparams.tab===childs.code,'header':childs.code==null&&childs.collapsible==0}">
+                            <a ng-if="childs.code!==null" ui-sref="sref_sidebar({tab:childs.code,name:childs.name})">
+                                <i ng-class="childs.icon" ng-if="childs.icon"></i> <span>{{childs.name}}</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
