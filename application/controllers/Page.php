@@ -7,7 +7,6 @@
  */
 class Page extends Core_Controller {
     public function index(){
-
         if(isset($_SESSION['user'])){
             $this->data_app_get->idCurrentUser();
             $this->template->load();

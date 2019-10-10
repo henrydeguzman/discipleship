@@ -13,7 +13,7 @@ victory.controller('translation.ctrl.diags.frm',['$scope','searchEngine',functio
         searchEngine.search('fetch/translation_cloud/searchlist',{
             data:{sample:'12344'},
             onSuccess:function(v){
-                console.log('success',v.data);
+
                 vm.search.isloading=false;
             }
         });

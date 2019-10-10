@@ -3,7 +3,6 @@
  */
 victory
     .config(['$logProvider','$stateProvider','$urlRouterProvider',function($logProvider,$stateProvider,$urlRouterProvider){
-
         $stateProvider
             .state('sref_sidebar',{
                 url:'/{tab}/{name}',

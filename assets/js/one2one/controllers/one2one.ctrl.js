@@ -8,7 +8,7 @@ victory.controller('one2one.page.controller',['$scope','dialogs','tableService',
         var posted=centralFctry.postData({url:'fetch/vg_set/set_vg',data:{userid:node.userid,value:value}});
         if(posted.$$state!==undefined){
             posted.then(function(v){
-                console.log(v.data);
+
             })
         }
     };
@@ -16,13 +16,12 @@ victory.controller('one2one.page.controller',['$scope','dialogs','tableService',
         var posted=centralFctry.postData({url:'fetch/one2one_set/add',data:{o2oid:tr.o2oid,chapter:tr.chapter}});
         if(posted.$$state!==undefined){
             posted.then(function(v){
-                console.log(v.data);
+
             });
         }
     };
     vm.form={};
     vm.form.dialog=function($data){
-        console.log('fired',$data);
         var title='Add',data={fromctrl:'one2one'};
         if($data!==undefined&&$data.o2oid!==undefined){
             title='Edit';data=$data;

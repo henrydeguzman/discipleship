@@ -3931,7 +3931,7 @@ angular.module('ui.bootstrap.timepicker', [])
     }])
 
     .directive('uibTimepicker', ['uibTimepickerConfig', function(uibTimepickerConfig) {
-        console.log('fired');
+
         return {
             require: ['uibTimepicker', '?^ngModel'],
             restrict: 'A',

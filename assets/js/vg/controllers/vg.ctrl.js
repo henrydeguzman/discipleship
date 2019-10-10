@@ -7,7 +7,6 @@ victory
         $scope.genvarsValue=genvarsValue;
         getdata("getothrvgs");
         vm.getinfo=function(key,list){
-            console.log(list);
             getdata('getinfo',{vgid:list.vgid,key:key})
         };
         function getdata(type,params){
@@ -69,7 +68,6 @@ victory
             if(posted.$$state!==undefined){
                 return posted.then(function(v){
                     Notification(notifValues['updated']($scope));
-                    console.log(v.data);
                     if(v.data.success){
                         tableService.refresh('vg.memlist');
                     }
@@ -77,7 +75,6 @@ victory
             }
         };
         vm.form.dialog=function($id){
-            console.log('fired',typeof $id);
             var title='Add',data={fromctrl:'vg'};
             if(typeof($id)==='string'){
                 title='Edit';data={userid:$id};
@@ -105,7 +102,6 @@ victory
             var posted=centralFctry.getData({url:'fetch/vg_get/vginfo'});
             if(posted.$$state!==undefined){
                 posted.then(function(v){
-                    console.log(v.data);
                     var data=v.data;
                     if(v.data!==null){
                         data['time']=$date+'T'+data['time'];

@@ -7,8 +7,6 @@
 victory
     .controller('profile.ctrl.diags.uploader',['$scope','centralFctry',function($scope,centralFctry){
         var vm=this;
-        console.log($scope.data);
-
         $scope.upload={};
         upload1($scope.data);
         function upload1(data){
@@ -22,7 +20,7 @@ victory
             });
             if(posted.$$state!==undefined){
                 posted.then(function(v){
-                    console.log(v.data);
+
                     /*if(v.data.result){
                         $scope.$parent.close(v.data);
                     }*/
@@ -44,12 +42,12 @@ victory
                   url:'fetch/profile_set/uploadphoto',
                   data:{file:file},
                   onreadystatechange:function(xhr,data){
-                       console.log('----on ready state change----');                       
+
                        if (xhr.readyState == 3) {
                             // loading
                        }
                        if (xhr.readyState == 4) {
-                            console.log(data);
+
                             $timeout(function () {
                                  $scope.profile.upload.status = 2;
                                  $scope.$parent.close(data);
@@ -59,24 +57,24 @@ victory
                        }
                   },
                   onprogress:function(evt,loaded,total,percent){
-                       console.log('=>>>Upload progress: ' + percent + '%');
+
                        $scope.$apply(function () {
                             $scope.profile.upload.value = percent;
                             $scope.profile.upload.style = { 'width': percent + '%' };
                        });                    
                   },
                   onstart: function () {
-                       console.log('=>>>onstart');
+
                        $scope.profile.upload.status = 1;
                   },
                   onsuccess:function(v){
-                       console.log('=>>>onsuccess');                       
+
                   },
                   onerror:function(){
-                       console.log('=>>>onerror');
+
                   },
                   onabort:function(){
-                       console.log('=>>>onabort');
+
                   }
              });          
              return;
@@ -101,7 +99,6 @@ victory
                                     $timeout(function(){
                                         $scope.profile.upload.status=2;
                                         $scope.$parent.close(v);
-                                        console.log('response stathe:', v); // JSON response
                                     },1000);
 
                                 }
@@ -109,19 +106,16 @@ victory
                         },
                         onprogress:function(e){
                             $scope.$apply(function(){
-                                console.log(e);
-                                console.log(e.loaded+  " / " + e.total);
                                 var percentComplete = Math.round(e.loaded * 100 / e.total);
                                 $scope.profile.upload.value=percentComplete;
                                 $scope.profile.upload.style={'width':percentComplete+'%'};
-                                console.log($scope.profile.upload);
                             });
                         }
                     }
             });
         };
         vm.preparing=function(data){
-            console.log(data);
+
             dialogs.create({
                 url:'page/loadview?dir=pages&view=profile/dialogs/uploader.html',
                 options:{backdrop:'static',size:'lg',windowClass:'nomargin'},data:data,

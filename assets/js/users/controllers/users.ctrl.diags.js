@@ -19,7 +19,6 @@ victory
             var posted=centralFctry.postData({ url:'fetch/users_set/create',data:form });
             if(posted.$$state!==undefined){
                 return posted.then(function(v){
-                    console.log(v.data);
                     if(v.data.success){
                         $scope.$parent.close(v.data);
                         Notification(notifValues[notiftype2]($scope));
@@ -38,7 +37,6 @@ victory
             var posted=centralFctry.getData({ url:'fetch/users_get/getusers/'+$userid });
             if(posted.$$state!==undefined){
                 posted.then(function(v){
-                    console.log(v.data);
                     if(v.data!==undefined){
                         $scope.form={
                             userid:v.data.userid,

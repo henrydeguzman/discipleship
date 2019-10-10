@@ -27,11 +27,11 @@ victory.controller('settings.page.controller',['$scope','centralFctry','genvarsV
     vm.one2one={form:{}};
     vm.one2one.selectchapter=function(value){
         var data={chapterid:vm.one2one.form.chapterid};
-        console.log(data);
+
         var posted=centralFctry.postData({url:'fetch/weekend_set/setchapter',data:data});
         if(posted.$$state!==undefined){
             posted.then(function(v){
-                console.log(v.data);
+
             });
         }
     };
@@ -40,7 +40,7 @@ victory.controller('settings.page.controller',['$scope','centralFctry','genvarsV
         var posted=centralFctry.getData({ url:'fetch/settings_get/getdataform' });
         if(posted.$$state!==undefined){
             posted.then(function(v){
-                console.log(v.data);
+
                 vm.one2one.chapters=v.data.chapters;
                 vm.one2one.form.chapterid=v.data.chapteractive;
             });

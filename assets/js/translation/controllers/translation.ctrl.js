@@ -12,7 +12,7 @@ victory.controller('translation.page.controller',['$scope','dialogs',function($s
             url:'page/loadview?dir=pages&view=translation/dialogs/translationform.html',
             options:{backdrop:'static',size:'md'},
             onclosed:function(v){
-                console.log(v);
+
             }
         })
     };

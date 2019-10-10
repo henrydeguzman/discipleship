@@ -9,8 +9,6 @@ victory
         var vm=this;
         vm.tab={};
         vm.tab.change=function(tab,index,type,clicktype){
-            console.log('tabchanged',clicktype);
-
             if(clicktype!=='init'){
                 if(index===0){
                     //tableService.refresh('vweekend.pre.list');
@@ -22,7 +20,7 @@ victory
 
                 }
                 else if(index===2){
-                    console.log('general settings tab');
+
                 }
                 $scope.broadcastEvent(index);
             }
@@ -53,7 +51,7 @@ victory
 
         vm.email={};
         vm.email.add=function(tr,index){
-            console.log(tr,index);
+
             dialogs.create({
                 url:'page/loadview?dir=pages&view=victory_weekend/tabs/vweekend/dialogs/addemail.html',
                 title:'Add email',
@@ -95,7 +93,7 @@ victory
                       checked.push({ id: datas[x]['id'], weekendid: datas[x]['weekendid'],email: datas[x]['email'] });
                  }          
             }
-            console.log(datas);
+
             if(vm.list.data==null){ dialogs.notify('Please enter victory weekend date!');return; }
             else if(checked.length===0){ dialogs.notify('Please select atleast one user to create account.');return; }
             /** id and weekendid only */            
@@ -137,7 +135,6 @@ victory
                 var posted=centralFctry.postData({ url:'fetch/weekend_set/remove',data:{id:tr.id} });
                 if(posted.$$state!==undefined){
                     return posted.then(function(v){
-                        console.log(v.data);
                         if(v.data.success){
                             Notification(notifValues['deleted']($scope));
                             tableService.refresh('victoryweekend.dates');
@@ -168,11 +165,11 @@ victory
         vm.one2one={form:{}};
         vm.one2one.selectchapter=function(value){
             var data={chapterid:vm.one2one.form.chapterid};
-            console.log(data);
+
             var posted=centralFctry.postData({url:'fetch/weekend_set/setchapter',data:data});
             if(posted.$$state!==undefined){
                 posted.then(function(v){
-                    console.log(v.data);
+
                 });
             }
         };
@@ -181,7 +178,6 @@ victory
             var posted=centralFctry.getData({ url:'fetch/settings_get/getdataform' });
             if(posted.$$state!==undefined){
                 posted.then(function(v){
-                    console.log(v.data);
                     vm.one2one.chapters=v.data.chapters;
                     vm.one2one.form.chapterid=v.data.chapteractive;
                 });

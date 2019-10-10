@@ -13,7 +13,6 @@ victory.controller('dashboard.page.controller',['$scope','genvarsValue','central
         var posted=centralFctry.getData({url:'fetch/dashboard_get/getlist',data:{churchid:genvarsValue.userdata('churchid')}});
         if(posted.$$state!==undefined){
             posted.then(function(v){
-                console.log(v.data);
                 vm.list.data=v.data[0];
             });
         }

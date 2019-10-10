@@ -9,7 +9,6 @@ victory
         var vm=this;
         vm.tab={};
         vm.tab.change=function(tab,index,type,clicktype){
-            console.log(tab,index,type,clicktype);
             if(clicktype!=='init') {
                 $scope.broadcastEvent(index);
             }
@@ -24,7 +23,7 @@ victory
         var vm=this;
         vm.list={processing:true,data:{}};
         $scope.$on('eventBctdPbook', function(event, data) {
-            console.log(data);
+
             getdata();
         });
         getdata();
@@ -64,7 +63,7 @@ victory
             var get=centralFctry.getData({url:'fetch/purplebook_get/processdate'});
             if(get.$$state!==undefined){
                 get.then(function(v){
-                    console.log(v.data);
+
                     vm.list.processing=false;
                     vm.list.data=v.data;
                     if(fn!==undefined&&typeof(fn)==='function'){ fn(v); }
@@ -93,7 +92,7 @@ victory
                 var posted=centralFctry.postData({ url:'fetch/purplebook_set/remove',data:{id:tr.id} });
                 if(posted.$$state!==undefined){
                     return posted.then(function(v){
-                        console.log(v.data);
+
                         if(v.data.success){
                             Notification(notifValues['deleted']($scope));
                             tableService.refresh('purplebook.dates');

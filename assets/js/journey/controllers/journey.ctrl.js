@@ -19,12 +19,12 @@ victory.controller('journey.page.controller',['$scope','genvarsValue','$filter',
                 if(form[key]=='Invalid Date'){ form[key]=undefined; }
             }
         }
-        console.log(form);
+
 
         var posted=centralFctry.postData({url:'fetch/users_set/setjourney',data:form});
         if(posted.$$state!==undefined){
             posted.then(function(v){
-                console.log(v.data);
+
             });
         }
     };
@@ -34,7 +34,7 @@ victory.controller('journey.page.controller',['$scope','genvarsValue','$filter',
         });
         if(posted.$$state!==undefined){
             posted.then(function(v){
-                console.log(v.data);
+
                 if(v.data===null){return;}
                 vm.form.data['victory_weekend']=new Date(v.data.victory_weekend.replace(' ','T'));
                 vm.form.data['church_community']=new Date(v.data.church_community.replace(' ','T'));
@@ -43,7 +43,7 @@ victory.controller('journey.page.controller',['$scope','genvarsValue','$filter',
                 vm.form.data['empowering_leaders']=new Date(v.data.empowering_leaders.replace(' ','T'));
                 vm.form.data['leadership_113']=new Date(v.data.leadership_113.replace(' ','T'));
                 vm.form.data['baptized']=v.data.baptized;
-                console.log(vm.form.data);
+
             });
         }
     }

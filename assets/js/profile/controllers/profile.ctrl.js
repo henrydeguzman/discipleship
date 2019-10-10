@@ -3,13 +3,11 @@
  */
 victory.controller('profile.page.controller', ['$scope', 'pageService', 'pathValue', 'dialogs', 'setdataService', function ($scope, pageService, pathValue, dialogs, setdataService){
     $scope.pathValue=pathValue;
-    console.log(pathValue);
     $scope.form={};
     var vm=this,pagedata=pageService.response();
     vm.profile={loading:true};   
     if(pagedata.$$state!==undefined){
         pagedata.then(function(v){
-            console.log(v.data);
             $scope.profile=v.data;
             vm.profile.loading=false;
         });

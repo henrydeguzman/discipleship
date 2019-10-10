@@ -7,11 +7,10 @@ victory
         $scope.form={type:'add'};
         $scope.required={};
         if($scope.data!==undefined&&$scope.data.id!==undefined){
-            console.log($scope.data.id);
             getdata($scope.data.id);
         }
         vm.save=function(form){
-            console.log(form);
+
             var notiftype2='added',notifmessage='Adding...';
             if(form.type==='edit'){
                 notiftype2='updated';notifmessage='Updating...';

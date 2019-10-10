@@ -9,7 +9,6 @@ victory
         var vm=this;
         vm.tab={};
         vm.tab.change=function(tab,index,type,clicktype){
-            console.log(tab,index,type,clicktype);
             if(clicktype!=='init') {
                 $scope.broadcastEvent(index);
             }
@@ -24,7 +23,6 @@ victory
         var vm=this;
         vm.list={processing:true,data:{}};
         $scope.$on('eventBctdCcommunity', function(event, data) {
-            console.log(data);
             getdata();
         });
         getdata();
@@ -37,7 +35,6 @@ victory
             }
         };
         vm.markasdone.go=function(datas){
-            //console.log(datas);
             var checked=[];
             for(var x=0;x<datas.length;x++){
                 if(datas[x]['_checked']==true){
@@ -45,7 +42,6 @@ victory
                 }
             }
             if(checked.length===0){ dialogs.notify('Please select atleast one user to proceed.');return; }
-            //console.log(checked);return;
             dialogs.confirm('Are you sure ?',function(){
                 dialogs.asynchronous({
                     url:'page/loadview?dir=pages&view=church_community/tabs/churchcommunity/dialogs/markasdone.html',
@@ -61,13 +57,11 @@ victory
                     }
                 });
             });
-            console.log(checked);
         };
         function getdata(fn){
             var get=centralFctry.getData({url:'fetch/churchcommunity_get/processdate'});
             if(get.$$state!==undefined){
                 get.then(function(v){
-                    console.log(v.data);
                     vm.list.processing=false;
                     vm.list.data=v.data;
                     if(fn!==undefined&&typeof(fn)==='function'){ fn(v); }
@@ -96,7 +90,7 @@ victory
                 var posted=centralFctry.postData({ url:'fetch/churchcommunity_set/remove',data:{id:tr.id} });
                 if(posted.$$state!==undefined){
                     return posted.then(function(v){
-                        console.log(v.data);
+
                         if(v.data.success){
                             Notification(notifValues['deleted']($scope));
                             tableService.refresh('churchcommunity.dates');

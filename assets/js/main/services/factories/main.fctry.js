@@ -17,7 +17,6 @@ function searchEngine(centralFctry,$timeout){
          var a={url:url}; if(params.data!==undefined&&typeof(params.data)==='object'){ a.data=params.data; }
          $timeout.cancel(timeout);
          timeout=$timeout(function(){
-             console.log('searching');
              var posted=centralFctry.getData(a);
              if(params.onSuccess!==undefined&&typeof(params.onSuccess)==='function'){ if(posted.$$state!==undefined){ posted.then(function(v){ params.onSuccess(v); }); } }
          },opts.debounce);
@@ -198,7 +197,6 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
             function onprogressHandler(evt) {
                 var percent = evt.loaded / evt.total * 100;
                 if (typeof percent === 'number') { percent = percent.toFixed(0); }
-                // console.log('=>>>Upload progress: ' + percent + '%');
                 if (params !== undefined && params.onprogress !== undefined) { params.onprogress(evt, evt.loaded, evt.total, percent); }
             }
             /** the upload begins */
@@ -229,7 +227,7 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
             xhr.responseType='json';
             var form = new FormData();
             xhr.open("POST", url,true);
-            //console.log(JSON.stringify(params.data));
+
             xhr.onprogress = function (e) { if(params.data!==undefined&&params.data.onprogress!==undefined){ params.data.onprogress(e); } };
             xhr.onloadstart = function (e) { if(params.data!==undefined&&params.data.onloadstart!==undefined){ params.data.onloadstart(e); } };
             xhr.onloadend = function (e) { if(params.data!==undefined&&params.data.onloadend!==undefined){ params.data.onloadend(e); } };
@@ -239,7 +237,6 @@ function centralFctry($http,$httpParamSerializer,$httpParamSerializerJQLike,path
                 }
             };
             form.append('file',params.data.file);
-            console.log(params.data);
             xhr.send(form);
         },
         postData:function(params){
