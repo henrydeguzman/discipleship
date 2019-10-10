@@ -28,11 +28,11 @@
             <ul class="sidebar-menu ng-cloak" data-widget="tree">
                 <li ng-repeat="link in mainsbarCtrl.data"
                     ng-class="{'active':stateparams.tab===link.code,'header':link.code==null&&link.collapsible==0,'treeview':link.collapsible==1,'active menu-open':link.collapsible==1&&link.code===null&&stateparams.tab.indexOf('admin;')!==-1}">
-                    <span ng-if="link.code===null&&link.collapsible==0">{{link.name}}</span>
+                    <span ng-if="link.code===null&&link.collapsible==0&&link.childs.length>0">{{link.name}}</span>
                     <a ng-if="link.code!==null" ui-sref="sref_sidebar({tab:link.code,name:link.name})">
                         <i ng-class="link.icon" ng-if="link.icon"></i> <span>{{link.name}}</span>
                     </a>
-                    <a href="#" ng-if="link.code===null&&link.collapsible==1">
+                    <a href="#" ng-if="link.code===null&&link.collapsible==1&&link.isparent>0&&link.childs.length>0">
                         <i class="fa fa-user-secret"></i> <span>{{link.name}}</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>

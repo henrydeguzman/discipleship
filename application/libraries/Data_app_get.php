@@ -19,6 +19,9 @@ class Data_App_Get {
         $data=self::dataCurrentUser();
         return $data[$id==null?'churchid':$id];
     }
+    public static function profileidCurrentUser(){
+        return $_SESSION['user']->profileid;
+    }
     public static function idCurrentUser(){
         return $_SESSION['user']->userid;
     }

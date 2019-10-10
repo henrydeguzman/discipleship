@@ -50,3 +50,5 @@ $lang['trans.makingdisciples']="Paggawa ng mga Disipulo";
 $lang['trans.makingdisciples.date.list'] = "Paggawa ng Listahan ng Petsa ng Mga Mag-aaral";
 $lang['trans.makingdisciples.date.add'] = "Mangyaring Magdagdag ng Petsa ng Pag-aaral";
 $lang['trans.fullname']="Buong pangalan";
+
+$lang['trans.usertype']="Uri ng user";

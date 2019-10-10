@@ -21,7 +21,7 @@ class Users_connection extends Core_Model {
           $password=isset($_POST['password'])?$_POST['password']:null; if(empty($password)){ return array("success"=>false,'info'=>$this->lang->line('form..')); }
           $sql="SELECT a.username,a.email,a.firstname,a.userid,a.lastname,a.middlename,photo,a.datecreated,c.churchid,c.name as churchname,a.profileid FROM `user` a
           LEFT JOIN church c ON c.churchid=a.churchid
-          LEFT JOIN user_photo b ON a.userid=b.userid AND a.photoid=b.photoid WHERE a.profileid in (1,3,4) AND a.password='".self::encrypt($password)."' AND a.email='".$email."'";
+          LEFT JOIN user_photo b ON a.userid=b.userid AND a.photoid=b.photoid WHERE a.password='".self::encrypt($password)."' AND a.email='".$email."'";
           $result=self::query($sql,true);
           if($result){ $session=self::creatingsession($result); return array('success'=>$result,'info'=>'Creating session...','session'=>$session); }
           else { return array('success'=>false,'info'=>'Invalid credentials'); }

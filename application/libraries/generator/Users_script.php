@@ -20,11 +20,13 @@ class Users_Script {
         $condition=array(
             "onfields"=>array(
                 "info"=>"a.personal_number,a.current_address as address,a.degree",
-                "vg"=>"c.vgid"
+                "vg"=>"c.vgid",
+                "usertype"=>"user_profile.name as usertype"
             ),
             "onjoins"=>array(
                 "info"=>"LEFT JOIN user_info a ON x.userid=a.userid",
-                "vg"=>"LEFT JOIN user_vg c ON c.leaderid=x.userid"
+                "vg"=>"LEFT JOIN user_vg c ON c.leaderid=x.userid",
+                "usertype"=>"LEFT JOIN user_profile ON user_profile.profileid=x.profileid"
             )
         );
         if(self::$export_condition){return $condition;}

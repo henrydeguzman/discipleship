@@ -6,7 +6,7 @@
  * Time: 05:24 PM
  */
 class Core_Controller extends CI_Controller {
-    public function __construct() { parent::__construct(); $this->load->model('app'); }
+    public function __construct() { parent::__construct(); $this->load->model('page_model'); }
     const dir_page='pages/';
     const dir_templates='templates';
     const dir_errors='templates/error/';
@@ -14,7 +14,7 @@ class Core_Controller extends CI_Controller {
     public function loadpage(){
         if(isset($_GET['view'])&&isset($_GET['page'])){
             $dir=self::dir_page;
-            $pagecontrol=$this->app->pagecontrol($_GET['page']);
+            $pagecontrol=$this->page_model->control($_GET['page']);
             if(!$pagecontrol){
                 $this->load->view(self::dir_errors.'403.html');
             } else if(file_exists(VIEWPATH.$dir.$_GET['view'])){

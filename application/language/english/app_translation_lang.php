@@ -52,3 +52,4 @@ $lang['trans.makingdisciples']="Making Disciples";
 $lang['trans.makingdisciples.date.list'] = "Making Disciples Date List";
 $lang['trans.makingdisciples.date.add'] = "Please Add Making Disciples Date";
 $lang['trans.fullname']="Fullname";
+$lang['trans.usertype']="User type";

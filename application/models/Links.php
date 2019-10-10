@@ -8,7 +8,7 @@
 class Links extends Core_Model {
     /** api/gateway?re=fetch/links/sidebar */
     public function __construct(){
-        $this->load->model('app');
+        $this->load->model('page_model');
     }
 
     public function sidebar($parentid=0){
@@ -18,7 +18,7 @@ class Links extends Core_Model {
               WHERE a.parentid=".$parentid." GROUP BY a.pageid";
         $result=$this->query($sql);$collection=array();
         foreach ($result as $list){
-            $pagecontrol=$this->app->pagecontrol($list->code);
+            $pagecontrol=$this->page_model->control($list->code);
             if(!$pagecontrol){continue;}
             $list->name=$this->lang->line($list->name);
             $list->description=$this->lang->line($list->description);
