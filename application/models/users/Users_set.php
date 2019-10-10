@@ -166,7 +166,6 @@ class Users_set extends Core_Model {
                $gen=$this->generatePassword();               
                $data=array(
                     "password"=>sha1($gen),
-                    "generatedcode"=>$gen, /** TODO remove this on live */
                     "profileid"=>1,
                     "datecreated"=>self::datetime()
                );
