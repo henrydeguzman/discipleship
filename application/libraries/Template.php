@@ -26,6 +26,7 @@ class Template {
         $this->ci->load->view("templates/".$layout."/javascripts.html");
     }
     function content($body_view,$data){
+        return;
         if(!is_null($body_view)){
             $isexist=false;
             if(file_exists(APPPATH.'views/'.$body_view)){ $body_view_path=$body_view;$isexist=true; }

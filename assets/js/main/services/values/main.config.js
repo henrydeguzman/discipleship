@@ -9,18 +9,24 @@ victory
                 resolve: {
                     getdata:function($stateParams,pageService,isloadingService){
                         isloadingService.set('content',true);
+                        console.log('first', pageService.getdata($stateParams),$stateParams.tab);
                         return pageService.getdata($stateParams);
                     }
                 },
                 views:{
                     "vwsidetab":{
                         templateUrl:function(stateParams){
+                            console.log('second');
+                            console.log(stateParams);
                             var f=stateParams.tab.split(';'),path=stateParams.tab+"/"+stateParams.tab+".html";
                             if(f.length>1){ path=f.join("/")+'.html'; }
-                            return "page/loadview?view="+path;
+                            return "page/loadpage?view="+path+"&page="+stateParams.tab;
                         },controller:function(getdata,pageService,$stateParams,isloadingService){
+                            console.log('third');
+                            var vm=this;
                             isloadingService.set('content',false);
                             pageService.setdata(getdata[$stateParams.tab]);
+                            console.log(pageService.response());
                         }
                     }
                 }
