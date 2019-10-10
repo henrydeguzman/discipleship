@@ -25,7 +25,7 @@
             </form>
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu" data-widget="tree">
+            <ul class="sidebar-menu" data-widget="tree" ng-cloak>
                 <li ng-repeat="link in mainsbarCtrl.data"
                     ng-class="{'active':stateparams.tab===link.code,'header':link.code==null&&link.collapsible==0,'treeview':link.collapsible==1,'active menu-open':link.collapsible==1&&link.code===null&&stateparams.tab.indexOf('admin;')!==-1}">
                     <span ng-if="link.code===null&&link.collapsible==0">{{link.name}}</span>
