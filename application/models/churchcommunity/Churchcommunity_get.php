@@ -8,6 +8,7 @@
 class Churchcommunity_get extends Core_Model {
     public function __construct(){
         $this->script->load('churchcommunity_script');
+        $this->load->model('global/global_filters','global_filters');
         parent::__construct();
     }
     /** api/gateway?re=fetch/churchcommunity_get/processdate */
@@ -23,12 +24,39 @@ class Churchcommunity_get extends Core_Model {
         $sql=$this->churchcommunity_script->getdates()." ORDER BY a.churchcommunity_date desc";
         return $this->query($sql);
     }
-    /** api/gateway?re=fetch/churchcommunity_get/$churchcommunityid */
+    /** api/gateway?re=fetch/churchcommunity_get/getchurchcommunitylist/$churchcommunityid */
     public function getchurchcommunitylist($churchcommunityid=null){
         if(empty($churchcommunityid)){ return array(); }
         $toprow=false;$whr='AND development_churchcommunity_dates.churchcommunityid IS NOT NULL';
         if(isset($_POST['rowid'])){ $toprow=true;$whr="AND a.userid=".$_POST['rowid']; }
         $sql=$this->churchcommunity_script->getchurchcommunitylist($this->_getsecureid($churchcommunityid)).$whr;
         return $this->query($sql,$toprow);
+    }
+    /** api/gateway?re=fetch/churchcommunity_get/postlist */
+    public function postlist(){
+        $whr='';$tablefilter=array();
+
+        if(isset($_POST['filters'])){
+            $filter=$_POST['filters'];
+            if(!empty($filter['quarterly'])){
+                $quarterly=$this->global_filters->sql_quarterly($filter['quarterly'],"development_churchcommunity_dates.churchcommunity_date");
+                $whr=self::extendwhr($whr,$quarterly,"AND");
+            }
+            if(!empty($filter['lifestatus'])){
+                $whr=self::extendwhr($whr,"user.statusid IN (".$filter['lifestatus'].")","AND");
+            }
+        } else {
+            /** default filters */
+            // quarterly
+            $_a=$this->global_filters->getquarter(date('Y'),'current');
+            $default_filter=$this->global_filters->sql_quarterly($_a[0]['id'],"development_churchcommunity_dates.churchcommunity_date");
+            array_push($tablefilter,$_a);
+            $whr=self::extendwhr($whr,$default_filter,"AND");
+        }
+
+        $sql=$this->churchcommunity_script->postlist().$whr;
+        $result=$this->query($sql,null,true);
+        $result['filters']=$tablefilter;
+        return $result;
     }
 }

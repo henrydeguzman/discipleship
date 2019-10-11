@@ -27,4 +27,14 @@ class Purplebook_script {
                 LEFT JOIN development_purplebook_dates ON development_purplebook_dates.purplebookid=$purplebookid
                 WHERE development_purplebook.userid IS NULL ";
     }
+    public static function postlist(){
+        return "SELECT 
+                development_purplebook.devpurplebookid,development_purplebook.userid, user.firstname, user.lastname, user_photo.photo,
+                development_purplebook_dates.purplebook_date as date, user_lifestatus.name as lifestatus
+                FROM development_purplebook
+                INNER JOIN development_purplebook_dates ON development_purplebook.purplebookid=development_purplebook_dates.purplebookid
+                LEFT JOIN user ON user.userid=development_purplebook.userid
+                LEFT JOIN user_lifestatus ON user_lifestatus.statusid=user.statusid
+                LEFT JOIN user_photo ON user_photo.photoid=user.photoid";
+    }
 }

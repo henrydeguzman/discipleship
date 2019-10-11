@@ -624,7 +624,7 @@ function gtTableFilter(centralFctry){
                         var data=[];
                         if(v!==undefined&&typeof(v.data)=='object'){ data=v.data; }
                         ctrl.table.filter.data=data;
-                        if(res.data.rows!==undefined) {
+                        if(res.data.filters!==undefined) {
                             ctrl.table.filter.frommodel(res.data.filters);
                         }
                     });

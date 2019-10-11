@@ -9,7 +9,6 @@ class Weekend_get extends Core_Model {
     public function __construct(){
         $this->script->load('weekend_script');
         $this->load->model('global/global_filters','global_filters');
-        $this->load->model('global/global_date','global_date');
     }
     /** api/gateway?re=fetch/weekend_get/dates */
     public function dates(){

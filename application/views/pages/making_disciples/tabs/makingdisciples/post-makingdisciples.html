@@ -1,8 +1,8 @@
-<gt-table id="vweekend.post.list" model="fetch/weekend_get/postlist" tablestyle="{'border-bottom':'none','border-right':'none','border-left':'none'}" headerstyle="{'border-top':'none','border-right':'none','border-left':'none'}">
+<gt-table id="makingdisciples.post.list" model="fetch/makingdisciples_get/postlist" tablestyle="{'border-bottom':'none','border-right':'none','border-left':'none'}" headerstyle="{'border-top':'none','border-right':'none','border-left':'none'}">
     <gt-table-filter model="fetch/global_filters/getfilters/lifestatus,quarterly"></gt-table-filter>
     <gt-table-col field="no" format="count" text-align="center" td-style="{width:'1px'}">#</gt-table-col>
     <gt-table-col field="fullname" format="fullname">Name</gt-table-col>
     <gt-table-col field="lifestatus" td-style="{width:'150px'}" text-align="center">Life Status</gt-table-col>
-    <gt-table-col field="weekend_date" format="longdate" td-style="{width:'150px'}" text-align="center"><?= $this->lang->line('trans.date');?></gt-table-col>
+    <gt-table-col field="makingdisciples_date" format="longdate" td-style="{width:'150px'}" text-align="center"><?= $this->lang->line('trans.date');?></gt-table-col>
     <gt-table-col format="action" td-style="{width:'1px'}" text-align="center"><?= $this->lang->line('trans.controls');?></gt-table-col>
 </gt-table>

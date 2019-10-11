@@ -6,7 +6,6 @@
         </div>
         <div ng-if="makingdisciplesCtrl.list.data!==null">
             <gt-table id="makingdisciples.pre.list" model="fetch/makingdisciples_get/candidates/{{makingdisciplesCtrl.list.data.id}}" tablestyle="{'border-bottom':'none','border-right':'none','border-left':'none'}" headerstyle="{'border-top':'none','border-right':'none','border-left':'none'}">
-                <gt-table-filter model="fetch/weekend_get/getfilters"></gt-table-filter>
                 <gt-table-title>{{makingdisciplesCtrl.list.data.date | date:'MMMM dd, yyyy'}}</gt-table-title>
                 <gt-table-btns action="button" gtclick="makingdisciplesCtrl.markasdone.go"><span><?= $this->lang->line('trans.mark.as.done');?></span></gt-table-btns>
                 <gt-table-col gtclick="makingdisciplesCtrl.markasdone.check" field="no" format="numchecklist" text-align="center" td-style="{width:'1px'}">#</gt-table-col>

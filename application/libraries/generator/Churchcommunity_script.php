@@ -24,4 +24,13 @@ class Churchcommunity_script {
                 LEFT JOIN development_churchcommunity_dates ON development_churchcommunity_dates.churchcommunityid=$churchcommunityid
                 WHERE development_churchcommunity.userid IS NULL ";
     }
+    public static function postlist(){
+        return "SELECT development_churchcommunity.devchurchcommunityid,development_churchcommunity.userid,user.firstname,user.lastname,user_photo.photo,
+                development_churchcommunity_dates.churchcommunity_date as date, user_lifestatus.name as lifestatus
+                FROM development_churchcommunity
+                INNER JOIN development_churchcommunity_dates ON development_churchcommunity.churchcommunityid=development_churchcommunity_dates.churchcommunityid
+                LEFT JOIN user ON user.userid=development_churchcommunity.userid
+                LEFT JOIN user_lifestatus ON user_lifestatus.statusid=user.statusid
+                LEFT JOIN user_photo ON user_photo.photoid=user.photoid ";
+    }
 }

@@ -9,6 +9,7 @@ class Purplebook_get extends Core_Model {
 
     public function __construct(){
         $this->script->load('purplebook_script');
+        $this->load->model('global/global_filters','global_filters');
         parent::__construct();
     }
     /** api/gateway?re=fetch/purplebook_get/processdate */
@@ -35,5 +36,30 @@ class Purplebook_get extends Core_Model {
         if(isset($_POST['rowid'])){ $toprow=true;$whr="AND a.userid=".$_POST['rowid']; }
         $sql=$this->purplebook_script->candidates($this->_getsecureid($purplebookid)).$whr;
         return $this->query($sql,$toprow);
+    }
+    /** api/gateway?re=fetch/purplebook_get/postlist */
+    public function postlist(){
+        $whr='';$tablefilter=array();
+        if(isset($_POST['filters'])){
+            $filter=$_POST['filters'];
+            if(!empty($filter['quarterly'])){
+                $quarterly=$this->global_filters->sql_quarterly($filter['quarterly'],"development_purplebook_dates.purplebook_date");
+                $whr=self::extendwhr($whr,$quarterly,"AND");
+            }
+            if(!empty($filter['lifestatus'])){
+                $whr=self::extendwhr($whr,"user.statusid IN (".$filter['lifestatus'].")","AND");
+            }
+        } else {
+            /** default filters */
+            // quarterly
+            $_a=$this->global_filters->getquarter(date('Y'),'current');
+            $default_filter=$this->global_filters->sql_quarterly($_a[0]['id'],"development_purplebook_dates.purplebook_date");
+            array_push($tablefilter,$_a);
+            $whr=self::extendwhr($whr,$default_filter,"AND");
+        }
+        $sql=$this->purplebook_script->postlist().$whr;
+        $result=$this->query($sql,null,true);
+        $result['filters']=$tablefilter;
+        return $result;
     }
 }

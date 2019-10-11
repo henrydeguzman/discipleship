@@ -24,4 +24,13 @@ class Makingdisciples_script {
                 LEFT JOIN development_makingdisciples_dates ON development_makingdisciples_dates.makingdisciplesid=$makingdisciplesid
                 WHERE development_makingdisciples.userid IS NULL ";
     }
+    public static function postlist(){
+        return "SELECT development_makingdisciples.devmakingdisciplesid,development_makingdisciples.userid, user.firstname, user.lastname,user_photo.photo,
+                development_makingdisciples_dates.makingdisciples_date as date,user_lifestatus.name as lifestatus
+                FROM development_makingdisciples
+                INNER JOIN development_makingdisciples_dates ON development_makingdisciples.makingdisciplesid=development_makingdisciples_dates.makingdisciplesid
+                LEFT JOIN user ON development_makingdisciples.userid=user.userid
+                LEFT JOIN user_lifestatus ON user_lifestatus.statusid=user.statusid
+                LEFT JOIN user_photo ON user_photo.photoid=user.photoid ";
+    }
 }
