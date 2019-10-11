@@ -55,11 +55,20 @@ class Global_filters extends Core_Model {
         } else { return $data; }
 
     }
-    private function getquarter($year=null){
+    /** api/gateway?re=fetch/global_filters/getquarter */
+    public function getquarter($year=null,$isquarter=null){
         if(empty($year)){ $year = date('Y'); }
         $quarter=array();
         $global_date=$this->global_date;
         //return $dateStr;
+        if(!empty($isquarter)){
+            /**
+             * This is for retrieving by quarter
+             */
+            $cur=$global_date->get_dates_of_quarter($isquarter,$year,'Y-m-d'); $cur_arr=array();
+            array_push($cur_arr,array("parentid"=>"quarterly","name"=>"Q".$cur['quarter']." ".self::formatdate($cur['start'])." to ".self::formatdate($cur['end']),"id"=>$cur['start']."=".$cur['end']));
+            return $cur_arr;
+        }
         $q1=$global_date->get_dates_of_quarter(1,$year,'Y-m-d');
         $q2=$global_date->get_dates_of_quarter(2,$year,'Y-m-d');
         $q3=$global_date->get_dates_of_quarter(3,$year,'Y-m-d');

@@ -147,7 +147,7 @@ angular
         $scope.stateparams = $stateParams;
 		var posted=centralFctry.getData({url:'fetch/links/sidebar'});
 		if(posted.$$state!==undefined){
-			posted.then(function(v){ vm.data=v.data;console.log(v.data); });
+			posted.then(function(v){ vm.data=v.data; });
 		}
 	}])
 	.controller("main.breadcrumb.controller", [

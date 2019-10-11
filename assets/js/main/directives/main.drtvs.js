@@ -127,7 +127,6 @@ function gtHeaderNav(pathValue,centralFctry,$document){
                 var posted=centralFctry.postData({ url:'fetch/users_connection/signout',data:{} });
                 if(posted.$$state!==undefined){
                     return posted.then(function(v){
-                        console.log(v.data);
                         if(v.data.success){
                             location.reload();
                         }
@@ -621,9 +620,14 @@ function gtTableFilter(centralFctry){
             var get=centralFctry.getData({url:scope.model,json:'page/loadview?dir=jshtml&view=directives/table/tbl_filter/filter.json'});
             if(get.$$state!==undefined){
                 get.then(function(v){
-                    var data=[];
-                    if(v!==undefined&&typeof(v.data)=='object'){ data=v.data; }
-                    ctrl.table.filter.data=data;
+                    ctrl.response.content.then(function(res){
+                        var data=[];
+                        if(v!==undefined&&typeof(v.data)=='object'){ data=v.data; }
+                        ctrl.table.filter.data=data;
+                        if(res.data.rows!==undefined) {
+                            ctrl.table.filter.frommodel(res.data.filters);
+                        }
+                    });
                 });
             }
         },
@@ -731,7 +735,6 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
             //controller.getData('content');controller.getData('formatter');
             /* testing manual from manual call get data content and formatter into observe */
             attr.$observe('model',function(nval,oval){
-                console.log(nval,oval);
                 controller.table.valid=true;
                 controller.getData('content');controller.getData('formatter');
             });
@@ -758,6 +761,24 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 $scope.header.show=$attrs.header;
             }
             /** Filter */
+            vm.table.filter.frommodel=function(data){
+                /** check filter set from model to display into the table */
+                var display = [];
+                for(var x=0;x<data.length;x++){
+                    var display_collection = [];
+                    for(var i=0;i<data[x].length;i++){
+                        var findparent=_.findWhere(vm.table.filter.data, {id:data[x][i]['parentid']}),
+                            findchild=_.findWhere(findparent.childs,{id:data[x][i]['id']});
+                        if(findchild){
+                            findchild.checked=true;
+                            display_collection.push(findchild);
+                        }
+                    }
+                    display.push(display_collection);
+                }
+                vm.table.filter.display=display;
+                vm.table.filter.firstload=false;
+            };
             vm.table.filter.toggle=function(from,index,e){
 
                 if(from==='parent'){
@@ -816,7 +837,6 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
                 vm.table.filter.querydata=data;
                 vm.table.filter.display=display;
                 vm.refresh();
-                console.log(vm.table.filter.querydata);
             };
             vm.headertitle=function(html){ $scope.header.title=html; };
             /** enabled right click on generic table */

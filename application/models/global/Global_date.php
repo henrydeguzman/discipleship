@@ -25,6 +25,6 @@ class Global_date extends Core_Model {
         if ( $quarter === 'this' ) { $quarter = ceil($datetime->format('n') / 3); }
         $start = new DateTime($year.'-'.(3*$quarter-2).'-1 00:00:00');
         $end = new DateTime($year.'-'.(3*$quarter).'-'.($quarter == 1 || $quarter == 4 ? 31 : 30) .' 23:59:59');
-        return array( 'start' => $format ? $start->format($format) : $start, 'end' => $format ? $end->format($format) : $end, );
+        return array( 'start' => $format ? $start->format($format) : $start, 'end' => $format ? $end->format($format) : $end,'quarter'=>$quarter);
     }
 }

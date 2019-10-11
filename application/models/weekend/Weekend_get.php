@@ -9,6 +9,7 @@ class Weekend_get extends Core_Model {
     public function __construct(){
         $this->script->load('weekend_script');
         $this->load->model('global/global_filters','global_filters');
+        $this->load->model('global/global_date','global_date');
     }
     /** api/gateway?re=fetch/weekend_get/dates */
     public function dates(){
@@ -38,7 +39,7 @@ class Weekend_get extends Core_Model {
     }
     /** api/gateway?re=fetch/weekend_get/postlist */
     public function postlist(){
-        $whr='';
+        $whr='';$tablefilter=array();
         if(isset($_POST['filters'])){
             $filter=$_POST['filters'];
             if(!empty($filter['quarterly'])){
@@ -48,9 +49,19 @@ class Weekend_get extends Core_Model {
             if(!empty($filter['lifestatus'])){
                 $whr=self::extendwhr($whr,"user.statusid IN (".$filter['lifestatus'].")","AND");
             }
+        } else {
+            /** default filters */
+            // quarterly
+            $_a=$this->global_filters->getquarter(date('Y'),'current');
+            $default_filter=$this->global_filters->sql_quarterly($_a[0]['id'],"development_weekend_dates.weekend_date");
+            array_push($tablefilter,$_a);
+            $whr=self::extendwhr($whr,$default_filter,"AND");
         }
+
         $sql=$this->weekend_script->postlist().$whr;
 
-        return $this->query($sql);
+        $result=$this->query($sql,null,true);
+        $result['filters']=$tablefilter;
+        return $result;
     }
 }
