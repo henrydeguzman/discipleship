@@ -1,0 +1,6 @@
+<div class="page-empleaders" ng-controller="empleaders.page.controller as empleaderspageCtrl">
+    <gt-tabset gt-onchange="makingdisciplespageCtrl.tab.change">
+        <gt-tab active template="page/loadview?dir=pages&view=empowering_leaders/tabs/empleaders.html"><i class="fas fa-check-circle"></i> <?= $this->lang->line('trans.empleaders');?></gt-tab>
+        <gt-tab template="page/loadview?dir=pages&view=empowering_leaders/tabs/empleadersdates.html"><i class="far fa-calendar-alt"></i> <?= $this->lang->line('trans.date');?></gt-tab>
+    </gt-tabset>
+</div>

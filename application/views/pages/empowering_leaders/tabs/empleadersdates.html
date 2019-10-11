@@ -1,0 +1,11 @@
+<div class="tab-dates" ng-controller="empleaders.page.dates.controller as empleadersDatesCtrl">
+    <div class="_list">
+        <gt-table id="empleaders.dates" model="fetch/empleaders_get/dates" formatter="empowering_leaders/tabs/empleadersdates/formatter/tab-empleaders.js" tablestyle="{'border-left':'none','border-right':'none','border-bottom':'none'}" headerstyle="{'border-top':'none','border-left':'none','border-right':'none'}">
+            <gt-table-title><?= $this->lang->line('trans.empleaders.date.list');?></gt-table-title>
+            <gt-table-btns action="add" gtclick="empleadersDatesCtrl.disciples.date.add"></gt-table-btns>
+            <gt-table-col field="date" format="fulldate"><?= $this->lang->line('trans.date');?></gt-table-col>
+            <gt-table-col field="total" text-align="center" td-style="{width:'50px'}"><?= $this->lang->line('trans.total');?></gt-table-col>
+            <gt-table-col field="" format="controls" td-style="{width:'50px'}" text-align="center"><?= $this->lang->line('trans.controls');?></gt-table-col>
+        </gt-table>
+    </div>
+</div>

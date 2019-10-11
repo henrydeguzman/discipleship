@@ -1,0 +1,16 @@
+<div>
+    <div class="_selectdate" ng-if="empleadersCtrl.list.processing"><div class="spinner-container" bind-html-compile="spinnerValues.default"></div></div>
+    <div class="_table" ng-if="!empleadersCtrl.list.processing">
+        <div class="_adddate" ng-if="empleadersCtrl.list.data===null">
+            <?= $this->lang->line('trans.empleadersCtrl.date.add');?> <i ng-click="empleadersCtrl.date.create()" class="far fa-calendar-plus"></i>
+        </div>
+        <div ng-if="empleadersCtrl.list.data!==null">
+            <gt-table id="empleaders.pre.list" model="fetch/empleaders_get/candidates/{{empleadersCtrl.list.data.id}}" tablestyle="{'border-bottom':'none','border-right':'none','border-left':'none'}" headerstyle="{'border-top':'none','border-right':'none','border-left':'none'}">
+                <gt-table-title>{{empleadersCtrl.list.data.date | date:'MMMM dd, yyyy'}}</gt-table-title>
+                <gt-table-btns action="button" gtclick="empleadersCtrl.markasdone.go"><span><?= $this->lang->line('trans.mark.as.done');?></span></gt-table-btns>
+                <gt-table-col gtclick="empleadersCtrl.markasdone.check" field="no" format="numchecklist" text-align="center" td-style="{width:'1px'}">#</gt-table-col>
+                <gt-table-col field="fullname" format="fullnameonly"><?= $this->lang->line('trans.fullname');?></gt-table-col>
+            </gt-table>
+        </div>
+    </div>
+</div>
