@@ -10,6 +10,11 @@ class Vg_intern extends Core_Model {
         $this->script->load('vg_intern_script');
         $this->load->model('one2one/one2one_get','one2one_get');
     }
+    /** api/gateway?re=fetch/vg_intern/getlist */
+    public function getlist(){
+        $sql=$this->vg_intern_script->getlist();
+        return $this->query($sql);
+    }
     /** api/gateway?re=fetch/vg_intern/set */
     public function set(){
         $value=isset($_POST['value'])?$_POST['value']:0;

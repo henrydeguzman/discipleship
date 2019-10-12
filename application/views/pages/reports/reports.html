@@ -1,6 +1,5 @@
 <div class="row page-reports">
     <gt-table id="report.getlist" limit="10" model="fetch/reports_get/getlist" formatter="one2one/formatter/one2onetable.js">
-        <gt-table-filter model="fetch/reports_get/getfilters"></gt-table-filter>
         <gt-table-col text-align="center" field="churchname"><?= $this->lang->line('trans.church');?></gt-table-col>
         <gt-table-col text-align="center" field="intern_count">Victory Group Intern</gt-table-col>
         <gt-table-col text-align="center" field="vg_count"><?= $this->lang->line('trans.no.victorygroup');?></gt-table-col>

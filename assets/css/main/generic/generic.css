@@ -132,6 +132,9 @@ table > tbody > tr > td.center {
 .gen-text-center {
 	text-align: center;
 }
+.gen-text-style-capitalize {
+	text-transform:capitalize;
+}
 
 /* color */
 .gen-color-grey {
