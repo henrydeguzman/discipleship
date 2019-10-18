@@ -149,8 +149,13 @@ class Users_set extends Core_Model {
           * body = string|html; default: 'Who knows?'
           * subject = string; default: 'Test subject'
           * */
-          return $this->smpt->send(array("body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),"alt"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
-          "recipient"=>$email, "subject"=>ORG_TEAM_NAME." created you an account!", "ishtml"=>true ));   
+          try {
+              $result= $this->smpt->send(array("body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),"alt"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
+                  "recipient"=>$email, "subject"=>ORG_TEAM_NAME." created you an account!", "ishtml"=>true ));
+          } catch (Exception $a) {
+              $result = array('success'=> false,'info'=>$a->getMessage());
+          }
+          return $result;
      }
      /** api/gateway?re=fetch/users_set/edit */
      public function edit($id=null,$savetype='default'){
