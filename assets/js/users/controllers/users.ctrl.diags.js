@@ -31,24 +31,13 @@ victory
           vm.send = function(){
                if (vm.check.ischecking || vm.checkhaserror()){ console.log('checking or has error'); }                              
                var users = _.filter($scope.users, function(item) { return item.email!==''; });
-
-
                dialogs.asynchronous({
-                    url: 'page/loadview?dir=pages&view=church_community/tabs/churchcommunity/dialogs/markasdone.html',
+                    url: 'page/loadview?dir=pages&view=admin/dialogs/users/sendingemails.html',
                     model: 'fetch/users_set/invites', data: users,
-                    onclosed: function (v) {
+                    onclosed: function (v) { 
                          console.log(v);
                     }
                });
-
-               // 
-               return;
-               var posted = centralFctry.postData({ url: 'fetch/users_set/invites', data: { users: users}, serializer: 'jqlike' });
-               if (posted.$$state!==undefined) {
-                    posted.then(function(v){
-                         
-                    });
-               }
           };
           
           vm.checkhaserror = function() {

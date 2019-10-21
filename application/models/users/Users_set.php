@@ -184,6 +184,38 @@ class Users_set extends Core_Model {
           if($gen!==null){$result['password']=$gen;}          
           return $result;
      }
+     public function sendemail_invites($email) {
+          $searchNeedle = array(
+               '{{ Mail::Title }}',
+               '{{ Mail::Recepient }}',
+               '{{ Mail::Sender }}',
+               '{{ Mail::Team }}',
+               '{{ Mail::CopyrightYear }}'          
+          );
+          $replaceStack = array(
+               'Account created',
+               $email,
+               ORG_TEAM_NAME,
+               ORG_TEAM_NAME,
+               date('Y')
+          );
+          $bodyhtml = file_get_contents(PATH_VIEW . 'templates/auth/forgot-password/htmlemails/html/new-account.html');
+          $altbody = file_get_contents(PATH_VIEW . 'templates/auth/forgot-password/htmlemails/plaintext/new-account.txt');
+          /*
+          * ishtml = boolean; default: false
+          * body = string|html; default: 'Who knows?'
+          * subject = string; default: 'Test subject'
+          * */
+          try {
+               $result = $this->smpt->send(array(
+                    "body" => str_replace($searchNeedle, $replaceStack, $bodyhtml), "alt" => str_replace($searchNeedle, $replaceStack, $bodyhtml),
+                    "recipient" => $email, "subject" => ORG_TEAM_NAME . " created you an account!", "ishtml" => true
+               ));
+          } catch (Exception $a) {
+               $result = array('success' => false, 'info' => $a->getMessage());
+          }
+          return $result;
+     }
      /** api/gateway?re=fetch/users_set/invites */
      public function invites(){
           //$data = isset($_POST['users'])?$_POST['users']:null;
@@ -202,11 +234,10 @@ class Users_set extends Core_Model {
           foreach ($rows as $row) {
                if (!in_array($row['email'], $done)) {
                     $_POST = $row;
-                    $result['success'] = true;
-                   
+                    // send verification email
+                    $result = $this->sendemail_invites($row['email']);                   
                     if ($result['success']) {
-                         array_push($done, $row['email']);
-                         
+                         array_push($done, $row['email']);                         
                     }
                     break;
                }
