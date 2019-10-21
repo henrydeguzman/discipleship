@@ -1,0 +1,30 @@
+<div class="diag-users-invite" ng-controller="users.ctrl.diags.inviteform as usrsinivtefrmCtrl">
+     <div ng-init="$parent.title='Invite Users'"></div>
+     
+     <form class="gen-form-static">        
+          <div class="form-btn-right">
+               <button class="btn btn-success btn-sm" ng-click="usrsinivtefrmCtrl.add()"><i class="fas fa-plus"></i>Add Email</button>
+               <button class="btn btn-default btn-sm" ng-click="usrsinivtefrmCtrl.send()" ng-disabled="usrsinivtefrmCtrl.check.ischecking||usrsinivtefrmCtrl.check.haserror"><i class="far fa-paper-plane"></i>Send Invites</button>
+          </div>
+          <table>
+               <thead>
+                    <tr>
+                         <th>
+                              <span class="gfs-title">Email Address</span>
+                         </th>
+                    </tr>
+               </thead>
+               <tbody>
+                    <tr ng-repeat="(key, user) in users">
+                         <td>                              
+                              <input type="text" class="gen-input-control" ng-class="!user.valid&&user.valid!==undefined?'invalid':''" ng-change="user._checkemail(user)" ng-model="user.email" />
+                              <div class="email_invalid" ng-if="!user.valid&&user.valid!==undefined">Invalid email</div>
+                         </td>
+                         <td class="_control">
+                              <button class="btn btn-sm btn-danger" ng-click="usrsinivtefrmCtrl.remove(key)"><i class="fas fa-user-times"></i>Remove</button>
+                         </td>
+                    </tr>
+               </tbody>
+          </table>
+     </form>
+</div>

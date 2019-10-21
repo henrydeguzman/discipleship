@@ -1,0 +1,30 @@
+
+.diag-users-invite button > i {
+    margin-right : 5px;
+}
+.diag-users-invite table {
+    width:100%;
+    margin-bottom: 30px;
+}
+
+.diag-users-invite table input {
+    margin:10px 0;
+}
+
+.diag-users-invite table input.invalid {
+    border:1px solid red !important;
+}
+.diag-users-invite table td {
+    position:relative;
+}
+.diag-users-invite table td._control {
+    width: 1px;
+    padding-left: 5px;
+}
+.diag-users-invite table td .email_invalid {
+    position:absolute;
+    bottom:-7px;
+    font-size:11px;
+    color:red;
+    font-style: italic;
+}

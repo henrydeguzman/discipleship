@@ -184,4 +184,48 @@ class Users_set extends Core_Model {
           if($gen!==null){$result['password']=$gen;}          
           return $result;
      }
+     /** api/gateway?re=fetch/users_set/invites */
+     public function invites(){
+          //$data = isset($_POST['users'])?$_POST['users']:null;
+          //if(empty($data)){ return array('success'=>false, 'info'=> 'empty data!'); }
+          //return $data;
+
+          $rows = isset($_POST['rows']) ? $_POST['rows'] : null;
+          if (empty($rows)) {
+               return array("success" => false, "info" => "no data.");
+          }
+          $done = isset($_POST['done']) ? $_POST['done'] : array();
+          $result = array();
+
+          /** register total once. */
+          $total = count($rows);
+          foreach ($rows as $row) {
+               if (!in_array($row['email'], $done)) {
+                    $_POST = $row;
+                    $result['success'] = true;
+                   
+                    if ($result['success']) {
+                         array_push($done, $row['email']);
+                         
+                    }
+                    break;
+               }
+          }
+
+          $result['done'] = $done;
+          $result['successcnt'] = count($done);
+          $result['total'] = $total;
+          return $result;
+     }
+     /** api/gateway?re=fetch/users_set/checkemail
+      * check if valid email and already exists
+      */
+     public function checkemail() {
+          $email = isset($_POST['email'])? $_POST['email']:null;
+          if (empty($email)) { return array('success' => false, 'info' => 'empty email!'); }
+          $isemail = $this->validate_email($email);
+          if(!$isemail){ return array('success' => false, 'info' => 'invalid email');  } 
+                   
+          return array('success' => true);
+     }        
 }
