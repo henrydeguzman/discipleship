@@ -1,0 +1,8 @@
+<gt-table id="admin.users.tablelist" model="fetch/users_get/tablelist" formatter="admin/formatter/users.js" tablestyle="{'border-left':'none','border-right':'none','border-bottom':'none'}" headerstyle="{'border-top':'none','border-left':'none','border-right':'none'}">        
+     <gt-table-btns action="button" gtclick="userpageCtrl.invite.users">Invite users</gt-table-btns>
+     <gt-table-col field="fullname" format="fullname"><?= $this->lang->line('trans.fullname');?></gt-table-col>
+     <gt-table-col field="email">Email</gt-table-col>
+     <gt-table-col field="phonenumber">Contact</gt-table-col>
+     <gt-table-col field="usertype" td-style="{width:'100px'}" text-align="center"><?= $this->lang->line('trans.usertype');?></gt-table-col>
+     <gt-table-col format="action" text-align="center" td-style="{width:'20px'}"><?= $this->lang->line('trans.controls');?></gt-table-col>
+</gt-table>
