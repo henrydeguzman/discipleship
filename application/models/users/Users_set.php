@@ -184,7 +184,7 @@ class Users_set extends Core_Model {
           if($gen!==null){$result['password']=$gen;}          
           return $result;
      }
-     public function sendemail_invites($email) {
+     private function sendemail_invites($email) {
           $searchNeedle = array(
                '{{ Mail::Title }}',
                '{{ Mail::Recepient }}',

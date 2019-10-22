@@ -1,1 +1,8 @@
-invites
+<gt-table id="admin.users.invites" model="fetch/users_get/inviteslist" formatter="admin/formatter/users.js" tablestyle="{'border-left':'none','border-right':'none','border-bottom':'none'}" headerstyle="{'border-top':'none','border-left':'none','border-right':'none'}">        
+     <gt-table-btns action="button" gtclick="userpageCtrl.invite.users">Invite users</gt-table-btns>     
+     <gt-table-col field="email">Email</gt-table-col>
+     <gt-table-col field="phonenumber" td-style="{width:'120px'}" text-align="center">Contact</gt-table-col>
+     <gt-table-col field="isverified" format="verified" text-align="center" td-style="{width: '120px'}">Status</gt-table-col>
+     <gt-table-col field="date" format="longdatetime" text-align="center" td-style="{width: '200px'}"><i class="far fa-paper-plane"></i> Send date</gt-table-col>
+     <gt-table-col format="actioninvites" text-align="center" td-style="{width:'20px'}"><?= $this->lang->line('trans.controls');?></gt-table-col>
+</gt-table>

@@ -36,7 +36,7 @@ victory
                     model: 'fetch/users_set/invites', data: users,
                     onclosed: function (v) { 
                          console.log(v);
-                         tableService.refresh('admin.users.tablelist');
+                         tableService.refresh('admin.users.invites');
                          $scope.$parent.close();
                          dialogs.notify('<table><tbody><tr>\n' +
                               '<td><i class="fa fa-check ng-scope" aria-hidden="true" style="font-size: 36px;padding-right: 10px;color: green;"></i></td>\n' +

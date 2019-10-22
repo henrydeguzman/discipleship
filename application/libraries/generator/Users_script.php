@@ -16,6 +16,14 @@ class Users_Script {
     /*public static function getjourney(){
         return "SELECT a.userid,a.victory_weekend,a.church_community,a.purple_book,a.making_disciples,a.empowering_leaders,a.leadership_113,a.baptized FROM user_journey a ";
     }*/
+    public static function inviteslist() {     
+         return "SELECT 
+         TIMESTAMPDIFF(MINUTE,user_invites.datecreated, now()) as time_minutes,
+         TIMESTAMPDIFF(HOUR,user_invites.datecreated, now()) as time_hours,
+         user_invites_type.name as `type`,user_invites.email, user_invites.phonenumber, user_invites.datecreated as `date`, user_invites.isverified
+         FROM user_invites
+               LEFT JOIN user_invites_type ON user_invites.typeid = user_invites_type.typeid";
+    }
     public static function getusers($activefields=null){
         $condition=array(
             "onfields"=>array(

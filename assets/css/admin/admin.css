@@ -28,3 +28,12 @@
     color:red;
     font-style: italic;
 }
+
+
+/** users table invites */
+.invitestatus ._verified{
+    color:green;
+}
+.invitestatus ._expired{
+    color:red;
+}
