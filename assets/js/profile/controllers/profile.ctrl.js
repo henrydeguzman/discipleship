@@ -18,6 +18,7 @@ victory.controller('profile.page.controller', ['$scope', 'pageService', 'pathVal
             url:'page/loadview?dir=pages&view=profile/dialogs/choosephoto.html',
             options:{backdrop:'static',size:'lg',windowClass:'nomargin'},
             onclosed:function(v){
+                 console.log(v);
                 if(v.result){
 
                 }

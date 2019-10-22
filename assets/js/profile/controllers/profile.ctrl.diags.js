@@ -76,43 +76,7 @@ victory
                   onabort:function(){
 
                   }
-             });          
-             return;
-
-            var posted=centralFctry.uploadfile({
-                url:'fetch/profile_set/uploadphoto',data:
-                    {
-                        file:file,
-                        onloadend:function(e){
-
-                        },
-                        onloadstart:function(e){
-
-                                $scope.profile.upload.status=1;
-                        },
-                        onreadystatechange:function(xhr,v){
-                            $scope.$apply(function(){
-                                if (xhr.readyState == 3) {
-                                    // loading
-                                }
-                                if (xhr.readyState == 4) {
-                                    $timeout(function(){
-                                        $scope.profile.upload.status=2;
-                                        $scope.$parent.close(v);
-                                    },1000);
-
-                                }
-                            });
-                        },
-                        onprogress:function(e){
-                            $scope.$apply(function(){
-                                var percentComplete = Math.round(e.loaded * 100 / e.total);
-                                $scope.profile.upload.value=percentComplete;
-                                $scope.profile.upload.style={'width':percentComplete+'%'};
-                            });
-                        }
-                    }
-            });
+             });
         };
         vm.preparing=function(data){
 
