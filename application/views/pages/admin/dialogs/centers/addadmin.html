@@ -7,8 +7,28 @@
                <div class="_error" ng-if="usrchurchadminCtrl.email.error">{{usrchurchadminCtrl.email.errortext}}</div>
                <div class="_icon" ng-if="usrchurchadminCtrl.email.searching"><i class="fas fa-spinner fa-spin"></i></div>
           </div>          
+          <div class="_alreadyexists" ng-if="usrchurchadminCtrl.email.alreadyexist">
+               <table>
+                    <tbody>
+                         <tr ng-repeat="user in usrchurchadminCtrl.email.users">                              
+                              <td>
+                                   <gt-profile photo="user.photo" userid="user.userid" name="user.firstname+' '+user.lastname"></gt-profile>&nbsp;<span class="gen-text-style-capitalize">{{user.firstname+" "+user.lastname}}</span>
+                              </td>
+                         </tr>
+                         <tr>
+                              <td>
+                                   <label>
+                                        <input type="checkbox" ng-model="usrchurchadminCtrl.email.alreadyexistverify" />
+                                        <span class="gfs-desc">Sample text explain the process when the email is already exists!</span>
+                                   </label>                                   
+                              </td>
+                         </tr>
+                    </tbody>
+               </table>
+          </div>
           <div class="form-btn-right">               
-               <button class="btn btn-success btn-sm" ng-disabled="usrchurchadminCtrl.email.searching||form.email===undefined||usrchurchadminCtrl.email.error">Invite</button>
+               <button ng-click="usrchurchadminCtrl.invite()" class="btn btn-success btn-sm" 
+               ng-disabled="usrchurchadminCtrl.email.searching||form.email===undefined||(usrchurchadminCtrl.email.error&&usrchurchadminCtrl.email.alreadyexist===undefined)||(usrchurchadminCtrl.email.error&&usrchurchadminCtrl.email.alreadyexist&&!usrchurchadminCtrl.email.alreadyexistverify)">Invite</button>
           </div>
      </form>
 </div>

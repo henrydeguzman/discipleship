@@ -22,7 +22,7 @@ class EmailValidation extends Core_Model
                $sql = $this->users_script->getbyemail()." WHERE user.email='". $result['email'] . "'";
                $isuser = $this->query($sql);               
                if(!$isuser) { return array('success' => true); }
-               else { return array('success' => false, 'info' => 'Email already exists', 'data' => $isuser); }
+               else { return array('success' => false, 'info' => 'Email already exists', 'data' => $isuser, 'errorcode' => 409); }
           }
           return $result;
      }

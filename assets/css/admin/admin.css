@@ -42,6 +42,24 @@
 .diag-admin-center-addadmin ._emailinput{
     position:relative;    
 }
+.diag-admin-center-addadmin ._alreadyexists {
+    margin-top: 30px
+}
+.diag-admin-center-addadmin ._alreadyexists table {
+    width: 100%;
+    text-align:center;
+}
+.diag-admin-center-addadmin ._alreadyexists tr:last-child {
+    text-align:center;
+}
+.diag-admin-center-addadmin ._alreadyexists tr:not(:last-child) > td {
+    padding: 10px;
+}
+.diag-admin-center-addadmin ._alreadyexists tr:last-child label,
+.diag-admin-center-addadmin ._alreadyexists tr:last-child input[type=checkbox] {
+   cursor: pointer;
+   margin-top:1px;
+}
 .diag-admin-center-addadmin .form-btn-right {
     margin-top:30px;
 }

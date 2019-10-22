@@ -5,10 +5,17 @@ victory
      .controller('centers.ctrl.diags.addadmin', ['$scope', 'searchEngine', function ($scope, searchEngine){
           var vm = this;
           $scope.form = {email:undefined};
-          vm.email= {searching: false, error: false};
+          vm.invite = function() {              
+               var users = _.chain(vm.email.users).pluck('userid').value();
+               console.log($scope.form, users);
+          };
+          vm.email = { searching: false, error: false, alreadyexistverify: false};          
           vm.email.change = function(){
                // console.log($scope.form.email);
+               vm.email.alreadyexist = undefined;
+               vm.email.error = false;
                vm.email.searching = true;
+               vm.email.users = [];
                searchEngine.search('fetch/emailvalidation/isexist', {
                     data: { email: $scope.form.email },
                     onSuccess: function (v) {
@@ -19,6 +26,9 @@ victory
                          else {
                               vm.email.error = true;
                               vm.email.errortext = v.data.info;
+                              if (v.data.errorcode !== undefined && v.data.errorcode === 409) { /** Already exists email */
+                                   vm.email.alreadyexist = true; vm.email.users = v.data.data;
+                              } else { vm.email.alreadyexist = undefined; }
                          }
                          console.log(v.data);
                     }
