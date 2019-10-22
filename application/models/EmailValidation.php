@@ -33,7 +33,7 @@ class EmailValidation extends Core_Model
      {
           $email = isset($_REQUEST['email']) ? $_REQUEST['email'] : null;
           if (empty($email)) {
-               return array('success' => false, 'info' => 'Empty email!');
+               return array('success' => false, 'info' => 'Email address is required!');
           }
           $isemail = self::validate_email($email);
           if (!$isemail) {

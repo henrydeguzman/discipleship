@@ -7,7 +7,8 @@
 */
 class Users_set extends Core_Model {
      public function __construct(){
-          $this->load->library('smpt');              
+          $this->load->library('smpt');    
+          $this->load->model('emailvalidation');          
      }
      /** api/gateway?re=fetch/users_set/generatepassword */
      private function generatePassword($a=5,$b='azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789'){
@@ -175,11 +176,13 @@ class Users_set extends Core_Model {
                     "datecreated"=>self::datetime()
                );
           }
-          else{
+          else{              
+               if(!isset($_POST['email'])){ return array("success"=> false, 'info' => 'Email address is required!'); }
+               $validate = $this->emailvalidation->isexist($_POST['email']);               
+               if(!$validate['success']) { return $validate; }
                $data=array();
                $data=$this->_isset($data,'email');
-          }
-          
+          }          
           $result=$this->update('user',$data,'userid='.$id);
           if($gen!==null){$result['password']=$gen;}          
           return $result;

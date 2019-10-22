@@ -29,3 +29,26 @@
 .page-victoryweekend .tab-victoryweekend > ._form {
     padding:10px;
 }
+
+/** dialog victory weekend adding emails */
+.diag-vweekend-addemail {}
+.diag-vweekend-addemail input {
+    padding-right: 30px !important;
+}
+.diag-vweekend-addemail input._inputerr {
+    border:1px solid red !important;
+}
+.diag-vweekend-addemail ._error {
+    position:absolute;
+    color:red;
+    
+    font-size:12px;
+}
+.diag-vweekend-addemail ._icon {
+    position: absolute;
+    bottom: 7px;
+    right: 10px;
+}
+.diag-vweekend-addemail ._inputgroup {
+    position:relative;
+}
