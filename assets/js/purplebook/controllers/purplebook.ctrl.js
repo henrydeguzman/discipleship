@@ -49,6 +49,7 @@ victory
                     model:'fetch/purplebook_set/markasdone',data:checked,
                     onclosed:function(){
                         tableService.refresh('purplebook.pre.list');
+                         tableService.refresh('purplebook.post.list');
                         vm.list={processing:true};
                         getdata();
                         dialogs.notify('<table><tbody><tr>\n' +

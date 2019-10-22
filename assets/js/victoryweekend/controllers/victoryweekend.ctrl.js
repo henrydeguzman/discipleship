@@ -103,6 +103,7 @@ victory
                     model:'fetch/weekend_set/markasdone',data:checked,
                     onclosed:function(){
                         tableService.refresh('vweekend.pre.list');
+                         tableService.refresh('vweekend.post.list');
                         vm.list={processing:true};
                         getdata();
                         dialogs.notify('<table><tbody><tr>\n' +

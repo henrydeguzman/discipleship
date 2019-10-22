@@ -48,6 +48,7 @@ victory
                     model:'fetch/churchcommunity_set/markasdone',data:checked,
                     onclosed:function(){
                         tableService.refresh('churchcommunity.pre.list');
+                         tableService.refresh('churchcommunity.post.list');
                         vm.list={processing:true};
                         getdata();
                         dialogs.notify('<table><tbody><tr>\n' +

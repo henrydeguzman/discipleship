@@ -48,6 +48,7 @@ victory
                     model:'fetch/makingdisciples_set/markasdone',data:checked,
                     onclosed:function(){
                         tableService.refresh('makingdisciples.pre.list');
+                         tableService.refresh('makingdisciples.post.list');
                         vm.list={processing:true};
                         getdata();
                         dialogs.notify('<table><tbody><tr>\n' +

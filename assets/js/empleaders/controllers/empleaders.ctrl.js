@@ -36,7 +36,8 @@ victory
                     url:'page/loadview?dir=pages&view=empowering_leaders/tabs/empleaders/dialogs/markasdone.html',
                     model:'fetch/empleaders_set/markasdone',data:checked,
                     onclosed:function(){
-                        tableService.refresh('makingdisciples.pre.list');
+                         tableService.refresh('empleaders.pre.list');
+                         tableService.refresh('empleaders.post.list');
                         vm.list={processing:true};
                         getdata();
                         dialogs.notify('<table><tbody><tr>\n' +
