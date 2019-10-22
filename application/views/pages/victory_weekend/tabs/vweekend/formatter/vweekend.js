@@ -6,6 +6,6 @@
  */
 var tblformatter = {
      action: function (tr, field, td, index) {          
-          return '<div style="display:inline-block;"><button ng-click="vWeekendCtrl.email.add(tr,' + (index + 1) + ')" type="button" class="btn btn-success btn-xs">Add email</button></div>';          
+          return '<div style="display:inline-block;"><button ng-click="vWeekendCtrl.email.add(tr,' + (index + 1) + ')" type="button" ng-class="tr.email!==null?\'btn-default\':\'btn-success\'" class="btn btn-xs">{{tr.email!==null?\'Change\':\'Add\'}} email</button></div>';          
      }
 };
