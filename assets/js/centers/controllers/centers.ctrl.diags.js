@@ -16,7 +16,7 @@ victory
                vm.email.error = false;
                vm.email.searching = true;
                vm.email.users = [];
-               searchEngine.search('fetch/emailvalidation/isexist', {
+               searchEngine.search('fetch/email_validation/isexist', {
                     data: { email: $scope.form.email },
                     onSuccess: function (v) {
                          vm.email.searching = false;

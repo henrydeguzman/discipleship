@@ -15,7 +15,7 @@ require './assets/dependencies/firebase/ExpiredException.php';
 
 class Tokenizer {
     protected $issuer = "victory-urdaneta-discipleship";
-    protected $subject = "Subject to Password Reset";
+    protected $subject = "tokenizer-auto-subject";
     protected $issuedAt;
     protected $jwtID;
     protected $token;
@@ -36,11 +36,12 @@ class Tokenizer {
      * after the generation time with 60 seconds leeway. This leeway ensures
      * that there is enough time to encode and decode the token.
      */
-    public function create($audience=null, $secretKey=null, $extime=NULL){
+    public function create($audience=null, $secretKey=null, $extime=NULL, $subject=NULL){
         if(!is_string($audience)||empty($audience)){ return array('error'=>'Invalid audience.'); }
         //if(!is_numeric($jwtID)||$jwtID<=0){ return array('error'=>'Id is not numeric.'); }
         if(!is_string($secretKey)||empty($secretKey)){ return array('error'=>'Please provide secret key.'); }
         if(empty($extime)){$extime=$this->EXPIRATION_TIME;};
+        if(!empty($subject)) { $this->subject = $subject; }
         $token = array('iss'=>$this->issuer,
             'aud'=>$audience,
             'sub'=>$this->subject,

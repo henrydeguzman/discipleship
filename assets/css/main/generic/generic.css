@@ -434,3 +434,11 @@ label.gen-checkbox-style > div {
 	top: 50%;
 	z-index: 1;
 }
+
+/** underconstruction */
+.gen-underconstruction {
+     width: 100%;
+     background: url('../../../img/bg/construct-bg.jpg') no-repeat;
+     background-size: cover;
+     height: 400px;
+}

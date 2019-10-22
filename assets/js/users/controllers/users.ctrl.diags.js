@@ -9,7 +9,7 @@ victory
                vm.check.ischecking = true;
                $timeout.cancel(user._timeout);
                user._timeout = $timeout(function () {
-                    var get = centralFctry.postData({ url: 'fetch/emailvalidation/isexist', data: { email: user.email } });
+                    var get = centralFctry.postData({ url: 'fetch/email_validation/isexist', data: { email: user.email } });
                     if (get.$$state !== undefined) {
                          get.then(function (v) {
                               console.log(v.data);

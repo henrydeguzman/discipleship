@@ -5,14 +5,14 @@
  * User : Henrilics
  * Date : 10/22/2019, 3:14:07 PM
  */
-class EmailValidation extends Core_Model
+class Email_validation extends Core_Model
 {
      public function __construct()
      {
           $this->script->load('users_script');
           parent::__construct();
      }
-     /** api/gateway?re=fetch/email_validation/checkemail
+     /** api/gateway?re=fetch/email_validation/isexist
       * check if valid email and already exists
       */
      public function isexist()

@@ -8,7 +8,7 @@
 class Users_set extends Core_Model {
      public function __construct(){
           $this->load->library('smpt');    
-          $this->load->model('emailvalidation');          
+          $this->load->model('email/email_validation', 'emailvalidation');          
      }
      /** api/gateway?re=fetch/users_set/generatepassword */
      private function generatePassword($a=5,$b='azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789'){
@@ -97,26 +97,7 @@ class Users_set extends Core_Model {
           if(empty($userid)){ $userid=$this->data_app_get->idCurrentUser(); }
           $sql=$this->users_script->getjourney()."WHERE a.userid=".$userid;
           return $this->query($sql,true);
-     }
-     /** api/gateway?re=fetch/users_set/setjourney */
-    /* public function setjourney(){
-          $userid=$this->data_app_get->idCurrentUser();
-          $data=array();
-          if(isset($_POST['victory_weekend'])){ $data['victory_weekend']=$_POST['victory_weekend']; }
-          if(isset($_POST['church_community'])){ $data['church_community']=$_POST['church_community']; }
-          if(isset($_POST['purple_book'])){ $data['purple_book']=$_POST['purple_book']; }
-          if(isset($_POST['making_disciples'])){ $data['making_disciples']=$_POST['making_disciples']; }
-          if(isset($_POST['empowering_leaders'])){ $data['empowering_leaders']=$_POST['empowering_leaders']; }
-          if(isset($_POST['leadership_113'])){ $data['leadership_113']=$_POST['leadership_113']; }
-          if(isset($_POST['baptized'])){ $data['baptized']=$_POST['baptized']; }
-          $journey=$this->getjourney($userid);
-          if(!empty($journey)){
-               return $this->update('user_journey',$data,'userid='.$userid);
-          } else {
-               $data['userid']=$userid;
-               return $this->insert('user_journey',$data);
-          }
-     }*/
+     }        
      /** api/gateway?re=fetch/users_set/verifytomember */
      public function verifytomember($userid,$email){
          $result=self::edit($userid,'tomember');
@@ -127,22 +108,8 @@ class Users_set extends Core_Model {
          return $result;
      }
      private function sendemail($password,$email=null){          
-          $searchNeedle = array(
-               '{{ Mail::Title }}',
-               '{{ Mail::Recepient }}',               
-               '{{ Mail::Sender }}',
-               '{{ Mail::Team }}',
-               '{{ Mail::CopyrightYear }}',
-               '{{ Mail::OTP }}'
-          );
-          $replaceStack = array(
-               'Account created',
-               $email,               
-               ORG_TEAM_NAME,
-               ORG_TEAM_NAME,
-               date('Y'),
-               $password
-          );
+          $searchNeedle = array( '{{ Mail::Title }}', '{{ Mail::Recepient }}', '{{ Mail::Sender }}', '{{ Mail::Team }}', '{{ Mail::CopyrightYear }}', '{{ Mail::OTP }}' );
+          $replaceStack = array( 'Account created', $email, ORG_TEAM_NAME, ORG_TEAM_NAME, date('Y'), $password );
           $bodyhtml=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/html/new-account.html');
           $altbody=file_get_contents(PATH_VIEW.'templates/auth/forgot-password/htmlemails/plaintext/new-account.txt');              
           /*
@@ -151,12 +118,9 @@ class Users_set extends Core_Model {
           * subject = string; default: 'Test subject'
           * */
           try {
-              $result= $this->smpt->send(array("body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),"alt"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),
+              $result= $this->smpt->send(array("body"=>str_replace($searchNeedle, $replaceStack, $bodyhtml),"alt"=>str_replace($searchNeedle, $replaceStack, $altbody),
                   "recipient"=>$email, "subject"=>ORG_TEAM_NAME." created you an account!", "ishtml"=>true ));
-          } catch (Exception $a) {
-              $result = array('success'=> false,'info'=>$a->getMessage());
-          }
-          return $result;
+          } catch (Exception $a) { $result = array('success'=> false,'info'=>$a->getMessage()); } return $result;
      }
      /** api/gateway?re=fetch/users_set/edit */
      public function edit($id=null,$savetype='default'){
@@ -170,11 +134,7 @@ class Users_set extends Core_Model {
           $gen=null;
           if($savetype==='tomember'){
                $gen=$this->generatePassword();               
-               $data=array(
-                    "password"=>sha1($gen),
-                    "profileid"=>1,
-                    "datecreated"=>self::datetime()
-               );
+               $data=array( "password"=>sha1($gen), "profileid"=>1, "datecreated"=>self::datetime() );
           }
           else{              
                if(!isset($_POST['email'])){ return array("success"=> false, 'info' => 'Email address is required!'); }
@@ -187,7 +147,8 @@ class Users_set extends Core_Model {
           if($gen!==null){$result['password']=$gen;}          
           return $result;
      }
-     private function sendemail_invites($email) {
+     private function sendemail_invites($email) {          
+          // TODOTHIS: $this->tokenizer->create($email, self::SECRETKEY, 86400, 'tokenizer-subject-invite-member');
           $searchNeedle = array(
                '{{ Mail::Title }}',
                '{{ Mail::Recepient }}',
@@ -196,7 +157,7 @@ class Users_set extends Core_Model {
                '{{ Mail::CopyrightYear }}'          
           );
           $replaceStack = array(
-               'Account created',
+               'Account Verification',
                $email,
                ORG_TEAM_NAME,
                ORG_TEAM_NAME,
@@ -226,9 +187,7 @@ class Users_set extends Core_Model {
           //return $data;
 
           $rows = isset($_POST['rows']) ? $_POST['rows'] : null;
-          if (empty($rows)) {
-               return array("success" => false, "info" => "no data.");
-          }
+          if (empty($rows)) { return array("success" => false, "info" => "no data."); }
           $done = isset($_POST['done']) ? $_POST['done'] : array();
           $result = array();
 
@@ -239,9 +198,7 @@ class Users_set extends Core_Model {
                     $_POST = $row;
                     // send verification email
                     $result = $this->sendemail_invites($row['email']);                   
-                    if ($result['success']) {
-                         array_push($done, $row['email']);                         
-                    }
+                    if ($result['success']) { array_push($done, $row['email']); }
                     break;
                }
           }
