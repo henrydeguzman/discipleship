@@ -2,8 +2,16 @@
  * Created by Actino-Dev on 12/28/2018.
  */
 victory
-    .controller('admin.centers.page.controller',['dialogs','tableService',function(dialogs,tableService){
+     .controller('admin.centers.page.controller', ['dialogs', 'tableService', 'pathValue', function (dialogs, tableService, pathValue){
         var vm=this;
+         vm.admin = {};
+         vm.admin.adddialog = function () {
+              console.log(pathValue.LOADVIEW_PAGES + 'admin/dialogs/centers/addadmin.html');
+              dialogs.create({
+                   url: pathValue.LOADVIEW_PAGES + 'admin/dialogs/centers/addadmin.html',
+                   options: { backdrop: 'static', size: 'md' }
+              })
+         };
         vm.form={};
         vm.form.dialog=function(alldata,$id){
             var title='Add',data={};
@@ -26,5 +34,5 @@ victory
 
                 }
             });
-        };
+        };        
     }]);

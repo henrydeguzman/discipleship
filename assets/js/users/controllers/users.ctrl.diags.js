@@ -9,12 +9,12 @@ victory
                vm.check.ischecking = true;
                $timeout.cancel(user._timeout);
                user._timeout = $timeout(function () {
-                    var get = centralFctry.postData({ url: 'fetch/users_set/checkemail', data: { email: user.email } });
+                    var get = centralFctry.postData({ url: 'fetch/emailvalidation/isexist', data: { email: user.email } });
                     if (get.$$state !== undefined) {
                          get.then(function (v) {
                               console.log(v.data);
                               vm.check.ischecking = false;
-                              if (v.data.success) { user.valid = true; } else { user.valid = false }
+                              if (v.data.success) { user.valid = true;  } else { user.valid = false; user._errortext = v.data.info; }
                               vm.check.haserror = vm.checkhaserror();
                          });
                     }

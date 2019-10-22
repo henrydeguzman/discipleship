@@ -5,9 +5,9 @@ angular
 	.module("MainValues", [])
 	.value("pathValue", {
 		base_url: vtr.pathValue.base_url,
-		userphoto: vtr.pathValue.userphoto
+          userphoto: vtr.pathValue.userphoto,
+          LOADVIEW_PAGES: 'page/loadview?dir=pages&view='
 	})
-
 	.value("genvarsValue", {
 		curdate: new Date(),
 		curyear: new Date().getFullYear(),
@@ -30,7 +30,7 @@ angular
 			{ id: 6, name: "Saturday" },
 			{ id: 7, name: "Sunday" }
 		],
-		contentloading: false
+          contentloading: false          
 	})
 	.value("mimeTypes", {
 		image: {

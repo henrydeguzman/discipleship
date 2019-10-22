@@ -7,7 +7,7 @@
 */
 class Users_set extends Core_Model {
      public function __construct(){
-          $this->load->library('smpt');          
+          $this->load->library('smpt');              
      }
      /** api/gateway?re=fetch/users_set/generatepassword */
      private function generatePassword($a=5,$b='azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789'){
@@ -247,16 +247,5 @@ class Users_set extends Core_Model {
           $result['successcnt'] = count($done);
           $result['total'] = $total;
           return $result;
-     }
-     /** api/gateway?re=fetch/users_set/checkemail
-      * check if valid email and already exists
-      */
-     public function checkemail() {
-          $email = isset($_POST['email'])? $_POST['email']:null;
-          if (empty($email)) { return array('success' => false, 'info' => 'empty email!'); }
-          $isemail = $this->validate_email($email);
-          if(!$isemail){ return array('success' => false, 'info' => 'invalid email');  } 
-                   
-          return array('success' => true);
-     }        
+     }     
 }

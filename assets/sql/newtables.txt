@@ -2,3 +2,4 @@ oct 22
 
 user_invites_type = fixed value.
 user_invites
+church_admin

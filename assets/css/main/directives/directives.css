@@ -625,7 +625,7 @@ gt-table .gen-table-container > .gen-table-content > table > tbody > tr > td ul.
 }
 gt-table .gen-table-container > .gen-table-content > table > tbody > tr > td ul.gttbl-btns > li:hover {
     cursor:pointer;
-    background:#ccc;
+    color:#082347;
 }
 
 gt-table .gen-table-container > .gen-table-content > table > tbody > tr > td .gttbl-roundimg-24 {

@@ -24,6 +24,12 @@ class Users_Script {
          FROM user_invites
                LEFT JOIN user_invites_type ON user_invites.typeid = user_invites_type.typeid";
     }
+    public static function getbyemail(){
+         return "SELECT user.email, user.username, user.firstname, user.lastname, user.userid,
+               user_photo.photo
+               FROM user 
+               LEFT JOIN user_photo ON user_photo.userid=user.userid ";
+    }
     public static function getusers($activefields=null){
         $condition=array(
             "onfields"=>array(

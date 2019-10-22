@@ -1,0 +1,14 @@
+<div class="diag-admin-center-addadmin" ng-controller="centers.ctrl.diags.addadmin as usrchurchadminCtrl">
+     <div ng-init="$parent.title='Add admin'"></div>
+     <form class="gen-form-static">          
+          <div class="form-group _emailinput">
+               <label class="gfs-title">Enter Email address</label>               
+               <input type="text" ng-class="usrchurchadminCtrl.email.error?'_inputerr':''" ng-change="usrchurchadminCtrl.email.change()" ng-model="form.email" class="gen-input-control" />
+               <div class="_error" ng-if="usrchurchadminCtrl.email.error">{{usrchurchadminCtrl.email.errortext}}</div>
+               <div class="_icon" ng-if="usrchurchadminCtrl.email.searching"><i class="fas fa-spinner fa-spin"></i></div>
+          </div>          
+          <div class="form-btn-right">               
+               <button class="btn btn-success btn-sm" ng-disabled="usrchurchadminCtrl.email.searching||form.email===undefined||usrchurchadminCtrl.email.error">Invite</button>
+          </div>
+     </form>
+</div>
