@@ -5,11 +5,10 @@ victory
      .controller('admin.centers.page.controller', ['dialogs', 'tableService', 'pathValue', function (dialogs, tableService, pathValue){
         var vm=this;
          vm.admin = {};
-         vm.admin.adddialog = function () {
-              console.log(pathValue.LOADVIEW_PAGES + 'admin/dialogs/centers/addadmin.html');
+         vm.admin.adddialog = function () {              
               dialogs.create({
                    url: pathValue.LOADVIEW_PAGES + 'admin/dialogs/centers/addadmin.html',
-                   options: { backdrop: 'static', size: 'md' }
+                   options: { backdrop: 'static', size: 'sm' }
               })
          };
         vm.form={};

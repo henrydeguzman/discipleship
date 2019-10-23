@@ -28,7 +28,7 @@ class Users_Script {
          return "SELECT user.email, user.username, user.firstname, user.lastname, user.userid,
                user_photo.photo
                FROM user 
-               LEFT JOIN user_photo ON user_photo.userid=user.userid ";
+               LEFT JOIN user_photo ON user_photo.photoid=user.photoid ";
     }
     public static function getusers($activefields=null){
         $condition=array(

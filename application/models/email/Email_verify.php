@@ -14,7 +14,7 @@ class Email_verify extends Core_Model {
      /** api/gateway?re=fetch/email_verify/invite
       * 1 day validity
       */
-     public function invite(){               
+     public function invite(){
           $token = isset($_GET['token'])? $_GET['token']:null; if(empty($token)) { return array('success' => false, 'errorcode' => self::TOKEN_INVALID, 'info' => 'Invalid token!'); }
           return $this->tokenizer->validate($token, self::SECRETKEY);
      }
