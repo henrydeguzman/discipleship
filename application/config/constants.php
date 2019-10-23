@@ -89,6 +89,7 @@ define("PATH_UPLOAD", "assets/uploads/");/** UPLOAD FOLDER */
 define("PATH_USERPHOTO", "img/userphoto/");/** USERPHOTO */
 define('PATH_VIEW','application/views/');
 define('PATH_LANG','application/language/');
+define('PATH_TEMPLATES_EMAIL','application/views/templates/emails/'); /** Path of email templates */
 define('URI_UPLOAD', 'api/getfile?name='); //mvs/app?run=upload::getfile&name= //May 8, 2018
 define('ORG_NAME','DISCIPLESHIP');
 define('ORG_TAG','');

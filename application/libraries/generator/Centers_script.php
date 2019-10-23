@@ -19,7 +19,8 @@ class Centers_Script {
                church.churchadminid as adminid,
                church_admin.userid as churchadmin_userid,
                user.firstname as churchadmin_firstname, user.lastname as churchadmin_lastname,
-               user_photo.photo as churchadmin_photo
+               IF(user.firstname is null,user.email,CONCAT(user.firstname,' ',user.lastname))  as churchadmin_fullname,
+               user_photo.photo as churchadmin_photo, user.email as churchadmin_email
                FROM church
                LEFT JOIN church_admin ON church_admin.churchadminid=church.churchadminid AND church.churchid=church_admin.churchid
                LEFT JOIN user ON user.userid=church_admin.userid

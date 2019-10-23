@@ -15,6 +15,12 @@ class Data_App_Get {
             "datecreated" => $_SESSION['user']->datecreated
         );
     }
+    /** getting current user firstname, if not available email address will provide instead. */
+    public static function getCurrentUname() {
+          $data = self::dataCurrentUser();
+          $firstname = $_SESSION['user']->firstname;
+          return $firstname == null || $firstname == "" ? $_SESSION['user']->email : $firstname;
+    }
     public static function getchurch($id=null){
         $data=self::dataCurrentUser();
         return $data[$id==null?'churchid':$id];

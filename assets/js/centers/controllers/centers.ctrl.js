@@ -5,10 +5,16 @@ victory
      .controller('admin.centers.page.controller', ['dialogs', 'tableService', 'pathValue', function (dialogs, tableService, pathValue){
         var vm=this;
          vm.admin = {};
-         vm.admin.adddialog = function () {              
+         vm.admin.adddialog = function (church) {
+              console.log(church);                            
               dialogs.create({
                    url: pathValue.LOADVIEW_PAGES + 'admin/dialogs/centers/addadmin.html',
-                   options: { backdrop: 'static', size: 'sm' }
+                   options: { backdrop: 'static', size: 'sm' }, data: { churchid: church.id, churchname: church.name },
+                   onclosed:function(v) {
+                        if (v !== undefined && v.success) {
+                             tableService.refresh('centers.tablelist');
+                        }
+                   }
               })
          };
         vm.form={};

@@ -1,3 +1,2 @@
 ALTER TABLE `church`
-ADD `churchadminid` int NULL DEFAULT '0' AFTER `name`;
-
+ADD `churchadminid` int NOT NULL DEFAULT '0' AFTER `name`;

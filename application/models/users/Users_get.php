@@ -65,8 +65,18 @@ class Users_get extends Core_Model
      }
      /** api/gateway?re=fetch/users_get/inviteslist */
      public function inviteslist()
-     { 
-          $sql = $this->users_script->inviteslist();
+     {
+          /** get user invite list as members */
+          $sql = $this->users_script->inviteslist() . "WHERE user_invites.inviteasid = 2";
           return $this->query($sql);
+     }     
+     /** validate if the link provided is already used. */
+     public function validateinvite($inviteid = null)
+     {          
+          if (empty($inviteid)) { return array('success' => false, 'info' => 'inviteid address.'); }          
+          $sql = "SELECT user_invites.inviteid, user_invites.email 
+               FROM user_invites
+               WHERE user_invites.inviteid = '$inviteid' AND user_invites.isverified = 0";
+          return $this->query($sql, true);
      }
 }

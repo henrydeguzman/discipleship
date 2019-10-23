@@ -15,9 +15,10 @@ class Email_validation extends Core_Model
      /** api/gateway?re=fetch/email_validation/isexist
       * check if valid email and already exists
       */
-     public function isexist()
+     public function isexist($email=null)
      {
-          $result = self::isvalid();          
+
+          $result = self::isvalid($email);          
           if ($result['success']) {
                $sql = $this->users_script->getbyemail()." WHERE user.email='". $result['email'] . "'";
                $isuser = $this->query($sql);               
@@ -29,9 +30,10 @@ class Email_validation extends Core_Model
      /** api/gateway?re=fetch/email_validation/isvalid
       * Check email if valid or not 
       * */
-     public function isvalid()
-     {
-          $email = isset($_REQUEST['email']) ? $_REQUEST['email'] : null;
+     public function isvalid($email=null)
+     {          
+          if(empty($email)) { $email = isset($_REQUEST['email']) ? $_REQUEST['email'] : null; }
+
           if (empty($email)) {
                return array('success' => false, 'info' => 'Email address is required!');
           }

@@ -1,5 +1,6 @@
-oct 22
+oct 22 - present
 
-user_invites_type = fixed value.
+user_invites_type = fixed values.
+user_invites_as = fixed values.
 user_invites
 church_admin

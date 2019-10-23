@@ -12,7 +12,7 @@
                     <tbody>
                          <tr ng-repeat="user in usrchurchadminCtrl.email.users">                              
                               <td>
-                                   <gt-profile photo="user.photo" userid="user.userid" name="user.firstname+' '+user.lastname"></gt-profile>&nbsp;<span class="gen-text-style-capitalize">{{user.firstname+" "+user.lastname}}</span>
+                                   <gt-profile photo="user.photo" userid="user.userid" name="user.fullname"></gt-profile>&nbsp;<span ng-class="user.firstname!=null?'gen-text-style-capitalize':''">{{user.fullname}}</span>
                               </td>
                          </tr>
                          <tr>
@@ -27,7 +27,7 @@
                </table>
           </div>
           <div class="form-btn-right">               
-               <button ng-click="usrchurchadminCtrl.invite()" class="btn btn-success btn-sm" 
+               <button click-and-disable="usrchurchadminCtrl.invite()" class="btn btn-success btn-sm" 
                ng-disabled="usrchurchadminCtrl.email.searching||form.email===undefined||(usrchurchadminCtrl.email.error&&usrchurchadminCtrl.email.alreadyexist===undefined)||(usrchurchadminCtrl.email.error&&usrchurchadminCtrl.email.alreadyexist&&!usrchurchadminCtrl.email.alreadyexistverify)">Invite</button>
           </div>
      </form>

@@ -2,12 +2,20 @@
  * Created by Actino-Dev on 12/28/2018.
  */
 victory
-     .controller('centers.ctrl.diags.addadmin', ['$scope', 'searchEngine', function ($scope, searchEngine){
+     .controller('centers.ctrl.diags.addadmin', ['$scope', 'searchEngine', 'centralFctry', function ($scope, searchEngine, centralFctry){
           var vm = this;
-          $scope.form = {email:undefined};
+          $scope.form = { email: undefined, churchid: $scope.data.churchid, churchname: $scope.data.churchname};
           vm.invite = function() {              
                var users = _.chain(vm.email.users).pluck('userid').value();
-               console.log($scope.form, users);
+              //  console.log($scope.form, users);return;
+               var posted = centralFctry.postData({
+                    url: 'fetch/centers_set/invite', data: { churchname: $scope.form.churchname, churchid: $scope.form.churchid, email: $scope.form.email, exist: users.length }                    
+               });
+               if (posted.$$state!==undefined){
+                    return posted.then(function(v){
+                         console.log(v.data);
+                    });
+               }
           };
           vm.email = { searching: false, error: false, alreadyexistverify: false};          
           vm.email.change = function(){

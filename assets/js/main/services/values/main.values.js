@@ -6,7 +6,7 @@ angular
 	.value("pathValue", {
 		base_url: vtr.pathValue.base_url,
           userphoto: vtr.pathValue.userphoto,
-          LOADVIEW_PAGES: 'page/loadview?dir=pages&view='
+          LOADVIEW_PAGES: 'page/loadview?dir=pages&view='          
 	})
 	.value("genvarsValue", {
 		curdate: new Date(),

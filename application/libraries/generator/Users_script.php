@@ -22,10 +22,11 @@ class Users_Script {
          TIMESTAMPDIFF(HOUR,user_invites.datecreated, now()) as time_hours,
          user_invites_type.name as `type`,user_invites.email, user_invites.phonenumber, user_invites.datecreated as `date`, user_invites.isverified
          FROM user_invites
-               LEFT JOIN user_invites_type ON user_invites.typeid = user_invites_type.typeid";
+               LEFT JOIN user_invites_type ON user_invites.typeid = user_invites_type.typeid ";
     }
     public static function getbyemail(){
          return "SELECT user.email, user.username, user.firstname, user.lastname, user.userid,
+               IF(user.firstname is null,user.email,CONCAT(user.firstname,' ',user.lastname))  as fullname,
                user_photo.photo
                FROM user 
                LEFT JOIN user_photo ON user_photo.photoid=user.photoid ";
