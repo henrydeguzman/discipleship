@@ -6,6 +6,24 @@
 }
 
 .modal-dialog {}
+.modal-dialog  .modal-content-loading {
+    position:absolute;
+    background: #52545678;    
+    right:0;
+    left:0;
+    bottom:0;
+    top:0;
+    z-index:1;
+    -webkit-border-radius:6px;
+    -moz-border-radius:6px;
+    border-radius:6px;
+    cursor: wait;
+}
+
+.modal-dialog  .modal-content-loading .spinner {
+    padding-top: 60px;
+}
+
 .modal-dialog > .modal-content {
     border: 1px solid rgba(0,0,0,.2);
     border-radius: 6px;

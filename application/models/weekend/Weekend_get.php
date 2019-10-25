@@ -12,7 +12,8 @@ class Weekend_get extends Core_Model {
     }
     /** api/gateway?re=fetch/weekend_get/dates */
     public function dates(){
-        $sql=$this->weekend_script->getdates()." ORDER BY a.weekend_date desc";
+          $churchid = $this->data_app_get->getchurch('churchid');
+        $sql=$this->weekend_script->getdates()." WHERE a.churchid='$churchid' ORDER BY a.weekend_date desc";
         return $this->query($sql);
     }
     /** api/gateway?re=fetch/weekend_get/getchapter */
@@ -27,18 +28,20 @@ class Weekend_get extends Core_Model {
         if(empty($weekendid)){ return array(); }
         $toprow=false;$whr='';
         if(isset($_POST['rowid'])){ $toprow=true;$whr="AND a.userid=".$_POST['rowid']; }
-        $sql=$this->weekend_script->getvweekendlist($weekendid).$whr;     
+        $sql=$this->weekend_script->getvweekendlist($weekendid).$whr;          
         return $this->query($sql,$toprow);
     }
     /** api/gateway?re=fetch/weekend_get/processdate */
     public function processdate(){
-        $whr="WHERE a.weekend_date >= CURDATE()  AND a.total=0";
+          $churchid = $this->data_app_get->getchurch('churchid');
+        $whr="WHERE a.weekend_date >= CURDATE()  AND a.total=0 AND a.churchid='$churchid'";
         $sql=$this->weekend_script->getdates().$whr;
         return $this->query($sql,true);
     }
     /** api/gateway?re=fetch/weekend_get/postlist */
     public function postlist(){
-        $whr='';$tablefilter=array();
+          $churchid = $this->data_app_get->getchurch('churchid');
+        $whr= "WHERE development_weekend_dates.churchid='$churchid'";$tablefilter=array();
         if(isset($_POST['filters'])){
             $filter=$_POST['filters'];
             if(!empty($filter['quarterly'])){

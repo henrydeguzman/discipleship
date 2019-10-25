@@ -13,6 +13,7 @@ class Makingdisciples_script {
     }
     public static function candidates($makingdisciplesid){
         if(!$makingdisciplesid){ return 'invalid_token'; }
+          $churchid = self::$instance->data_app_get->getchurch('churchid');
         return "SELECT development_purplebook.purplebookid,development_purplebook.userid,development_purplebook.devpurplebookid,
                 development_makingdisciples_dates.makingdisciplesid,
                 user.firstname, user.lastname, user_photo.photo
@@ -22,7 +23,7 @@ class Makingdisciples_script {
                 LEFT JOIN user_photo ON user_photo.userid=user.userid
                 LEFT JOIN development_makingdisciples ON development_makingdisciples.userid=development_purplebook.userid
                 LEFT JOIN development_makingdisciples_dates ON development_makingdisciples_dates.makingdisciplesid=$makingdisciplesid
-                WHERE development_makingdisciples.userid IS NULL ";
+                WHERE development_makingdisciples.userid IS NULL AND user.churchid='$churchid' ";
     }
     public static function postlist(){
         return "SELECT development_makingdisciples.devmakingdisciplesid,development_makingdisciples.userid, user.firstname, user.lastname,user_photo.photo,

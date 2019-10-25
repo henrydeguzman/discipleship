@@ -17,8 +17,9 @@ class Weekend_script {
         return "SELECT a.userid as id,a.email, a.firstname, a.lastname,d.weekendid FROM user a 
                 LEFT JOIN development_one2one b ON a.userid=b.userid 
                 LEFT JOIN development_weekend_settings c ON c.churchid=$churchid
-                LEFT JOIN development_weekend_dates d ON d.weekendid=".$weekendid." AND d.weekend_date >= CURDATE() AND d.total=0
-                WHERE a.profileid=2 AND b.chapter>=c.chapterid ";
+                LEFT JOIN development_one2one_chapter ON development_one2one_chapter.chapterid = c.chapterid
+                LEFT JOIN development_weekend_dates d ON d.weekendid=".$weekendid. " AND d.weekend_date >= CURDATE() AND d.total=0
+                WHERE a.profileid=2 AND b.chapter>=development_one2one_chapter.value AND a.churchid = '$churchid' ";
     }
     public static function postlist(){
         return "SELECT development_weekend.devweekendid,development_weekend.userid, user.firstname, user.lastname,user_photo.photo,

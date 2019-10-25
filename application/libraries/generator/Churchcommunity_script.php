@@ -13,6 +13,7 @@ class Churchcommunity_script {
     }
     public static function getchurchcommunitylist($churchcommunityid){
         if(!$churchcommunityid){ return 'invalid_token'; }
+          $churchid = self::$instance->data_app_get->getchurch('churchid');
         return "SELECT development_weekend.devweekendid,development_weekend.userid,development_weekend.weekendid,
                 development_churchcommunity_dates.churchcommunityid,
                 user.firstname, user.lastname, user_photo.photo
@@ -22,7 +23,7 @@ class Churchcommunity_script {
                 LEFT JOIN user_photo ON user_photo.userid=user.userid
                 LEFT JOIN development_churchcommunity ON development_weekend.userid=development_churchcommunity.userid
                 LEFT JOIN development_churchcommunity_dates ON development_churchcommunity_dates.churchcommunityid=$churchcommunityid
-                WHERE development_churchcommunity.userid IS NULL ";
+                WHERE development_churchcommunity.userid IS NULL AND user.churchid='$churchid' ";
     }
     public static function postlist(){
         return "SELECT development_churchcommunity.devchurchcommunityid,development_churchcommunity.userid,user.firstname,user.lastname,user_photo.photo,

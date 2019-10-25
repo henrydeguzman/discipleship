@@ -15,7 +15,7 @@ class Links extends Core_Model {
         $sql="SELECT a.pageid,a.code,a.name,a.description,a.icon,a.pageorder,a.collapsible,if(count(b.pageid)>0,1,0) as isparent
               FROM page a
               LEFT JOIN page b ON b.parentid=a.pageid
-              WHERE a.parentid=".$parentid." GROUP BY a.pageid";
+              WHERE a.parentid=".$parentid. " AND a.linkview = 1 GROUP BY a.pageid";
         $result=$this->query($sql);$collection=array();
         foreach ($result as $list){
             $pagecontrol=$this->page_model->control($list->code);

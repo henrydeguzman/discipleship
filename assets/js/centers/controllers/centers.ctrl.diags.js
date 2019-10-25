@@ -2,10 +2,11 @@
  * Created by Actino-Dev on 12/28/2018.
  */
 victory
-     .controller('centers.ctrl.diags.addadmin', ['$scope', 'searchEngine', 'centralFctry', function ($scope, searchEngine, centralFctry){
+     .controller('centers.ctrl.diags.addadmin', ['$scope', 'searchEngine', 'centralFctry', 'tableService', function ($scope, searchEngine, centralFctry, tableService){
           var vm = this;
-          $scope.form = { email: undefined, churchid: $scope.data.churchid, churchname: $scope.data.churchname};
-          vm.invite = function() {              
+          $scope.form = { email: undefined, churchid: $scope.data.churchid, churchname: $scope.data.churchname};                    
+          vm.invite = function() {           
+               $scope.$parent.load.isloading = true;   
                var users = _.chain(vm.email.users).pluck('userid').value();
               //  console.log($scope.form, users);return;
                var posted = centralFctry.postData({
@@ -14,6 +15,11 @@ victory
                if (posted.$$state!==undefined){
                     return posted.then(function(v){
                          console.log(v.data);
+                         if(v.data.success) {
+                              tableService.refresh('centers.tablelist');
+                              $scope.$parent.close();
+                         }
+                         $scope.$parent.load.isloading = false;
                     });
                }
           };

@@ -16,7 +16,7 @@ try {
 
 
 
-ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,url,otherdata,centralFctry,type,model){
+ctrls.controller('dCtrl',function($scope,$uibModalInstance,data,onclosed,title,url,otherdata,centralFctry,type,model){     
      $scope.otherdata=otherdata;
      $scope.url=url;
      $scope.type=type;
@@ -101,6 +101,7 @@ angular.module('dialogs.directive',[])
 
 ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope','$element','centralFctry','dialogs','$timeout',function($compile,$templateRequest,$scope,$element,centralFctry,dialogs,$timeout){
      if($scope.url===''||$scope.url===undefined){return;}
+     $scope.load={isloading:false};
      $templateRequest($scope.url).then(function(res){
           if($scope.type==='asynchronous'){
                if($scope.model===undefined){$element.find('.gen-dialog-c-content').html('Please provide model to begin asynchronous process.');return;}
@@ -214,6 +215,7 @@ angular.module('dialogs.main',['dialogs.services'])
 .run(["$templateCache", function($templateCache) {
      $templateCache.put("uib/template/modal/window.html", "<div ng-class='' class=\"modal-dialog {{size ? 'modal-' + size : ''}}\"  ><div class=\"modal-content\" uib-modal-transclude></div></div>\n");
      $templateCache.put("uib/template/modal/diag-container.html", '<div ng-controller="appmaindiag.gen.popup as appmaindiagCtrl" class="gen-dialog-container" ng-class="\'dialog-\'+type">\n' +
+          "<div ng-if='load.isloading' class=\"modal-content-loading spinner-container\"><div class=\"spinner\"><div class=\"bounce1\"></div><div class=\"bounce2\"></div><div class=\"bounce3\"></div></div></div>" +
      '    <div class="gen-dialog-c-title">\n' +
      '        <span bind-html-compile="title"></span>\n' +
      '        <div class="gen-dialog-c-t-btns">\n' +

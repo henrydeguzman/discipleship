@@ -110,5 +110,5 @@ class Core_Model extends CI_Model
           }
           $result = $this->tokenizer->validate($token, self::SECRETKEY);
           return $result['success'] ? $result['aud'] : false;
-     }          
+     }     
 }

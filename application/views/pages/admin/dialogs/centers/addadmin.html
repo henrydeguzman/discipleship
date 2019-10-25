@@ -3,7 +3,7 @@
      <form class="gen-form-static">          
           <div class="form-group _emailinput">
                <label class="gfs-title">Enter Email address</label>               
-               <input type="text" ng-class="usrchurchadminCtrl.email.error?'_inputerr':''" ng-change="usrchurchadminCtrl.email.change()" ng-model="form.email" class="gen-input-control" />
+               <input type="text" autofocus ng-class="usrchurchadminCtrl.email.error?'_inputerr':''" ng-change="usrchurchadminCtrl.email.change()" ng-model="form.email" class="gen-input-control" />
                <div class="_error" ng-if="usrchurchadminCtrl.email.error">{{usrchurchadminCtrl.email.errortext}}</div>
                <div class="_icon" ng-if="usrchurchadminCtrl.email.searching"><i class="fas fa-spinner fa-spin"></i></div>
           </div>          
@@ -12,15 +12,15 @@
                     <tbody>
                          <tr ng-repeat="user in usrchurchadminCtrl.email.users">                              
                               <td>
+                                   <label>
+                                   <input type="checkbox" ng-model="usrchurchadminCtrl.email.alreadyexistverify" />
                                    <gt-profile photo="user.photo" userid="user.userid" name="user.fullname"></gt-profile>&nbsp;<span ng-class="user.firstname!=null?'gen-text-style-capitalize':''">{{user.fullname}}</span>
+                                   </label>
                               </td>
                          </tr>
                          <tr>
-                              <td>
-                                   <label>
-                                        <input type="checkbox" ng-model="usrchurchadminCtrl.email.alreadyexistverify" />
-                                        <span class="gfs-desc gen-text-noselect">Sample text explain the process when the email is already exists!</span>
-                                   </label>                                   
+                              <td>                                                                 
+                                        <span class="gfs-desc gen-text-noselect">You are about to invite a person that is already exists, Confirm this by checking the checkbox.</span>                                  
                               </td>
                          </tr>
                     </tbody>

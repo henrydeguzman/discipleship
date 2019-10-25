@@ -16,6 +16,7 @@ class Purplebook_script {
     }
     public static function candidates($purplebookid){
         if(!$purplebookid){ return 'invalid_token'; }
+          $churchid = self::$instance->data_app_get->getchurch('churchid');
         return "SELECT development_churchcommunity.devchurchcommunityid,development_churchcommunity.userid,development_churchcommunity.churchcommunityid,
                 development_purplebook_dates.purplebookid,
                 user.firstname, user.lastname, user_photo.photo
@@ -25,7 +26,7 @@ class Purplebook_script {
                 LEFT JOIN user_photo ON user_photo.userid=user.userid
                 LEFT JOIN development_purplebook ON development_purplebook.userid=development_churchcommunity.userid
                 LEFT JOIN development_purplebook_dates ON development_purplebook_dates.purplebookid=$purplebookid
-                WHERE development_purplebook.userid IS NULL ";
+                WHERE development_purplebook.userid IS NULL AND user.churchid='$churchid' ";
     }
     public static function postlist(){
         return "SELECT 
@@ -35,6 +36,6 @@ class Purplebook_script {
                 INNER JOIN development_purplebook_dates ON development_purplebook.purplebookid=development_purplebook_dates.purplebookid
                 LEFT JOIN user ON user.userid=development_purplebook.userid
                 LEFT JOIN user_lifestatus ON user_lifestatus.statusid=user.statusid
-                LEFT JOIN user_photo ON user_photo.photoid=user.photoid";
+                LEFT JOIN user_photo ON user_photo.photoid=user.photoid ";
     }
 }

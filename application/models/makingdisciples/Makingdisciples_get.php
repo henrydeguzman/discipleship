@@ -13,7 +13,8 @@ class Makingdisciples_get extends Core_Model {
     }
     /** api/gateway?re=fetch/makingdisciples_get/processdate */
     public function processdate(){
-        $whr="WHERE a.makingdisciples_date >= CURDATE()  AND a.total=0";
+          $churchid = $this->data_app_get->getchurch('churchid');
+        $whr="WHERE a.makingdisciples_date >= CURDATE()  AND a.total=0 AND a.churchid='$churchid'";
         $sql=$this->makingdisciples_script->getdates().$whr;
         $result=$this->query($sql,true);
         if($result){ $result->id=$this->_secureid($result->id); }
@@ -21,7 +22,8 @@ class Makingdisciples_get extends Core_Model {
     }
     /** api/gateway?re=fetch/makingdisciples_get/dates */
     public function dates(){
-        $sql=$this->makingdisciples_script->getdates()." ORDER BY a.makingdisciples_date desc";
+          $churchid = $this->data_app_get->getchurch('churchid');
+        $sql=$this->makingdisciples_script->getdates()." WHERE a.churchid='$churchid' ORDER BY a.makingdisciples_date desc";
         return $this->query($sql);
     }
     /** api/gateway?re=fetch/makingdisciples_get/candidates */
@@ -36,7 +38,8 @@ class Makingdisciples_get extends Core_Model {
     }
     /** api/gateway?re=fetch/makingdisciples_get/postlist */
     public function postlist(){
-        $whr='';$tablefilter=array();
+          $churchid = $this->data_app_get->getchurch('churchid');
+          $whr = "WHERE development_makingdisciples_dates.churchid='$churchid'";$tablefilter=array();
         if(isset($_POST['filters'])){
             $filter=$_POST['filters'];
             if(!empty($filter['quarterly'])){

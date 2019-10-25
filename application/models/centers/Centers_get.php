@@ -8,7 +8,7 @@
 class Centers_get extends Core_Model {
     public function __construct() { $this->script->load('centers_script'); }
     public function tablelist(){ /* api/gateway?re=fetch/centers_get/tablelist */
-        $whr= '';$toprow=false;
+        $whr='';$toprow=false;
         if(isset($_POST['search'])){
             $whr=self::extendwhr($whr,"church.name LIKE '%".$_POST['search']."%'","AND");
         }
@@ -16,7 +16,7 @@ class Centers_get extends Core_Model {
             $toprow=true;
             $whr=self::extendwhr($whr,'church.churchid='.$_POST['rowid'],"AND");
         }
-        $sql=$this->centers_script->getcenters();
+        $sql=$this->centers_script->gettablelist();
         //return $sql;
         $data['rows']=$this->query($sql.$whr.self::setLimit(),$toprow);
         $count= $this->query("SELECT FOUND_ROWS() as x;",true);

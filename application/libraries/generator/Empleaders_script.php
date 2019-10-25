@@ -13,6 +13,7 @@ class Empleaders_script {
     }
     public static function candidates($empleadersid){
         if(!$empleadersid){ return 'invalid_token'; }
+          $churchid = self::$instance->data_app_get->getchurch('churchid');
         return "SELECT development_makingdisciples.makingdisciplesid,development_makingdisciples.userid,development_makingdisciples.devmakingdisciplesid,
                 development_empleaders_dates.empleadersid,
                 user.firstname, user.lastname, user_photo.photo
@@ -22,7 +23,7 @@ class Empleaders_script {
                 LEFT JOIN user_photo ON user_photo.userid=user.userid
                 LEFT JOIN development_empleaders ON development_empleaders.userid=development_makingdisciples.userid
                 LEFT JOIN development_empleaders_dates ON development_empleaders_dates.empleadersid=$empleadersid
-                WHERE development_empleaders.userid IS NULL ";
+                WHERE development_empleaders.userid IS NULL AND user.churchid='$churchid' ";
     }
     public static function postlist(){
         return "SELECT development_empleaders.devempleadersid,development_empleaders.userid, user.firstname, user.lastname,user_photo.photo,

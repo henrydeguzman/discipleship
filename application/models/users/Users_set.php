@@ -252,10 +252,9 @@ class Users_set extends Core_Model {
      public function createinvite() {
           $email = isset($_POST['email'])? $_POST['email'] : null;
           $phonenumber = isset($_POST['phonenumber']) ? $_POST['phonenumber'] : null;
-          
-          if (empty($phonenumber) && empty($email)) {
-               return array('success' => false, 'info' => 'Email address or Phonenumber is required!');
-          }
+          if (empty($phonenumber) && empty($email)) { return array('success' => false, 'info' => 'Email address or Phonenumber is required!'); }
+          $churchid = isset($_POST['churchid'])? $_POST['churchid'] : 0;
+          if (empty($churchid)) { return array('success' => false, 'info' => 'church is required'); }
           $typeid = isset($_POST['typeid']) ? $_POST['typeid'] : null; if (empty($typeid)) { return array('success' => false, 'info' => 'Typeid is required!'); }
           $inviteasid = isset($_POST['inviteasid']) ? $_POST['inviteasid'] : null;
           if (empty($inviteasid)) { return array('success' => false, 'info' => 'Invite as "" is required!'); }
@@ -264,7 +263,8 @@ class Users_set extends Core_Model {
                "phonenumber" => $phonenumber,
                "datecreated" => $this->datetime(),
                "typeid" => $typeid,
-               "inviteasid" => $inviteasid
+               "inviteasid" => $inviteasid,
+               "churchid" => $churchid
           ));
      }
      /** update record on user_invites table isverified=1 */

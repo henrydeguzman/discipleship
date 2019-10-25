@@ -612,8 +612,10 @@ gt-table .gen-table-container > .gen-table-content > table > tbody > tr > td i.f
 }
 
 gt-table .gen-table-container > .gen-table-content > table > tbody > tr > td ul.gttbl-btns {
-    list-style:none;margin:0;padding:0;
-
+    list-style:none;
+    margin:0;
+    padding:0;
+    display: inline-block;
 }
 gt-table .gen-table-container > .gen-table-content > table > tbody > tr > td ul.gttbl-btns.horizontal > li {
     display:inline;

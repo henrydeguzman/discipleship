@@ -17,9 +17,10 @@ class Register extends Core_Controller
      }     
      public function guest()
      {
+          
           $result = $this->emailtoken->isvalid();
           //var_dump( $result );
-          if ($result['success']) {
+          if ($result['success']) {               
                // create account
                $email = $result['aud'];
                $type_arr = explode('-', $result['sub']);
