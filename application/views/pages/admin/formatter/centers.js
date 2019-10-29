@@ -5,8 +5,7 @@ var tblformatter = {
      action: function () {
           $html = '<button ng-click="centerspageCtrl.admin.changedialog(tr)" ng-if="tr.adminid>0" style="margin-right:5px;" class="btn btn-xs btn-default">Change admin</button>';
           $html += '<ul class="gttbl-btns horizontal">' +
-               '<li ng-click="centerspageCtrl.form.dialog(null,tr.id)"><i class="far fa-edit"></i></li>' +
-               '<li ng-click="centerspageCtrl.form.delete(tr.id)"><i class="far fa-trash-alt"></i></li></ul>';
+               '<li ng-click="centerspageCtrl.form.dialog(null,tr.id)"><i class="far fa-edit"></i></li>';
           return $html
      },
      admin: function () {

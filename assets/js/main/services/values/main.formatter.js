@@ -9,8 +9,8 @@ angular.module("MainFormatters", [])
           checkbox: function (tr) {
                return '<div ng-if="tr[td.field]!==undefined" class="gttbl_inifrmtr"><i ng-click="gtTblCtrl.tdkick(td,tr,\'checkbox\')" class="fa _checkbox" ng-class="tr[td.field]===\'1\'?\'fa-check-square-o\':\' fa-square-o\'"></i></div><div ng-if="tr[td.field]==undefined" class="unset">-</div>';
           },
-          fullname: function (tr) {
-               return '<gt-profile photo="tr.photo" userid="tr.userid" name="tr.firstname+\' \'+tr.lastname"></gt-profile>&nbsp;<span class="gen-text-style-capitalize">{{tr.firstname+" "+tr.lastname}}</span>&nbsp;<span ng-if="genvarsValue.userdata(\'userid\')==tr.userid">(You)</span>';
+          fullname: function (tr) {               
+               return '<gt-profile photo="tr.photo" userid="tr.userid" name="tr.firstname+\' \'+tr.lastname"></gt-profile>&nbsp;<span ng-class="{\'gen-text-style-capitalize\':tr.firstname!==null}">{{tr.firstname!==null?tr.firstname+" "+tr.lastname:tr.email}}</span>&nbsp;<span ng-if="genvarsValue.userdata(\'userid\')==tr.userid">(You)</span>';
           },
           fullnameonly: function (tr) {
                return '{{tr.firstname+" "+tr.lastname}}';
