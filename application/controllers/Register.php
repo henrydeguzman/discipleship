@@ -16,8 +16,8 @@ class Register extends Core_Controller
           $this->load->model('centers/centers_set', 'centers_set');
      }     
      public function guest()
-     {
-          
+     {          
+          //$this->template->load('.html', array(), 'emails/invites/users/thankyou.html');return;          
           $result = $this->emailtoken->isvalid();         
           if ($result['success']) {               
                // create account
@@ -28,7 +28,10 @@ class Register extends Core_Controller
                /** validate if the link is already used */
                $validlink = $this->users_get->validateinvite($inviteid);
                // var_dump($validlink->inviteid); return;
-               if(!$validlink) { echo 'Link is already used!'; return; }                               
+               if(!$validlink) {
+                    $this->load->view('templates/emails/invites/tokenused.html', array('loginurl' => base_url(), 'title' => 'Invalid!'));
+                    return; 
+               }
                switch ($type) {
                          /** invites user as member in church inviter */
                     case "member":
@@ -41,7 +44,8 @@ class Register extends Core_Controller
                          if(!$createuser['success']) {
                               echo 'Error on creating user! Please report this to ' . ORG_TEAM_NAME; return;
                          } else { /** success */
-                              $this->users_set->userinviteupdate($validlink->inviteid, $createuser['lastid']); echo "SUCCESS";
+                              $this->users_set->userinviteupdate($validlink->inviteid, $createuser['lastid']);
+                              $this->load->view('templates/emails/invites/verified.html', array('loginurl' => base_url(),'title'=> 'Successfully Verified!'));
                          }
                     return;
                          break;
@@ -72,8 +76,7 @@ class Register extends Core_Controller
                                    $this->users_set->userinviteupdate($validlink->inviteid, $createuser['lastid']);   
                                    $this->centers_set->addchurchadmin($churchid,$createuser['lastid']);
                                    /** SEND EMAIL TO SENDER TO NOTIFY HIM HIS REQUEST ALREADY ACCEPTED */
-
-                                   echo "SUCCESS";
+                                   $this->load->view('templates/emails/invites/verified.html', array('loginurl' => base_url(), 'title' => 'Thank you for accepting our request!'));                                
                               }
                          } else if ($subtype === 'existing') {
                               $userid = isset($type_arr[6]) ? $type_arr[6] : null;
@@ -91,10 +94,7 @@ class Register extends Core_Controller
           } else {
                $info = $result['info'];
                // error page
-               echo 'TOKEN EXPIRED!';
+               $this->load->view('templates/emails/invites/tokenexpired.html', array('title' => 'Invalid!'));
           }
-     }
-     /** send email back to sender */
-     private function sendemail()
-     { }     
+     }  
 }
