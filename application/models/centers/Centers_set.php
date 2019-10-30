@@ -38,6 +38,9 @@ class Centers_set extends Core_Model
 
           /** create tokens and send email */
           $result['email'] = self::sendemail($email, $user, $result['lastid'], $_POST['churchname']);
+          if ($result['email']['success']) {
+               $this->update('user_invites', array('sendemailsuccess' => 1), 'inviteid=' . $result['lastid']);
+          }
           return $result;          
      }
      /** if user is not 0 = existing, else new user */
