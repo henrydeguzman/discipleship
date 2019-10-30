@@ -106,8 +106,9 @@ ctrls.controller('appmaindiag.gen.popup',['$compile','$templateRequest','$scope'
           if($scope.type==='asynchronous'){
                if($scope.model===undefined){$element.find('.gen-dialog-c-content').html('Please provide model to begin asynchronous process.');return;}
                var posted={data:{successcnt:0,total:0,percent:0,rows:$scope.data}};
-               pushdata();
+               pushdata();               
                function pushdata(){
+                    console.log('pushdata => ', posted.data);
                     posted.fn=centralFctry.postData({url:$scope.model,data:posted.data,serializer:'jqlike'});
                     if(posted.fn.$$state!==undefined){
                          posted.fn.then(function(v){       

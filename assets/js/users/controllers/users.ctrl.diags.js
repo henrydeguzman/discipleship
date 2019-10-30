@@ -8,13 +8,16 @@ victory
           vm.check.email = function (user) {               
                vm.check.ischecking = true;
                $timeout.cancel(user._timeout);
+               user._searching = true;
                user._timeout = $timeout(function () {
                     var get = centralFctry.postData({ url: 'fetch/email_validation/isexist', data: { email: user.email } });
                     if (get.$$state !== undefined) {
                          get.then(function (v) {
                               console.log(v.data);
+                              user._searching = false;
                               vm.check.ischecking = false;
-                              if (v.data.success) { user.valid = true;  } else { user.valid = false; user._errortext = v.data.info; }
+                              if (v.data.success) { user.valid = true;  } 
+                              else { user.valid = false; user._errortext = v.data.info; }
                               vm.check.haserror = vm.checkhaserror();
                          });
                     }
@@ -30,7 +33,9 @@ victory
           }
           vm.send = function(){
                if (vm.check.ischecking || vm.checkhaserror()){ console.log('checking or has error'); }                              
-               var users = _.filter($scope.users, function(item) { return item.email!==''; });
+               var users = _.chain($scope.users).filter({valid:true}).pluck('email').value();
+               console.log(users);
+               //return;
                dialogs.asynchronous({
                     url: 'page/loadview?dir=pages&view=admin/dialogs/users/sendingemails.html',
                     model: 'fetch/users_set/invites', data: users,

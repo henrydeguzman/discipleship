@@ -18,8 +18,7 @@ class Register extends Core_Controller
      public function guest()
      {
           
-          $result = $this->emailtoken->isvalid();
-          //var_dump( $result );
+          $result = $this->emailtoken->isvalid();         
           if ($result['success']) {               
                // create account
                $email = $result['aud'];
@@ -29,12 +28,22 @@ class Register extends Core_Controller
                /** validate if the link is already used */
                $validlink = $this->users_get->validateinvite($inviteid);
                // var_dump($validlink->inviteid); return;
-               if(!$validlink) { echo 'Link is already used!'; return; }               
-               // echo $type;
+               if(!$validlink) { echo 'Link is already used!'; return; }                               
                switch ($type) {
                          /** invites user as member in church inviter */
                     case "member":
-
+                         /** create user invites */
+                         $_POST = array(
+                              "profileid" => 1, /** user profile => member */
+                              "email" => $email
+                         );
+                         $createuser = $this->users_set->create('invites');  
+                         if(!$createuser['success']) {
+                              echo 'Error on creating user! Please report this to ' . ORG_TEAM_NAME; return;
+                         } else { /** success */
+                              $this->users_set->userinviteupdate($validlink->inviteid, $createuser['lastid']); echo "SUCCESS";
+                         }
+                    return;
                          break;
 
                     case "admin":
@@ -74,7 +83,11 @@ class Register extends Core_Controller
                               }
                          }
                          break;
-               }
+               } /** end of switch */
+
+               
+
+
           } else {
                $info = $result['info'];
                // error page

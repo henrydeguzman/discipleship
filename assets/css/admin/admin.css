@@ -16,6 +16,14 @@
 .diag-users-invite table td {
     position:relative;
 }
+.diag-users-invite table td > .email_searching {
+    position:absolute;
+    top: 15px;
+    right:10px;
+}
+.diag-users-invite table td input {
+    padding-right: 32px;
+}
 .diag-users-invite table td._control {
     width: 1px;
     padding-left: 5px;

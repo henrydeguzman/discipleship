@@ -185,24 +185,36 @@ class Users_set extends Core_Model {
           if($gen!==null){$result['password']=$gen;}          
           return $result;
      }
-     private function sendemail_invites($email) {          
+     private function sendemail_invites($email, $inviteid = null) {
           // TODOTHIS: $this->tokenizer->create($email, self::SECRETKEY, 86400, 'tokenizer-subject-invite-member');
+          $churchid = isset($_POST['churchid']) ? $_POST['churchid'] : 0;
+          if (empty($churchid)) { return array("success" => false, 'info' => 'Church is required!'); }
+          if (empty($inviteid)) { return array("success" => false, 'info' => 'inviteid is required!'); } 
+          $churchname = $this->data_app_get->getchurch('churchname');
+
+          $subject = $inviteid . '-subject-invite-member-' . $churchid;
+
+          $token = $this->tokenizer->create($email, self::SECRETKEY, 86400, $subject);
           $searchNeedle = array(
                '{{ Mail::Title }}',
                '{{ Mail::Recepient }}',
+               '{{ Mail::Church }}',
                '{{ Mail::Sender }}',
                '{{ Mail::Team }}',
-               '{{ Mail::CopyrightYear }}'          
+               '{{ Mail::CopyrightYear }}',
+               '{{ Mail::JSONToken }}'         
           );
           $replaceStack = array(
                'Account Verification',
                $email,
+               $churchname,
                ORG_TEAM_NAME,
                ORG_TEAM_NAME,
-               date('Y')
+               date('Y'),
+               base_url("register/guest?token=" . $token)
           );
-          $bodyhtml = file_get_contents(PATH_VIEW . 'templates/auth/forgot-password/htmlemails/html/new-account.html');
-          $altbody = file_get_contents(PATH_VIEW . 'templates/auth/forgot-password/htmlemails/plaintext/new-account.txt');
+          $bodyhtml = file_get_contents(PATH_TEMPLATES_EMAIL . 'invites/users/html/new-email-user.html');
+          $altbody = file_get_contents(PATH_TEMPLATES_EMAIL . 'invites/users/html/new-email-user.html');
           /*
           * ishtml = boolean; default: false
           * body = string|html; default: 'Who knows?'
@@ -211,7 +223,7 @@ class Users_set extends Core_Model {
           try {
                $result = $this->smpt->send(array(
                     "body" => str_replace($searchNeedle, $replaceStack, $bodyhtml), "alt" => str_replace($searchNeedle, $replaceStack, $bodyhtml),
-                    "recipient" => $email, "subject" => ORG_TEAM_NAME . " created you an account!", "ishtml" => true
+                    "recipient" => $email, "subject" => ORG_TEAM_NAME . " send you verification!", "ishtml" => true
                ));
           } catch (Exception $a) {
                $result = array('success' => false, 'info' => $a->getMessage());
@@ -232,11 +244,24 @@ class Users_set extends Core_Model {
           /** register total once. */
           $total = count($rows);
           foreach ($rows as $row) {
-               if (!in_array($row['email'], $done)) {
-                    $_POST = $row;
+               $_POST = array();
+               if (!in_array($row, $done)) {
+                    $_POST['email'] = $row;
+                    //register user
+                    // insert user.
+                    $_POST['churchid'] = $this->data_app_get->getchurch('churchid');
+                    $_POST['typeid'] = 1; /** email type */
+                    $_POST['inviteasid'] = 2; /** as member */
+                    $result = self::createinvite();
+                   // return $registered['lastid'];
                     // send verification email
-                    $result = $this->sendemail_invites($row['email']);                   
-                    if ($result['success']) { array_push($done, $row['email']); }
+                    if($result['success']) {                         
+                         $send_email = $this->sendemail_invites($_POST['email'], $result['lastid']);   
+                         if ($send_email['success']){
+                              $result['update_user'] = $this->update('user_invites',array('sendemailsuccess' => 1),'inviteid='. $result['lastid']);
+                         } else { $result['update_user'] = $send_email; }
+                         array_push($done, $_POST['email']);
+                    }                                                           
                     break;
                }
           }
