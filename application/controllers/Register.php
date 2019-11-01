@@ -42,6 +42,7 @@ class Register extends Core_Controller
                          );
                          $createuser = $this->users_set->create('invites');  
                          if(!$createuser['success']) {
+                              var_dump($createuser);
                               echo 'Error on creating user! Please report this to ' . ORG_TEAM_NAME; return;
                          } else { /** success */
                               $this->users_set->userinviteupdate($validlink->inviteid, $createuser['lastid']);
