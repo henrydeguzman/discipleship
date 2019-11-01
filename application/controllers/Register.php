@@ -40,6 +40,7 @@ class Register extends Core_Controller
                               "profileid" => 1, /** user profile => member */
                               "email" => $email
                          );
+                         var_dump($_POST);return;
                          $createuser = $this->users_set->create('invites');  
                          if(!$createuser['success']) {
                               var_dump($createuser);
