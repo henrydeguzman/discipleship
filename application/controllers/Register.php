@@ -18,7 +18,8 @@ class Register extends Core_Controller
      public function guest()
      {          
           //$this->template->load('.html', array(), 'emails/invites/users/thankyou.html');return;          
-          $result = $this->emailtoken->isvalid();         
+          $result = $this->emailtoken->isvalid(); 
+          var_dump($result);return;        
           if ($result['success']) {               
                // create account
                $email = $result['aud'];
