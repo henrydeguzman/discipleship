@@ -8,10 +8,12 @@ angular
 		"genvarsValue",
 		"pathValue",
 		"spinnerValues",
-		"isloadingService",
-		function($scope, genvarsValue, pathValue, spinnerValues, isloadingService) {
+          "isloadingService",
+          "$stateParams",
+          function ($scope, genvarsValue, pathValue, spinnerValues, isloadingService, $stateParams) {
 			var vm = this;
-			/** declare global variables */
+               /** declare global variables */
+               $scope.stateparams = $stateParams;
 			vm.userdata = genvarsValue.userdata();
 			$scope.genvarsValue = genvarsValue;
 			$scope.pathValue = pathValue;

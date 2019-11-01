@@ -70,6 +70,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/translation/dialog/dialog.css'); ?>">
     <!-- page admin -->
     <link rel="stylesheet" href="<?= base_url('assets/css/admin/admin.css'); ?>">
+    <!-- swiper -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -81,7 +82,7 @@
     <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
     <base href="<?= base_url(); ?>">
 </head>
-<body class="hold-transition app-skin-blue sidebar-mini fixed main-gen-template" ng-app="app" ng-controller="appmain.controller as appmainCtrl">
+<body class="hold-transition app-skin-blue sidebar-mini fixed main-gen-template" ng-app="app" ng-controller="appmain.controller as appmainCtrl" ng-class="stateparams.tab">
 <!-- Site wrapper -->
 <div class="wrapper">
     <header class="main-header" ng-controller="main.header.controller as mainheaderCtrl">
