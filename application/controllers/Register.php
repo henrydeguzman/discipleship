@@ -19,7 +19,7 @@ class Register extends Core_Controller
      {          
           //$this->template->load('.html', array(), 'emails/invites/users/thankyou.html');return;          
           $result = $this->emailtoken->isvalid(); 
-          var_dump($result);return;        
+         // var_dump($result);return;        
           if ($result['success']) {               
                // create account
                $email = $result['aud'];
@@ -37,14 +37,17 @@ class Register extends Core_Controller
                          /** invites user as member in church inviter */
                     case "member":
                          /** create user invites */
+                         $churchid = isset($type_arr[4]) ? $type_arr[4] : null;
+                         //echo $churchid;return;
                          $_POST = array(
                               "profileid" => 1, /** user profile => member */
-                              "email" => $email
+                              "email" => $email,
+                              "churchid" => $churchid
                          );
-                         var_dump($_POST);return;
+                        // var_dump($_POST);return;
                          $createuser = $this->users_set->create('invites');  
                          if(!$createuser['success']) {
-                              var_dump($createuser);
+                            //  var_dump($createuser);
                               echo 'Error on creating user! Please report this to ' . ORG_TEAM_NAME; return;
                          } else { /** success */
                               $this->users_set->userinviteupdate($validlink->inviteid, $createuser['lastid']);
