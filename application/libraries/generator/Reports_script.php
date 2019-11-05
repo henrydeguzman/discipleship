@@ -9,7 +9,8 @@ class Reports_Script {
     function getlist(){
         return "SELECT SQL_CALC_FOUND_ROWS user_vg.vg_count,vg_intern.intern_count,
                 development_weekend.victory_weekend_count, development_churchcommunity.church_community_count,
-                development_purplebook.purple_book_count,development_makingdisciples.making_disciples_count
+                development_purplebook.purple_book_count,development_makingdisciples.making_disciples_count,
+                development_empleaders.empowering_leaders_count
                 ,church.churchid,church.name as churchname FROM church
                 LEFT JOIN (SELECT COUNT(vgid) as vg_count, churchid,vgid FROM user INNER JOIN user_vg ON user.userid=user_vg.leaderid) 
                 user_vg ON user_vg.churchid=church.churchid
