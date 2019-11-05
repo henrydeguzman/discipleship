@@ -34,11 +34,23 @@ victory
                 }
             }
         };
+        vm.mark={};
+        vm.mark.check=function(type,data){ if(type=='all'){ for(var x=0;x<data.tr.length;x++) { data.tr[x]['_checked'] = data.td.checkbox; } } };
+        vm.mark.candidate=function(datas){
+            var checked=[]; for(var x=0;x<datas.length;x++){ if(datas[x]['_checked']==true){ checked.push({ userid: datas[x]['userid'] }); } }
+            if(checked.length===0){ dialogs.notify('Please select atlease one user');return false; }
+            dialogs.confirm('Are you sure ?',function(){
+                dialogs.process({ url: 'fetch/churchcommunity_set/markascandidate', data: {users: checked} },function(v){
+                    //when process is done
+                    tableService.refresh('churchcommunity.post.list');
+                });
+            });
+        };
         vm.markasdone.go=function(datas){
             var checked=[];
             for(var x=0;x<datas.length;x++){
                 if(datas[x]['_checked']==true){
-                    checked.push({ userid: datas[x]['userid'], weekendid:datas[x]['weekendid'],churchcommunityid:datas[x]['churchcommunityid']});
+                    checked.push({ devchurchcommunityid: datas[x]['devchurchcommunityid'],churchcommunityid:datas[x]['churchcommunityid']});
                 }
             }
             if(checked.length===0){ dialogs.notify('Please select atleast one user to proceed.');return; }

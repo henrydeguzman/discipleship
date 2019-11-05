@@ -26,6 +26,7 @@ class Weekend_script {
                 development_weekend_dates.weekend_date as date,user_lifestatus.name as lifestatus
                 FROM development_weekend
                 INNER JOIN development_weekend_dates ON development_weekend.weekendid=development_weekend_dates.weekendid
+                LEFT JOIN development_churchcommunity ON development_churchcommunity.userid=development_weekend.userid
                 LEFT JOIN user ON development_weekend.userid=user.userid
                 LEFT JOIN user_lifestatus ON user_lifestatus.statusid=user.statusid
                 LEFT JOIN user_photo ON user_photo.photoid=user.photoid ";

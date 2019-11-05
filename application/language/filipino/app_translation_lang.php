@@ -25,6 +25,8 @@ $lang['navlink.admincenter']='Simbahan';
 $lang['navsep.discipleship.dev']='Pag-unlad ng Disipulo';
 $lang['navsep.intern.dev']='Pag-unlad sa Panloob at Pamumuno';
 
+
+
 $lang['trans_form_diagtitle']="Magdagdag ng pagsasalin";
 $lang['trans_form_code']="Code";
 $lang['trans_form_code=>desc']="Maghanap ng code kung mayroon na, kung hindi pagkatapos ay maaari mo itong idagdag";
@@ -50,5 +52,6 @@ $lang['trans.makingdisciples']="Paggawa ng mga Disipulo";
 $lang['trans.makingdisciples.date.list'] = "Paggawa ng Listahan ng Petsa ng Mga Mag-aaral";
 $lang['trans.makingdisciples.date.add'] = "Mangyaring Magdagdag ng Petsa ng Pag-aaral";
 $lang['trans.fullname']="Buong pangalan";
-
 $lang['trans.usertype']="Uri ng user";
+$lang['trans.empleadersCtrl.date.add'] = "Mangyaring Magdagdag ng Petsa ng Pagpapalakas ng Mga Pinuno";
+$lang['trans.empleaders'] = "Pagpapalakas ng mga namumuno";

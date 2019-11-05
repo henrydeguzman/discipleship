@@ -21,6 +21,15 @@ class Purplebook_set extends Core_Model {
         $id=isset($_POST['id'])?$_POST['id']:0; if(empty($id)){ return array("success"=>false,"info"=>"invalid weekend date."); }
         return $this->delete('development_purplebook_dates','purplebookid='.$id);
     }
+    /** api/gateway?re=fetch/purplebook_set/markascandidate */
+    public function markascandidate(){
+        $users = isset($_POST['users'])?$_POST['users']:null; if(empty($users)) { return array('success'=>false,'info'=>'No user selected'); }
+        foreach($users as $user){
+            $result = $this->insert('development_makingdisciples',array('userid'=>$user['userid']));
+            if(!$result) { $result=false; break; }
+        }
+        return $result;
+    }
     /** api/gateway?re=fetch/purplebook_set/markasdone */
     public function markasdone(){
         $rows=isset($_POST['rows'])?$_POST['rows']:null;
@@ -35,9 +44,9 @@ class Purplebook_set extends Core_Model {
         }
 
         foreach($rows as $row){
-            if(!in_array($row['userid'],$done)){
+            if(!in_array($row['devpurplebookid'],$done)){
                 $_POST=$row;
-                array_push($done,$row['userid']); $result=self::addtolist($row['userid'], $row['purplebookid'], $row['churchcommunityid']);
+                array_push($done,$row['devpurplebookid']); $result=self::addtolist($row['devpurplebookid'], $row['purplebookid']);
                 break;
             }
         }
@@ -46,10 +55,9 @@ class Purplebook_set extends Core_Model {
         $result['total']=$total;
         return $result;
     }
-    private function addtolist($userid=null,$purplebookid=null,$churchcommunityid=null){
-        if(empty($userid)){ return array("success"=>false,"info"=>"Invalid user");}
+    private function addtolist($devpurplebookid=null,$purplebookid=null){
+        if(empty($devpurplebookid)){ return array("success"=>false,"info"=>"Invalid processid");}
         if(empty($purplebookid)){ return array("success"=>false,"info"=>"Invalid weekendid");}
-        if(empty($churchcommunityid)){ return array("success"=>false,"info"=>"Invalid churchcommunity");}
-        return $this->insert('development_purplebook',array("userid"=>$userid,"purplebookid"=>$purplebookid,"churchcommunityid"=>$churchcommunityid));
+        return $this->update('development_purplebook',array("purplebookid"=>$purplebookid),'devpurplebookid='.$devpurplebookid);
     }
 }

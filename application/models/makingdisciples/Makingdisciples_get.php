@@ -39,7 +39,7 @@ class Makingdisciples_get extends Core_Model {
     /** api/gateway?re=fetch/makingdisciples_get/postlist */
     public function postlist(){
           $churchid = $this->data_app_get->getchurch('churchid');
-          $whr = "WHERE development_makingdisciples_dates.churchid='$churchid'";$tablefilter=array();
+          $whr = "WHERE development_empleaders.devempleadersid is null AND development_makingdisciples_dates.churchid='$churchid'";$tablefilter=array();
         if(isset($_POST['filters'])){
             $filter=$_POST['filters'];
             if(!empty($filter['quarterly'])){

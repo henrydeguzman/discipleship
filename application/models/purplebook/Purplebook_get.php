@@ -13,9 +13,6 @@ class Purplebook_get extends Core_Model {
         parent::__construct();
     }
     /** api/gateway?re=fetch/purplebook_get/processdate */
-    public function g($token=null){
-        return $this->getsecureid($token);
-    }
     public function processdate(){
           $churchid = $this->data_app_get->getchurch('churchid');
         $whr="WHERE a.purplebook_date >= CURDATE()  AND a.total=0 AND a.churchid='$churchid'";
@@ -42,7 +39,7 @@ class Purplebook_get extends Core_Model {
     /** api/gateway?re=fetch/purplebook_get/postlist */
     public function postlist(){
           $churchid = $this->data_app_get->getchurch('churchid');
-          $whr = "WHERE development_purplebook_dates.churchid='$churchid'";$tablefilter=array();
+          $whr = "WHERE development_makingdisciples.devmakingdisciplesid is null AND development_purplebook_dates.churchid='$churchid'";$tablefilter=array();
         if(isset($_POST['filters'])){
             $filter=$_POST['filters'];
             if(!empty($filter['quarterly'])){

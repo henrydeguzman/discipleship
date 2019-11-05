@@ -206,7 +206,11 @@ this.$get=['$uibModal',function($uibModal){
           error:function(content,fn){
                var params={url:'uib/template/modal/wraper/types/content.html',data:{content:content,fn:fn},type:'error',options:{backdrop:'static',size:'sm'}};
                return load(params);
-          }
+          },
+         process:function(content,fn){
+               var params={url:'uib/template/modal/wraper/types/process.html',data:{content:content,fn:fn},type:'process',options: {backdrop:'static',size:'sm'}};
+               return load(params);
+         }
      }
 }];
 }]);
@@ -251,4 +255,17 @@ angular.module('dialogs.main',['dialogs.services'])
      '        </div>\n' +
      '    </form>\n' +
      '</div>');
+    $templateCache.put("uib/template/modal/wraper/types/process.html", '<div ng-controller="appmaindiag.diagtype.process as appmaindiagproCtrl">\n' +
+        '    <form class="gen-form-static">\n' +
+        '        <div ng-if="processing">' +
+        '           <i class="fas fa-spinner fa-spin" style="font-size:50px;position: absolute;"></i><span style="position:relative;padding: 4px 0 20px 65px;display:inline-block;">Please wait while processing your request.</span>' +
+        '        </div>\n' +
+        '        <div style="text-align:center;" ng-if="!processing">\n' +
+        '           <i class="far fa-check-circle" style="font-size:50px;color:green;"></i><span style="position:relative;top:-13px;margin-left:5px;">Process is complete!</span>' +
+        '           <div class="form-btn-right">' +
+        '                <button type="button" class="btn btn-default btn-sm" ng-click="$parent.close()">Ok</button>' +
+        '           </div>' +
+        '        </div>\n' +
+        '    </form>\n' +
+        '</div>');
 }]);

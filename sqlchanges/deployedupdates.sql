@@ -69,3 +69,6 @@ ADD `linkview` int(11) NOT NULL DEFAULT '1' COMMENT 'can view in sidebar ?';
 UPDATE `page` SET
 `linkview` = '0'
 WHERE `pageid` = '20';
+
+ALTER TABLE `user_invites`
+ADD `sendemailsuccess` tinyint NOT NULL DEFAULT '0' COMMENT 'if the email is successfully sent' AFTER `email`;

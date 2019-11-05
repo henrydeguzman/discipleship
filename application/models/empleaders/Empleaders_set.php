@@ -36,9 +36,9 @@ class Empleaders_set extends Core_Model {
         }
 
         foreach($rows as $row){
-            if(!in_array($row['userid'],$done)){
+            if(!in_array($row['devempleadersid'],$done)){
                 $_POST=$row;
-                array_push($done,$row['userid']); $result=self::addtolist($row['userid'], $row['makingdisciplesid'], $row['empleadersid']);
+                array_push($done,$row['devempleadersid']); $result=self::addtolist($row['devempleadersid'], $row['empleadersid']);
                 break;
             }
         }
@@ -47,10 +47,9 @@ class Empleaders_set extends Core_Model {
         $result['total']=$total;
         return $result;
     }
-    private function addtolist($userid=null,$makingdisciplesid=null,$empleadersid=null){
-        if(empty($userid)){ return array("success"=>false,"info"=>"Invalid user");}
-        if(empty($makingdisciplesid)){ return array("success"=>false,"info"=>"Invalid making disciplesid");}
+    private function addtolist($devempleadersid=null,$empleadersid=null){
+        if(empty($devempleadersid)){ return array("success"=>false,"info"=>"Invalid processid");}
         if(empty($empleadersid)){ return array("success"=>false,"info"=>"Invalid empleadersid");}
-        return $this->insert('development_empleaders',array("userid"=>$userid,"empleadersid"=>$empleadersid,"makingdisciplesid"=>$makingdisciplesid));
+        return $this->update('development_empleaders',array("empleadersid"=>$empleadersid),'devempleadersid='.$devempleadersid);
     }
 }

@@ -28,8 +28,9 @@ class Churchcommunity_get extends Core_Model {
     }
     /** api/gateway?re=fetch/churchcommunity_get/getchurchcommunitylist/$churchcommunityid */
     public function getchurchcommunitylist($churchcommunityid=null){
+        $churchcommunityid=isset($_POST['churchcommunityid'])?$_POST['churchcommunityid']:$churchcommunityid;
         if(empty($churchcommunityid)){ return array(); }
-        $toprow=false;$whr='AND development_churchcommunity_dates.churchcommunityid IS NOT NULL';
+        $toprow=false;$whr="";
         if(isset($_POST['rowid'])){ $toprow=true;$whr="AND a.userid=".$_POST['rowid']; }
         $sql=$this->churchcommunity_script->getchurchcommunitylist($this->_getsecureid($churchcommunityid)).$whr;
         return $this->query($sql,$toprow);
@@ -37,7 +38,7 @@ class Churchcommunity_get extends Core_Model {
     /** api/gateway?re=fetch/churchcommunity_get/postlist */
     public function postlist(){
           $churchid = $this->data_app_get->getchurch('churchid');
-        $whr="WHERE development_churchcommunity_dates.churchid='$churchid'";$tablefilter=array();
+        $whr="WHERE development_purplebook.devpurplebookid is null AND development_churchcommunity_dates.churchid='$churchid'";$tablefilter=array();
         if(isset($_POST['filters'])){
             $filter=$_POST['filters'];
             if(!empty($filter['quarterly'])){

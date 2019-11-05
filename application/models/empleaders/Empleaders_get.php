@@ -36,32 +36,4 @@ class Empleaders_get extends Core_Model {
         $sql=$this->empleaders_script->candidates($this->_getsecureid($empleadersid)).$whr;
         return $this->query($sql,$toprow);
     }
-     /** api/gateway?re=fetch/empleaders_get/postlist */
-    public function postlist(){
-          $churchid = $this->data_app_get->getchurch('churchid');
-          $whr = "WHERE development_empleaders_dates.churchid='$churchid'";$tablefilter=array();
-        if(isset($_POST['filters'])){
-            $filter=$_POST['filters'];
-            if(!empty($filter['quarterly'])){
-                $quarterly=$this->global_filters->sql_quarterly($filter['quarterly'],"development_empleaders_dates.empleaders_date");
-                $whr=self::extendwhr($whr,$quarterly,"AND");
-            }
-            if(!empty($filter['lifestatus'])){
-                $whr=self::extendwhr($whr,"user.statusid IN (".$filter['lifestatus'].")","AND");
-            }
-        } else {
-            /** default filters */
-            // quarterly
-            $_a=$this->global_filters->getquarter(date('Y'),'current');
-            $default_filter=$this->global_filters->sql_quarterly($_a[0]['id'],"development_empleaders_dates.empleaders_date");
-            array_push($tablefilter,$_a);
-            $whr=self::extendwhr($whr,$default_filter,"AND");
-        }
-
-        $sql=$this->empleaders_script->postlist().$whr;
-
-        $result=$this->query($sql,null,true);
-        $result['filters']=$tablefilter;
-        return $result;
-    }
 }

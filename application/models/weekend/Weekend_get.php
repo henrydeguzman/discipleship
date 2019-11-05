@@ -41,7 +41,7 @@ class Weekend_get extends Core_Model {
     /** api/gateway?re=fetch/weekend_get/postlist */
     public function postlist(){
           $churchid = $this->data_app_get->getchurch('churchid');
-        $whr= "WHERE development_weekend_dates.churchid='$churchid'";$tablefilter=array();
+        $whr= "WHERE development_churchcommunity.devchurchcommunityid is null AND development_weekend_dates.churchid='$churchid'";$tablefilter=array();
         if(isset($_POST['filters'])){
             $filter=$_POST['filters'];
             if(!empty($filter['quarterly'])){

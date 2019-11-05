@@ -41,6 +41,15 @@ class Weekend_set extends Core_Model {
         if(empty($weekendid)){ return array("success"=>false,"info"=>"Invalid weekendid");}
         return $this->insert('development_weekend',array("userid"=>$userid,"weekendid"=>$weekendid));
     }
+    /** api/gateway?re=fetch/weekend_set/markascandidate */
+    public function markascandidate(){
+        $users = isset($_POST['users'])?$_POST['users']:null; if(empty($users)) { return array('success'=>false,'info'=>'No user selected'); }
+        foreach($users as $user){
+            $result = $this->insert('development_churchcommunity',array('userid'=>$user['userid']));
+            if(!$result) { $result=false; break; }
+        }
+        return $result;
+    }
     /** api/gateway?re=fetch/weekend_set/markasdone */
     public function markasdone(){
         $rows=isset($_POST['rows'])?$_POST['rows']:null;

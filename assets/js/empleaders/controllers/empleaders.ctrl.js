@@ -27,7 +27,7 @@ victory
             var checked=[];
             for(var x=0;x<datas.length;x++){
                 if(datas[x]['_checked']==true){
-                    checked.push({ userid: datas[x]['userid'], makingdisciplesid:datas[x]['makingdisciplesid'],empleadersid:datas[x]['empleadersid']});
+                    checked.push({ devempleadersid: datas[x]['devempleadersid'],empleadersid:datas[x]['empleadersid']});
                 }
             }
             if(checked.length===0){ dialogs.notify('Please select atleast one user to proceed.');return; }

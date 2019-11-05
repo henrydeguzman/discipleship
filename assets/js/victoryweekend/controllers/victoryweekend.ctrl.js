@@ -85,17 +85,32 @@ victory
                 }
             }
         };
+        function checkbox(type,data){
+
+        }
+        vm.mark = [];
+        vm.mark.check=function(type,data){ if(type=='all'){ for(var x=0;x<data.tr.length;x++) { data.tr[x]['_checked'] = data.td.checkbox; } } };
+        vm.mark.candidate = function(datas) {
+            var checked=[]; for(var x=0;x<datas.length;x++){ if(datas[x]['_checked']==true){ checked.push({ userid: datas[x]['userid'] }); } }
+            if(checked.length===0){ dialogs.notify('Please select atlease one user');return false; }
+            console.log(checked);
+            dialogs.confirm('Are you sure ?',function(){
+                dialogs.process({
+                    url: 'fetch/weekend_set/markascandidate',
+                    data: {users: checked}
+                },function(v){
+                    //when process is done
+
+                    tableService.refresh('vweekend.post.list');
+                });
+            });
+        };
         vm.create.accounts=function(datas){
             //var checked=_.filter(datas,{_checked:true});
-            var checked=[];
-            for(var x=0;x<datas.length;x++){
-                 if(datas[x]['_checked']==true){
-                      checked.push({ id: datas[x]['id'], weekendid: datas[x]['weekendid'],email: datas[x]['email'] });
-                 }          
-            }
+            var checked=[]; for(var x=0;x<datas.length;x++){ if(datas[x]['_checked']==true){ checked.push({ id: datas[x]['id'], weekendid: datas[x]['weekendid'],email: datas[x]['email'] }); } }
 
             if(vm.list.data==null){ dialogs.notify('Please enter victory weekend date!');return; }
-            else if(checked.length===0){ dialogs.notify('Please select atleast one user to create account.');return; }
+            if(checked.length===0){ dialogs.notify('Please select atleast one user to create account.');return; }
             /** id and weekendid only */            
             dialogs.confirm('Are you sure ?',function(){
                 dialogs.asynchronous({

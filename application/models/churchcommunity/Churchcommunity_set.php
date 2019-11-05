@@ -21,6 +21,14 @@ class Churchcommunity_set extends Core_Model {
         $id=isset($_POST['id'])?$_POST['id']:0; if(empty($id)){ return array("success"=>false,"info"=>"invalid church community date."); }
         return $this->delete('development_churchcommunity_dates','churchcommunityid='.$id);
     }
+    public function markascandidate(){
+        $users = isset($_POST['users'])?$_POST['users']:null; if(empty($users)) { return array('success'=>false,'info'=>'No user selected'); }
+        foreach($users as $user){
+            $result = $this->insert('development_purplebook',array('userid'=>$user['userid']));
+            if(!$result) { $result=false; break; }
+        }
+        return $result;
+    }
     /** api/gateway?re=fetch/churchcommunity_set/markasdone */
     public function markasdone(){
         $rows=isset($_POST['rows'])?$_POST['rows']:null;
@@ -35,9 +43,9 @@ class Churchcommunity_set extends Core_Model {
         }
 
         foreach($rows as $row){
-            if(!in_array($row['userid'],$done)){
+            if(!in_array($row['devchurchcommunityid'],$done)){
                 $_POST=$row;
-                array_push($done,$row['userid']); $result=self::addtolist($row['userid'], $row['weekendid'], $row['churchcommunityid']);
+                array_push($done,$row['devchurchcommunityid']); $result=self::addtolist($row['devchurchcommunityid'], $row['churchcommunityid']);
                 break;
             }
         }
@@ -46,10 +54,9 @@ class Churchcommunity_set extends Core_Model {
         $result['total']=$total;
         return $result;
     }
-    private function addtolist($userid=null,$weekendid=null,$churchcommunityid=null){
-        if(empty($userid)){ return array("success"=>false,"info"=>"Invalid user");}
-        if(empty($weekendid)){ return array("success"=>false,"info"=>"Invalid weekendid");}
+    private function addtolist($devchurchcommunityid=null,$churchcommunityid=null){
+        if(empty($devchurchcommunityid)){ return array("success"=>false,"info"=>"Invalid processid");}
         if(empty($churchcommunityid)){ return array("success"=>false,"info"=>"Invalid churchcommunity");}
-        return $this->insert('development_churchcommunity',array("userid"=>$userid,"weekendid"=>$weekendid,"churchcommunityid"=>$churchcommunityid));
+        return $this->update('development_churchcommunity',array("churchcommunityid"=>$churchcommunityid),"devchurchcommunityid=".$devchurchcommunityid);
     }
 }
