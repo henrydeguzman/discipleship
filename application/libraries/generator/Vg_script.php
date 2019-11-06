@@ -22,7 +22,7 @@ class Vg_Script {
         $user::$export_condition=true;
         $mainscript=$user->getusers();
         $onfields=array_merge(array(
-            "mainlink"=>"x_photo.photo, x.userid as userid,x.firstname,x.lastname,x.lastname,concat(IFNULL(x.firstname,''),' ',IFNULL(x.middlename,''),' ',IFNULL(x.lastname,'')) as fullname,
+            "mainlink"=>"x_photo.photo, x.userid as userid,x.firstname, x.email,x.lastname,x.lastname,concat(IFNULL(x.firstname,''),' ',IFNULL(x.middlename,''),' ',IFNULL(x.lastname,'')) as fullname,
                         x.phonenumber",
             "vg_intern"=>"user_vg_intern.internid as isintern, user_vg_intern.internid, user_vg_intern.statusid as internstatusid"
         ),$mainscript['onfields']);

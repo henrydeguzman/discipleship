@@ -20,7 +20,7 @@ class One2one_script {
         $user::$export_condition=true;
         $mainscript=$user->getusers();
         $onfields=array_merge(array(
-            "mainlink"=>"x.userid as userid,x.firstname,x.lastname,x.lastname,concat(IFNULL(x.firstname,''),' ',IFNULL(x.middlename,''),' ',IFNULL(x.lastname,'')) as fullname, x.phonenumber,subx.photo,x.photoid",
+            "mainlink"=>"x.userid as userid,x.email,x.firstname,x.lastname,x.lastname,concat(IFNULL(x.firstname,''),' ',IFNULL(x.middlename,''),' ',IFNULL(x.lastname,'')) as fullname, x.phonenumber,subx.photo,x.photoid",
             "vga"=>"l_b.vgid as hasvgid"
         ),$mainscript['onfields']);
         $onjoins=array_merge(array(

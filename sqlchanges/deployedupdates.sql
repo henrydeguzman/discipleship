@@ -72,3 +72,15 @@ WHERE `pageid` = '20';
 
 ALTER TABLE `user_invites`
 ADD `sendemailsuccess` tinyint NOT NULL DEFAULT '0' COMMENT 'if the email is successfully sent' AFTER `email`;
+
+ALTER TABLE `development_churchcommunity`
+DROP `weekendid`;
+
+ALTER TABLE `development_purplebook`
+DROP `churchcommunityid`;
+
+ALTER TABLE `development_makingdisciples`
+DROP `purplebookid`;
+
+ALTER TABLE `development_empleaders`
+DROP `makingdisciplesid`;

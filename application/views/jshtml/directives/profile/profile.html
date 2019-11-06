@@ -1,14 +1,15 @@
 <div class="gen-profile-container" ng-mouseenter="gtProfileCtrl.hover()" ng-mouseleave="gtProfileCtrl.leave()">
     <div class="_img">
-        <img ng-class="gtProfileCtrl.photo.class" ng-src="api/getfile?name={{pathValue.userphoto+photo}}&size={{gtProfileCtrl.photo.size}}" onerror="this.src='assets/img/no-profile-male-img.jpeg'" />
+        <img ng-class="gtProfileCtrl.photo.class" ng-src="api/getfile?name={{pathValue.userphoto+data.photo}}&size={{gtProfileCtrl.photo.size}}" onerror="this.src='assets/img/no-profile-male-img.jpeg'" />
+        <span ng-class="{'gen-text-style-capitalize':data.firstname!==null}">{{data.firstname!==null||data.lastname!==null?data.firstname+" "+data.lastname:data.email}}&nbsp;<span ng-if="genvarsValue.userdata('userid')==data.userid">(You)</span></span>
     </div>
     <div class="_profile" ng-show="gtProfileCtrl.photo.show">
         <div class="_cover"></div>
         <table>
             <tr>
-                <td><img ng-class="gtProfileCtrl.photo.class" ng-src="api/getfile?name={{pathValue.userphoto+photo}}&size=120" onerror="this.src='assets/img/no-profile-male-img.jpeg'" /></td>
+                <td><img ng-class="gtProfileCtrl.photo.class" ng-src="api/getfile?name={{pathValue.userphoto+data.photo}}&size=120" onerror="this.src='assets/img/no-profile-male-img.jpeg'" /></td>
                 <td>
-                    <div class="_name gen-text-style-capitalize" title="{{name}}">{{name}}</div>
+                    <div class="_name" ng-class="{'_name gen-text-style-capitalize':data.firstname!==null||data.lastname!==null}" title="{{data.firstname!==null||data.lastname!==null?data.firstname+' '+data.lastname:data.email}}">{{data.firstname!==null||data.lastname!==null?data.firstname+' '+data.lastname:data.email}}</div>
                     <div class="_position">General Manager, Discipleship</div>
                     <div class="_btns">
                         <button ng-click="gtProfileCtrl.viewprofile()" class="btn btn-xs">View Profile</button>

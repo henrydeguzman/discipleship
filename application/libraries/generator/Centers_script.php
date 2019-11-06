@@ -21,6 +21,7 @@ class Centers_Script {
                church_admin.userid as churchadmin_userid,
                user.firstname as churchadmin_firstname, user.lastname as churchadmin_lastname,
                IF(user.firstname is null,user.email,CONCAT(user.firstname,' ',user.lastname))  as churchadmin_fullname,
+               user.email as churchadmin_email,
                user_photo.photo as churchadmin_photo, user.email as churchadmin_email,
                user_invites.email as invite_email, user_invites.datecreated as invite_date, user_invites.inviteid,
                IFNULL(user_invites.isverified, 0) as isverified,

@@ -18,7 +18,7 @@ class Vg_intern_script {
     function getlist(){
         return "SELECT user_vg_intern.internid, user_vg_intern.vgid,user_vg_intern.userid,
                 user.firstname, user.lastname, user_photo.photo,
-                userleader.firstname as leader_firstname, userleader.lastname as leader_lastname, userleaderphoto.photo as leader_photo,userleader.userid as leaderid 
+                userleader.firstname as leader_firstname, userleader.lastname as leader_lastname, userleaderphoto.photo as leader_photo,userleader.userid as leaderid, userleader.email as leader_email 
                 FROM user_vg_intern
                 INNER JOIN user_vg ON user_vg_intern.vgid=user_vg.vgid
                 INNER JOIN user userleader ON userleader.userid=user_vg.leaderid

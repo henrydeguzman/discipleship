@@ -6,7 +6,7 @@ angular.module('MainDirectives',[])
     .directive('gtHeaderNav',['pathValue','centralFctry','$document',gtHeaderNav])
     .directive('gtAccordion',[gtAccordion])
     .directive('gtAccordionContent',['$timeout',gtAccordionContent])
-    .directive('gtProfile',['pathValue','$timeout',gtProfile])
+    .directive('gtProfile',['pathValue','$timeout','genvarsValue',gtProfile])
     .directive('gtDatepicker',['$filter','genvarsValue',gtDatepicker])
     .directive('gtTab',['$timeout',gtTab])
     .directive('gtTabset',['dialogs','centralFctry',gtTabset])
@@ -184,11 +184,12 @@ function gtAccordion(){
         },controllerAs:'gtAccordionCtrl'
     }
 }
-function gtProfile(pathValue,$timeout){
+function gtProfile(pathValue,$timeout,genvarsValue){
     return {
         restrict:'E',templateUrl:'page/loadview?dir=jshtml&view=directives/profile/profile.html',
-        scope:{photo:'<',size:'@',name:'<',userid:'<'},link:function(){},controller:function($scope){
+        scope:{data:'<',size:'@'},link:function(){},controller:function($scope){
             var vm=this;
+            $scope.genvarsValue=genvarsValue;
             vm.photo={size:0,class:'',show:false};
             if($scope.size==='28'){
                 vm.photo.size='32';vm.photo.class='size-28';

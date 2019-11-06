@@ -9,7 +9,7 @@ var tblformatter = {
           return $html
      },
      admin: function () {
-          $html = '<div ng-if="tr.adminid>0"><gt-profile photo="tr.churchadmin_photo" userid="tr.churchadmin_userid" name="tr.churchadmin_fullname"></gt-profile>&nbsp;<span ng-class="tr.churchadmin_firstname!=null?\'gen-text-style-capitalize\':\'\'">{{tr.churchadmin_fullname}}</span>&nbsp;<span ng-if="genvarsValue.userdata(\'userid\')==tr.churchadmin_userid">(You)</span></div>';
+          $html = '<div ng-if="tr.adminid>0"><gt-profile data="{photo:tr.churchadmin_photo,userid:tr.churchadmin_userid,firstname:tr.churchadmin_firstname,lastname:tr.churchadmin_lastname,email:tr.churchadmin_email}"></gt-profile></div>';
 
           $html += '<div class="invitestatus"  style="text-align:center;" ng-if="tr.inviteid != null">';
           $html += '<span class="_wait" ng-if="tr.isverified==0&&tr.time_hours<=24"><i class="fas fa-clock"></i> {{tr.invite_email}} requested {{tr.time_minutes | fltr_asMinutesDiff}}</span>';
