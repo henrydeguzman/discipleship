@@ -16,8 +16,9 @@
     padding:0;
 }
 
-.main-gen-template.profile .main-sidebar {
-    display:none;
+.main-gen-template.profile .main-sidebar,
+.main-gen-template.profile .sidebar-toggle {
+    display:none !important;
 }
 .main-gen-template.profile .content-wrapper,
 .main-gen-template.profile .main-footer{
