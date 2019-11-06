@@ -33,8 +33,8 @@ class Users_set extends Core_Model {
           //return $_POST['email'];       
           $userid=isset($_POST['userid'])?$_POST['userid']:0;
 
-          $churchid=$this->data_app_get->getchurch('churchid');
-          if(isset($_POST['churchid'])) { $churchid = $_POST['churchid']; }
+
+          if(isset($_POST['churchid'])) { $churchid = $_POST['churchid']; } else { $churchid=$this->data_app_get->getchurch('churchid'); }
           if(empty($churchid)){ return array('success'=>false,'info'=>'User center is required'); }
 
           $frompage=isset($_POST['frmctrl'])?$_POST['frmctrl']:null;
