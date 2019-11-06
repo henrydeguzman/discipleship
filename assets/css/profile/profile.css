@@ -16,8 +16,18 @@
     height:315px;
     overflow:hidden;
     position:absolute;
+    width: 100%;
 }
 .page-profile ._section-header ._cover::before {
+    content:'';
+    background:black;
+    bottom: 0;
+    top:0;
+    right:0;
+    left:0;
+    position:absolute;
+}
+.page-profile ._section-header ._cover::after {
     content: '';
     position: absolute;
     background: url('../../../assets/img/bg/coverbg.png') bottom left repeat-x;
