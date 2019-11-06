@@ -2,8 +2,11 @@
     <li class="user">
         <a ui-sref="sref_sidebar({tab:'profile',name:'Profile'})">
             <img ng-src="api/getfile?name={{pathValue.userphoto+appmainCtrl.userdata.photo}}&size=64" onerror="this.src='assets/img/no-profile-male-img.jpeg'" class="user-image" alt="User Image">
-            <!--<span class="hidden-xs">{{appmainCtrl.userdata.fullname}}</span>-->
+            <span ng-if="appmainCtrl.userdata.firstname!==null" class="hidden-xs">{{appmainCtrl.userdata.firstname}}</span>
         </a>
+    </li>
+    <li class="nav-btn-icon">
+        <a ui-sref="sref_sidebar({tab:'dashboard',name:'Dashboard'})"><i class="fas fa-home"></i></a>
     </li>
     <li class="user-settings">
         <a ng-click="gtHeaderNavCtrl.user.toggle()">
@@ -11,10 +14,10 @@
         </a>
         <div ng-if="gtHeaderNavCtrl.user.show" class="_dropdown">
             <ul>
-                <li><span>Your Groups</span></li>
+                <li class="_disabled"><span>Your Groups</span></li>
                 <li class="separator"></li>
-                <li><span>Activity Log</span></li>
-                <li><span>News Feed Preferences</span></li>
+                <li class="_disabled"><span>Activity Log</span></li>
+                <li><a><span>Settings</span></a></li>
                 <li click-and-disable="gtHeaderNavCtrl.user.signout()"><span>Log Out</span></li>
             </ul>
         </div>

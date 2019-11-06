@@ -1,0 +1,38 @@
+.page-profile {
+}
+.page-profile .profile-wrapper {
+
+
+}
+.page-profile .profile-container {
+    max-width:851px;
+    margin:0 auto;
+
+}
+.page-profile ._section-header {
+
+}
+.page-profile ._section-header ._cover {
+    height:315px;
+    overflow:hidden;
+    position:absolute;
+}
+.page-profile ._section-header ._cover::before {
+    content: '';
+    position: absolute;
+    background: url('../../../assets/img/bg/coverbg.png') bottom left repeat-x;
+    bottom: 0;
+    top:0;right:0;left:0;
+    z-index: 1;
+}
+.page-profile ._section-header ._cover img {
+    width:100%;
+    bottom: 200px;
+    position: relative;
+}
+.page-profile ._section-header ._links {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 43px;
+}

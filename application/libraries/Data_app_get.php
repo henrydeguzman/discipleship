@@ -10,6 +10,7 @@ class Data_App_Get {
         return array(
             "userid" => $_SESSION['user']->userid,"photo" => $_SESSION['user']->photo,
             "fullname" => $_SESSION['user']->firstname.' '.$_SESSION['user']->lastname,
+            "firstname" => $_SESSION['user']->firstname, "lastname" => $_SESSION['user']->lastname,
             "churchid" => $_SESSION['user']->churchid,"churchname"=>$_SESSION['user']->churchname,
             "profileid"=>$_SESSION['user']->profileid,
             "datecreated" => $_SESSION['user']->datecreated

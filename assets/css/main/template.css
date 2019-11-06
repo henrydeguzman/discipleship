@@ -14,7 +14,22 @@
 }
 .main-gen-template.discipleship .content-wrapper section.content {
     padding:0;
-} 
+}
+
+.main-gen-template.profile .main-sidebar {
+    display:none;
+}
+.main-gen-template.profile .content-wrapper,
+.main-gen-template.profile .main-footer{
+    margin-left:0;
+}
+.main-gen-template.profile .content-wrapper section.content-header {
+    display:none;
+}
+.main-gen-template.profile .content-wrapper > .content {
+    /* padding:0 15px; */
+}
+/* css per page end */
 
 .main-gen-template > .wrapper > .content-wrapper::-webkit-scrollbar {
     width: 10px;

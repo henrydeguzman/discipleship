@@ -1,61 +1,71 @@
-<div class="row page-profile" ng-controller="profile.page.controller as profilepageCtrl">     
-    <div class="col-md-3">         
-        <!-- Profile Image -->
-        <div class="box box-primary">
-            <div class="box-body box-profile">
-                <div class="_div">
-                    <img class="profile-user-img img-responsive img-circle" ng-src="api/getfile?name={{pathValue.userphoto+appmainCtrl.userdata.photo}}&size=120" onerror="this.src='assets/img/no-profile-male-img.jpeg'" alt="User profile picture"  onerror="this.src='assets/img/no-profile-male-img.jpeg'" />
-                    <a class="_edit" href="javascript:void(0)" ng-click="profilepageCtrl.profile.updatediag()"><i class="fa fa-camera"></i><span>Update</span></a>
+<div class="row page-profile" ng-controller="profile.page.controller as profilepageCtrl">
+    <div class="profile-wrapper">
+        <div class="profile-container">
+            <div class="_section-header">
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <div class="_cover">
+                            <img src="api/getfile?name=temp/cover.jpeg">
+                        </div>
+                        <div class="_div">
+                            <img class="profile-user-img img-responsive img-circle" ng-src="api/getfile?name={{pathValue.userphoto+appmainCtrl.userdata.photo}}&size=120" onerror="this.src='assets/img/no-profile-male-img.jpeg'" alt="User profile picture"  onerror="this.src='assets/img/no-profile-male-img.jpeg'" />
+                            <a class="_edit" href="javascript:void(0)" ng-click="profilepageCtrl.profile.updatediag()"><i class="fa fa-camera"></i><span>Update</span></a>
+                        </div>
+                        <h3 class="profile-username text-center">{{profile.userdata.firstname!==null?profile.userdata.firstname:''+' '+profile.userdata.middlename!==null?profile.userdata.middlename:''+' '+profile.userdata.lastname!==null?profile.userdata.lastname:''}}</h3>
+
+
+                        <div class="_links">
+
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <h3 class="profile-username text-center">{{profile.userdata.fullname}}</h3>
-
-                <p class="text-muted text-center">Software Engineer</p>
-                <ul class="list-group list-group-unbordered">
-                    <li class="list-group-item" ng-if="profile.vgleader.vgid>0">
-                        <b>Victory Group Leader</b> <a title="No. members" class="pull-right">{{profile.vgleader.memcnt}}</a>
-                    </li>
-                </ul>
             </div>
-            <!-- /.box-body -->
+            <div class="_section-content">
+                <!-- About Me Box -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">About Me</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+                        <p class="text-muted">
+                            <span>{{profile.userdata.degree}}</span>
+                            <span ng-if="profile.userdata.degree==null">-</span>
+                        </p>
+
+                        <hr>
+
+                        <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+                        <p class="text-muted">
+                            <span>{{profile.userdata.address}}</span>
+                            <span ng-if="profile.userdata.address==null">-</span>
+                        </p>
+
+                        <hr>
+
+
+                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
         </div>
+    </div>
+    <div class="col-md-3">
+        <!-- Profile Image -->
+
         <!-- /.box -->
 
-        <!-- About Me Box -->
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">About Me</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
-                <p class="text-muted">
-                    <span>{{profile.userdata.degree}}</span>
-                    <span ng-if="profile.userdata.degree==null">-</span>
-                </p>
-
-                <hr>
-
-                <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-                <p class="text-muted">
-                    <span>{{profile.userdata.address}}</span>
-                    <span ng-if="profile.userdata.address==null">-</span>
-                </p>
-
-                <hr>
-
-
-                <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-            </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
     </div>
     <!-- /.col -->
-    <div class="col-md-9">
+    <div style="display:none;" class="col-md-9">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
@@ -334,5 +344,8 @@
         <!-- /.nav-tabs-custom -->
     </div>
     <!-- /.col -->
+
+
+
 </div>
 <!-- /.row -->

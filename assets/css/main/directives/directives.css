@@ -1411,6 +1411,11 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
     padding-bottom: 15px;
     padding-top: 15px;
 }
+.gen-header-nav > li.nav-btn-icon a {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    font-size:30px;
+}
 .gen-header-nav > li.user-settings {
     cursor:pointer;
 }
@@ -1440,6 +1445,13 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
     -moz-border-radius: 50%;
     border-radius: 50%;
     margin-top: -2px;
+}
+.gen-header-nav > li.user > a > span {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    padding-left: 5px;
 }
 .gen-header-nav > li > ._dropdown:before {
     content:'';
@@ -1498,7 +1510,7 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
 .gen-header-nav > li > ._dropdown > ul > li {
 
 }
-.gen-header-nav > li > ._dropdown > ul > li:hover {
+.gen-header-nav > li > ._dropdown > ul > li:not(._disabled):hover {
     background:inherit;
     cursor:pointer;
     background:#194389;
@@ -1508,10 +1520,21 @@ gt-table .gen-table-editor > .gen-table-editor-menu > ul > li:hover {
     cursor:default;
     background:transparent !important;
 }
-.gen-header-nav > li > ._dropdown > ul > li > span {
+.gen-header-nav > li > ._dropdown > ul > li._disabled > span,
+.gen-header-nav > li > ._dropdown > ul > li._disabled > a {
+    color:#ccc;
+    cursor:not-allowed;
+}
+.gen-header-nav > li > ._dropdown > ul > li > span,
+.gen-header-nav > li > ._dropdown > ul > li > a {
     padding:0 22px;
     white-space:nowrap;
     font-size:13px;
+    color:#333333;
+}
+.gen-header-nav > li > ._dropdown > ul > li:not(._disabled):hover > span,
+.gen-header-nav > li > ._dropdown > ul > li:not(._disabled):hover > a {
+    color:white;
 }
 /* skins */
 .skin-blue .gen-header-nav > li > ._dropdown > ul > li:hover {
