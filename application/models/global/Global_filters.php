@@ -73,4 +73,20 @@ class Global_filters extends Core_Model {
     private function formatdate($date,$format='F j, Y'){
         return date($format,strtotime($date));
     }
+    /**
+     * api/gateway?re=fetch/global_filters/getfilters
+     * This uses for quarterly where statement in sql
+     */
+    public function sql_quarterly($str=null,$table=null,$condition="OR"){
+        if(!empty($str)&&!empty($table)){
+            $whr='';
+            $dates=explode(',',$str);$whr_=array();
+            foreach ($dates as $date){
+                $range=explode('=',$date);
+                $whr="(".$table." BETWEEN '".$range[0]."' AND '".$range[1]."')";
+                array_push($whr_,$whr);
+            }
+            return "(".implode($whr_,' '.$condition.' ').")";
+        } else { return ''; }
+    }
 }

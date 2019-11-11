@@ -22,10 +22,11 @@ class Weekend_script {
     }
     public static function postlist(){
         return "SELECT development_weekend.devweekendid,development_weekend.userid, user.firstname, user.lastname,user_photo.photo,
-                development_weekend_dates.weekend_date as date
+                development_weekend_dates.weekend_date as date,user_lifestatus.name as lifestatus
                 FROM development_weekend
                 INNER JOIN development_weekend_dates ON development_weekend.weekendid=development_weekend_dates.weekendid
                 LEFT JOIN user ON development_weekend.userid=user.userid
+                LEFT JOIN user_lifestatus ON user_lifestatus.statusid=user.statusid
                 LEFT JOIN user_photo ON user_photo.photoid=user.photoid ";
     }
 }
