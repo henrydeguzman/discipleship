@@ -6,9 +6,7 @@
  * Time: 1:19 PM
  */
 class Global_date extends Core_Model {
-    public function __construct()
-    {
-    }
+    public function __construct(){}
     /** api/gateway?re=fetch/global_date/get_dates_of_quarter */
     public static function get_dates_of_quarter($quarter = 'current', $year = null, $format = null) {
         $datetime=new DateTime();
