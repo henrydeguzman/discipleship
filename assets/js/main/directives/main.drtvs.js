@@ -1087,10 +1087,10 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
 }
 function bindHtmlCompile($compile,$sce){
     return { restrict: 'A', link: function (scope, element, attrs) {
-        scope.$watch(function () { return scope.$eval(attrs.bindHtmlCompile); }, function (value) {
-            if(typeof (value)=='string'){ element.html(_.unescape(value)); /* new: decode html entities and then convert it to html */ } else { element.html(value);/* old: only convert to html and miss the encoded entities */ }
-            $compile(element.contents())(scope);
-        });
-    }
+            scope.$watch(function () { return scope.$eval(attrs.bindHtmlCompile); }, function (value) {
+                if(typeof (value)=='string'){ element.html(_.unescape(value)); /* new: decode html entities and then convert it to html */ } else { element.html(value);/* old: only convert to html and miss the encoded entities */ }
+                $compile(element.contents())(scope);
+            });
+        }
     }
 }
