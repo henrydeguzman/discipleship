@@ -778,17 +778,44 @@ function gtTable(centralFctry,tableService,pathValue,glfnc,$filter,$http,$q,inif
             };
             vm.table.filter.checkall=function(item){ for(var x=0;x<item.childs.length;x++){ item.childs[x].checked=item.allchecked; } };
             vm.table.filter.clear=function(){
-                vm.table.filter.querydata=undefined;vm.refresh();
+                vm.table.filter.querydata=undefined;
+                for(var x=0;x<vm.table.filter.data.length;x++){
+                    var childs=vm.table.filter.data[x].childs;
+                    for(var i=0;i<childs.length;i++){
+                        var item=vm.table.filter.data[x].childs[i];
+                        if (item.checked === true) {
+                            vm.table.filter.data[x].childs[i].checked=false;
+                        }
+                    }
+                }
+                vm.table.filter.submit();
+            };
+            vm.table.filter.remove=function(item){
+                item.checked=false;
+                vm.table.filter.submit();
             };
             vm.table.filter.submit=function(){
-                var data={};
+                var data={},display=[];
                 if(vm.table.filter.data.length!==0){
                     for(var x=0;x<vm.table.filter.data.length;x++){
                         var chaindata=vm.table.filter.data[x].childs,filtered=_.chain(chaindata).filter({checked:true}).pluck('id').value();
                         if(filtered.length>0){ data[vm.table.filter.data[x]['id']]=filtered.join(','); }
+
+                        // using native approach
+                        var display_collection = [];
+                        for (var i = 0; i < chaindata.length; i++) {
+                            if (chaindata[i].checked === true) {
+                                display_collection.push(chaindata[i]);
+                            }
+                        }
+                        if(display_collection.length>0){
+                            display.push(display_collection);
+                        }
                     }
                 }
-                vm.table.filter.querydata=data; vm.refresh();
+                vm.table.filter.querydata=data;
+                vm.table.filter.display=display;
+                vm.refresh();
                 console.log(vm.table.filter.querydata);
             };
             vm.headertitle=function(html){ $scope.header.title=html; };

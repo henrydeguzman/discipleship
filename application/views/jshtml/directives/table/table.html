@@ -106,6 +106,21 @@
             </tbody>
         </table>
     </div>
+    <div class="gen-table-filters" ng-if="gtTblCtrl.table.filter.display.length>0">
+        <table><tbody>
+        <tr>
+            <td><span>Filters</span></td>
+            <td>
+                <ul ng-repeat="list in gtTblCtrl.table.filter.display">
+                    <li ng-repeat="item in list">
+                        <span>{{item.name}}</span>
+                        <div ng-click="gtTblCtrl.table.filter.remove(item)" class="_remove"><i class="far fa-times-circle"></i></div>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
     <div class="gen-table-content">
         <div class="gen-table-content-loading" ng-show="gtTblCtrl.table.loading.content"><div class="spinner-container" bind-html-compile="spinnerValues.default"></div></div>
         <table ng-style="tablestyle">
