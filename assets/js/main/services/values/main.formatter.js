@@ -22,5 +22,6 @@ angular.module("MainFormatters",[])
                 '</label>';
         },
         fulldate:function(tr){ return "<span>{{tr.date | date:'fullDate'}}</span>"; },
+        longdate:function(tr){ return "<span>{{tr.date | date:'longDate'}}</span>"; },
         count:function(tr){ return '{{trindex+1}}'; }
     });

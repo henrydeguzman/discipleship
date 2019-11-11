@@ -33,4 +33,9 @@ class Weekend_get extends Core_Model {
         $sql=$this->weekend_script->getdates().$whr;
         return $this->query($sql,true);
     }
+    /** api/gateway?re=fetch/weekend_get/postlist */
+    public function postlist(){
+        $sql=$this->weekend_script->postlist();
+        return $this->query($sql);
+    }
 }

@@ -138,6 +138,10 @@ gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._
     padding:0 5px;
     position: relative;
 }
+/* table filter css per id */
+gt-table .gen-table-container > .gen-table-header div.gen-table-h-filters > ul._parent > li ul._child.quarterly {
+    width: 170px;
+}
 div.gen-table-h-filters ul._parent > li ul._child > li {
     line-height:normal;
     border-bottom:1px solid #e9ebee;

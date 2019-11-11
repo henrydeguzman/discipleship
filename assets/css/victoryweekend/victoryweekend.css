@@ -5,6 +5,11 @@
 .page-victoryweekend .tab-victoryweekend {
 
 }
+
+.page-victoryweekend .tab-victoryweekend .gen-accordion-row:not(._active):last-child > .gen-accordion-header{
+    border-bottom:none;
+}
+
 .page-victoryweekend .tab-victoryweekend ._adddate {
     text-align:center;
     font-size:30px;

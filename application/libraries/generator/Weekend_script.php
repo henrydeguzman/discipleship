@@ -20,4 +20,12 @@ class Weekend_script {
                 LEFT JOIN development_weekend_dates d ON d.weekendid=".$weekendid." AND d.weekend_date >= CURDATE() AND d.total=0
                 WHERE a.profileid=2 AND b.chapter>=c.chapterid ";
     }
+    public static function postlist(){
+        return "SELECT development_weekend.devweekendid,development_weekend.userid, user.firstname, user.lastname,user_photo.photo,
+                development_weekend_dates.weekend_date as date
+                FROM development_weekend
+                INNER JOIN development_weekend_dates ON development_weekend.weekendid=development_weekend_dates.weekendid
+                LEFT JOIN user ON development_weekend.userid=user.userid
+                LEFT JOIN user_photo ON user_photo.photoid=user.photoid ";
+    }
 }
